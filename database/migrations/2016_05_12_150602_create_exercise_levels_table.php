@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExercisesTable extends Migration
+class CreateExerciseLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,9 @@ class CreateExercisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercises', function (Blueprint $table) {
+        Schema::create('exercise_levels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->enum('level', array('basics', 'survival', 'professional'));
-            //foreign key to administrator_id
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateExercisesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exercises');
+        Schema::drop('exercise_levels');
     }
 }
