@@ -13,6 +13,7 @@ class ExerciseLevelsTableSeeder extends Seeder
     public function run()
     {
         DB::table('exercise_levels')->insert([
+<<<<<<< HEAD
             ["name" => 'alkeet']
         ]);
         DB::table('exercise_levels')->insert([
@@ -20,6 +21,15 @@ class ExerciseLevelsTableSeeder extends Seeder
         ]);
         DB::table('exercise_levels')->insert([
             ["name" => 'ammatti']
+=======
+            ["name" => 'alkeet'],
+        ]);
+		DB::table('exercise_levels')->insert([
+            ["name" => 'selviytyminen'],
+        ]);
+		DB::table('exercise_levels')->insert([
+            ["name" => 'ammatti'],
+>>>>>>> e1f1f9295a181194b360876f66cb36840e19b915
         ]);
     }
 }
