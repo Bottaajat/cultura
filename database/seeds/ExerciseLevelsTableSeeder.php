@@ -13,8 +13,12 @@ class ExerciseLevelsTableSeeder extends Seeder
     {
         DB::table('exercise_levels')->insert([
             ["name" => 'alkeet'],
-			["name" => 'selviytyminen'],
-			["name" => 'ammatti']
+        ]);
+		DB::table('exercise_levels')->insert([
+            ["name" => 'selviytyminen'],
+        ]);
+		DB::table('exercise_levels')->insert([
+            ["name" => 'ammatti'],
         ]);
     }
 }
