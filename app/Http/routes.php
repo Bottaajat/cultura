@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/','ExerciseController@index');
+Route::get('/','ExerciseLevelsController@index');
