@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class ExerciseLevelsTableSeeder extends Seeder
 {
@@ -12,9 +13,13 @@ class ExerciseLevelsTableSeeder extends Seeder
     public function run()
     {
         DB::table('exercise_levels')->insert([
-            ["name" => 'alkeet'],
-			["name" => 'selviytyminen'],
-			["name" => 'ammatti']
+            ["name" => 'alkeet']
+        ]);
+        DB::table('exercise_levels')->insert([
+            ["name" => 'selviytyminen']
+        ]);
+        DB::table('exercise_levels')->insert([
+            ["name" => 'ammatti']
         ]);
     }
 }
