@@ -15,7 +15,7 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('level');
+            $table->enum('level', array('basics', 'survival', 'professional'));
             //foreign key to administrator_id
             $table->timestamps();
         });
