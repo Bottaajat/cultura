@@ -13,4 +13,11 @@
 
 Route::get('/','ExerciseLevelsController@index');
 
+// FEBJU lisää controllerin funktio!!!
+Route::get('{exerciselevel}', 'ExerciseController@list_exercises');
+
+Route::get('{exerciselevel}/{exercisename}', function($exerciselevel, $exercisename) {
+	return view('exercise.show');
+});
+
 //Route::get('{exerciselevel}', 'ExerciseLevelsController@test');
