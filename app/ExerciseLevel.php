@@ -13,4 +13,9 @@ class ExerciseLevel extends Model
      */
     protected $table = 'exercise_levels';
     protected $fillable = [ 'name' ];
+	
+	public function exercises()
+    {
+        return $this->hasMany('App\Exercise');
+    }
 }

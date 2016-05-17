@@ -8,20 +8,20 @@ use App\Http\Requests;
 
 use App\Exercise;
 
+use App\ExerciseLevel;
+
 class ExerciseController extends Controller
 {
-    public function index()
+
+	public function list_exercises($exercise_level_name)
 	{
-		$levels = ExerciseLevel::all();
-		return view('exerciselevels.index', array('levels' => $levels));
-	}
-	
-	public function list_exercises($exerciselevel)
-	{
-		if ($exerciselevel == 1 || $exerciselevel == 2 || $exerciselevel == 3)
+		if ($exercise_level_name == 'alkeet' || $exercise_level_name == 'selviytyminen' || $exercise_level_name == 'ammatti')
 		{
-			$exercise = Exercise::where('exercise_level_id',$exerciselevel)->get();
-			return view('exercise_list', array('exercises' => $exercise));
+			$levels = ExerciseLevel::where('name', $exercise_level_name)->first();
+			$exercises = $levels->exercises;
+			return view('exercise_list', array('exercises' => $exercises));
+			//$exercise = Exercise::where('exercise_level_id',$exerciselevel_id)->get();
+			//return view('exercise_list', array('exercises' => $exercise));
 		}
 		else return view('testi');
 	}

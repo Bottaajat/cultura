@@ -1,4 +1,8 @@
 @extends('layouts.master')
 @section('content')
-{{$exercises}}
+<ul>
+@foreach($exercises as $exercise)
+<li><a href="{{URL::to($exercise->name)}}">{{$exercise->name}}</a></li>
+@endforeach
+</ul>
 @stop
