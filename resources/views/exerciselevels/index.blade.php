@@ -3,7 +3,7 @@
 
 <ul>
 @foreach($levels as $level)
-<li>{{$level->name}}</li>
+<li><a href="{{URL::to($level->name)}}">{{$level->name}}</a></li>
 @endforeach
 </ul>
 
