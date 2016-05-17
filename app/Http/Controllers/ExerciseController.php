@@ -25,4 +25,10 @@ class ExerciseController extends Controller
 		}
 		else return view('testi');
 	}
+
+	public function show($level, $name)
+	{
+		$exercise = Exercise::where('name', $name)->first();
+		return view('exercise.show', array('exercise' => $exercise));
+	}
 }

@@ -13,6 +13,8 @@
 
 Route::get('/','ExerciseLevelsController@index');
 
-Route::get('/{exerciselevel_name}','ExerciseController@list_exercises');
+Route::get('{exerciselevel_name}','ExerciseController@list_exercises');
+
+Route::get('{exerciselevel_name}/{exercise_name}', 'ExerciseController@show');
 
 //Route::get('{exerciselevel}', 'ExerciseLevelsController@test');
