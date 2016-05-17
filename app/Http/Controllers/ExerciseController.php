@@ -12,8 +12,7 @@ class ExerciseController extends Controller
 {
     public function index()
 	{
-		$exercises = Exercise::all();
-		$levels = $exercises->getPossibleLevels();
-		return view('exercise.index', array('levels', $levels));
+		$levels = ExerciseLevel::all();
+		return view('exerciselevels.index', array('levels' => $levels));
 	}
 }
