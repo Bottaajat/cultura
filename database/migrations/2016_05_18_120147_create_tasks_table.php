@@ -18,7 +18,6 @@ class CreateTasksTable extends Migration
             $table->string('type');
             $table->integer('exercise_id')->unsigned();
             $table->foreign('exercise_id')->references('id')->on('exercises');
-            
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('tasks');
     }
 }

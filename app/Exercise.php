@@ -19,4 +19,8 @@ class Exercise extends Model
         return $this->hasMany('App\Task');
     }
 	
+	public function materials()
+	{
+		return $this->hasMany('App\Material');
+	}
 }
