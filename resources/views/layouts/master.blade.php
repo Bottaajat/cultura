@@ -7,7 +7,8 @@
 <body>
 
 <div>
-	<a href="{{URL::to('/')}}" >{{ "Etusivu" }}</a>
+	<a href="{{ URL::to('/') }}" >{{ "Etusivu" }}</a>
+	<a href="{{ URL::previous() }}">{{ "Palaa" }}</a>
 </div>	
 
 <div>
