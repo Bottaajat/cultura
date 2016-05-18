@@ -2,14 +2,16 @@
 
 @section('content')
 
-<h1>
-	{{ strtoupper($exercises->first()->exercise_level->name) }}
-</h1>
+<div class="page-header">
+	<h1>{{ strtoupper($exercises->first()->exercise_level->name) }}</h1>
+</div>
 
-<ul>
-	@foreach($exercises as $exercise)
-		<li><a href="{{URL::to($exercise->exercise_level->name.'/'.$exercise->name)}}">{{$exercise->name}}</a></li>
-	@endforeach
-</ul>
+<div class="list-group">
+@foreach($exercises as $exercise)
+	<a href="{{URL::to($exercise->exercise_level->name.'/'.$exercise->name)}}" class="list-group-item">
+		{{$exercise->name}}
+	</a>
+@endforeach
+</div>
 
 @stop
