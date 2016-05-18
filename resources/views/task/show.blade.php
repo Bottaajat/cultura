@@ -11,7 +11,7 @@
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body">
-		<form action="mock">
+		<form action="">
 			Lorem ipsum dolor sit amet, Lorem <input type="text" name="blank1"> Ipsum adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
 			Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
 			ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
@@ -29,6 +29,6 @@
 	</div>
 </div>
 
-<input type="submit" value="Palauta">
+<input class="btn btn-default" type="submit" value="Palauta">
 
 @stop
