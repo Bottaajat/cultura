@@ -2,11 +2,13 @@
 
 @section('content')
 
-
+<div class="page-header">
+	<h1>{{ "Tehtävä: " . $task->name }}</h1>
+</div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="panel-title">{{$task->name}}</div>
+		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body">
 		<form action="mock">
