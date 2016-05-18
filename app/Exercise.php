@@ -14,4 +14,9 @@ class Exercise extends Model
 		return $this->belongsTo('App\ExerciseLevel');
 	}
 	
+	public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
+	
 }

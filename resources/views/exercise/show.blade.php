@@ -2,10 +2,10 @@
 
 @section('content')
 
-{{-- Nappi Harjoituksiin --}}
-{{-- muuta taskcontrollerin funktio --}}
-<form action="">
-	<input type="submit" value="Harjoituksia!" />
-</form>
+<ul>
+@foreach($exercise->tasks as $task)
+<li><a href="{{URL::to($exercise->exercise_level->name.'/'.$exercise->name.'/'.$task->name)}}">{{$task->name}}</a></li>
+@endforeach
+</ul>
 
 @stop
