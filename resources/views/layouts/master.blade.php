@@ -7,7 +7,11 @@
 <body>
 
 <div>
-@yield('content')
+	<a href="{{URL::to('/')}}" >{{ "Etusivu" }}</a>
+</div>	
+
+<div>
+	@yield('content')
 </div>
 
 </body>
