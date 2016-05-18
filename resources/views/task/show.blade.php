@@ -3,5 +3,6 @@
 @section('content')
 
 {{$task->name}}
+{{$task->type}}
 
 @stop

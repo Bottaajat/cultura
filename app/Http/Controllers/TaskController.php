@@ -14,9 +14,9 @@ use App\Task;
 
 class TaskController extends Controller
 {
-    public function show($task_name)
+    public function show($level, $exercise, $task)
 	{
-		$task = Task::where('name', $task_name)->first();
-		return view('task.show', array('task' => $task));
+		$task_ = Task::where('name', $task)->first();
+		return view('task.show', array('task' => $task_));
 	}
 }
