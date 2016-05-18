@@ -13,21 +13,18 @@ use App\ExerciseLevel;
 class ExerciseController extends Controller
 {
 
-	public function list_exercises($exercise_level_name)
-	{
-		if ($exercise_level_name == 'alkeet' || $exercise_level_name == 'selviytyminen' || $exercise_level_name == 'ammatti')
+	public function list_exercises($exercise_level_name) {
+		//if ($exercise_level_name == 'alkeet' || $exercise_level_name == 'selviytyminen' || $exercise_level_name == 'ammatti')
+		if($levels = ExerciseLevel::where('name', $exercise_level_name)->first())
 		{
-			$levels = ExerciseLevel::where('name', $exercise_level_name)->first();
+			//$levels = ExerciseLevel::where('name', $exercise_level_name)->first();
 			$exercises = $levels->exercises;
-			return view('exercise_list', array('exercises' => $exercises));
-			//$exercise = Exercise::where('exercise_level_id',$exerciselevel_id)->get();
-			//return view('exercise_list', array('exercises' => $exercise));
+			return view('exercise.list_exercises', array('exercises' => $exercises));
 		}
 		else return view('testi');
 	}
 
-	public function show($level, $name)
-	{
+	public function show($level, $name) {
 		$exercise = Exercise::where('name', $name)->first();
 		return view('exercise.show', array('exercise' => $exercise));
 	}
