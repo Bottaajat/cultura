@@ -3,12 +3,12 @@
 @section('content')
 
 <div class="page-header">
-	<h1>{{ "Tehtävä: " . $exercise->name }}</h1>
+	<h1>{{ "Harjoitus: " . $exercise->name }}</h1>
 </div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="panel-title">{{ "Tehtävän materiaali" }}</div>
+		<div class="panel-title">{{ "Harjoituksen materiaali" }}</div>
 	</div>
 	<div class="panel-body">
 		<div class="list-group">
@@ -21,13 +21,13 @@
 </div>
 
 
-<div class="panel panel-hover">
+<div class="panel panel-default">
 	<div class="panel-heading">
-		<div class="panel-title">{{ "Harjoituksia" }}</div>
+		<div class="panel-title">{{ "Harjoituksen tehtävät" }}</div>
 	</div>
 	<div class="panel-body">
 		<div class="list-group">
-			@foreach($exercise->tasks as $task)
+		@foreach($exercise->tasks as $task)
 			<a href="{{URL::to($exercise->exercise_level->name.'/'.$exercise->name.'/'.$task->name)}}" class="list-group-item">
 				{{ $task->name }}
 			</a>

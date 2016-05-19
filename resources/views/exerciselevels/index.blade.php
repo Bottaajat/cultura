@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="page-header">
-	<h1>{{ "Tehtävä tyypit" }}</h1>
+	<h1>{{ "Aiheet" }}</h1>
 </div>
 
 <div class="list-group">

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header">
-	<h1>{{ strtoupper($exercises->first()->exercise_level->name) }}</h1>
+	<h1>{{ $exercises->first()->exercise_level->name }}</h1>
 </div>
 
 <div class="list-group">
