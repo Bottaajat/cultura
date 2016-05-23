@@ -1,11 +1,12 @@
+<!DOCTYPE html>
 <html>
-
 <head>
 	<title> Cultura </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 	<link rel="stylesheet" href="/bootstrap-dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/bootstrap-dist/css/bootstrap-theme.min.css">
-	<link rel="script" href="/bootstrap-dist/js/bootstrap.min.js">
+	<script src="/bootstrap-dist/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -32,5 +33,4 @@
 
 </div>
 </body>
-
 </html>
