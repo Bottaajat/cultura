@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExerciseLevelsTable extends Migration
+class CreateTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateExerciseLevelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exercise_levels', function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -26,6 +26,6 @@ class CreateExerciseLevelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exercise_levels');
+        Schema::drop('topics');
     }
 }

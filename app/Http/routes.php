@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/','ExerciseLevelsController@index');
+Route::get('/','TopicController@index');
 
-Route::get('{exerciselevel_name}','ExerciseController@list_exercises');
+Route::get('{topic}','ExerciseController@list_exercises');
 
-Route::get('{exerciselevel_name}/{exercise_name}', 'ExerciseController@show');
+Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
-Route::get('{exerciselevel_name}/{exercise_name}/{task_name}', 'TaskController@show');
+Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
 
 //Route::get('{exerciselevel}', 'ExerciseLevelsController@test');

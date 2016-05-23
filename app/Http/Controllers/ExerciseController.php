@@ -8,23 +8,21 @@ use App\Http\Requests;
 
 use App\Exercise;
 
-use App\ExerciseLevel;
+use App\Topic;
 
 class ExerciseController extends Controller
 {
 
-	public function list_exercises($exercise_level_name) {
-		//if ($exercise_level_name == 'alkeet' || $exercise_level_name == 'selviytyminen' || $exercise_level_name == 'ammatti')
-		if($levels = ExerciseLevel::where('name', $exercise_level_name)->first())
+	public function list_exercises($topic) {
+		if($topic_ = Topic::where('name', $topic)->first())
 		{
-			//$levels = ExerciseLevel::where('name', $exercise_level_name)->first();
-			$exercises = $levels->exercises;
+			$exercises = $topic_->exercises;
 			return view('exercise.list_exercises', array('exercises' => $exercises));
 		}
 		else return view('testi');
 	}
 
-	public function show($level, $name) {
+	public function show($topic, $name) {
 		$exercise = Exercise::where('name', $name)->first();
 		return view('exercise.show', array('exercise' => $exercise));
 	}

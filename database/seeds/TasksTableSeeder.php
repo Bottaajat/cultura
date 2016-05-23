@@ -12,38 +12,38 @@ class TasksTableSeeder extends Seeder
     public function run()
     {
         DB::table('tasks')->insert([
-            ["name" => 'tehtävä 1',
-			"type" => 'ristikko',
+            ["name" => 'Tehtävä 1',
+			"type" => 'Ristikko',
 			"exercise_id" => '1']
         ]);
 		
 		DB::table('tasks')->insert([
-            ["name" => 'tehtävä 2',
-			"type" => 'hirsipuu',
+            ["name" => 'Tehtävä 2',
+			"type" => 'Hirsipuu',
 			"exercise_id" => '1']
         ]);
 		
 		DB::table('tasks')->insert([
-            ["name" => 'tehtävä 3',
-			"type" => 'täyttö',
+            ["name" => 'Tehtävä 3',
+			"type" => 'Täyttö',
 			"exercise_id" => '2']
         ]);
 		
 		DB::table('tasks')->insert([
-            ["name" => 'tehtävä 4',
-			"type" => 'täyttö',
+            ["name" => 'Tehtävä 4',
+			"type" => 'Täyttö',
 			"exercise_id" => '3']
         ]);
 		
 		DB::table('tasks')->insert([
-            ["name" => 'tehtävä 5',
-			"type" => 'ristikko',
+            ["name" => 'Tehtävä 5',
+			"type" => 'Ristikko',
 			"exercise_id" => '4']
         ]);
 		
 		DB::table('tasks')->insert([
-            ["name" => 'tehtävä 6',
-			"type" => 'hirsipuu',
+            ["name" => 'Tehtävä 6',
+			"type" => 'Hirsipuu',
 			"exercise_id" => '4']
         ]);
     }

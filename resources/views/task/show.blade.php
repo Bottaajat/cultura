@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-header">
-	<h1>{{ "Tehtävä: " . $task->name }}</h1>
+	<h1>{{ $task->name }}</h1>
 </div>
 
 <div class="panel panel-default">

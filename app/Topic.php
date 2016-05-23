@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ExerciseLevel extends Model
+class Topic extends Model
 {
      /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'exercise_levels';
+    protected $table = 'topics';
     protected $fillable = [ 'name' ];
 	
 	public function exercises()

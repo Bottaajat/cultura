@@ -12,21 +12,26 @@ class ExercisesTableSeeder extends Seeder
      */
     public function run()
     {	
+
         DB::table('exercises')->insert([
-            ["name" => 'harjoitustehtävä 1',
-			"exercise_level_id" => '1']
+            ["name" => 'Aakkoset',
+            "topic_id" => '1']
         ]);
         DB::table('exercises')->insert([
-            ["name" => 'harjoitustehtävä 2',
-			"exercise_level_id" => '1']
+            ["name" => 'Harjoitustehtävä 1',
+			"topic_id" => '2']
+        ]);
+        DB::table('exercises')->insert([
+            ["name" => 'Harjoitustehtävä 2',
+			"topic_id" => '2']
         ]);
 		DB::table('exercises')->insert([
-            ["name" => 'harjoitustehtävä 3',
-			"exercise_level_id" => '2']
+            ["name" => 'Harjoitustehtävä 3',
+			"topic_id" => '3']
         ]);
 		DB::table('exercises')->insert([
-            ["name" => 'harjoitustehtävä 4',
-			"exercise_level_id" => '3']
+            ["name" => 'Harjoitustehtävä 4',
+			"topic_id" => '3']
         ]);
     }
 }

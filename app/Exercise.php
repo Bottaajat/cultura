@@ -9,9 +9,9 @@ class Exercise extends Model
     protected $fillable = [ 'name' ];
 	
 	
-	public function exercise_level()
+	public function topic()
 	{
-		return $this->belongsTo('App\ExerciseLevel');
+		return $this->belongsTo('App\Topic');
 	}
 	
 	public function tasks()
