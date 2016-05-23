@@ -1,4 +1,9 @@
 @extends('layouts.master')
+
+@section('pagehead')
+  <script src="/js/arrow.js" type="text/javascript"></script>
+@stop
+
 @section('content')
 
 <div class="page-header">
@@ -10,8 +15,8 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <div data-toggle="collapse" href="#collapseMat">Materiaali
-        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        <div id="menu-1-toggle" data-toggle="collapse" href="#collapseMat">
+          Materiaali <i class="glyphicon glyphicon-triangle-bottom"></i>
       </div>
       </h4>
     </div>
@@ -31,7 +36,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <div data-toggle="collapse" href="#collapseExer">Tehtävät</div>
+        <div id="menu-2-toggle" data-toggle="collapse" href="#collapseExer">
+          Tehtävät <i class="glyphicon glyphicon-triangle-bottom"></i>
+        </div>
       </h4>
     </div>
     <div id="collapseExer" class="panel-collapse collapse in">

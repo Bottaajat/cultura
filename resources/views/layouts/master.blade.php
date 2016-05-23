@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 	<script src="/js/jquery.min.js" type="text/javascript"></script>
 	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	@yield('pagehead')
 </head>
 
 <body>
