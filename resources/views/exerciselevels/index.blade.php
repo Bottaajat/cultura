@@ -22,13 +22,11 @@
 			</h4>
 		</div>
 		<div id='{{"collapse".$level->id}}' class="panel-collapse collapse">
-			<ul class="list-group">
+			<div class="list-group">
 			@foreach($level->exercises as $exercise)
-				<li class="list-group-item"> 
-          <a href="{{URL::to($level->name.'/'.$exercise->name)}}">{{$exercise->name}}</a>
-        </li>
+          <a href="{{URL::to($level->name.'/'.$exercise->name)}}" class="list-group-item">{{$exercise->name}}</a>
 			@endforeach
-			</ul>
+			</div>
 		</div>	
 	</div>
 @endforeach
