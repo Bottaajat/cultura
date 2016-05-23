@@ -25,7 +25,6 @@
   </div>
 </div>
 
-
 {{-- Tehtävät --}}
 <div class="panel-group">
   <div class="panel panel-default">
