@@ -4,7 +4,7 @@
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar">
+				<span class="icon-bar"></span>
 			</button>
 		</div>
 		
@@ -12,6 +12,7 @@
 			<ul class="nav nav-pills">
 				<li><a href="{{ URL::to('/') }}" >{{ "Etusivu" }}</a></li>
 				<li><a href="{{ URL::previous() }}">{{ "Palaa" }}</a></li>
+				<li><a href="{{ URL::to('/exercise/create') }}">{{ "Luo uusi harjoitus" }}</a></li>
 			</ul>
 		</div>	
 	

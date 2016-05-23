@@ -13,6 +13,9 @@
 
 Route::get('/','TopicController@index');
 
+Route::resource('exercise', 'ExerciseController',
+	array('only' => array('create', 'store', )));
+
 Route::get('{topic}','ExerciseController@list_exercises');
 
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
