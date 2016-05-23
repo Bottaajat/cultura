@@ -21,7 +21,7 @@
 				</a>
 			</h4>
 		</div>
-		<div id='{{"#collapse".$level->id}}' class="panel-collapse collapse">
+		<div id='{{"collapse".$level->id}}' class="panel-collapse collapse in">
 			<div class="list-group">
 			@foreach($level->exercises as $exercise)
 				<a href="{{URL::to($level->name.'/'.$exercise->name)}}" class="list-group-item">{{$exercise->name}}</a>
