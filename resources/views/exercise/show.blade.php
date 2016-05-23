@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
 <div class="page-header">
   <h1>{{ $exercise->name }}</h1>
 </div>
@@ -10,6 +11,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <a data-toggle="collapse" href="#collapseMat">Materiaali</a>
+          <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
       </h4>
     </div>
     <div id="collapseMat" class="panel-collapse collapse in">
