@@ -10,8 +10,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapseMat">Materiaali</a>
-          <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+        <div data-toggle="collapse" href="#collapseMat">Materiaali
+        <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+      </div>
       </h4>
     </div>
     <div id="collapseMat" class="panel-collapse collapse in">
@@ -30,7 +31,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapseExer">Tehtävät</a>
+        <div data-toggle="collapse" href="#collapseExer">Tehtävät</div>
       </h4>
     </div>
     <div id="collapseExer" class="panel-collapse collapse in">

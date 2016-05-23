@@ -10,9 +10,9 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href='{{"#collapse".$topic->id}}' >
+				<div data-toggle="collapse" data-parent="#accordion" href='{{"#collapse".$topic->id}}' >
 					{{$topic->name}}
-				</a>
+				</div>
 			</h4>
 		</div>
 		<div id='{{"collapse".$topic->id}}' class="panel-collapse collapse">
