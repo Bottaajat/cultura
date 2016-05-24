@@ -5,7 +5,7 @@
 <br>
 
 <h4>
-Tehtävän lisäys
+Harjoituksen lisäys
 </h4>
 
 {!! Form::open(array('action'=> 'ExerciseController@store', 'method'=>'POST')) !!}
@@ -13,7 +13,7 @@ Tehtävän lisäys
 	<div class="form-group">
 		{!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
 		<div class="col-sm-10">
-			{!! Form::text('exercise', null, array('required', 'class'=>'form-control', 'placeholder'=>'harjoitus')) !!}
+			{!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'harjoitus')) !!}
 		</div>
 	</div>	
 	<div class="form-group">
