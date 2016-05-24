@@ -36,7 +36,7 @@
 		<div id='{{"collapse".$topic->id}}' class="panel-collapse collapse">
 			<div class="list-group">
 			@foreach($topic->exercises as $exercise)
-              <div class="container-fluid">
+              <div class="container-fluid list-group-item">
                 <div class="row">
                    <div class="col-md-11">
                      <a class="list-group-item" href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
