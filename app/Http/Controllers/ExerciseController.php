@@ -108,7 +108,7 @@ class ExerciseController extends Controller
 
       $exercise->update();
 
-      return back()->with('success', 'PÃ¤ivitys onnistui!');
+      return back()->with('success', 'Päivitys onnistui!');
     }
 
     /**
