@@ -65,15 +65,7 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-		$name = $request->input('name');
-		$topic_id = $request->input('topic');
-		$topic_id++;
-		//$topic = Topic::where('name', $topic_name)->first();
-		//$topic_id = $topic->pluck('topic_id');
-		Exercise::insert([
-					['name' => $name, 'topic_id' => $topic_id]
-				]);
-		return redirect('/')->with('success', 'Harjoitus lisätty');
+        echo "moi moi";
     }
 
     /**
@@ -85,17 +77,17 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $exercise = Exercise::find($id);
-        $exercise_name = $request->input('exercise_name');
-        $topic_name = $request->input('topic_name');
-        $topic = Topic::where('name', $topic_name);
+      $exercise = Exercise::find($id);
+      $exercise_name = $request->input('exercise_name');
+      $topic_id = $request->input('topic_id');
+      $topic = Topic::find($topic_id);
 
-   //     $exercise->name = $exercise_name;
-   //     $exercise->topic()->attach($topic);
+      $exercise->name = $exercise_name;
+      $exercise->topic()->associate($topic);
 
-  //      $exercise -> save();
-        
-        return back() ->with('success', $topic_name );
+      $exercise -> update();
+
+      return back() ->with('success', $topic->name );
     }
 
     /**

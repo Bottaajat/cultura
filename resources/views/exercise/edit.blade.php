@@ -16,8 +16,7 @@
         {!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
         {!! Form::text('exercise_name', $exercise->name, array('class'=>'form-control', 'placeholder'=> $exercise->name)) !!}
         {!! Form::label('Aihe', null, ['class' => 'control-label col-sm-2']) !!}
-        {!! Form::select('topic_name', $topic_names,  $topic->name, ['class' => 'form-control']) !!}
-
+        {{ Form::select('topic_id', $topic_list, ['class' => 'form-control']) }}
       </div>
       
       <div class="modal-footer">
