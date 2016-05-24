@@ -22,6 +22,12 @@
 	</div>
 @endif
 
+@if(Session::has('success'))
+	<div class="alert alert-success">
+		<b>{{Session::get('success')}}</b>
+	</div>
+@endif
+
 @if(Session::has('info'))
 	<div class="alert alert-info">
 		<p>{{Session::get('info')}}</p>

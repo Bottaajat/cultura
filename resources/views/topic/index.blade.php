@@ -43,9 +43,6 @@
                    </div>
                    <div class="col-md-1 ">
                     @include('exercise.destroy')
-                      <a href="{{ URL::to('/exercise/'.$exercise->id) }}" class="btn btn-danger">
-                        <span class="glyphicon glyphicon-remove"></span>
-                      </a>
                    </div>
                 </div>
           		</div>

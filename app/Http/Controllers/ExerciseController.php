@@ -99,9 +99,10 @@ class ExerciseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        echo "moi";
+    public function destroy($id) {
+        $exercise = Exercise::find($id);
+        $exercise->delete();
+        return redirect('/')->with('success', 'Harjoitus poistettu!');
     }
 
 }
