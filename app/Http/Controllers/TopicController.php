@@ -13,6 +13,7 @@ class TopicController extends Controller
     public function index()
 	{
     $topics = Topic::all();
-		return view('topic.index', array('topics' => $topics));
+    $topic_names = $topics->pluck('name');
+    return view('topic.index', array('topics' => $topics, 'topic_names' => $topic_names));
 	}
 }

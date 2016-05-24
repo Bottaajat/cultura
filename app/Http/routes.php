@@ -14,7 +14,7 @@
 Route::get('/','TopicController@index');
 
 Route::resource('exercise', 'ExerciseController',
-	array('only' => array('create', 'store', 'destroy')));
+	array('only' => array('create', 'store', 'destroy', 'update')));
 
 Route::get('{topic}','ExerciseController@list_exercises');
 

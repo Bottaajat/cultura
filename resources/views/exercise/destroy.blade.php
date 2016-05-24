@@ -7,7 +7,7 @@
     <div class="modal-content">
     
       <div class="modal-header">
-        <h4 class="modal-title" id="delModal{{$exercise->id}}Label">Poistataanko {{$exercise->name}}?</h4>
+        <h4 class="modal-title" id="delModal{{$exercise->id}}Label">Poistetaanko {{$exercise->name}}?</h4>
       </div>
       
       <div class="modal-footer">
