@@ -94,7 +94,7 @@ class ExerciseController extends Controller
     public function update(Request $request, $id)
     {
       if (strlen($request->input('exercise_name')) < 4) {
-        return back() ->withErrors("Anna pidempi harjotusnimi!");
+        return back()->withErrors("Anna pidempi harjotusnimi!");
       }
       
       $exercise = Exercise::find($id);
@@ -106,9 +106,9 @@ class ExerciseController extends Controller
       $exercise->name = $exercise_name;
       $exercise->topic()->associate($topic);
 
-      $exercise -> update();
+      $exercise->update();
 
-      return back() ->with('success', 'Päivitys onnistui!');
+      return back()->with('success', 'PÃ¤ivitys onnistui!');
     }
 
     /**
