@@ -38,11 +38,11 @@
 			@foreach($topic->exercises as $exercise)
               <div class="container-fluid">
                 <div class="row">
-                   <div class="col-md-8">
+                   <div class="col-md-11">
                      <a class="list-group-item" href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
                    </div>
-                   <div class="col-md-offset-2 col-md-1 ">
-                      <a href="{{ URL::to('/exercise/delete') }}" class="btn btn-danger">
+                   <div class="col-md-1 ">
+                      <a href="{{ URL::to('/exercise/'.$exercise->id) }}" class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove"></span>
                       </a>
                    </div>
