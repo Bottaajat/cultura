@@ -65,7 +65,15 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        echo "moi moi";
+		$name = $request->input('name');
+		$topic_id = $request->input('topic');
+		$topic_id++;
+		//$topic = Topic::where('name', $topic_name)->first();
+		//$topic_id = $topic->pluck('topic_id');
+		Exercise::insert([
+					['name' => $name, 'topic_id' => $topic_id]
+				]);
+		return redirect('/')->with('success', 'Harjoitus lisätty');
     }
 
     /**
