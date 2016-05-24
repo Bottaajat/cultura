@@ -42,6 +42,7 @@
                      <a class="list-group-item" href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
                    </div>
                    <div class="col-md-1 ">
+                    @include('exercise.destroy')
                       <a href="{{ URL::to('/exercise/'.$exercise->id) }}" class="btn btn-danger">
                         <span class="glyphicon glyphicon-remove"></span>
                       </a>
