@@ -8,7 +8,7 @@
 Harjoituksen lisäys
 </h4>
 
-{!! Form::open(array('action'=> 'ExerciseController@store', 'method'=>'POST')) !!}
+{{ Form::open(array('action'=> array('ExerciseController@store'), 'method'=>'POST')) }}
 <form class="form-horizontal">
 	<div class="form-group">
 		{!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
@@ -19,7 +19,7 @@ Harjoituksen lisäys
 	<div class="form-group">
 		{!! Form::label('Aihe', null, ['class' => 'control-label col-sm-2']) !!}
 		<div class="col-sm-10">
-			{!! Form::select('topic', $topics, null, ['class' => 'form-control']) !!}
+			{!! Form::select('topic_id', $topic_list, ['class' => 'form-control col-sm-10']) !!}
 		</div>
 	</div>
 	{!! Form::submit('Lisää',['class' => 'btn btn-primary']) !!}
