@@ -1,15 +1,13 @@
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delExerciseModal">
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delModal{{$exercise->id}}">
   <span class="glyphicon glyphicon-remove"></span>
 </button>
-{{Form::close()}}
 
-
-<div class="modal fade" id="delExerciseModal" tabindex="-1" role="dialog" aria-labelledby="delExerciseModalLabel">
+<div class="modal fade" id="delModal{{$exercise->id}}" tabindex="-1" role="dialog" aria-labelledby="delModal{{$exercise->id}}Label">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
     
       <div class="modal-header">
-        <h4 class="modal-title" id="delExerciseModalLabel">Poistataanko {{$exercise->name}}?</h4>
+        <h4 class="modal-title" id="delModal{{$exercise->id}}Label">Poistataanko {{$exercise->name}}?</h4>
       </div>
       
       <div class="modal-footer">
