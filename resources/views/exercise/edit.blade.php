@@ -14,7 +14,7 @@
         {{Form::open(array('action'=>array('ExerciseController@update', $exercise->id), 'method'=>'put'))}}
    
         {!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
-        {!! Form::text('exercise', null, array('required', 'class'=>'form-control', 'placeholder'=> $exercise->name)) !!}
+        {!! Form::text('exercise', $exercise->name, array('class'=>'form-control', 'placeholder'=> $exercise->name)) !!}
         {!! Form::label('Aihe', null, ['class' => 'control-label col-sm-2']) !!}
         {!! Form::select('topic_name', $topic_names, null, ['class' => 'form-control']) !!}
 
