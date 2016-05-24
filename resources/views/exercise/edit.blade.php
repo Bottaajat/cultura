@@ -7,7 +7,7 @@
     <div class="modal-content">
     
       <div class="modal-header">
-        <h4 class="modal-title" id="editModal{{$exercise->id}}Label"> {{$exercise->name}} Muokkaus</h4>
+        <h4 class="modal-title" id="editModal{{$exercise->id}}Label"> {{$exercise->name}} muokkaus</h4>
       </div>
       
       <div class="modal-body">
@@ -23,7 +23,7 @@
       <div class="modal-footer">
         
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>            
-        <button type="submit" class="btn btn-Primary"> Päivitä </button>
+        <button type="submit" class="btn btn-primary"> Päivitä </button>
         {{Form::close()}}
       </div>
     </div>
