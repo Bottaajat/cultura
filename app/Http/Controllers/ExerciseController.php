@@ -77,7 +77,17 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        echo "updated";
+        $exercise = Exercise::find($id);
+        $exercise_name = $request->input('exercise_name');
+        $topic_name = $request->input('topic_name');
+        $topic = Topic::where('name', $topic_name);
+
+   //     $exercise->name = $exercise_name;
+   //     $exercise->topic()->attach($topic);
+
+  //      $exercise -> save();
+        
+        return back() ->with('success', $topic_name );
     }
 
     /**
