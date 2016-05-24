@@ -53,7 +53,8 @@ class ExerciseController extends Controller
      */
     public function create() {
     	$topics = Topic::all();
-    	return view('exercise.create', array('topics' => $topics));
+		$topic_names = $topics->pluck('name');
+    	return view('exercise.create', array('topics' => $topic_names));
     }
 
     /**
