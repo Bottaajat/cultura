@@ -65,7 +65,7 @@ class ExerciseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo "moi moi";
     }
 
     

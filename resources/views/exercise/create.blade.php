@@ -2,14 +2,28 @@
 
 @section('content')
 
+<br>
 
+<h4>
+Tehtävän lisäys
+</h4>
 
-
-{!! Form::open(array('url' => 'testi/testi')) !!}
-{!! Form::label('Harjoituksen nimi') !!}
-    {!! Form::text('exercise', null, array('required', 'class'=>'form-control', 'placeholder'=>'harjoitus')) !!}
-{!! Form::label('Aihe') !!}
-	{!! Form::select('topic', $topics, null, ['class' => 'form-control']) !!}
-{!! Form::close() !!}
+{!! Form::open(array('action'=> 'ExerciseController@store', 'method'=>'POST')) !!}
+<form class="form-horizontal">
+	<div class="form-group">
+		{!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
+		<div class="col-sm-10">
+			{!! Form::text('exercise', null, array('required', 'class'=>'form-control', 'placeholder'=>'harjoitus')) !!}
+		</div>
+	</div>	
+	<div class="form-group">
+		{!! Form::label('Aihe', null, ['class' => 'control-label col-sm-2']) !!}
+		<div class="col-sm-10">
+			{!! Form::select('topic', $topics, null, ['class' => 'form-control']) !!}
+		</div>
+	</div>
+	{!! Form::submit('Lisää',['class' => 'btn btn-primary']) !!}
+	{!! Form::close() !!}
+</form>
 
 @stop
