@@ -9,14 +9,16 @@
 
 <div class="page-header">
 <div class="row">
+<div class="container">
   <h1> 
-    <div class="col-md-8"> 
+    <div class="pull-left"> 
       Aiheet
     </div>
-    <div class="col-md-offset-2 col-md-1">
+    <div class="pull-right" style="margin-right:30px;margin-left:10px">
       <a href="{{ URL::to('/exercise/create') }}" class="btn btn-default">Luo uusi harjoitus</a>
     </div>
   </h1>
+</div>
 </div>
 </div>
 
@@ -38,10 +40,10 @@
 			@foreach($topic->exercises as $exercise)
               <div class="container-fluid list-group-item">
                 <div class="row">
-                   <div class="col-md-11">
-                     <a class="list-group-item" href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
+                   <div class="pull-left">
+                     <a class="list-group-item" style="margin-left:10px; href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
                    </div>
-                   <div class="col-md-1 ">
+                   <div class="pull-right" style="margin-right:5px">
                     @include('exercise.destroy')
                    </div>
                 </div>
