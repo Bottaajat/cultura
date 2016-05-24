@@ -81,7 +81,7 @@ class ExerciseController extends Controller
 		$exercise->topic()->associate($topic_id);
 		$exercise->save();
 
-		return redirect('/')->with('success', 'Harjoitus lis�tty');
+		return redirect('/')->with('success', 'Harjoitus lisätty');
     }
 
     /**
@@ -108,7 +108,7 @@ class ExerciseController extends Controller
 
       $exercise->update();
 
-      return back()->with('success', 'Päivitys onnistui!');
+      return back()->with('success', 'PÃ¤ivitys onnistui!');
     }
 
     /**
