@@ -17,7 +17,7 @@ class CreateExercisesTable extends Migration
             $table->string('name');
             $table->integer('topic_id')->unsigned();
             $table->foreign('topic_id')->references('id')->on('topics');
-            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
