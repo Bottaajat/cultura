@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @section('pagehead')
-  <script src="/js/arrow.js" type="text/javascript"></script>
+  {{ Html::script("/js/arrow.js") }}
+  {{ Html::script("/js/playaudio.js") }}
 @stop
 
 @section('content')

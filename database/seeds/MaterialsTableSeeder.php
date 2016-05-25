@@ -13,7 +13,7 @@ class MaterialsTableSeeder extends Seeder
     public function run()
     {
         DB::table('materials')->insert([
-        	['label' => 'aakkoset_info',
+        	['label' => 'Kyrilliset aakkoset',
         	 'type' => 'info',
         	  'contents' => 'Kyrillisessä kirjaimistossa on 33
 kirjainta, joista kaksi ei ole

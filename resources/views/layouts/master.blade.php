@@ -3,10 +3,10 @@
 <head>
 	<title> Cultura </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-	<script src="/js/jquery.min.js" type="text/javascript"></script>
-	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	{{ Html::style("/css/bootstrap.min.css") }}
+	{{ Html::style("/css/bootstrap-theme.min.css") }}
+	{{ Html::script("/js/jquery.min.js") }}
+	{{ Html::script("/js/bootstrap.min.js") }}
 	@yield('pagehead')
 </head>
 
