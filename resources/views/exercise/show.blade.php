@@ -24,7 +24,7 @@
       <div class="panel-body">
         @foreach( $exercise->materials as $material )
         <h4 class="list-group-item-heading">{{$material->label}}</h4>
-        <p class="list-group-item-text">{{$material->contents}}</p>
+        <p class="list-group-item-text">{{$material->contents}} asd</p>
         @endforeach
       </div>
     </div>
