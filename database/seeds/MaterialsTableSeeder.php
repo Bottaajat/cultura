@@ -19,6 +19,11 @@ class MaterialsTableSeeder extends Seeder
         	  'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
+            ['label'=>'Paina kirjainta kuullaksesi ääntämyksen!',
+             'type'=>'info',
+             'exercise_id'=>'1']
+        ]);
+        DB::table('materials')->insert([
             ['label' => 'А а',
              'type' => 'sound',
              'contents' => 'a',
