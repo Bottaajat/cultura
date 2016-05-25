@@ -76,21 +76,21 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ж ж',
              'type' => 'sound',
              'contents' => 'ž',
-             'src' => '/audio/ž.mp3',
+             'src' => '/audio/zh.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'З з',
              'type' => 'sound',
              'contents' => 'z',
-             'src' => '/audio/z.mp3',
+             'src' => '/audio/ze.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'И и',
              'type' => 'sound',
              'contents' => 'i',
-             'src' => '/audio/i.mp3',
+             'src' => '/audio/ii.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
@@ -195,42 +195,42 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ч ч',
              'type' => 'sound',
              'contents' => 'tš',
-             'src' => '/audio/tš.mp3',
+             'src' => '/audio/ch.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ш ш',
              'type' => 'sound',
              'contents' => 'š',
-             'src' => '/audio/š.mp3',
+             'src' => '/audio/sh.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Щ щ',
              'type' => 'sound',
              'contents' => 'šš',
-             'src' => '/audio/šš.mp3',
+             'src' => '/audio/shch.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ъ ъ',
              'type' => 'sound',
              'contents' => 'kova merkki',
-             'src' => '/audio/kovaMerkki.mp3',
+             'src' => '/audio/tv.znak.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ы ы',
              'type' => 'sound',
              'contents' => 'taka i (y)',
-             'src' => '/audio/takaI(y).mp3',
+             'src' => '/audio/bukvi.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ь ь',
              'type' => 'sound',
              'contents' => 'pehmeä merkki',
-             'src' => '/audio/pehmeäMerkki.mp3',
+             'src' => '/audio/mjag.znak.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
@@ -253,6 +253,110 @@ class MaterialsTableSeeder extends Seeder
              'contents' => '(j)a',
              'src' => '/audio/ja.mp3',
              'exercise_id' => '1']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'Sanastoa',
+             'type' => 'info',
+             'contents' => 'Tässä harjoituksessa opit muutaman sanan venäjäksi kuvien avulla.',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'торт',
+             'type' => 'image',
+             'contents' => 'kakku',
+             'src' => '/img/kakku.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'календарь',
+             'type' => 'image',
+             'contents' => 'kalenteri',
+             'src' => '/img/kalenteri.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'карта',
+             'type' => 'image',
+             'contents' => 'kartta',
+             'src' => '/img/kartta.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'гитара',
+             'type' => 'image',
+             'contents' => 'kitara',
+             'src' => '/img/kitara.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'компьютер',
+             'type' => 'image',
+             'contents' => 'tietokone',
+             'src' => '/img/kompjuter.png',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'лампа',
+             'type' => 'image',
+             'contents' => 'lamppu',
+             'src' => '/img/lamppu.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'радио',
+             'type' => 'image',
+             'contents' => 'radio',
+             'src' => '/img/radio.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'салат',
+             'type' => 'image',
+             'contents' => 'salaatti',
+             'src' => '/img/salaatti.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'цирк',
+             'type' => 'image',
+             'contents' => 'sirkus',
+             'src' => '/img/sirkus.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'шоколад',
+             'type' => 'image',
+             'contents' => 'suklaa',
+             'src' => '/img/suklaa.gif',
+             'exercise_id' => '2']
+        ]);
+        /*DB::table('materials')->insert([
+            ['label' => 'телефон',
+             'type' => 'image',
+             'contents' => 'puhelin',
+             'src' => '/img/telefon.png',
+             'exercise_id' => '2']
+        ]);*/
+        DB::table('materials')->insert([
+            ['label' => 'телевизор',
+             'type' => 'image',
+             'contents' => 'televisio',
+             'src' => '/img/telek.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'стул',
+             'type' => 'image',
+             'contents' => 'tuoli',
+             'src' => '/img/tuoli.gif',
+             'exercise_id' => '2']
+        ]);
+        DB::table('materials')->insert([
+            ['label' => 'ваза',
+             'type' => 'image',
+             'contents' => 'vaasi',
+             'src' => '/img/vaasi.gif',
+             'exercise_id' => '2']
         ]);
     }
 }

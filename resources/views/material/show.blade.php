@@ -17,11 +17,20 @@
           <br>
           @endif
           @if($material->type == "sound")
-          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}')">
+          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}',this)">
             {{$material->label}} <br>
             {{$material->contents}}
             <div id="embed"></div>
           </button>
+          @endif
+          @if($material->type == "image")
+          <div class="col-sm-2">
+          <div class="thumbnail">
+         	<img src='{{$material->src}}' height='64' width='64'>
+         	<p>{{$material->label}}</p>
+         	<p>{{$material->contents}}</p>
+          </div>
+      	  </div>
           @endif
         @endforeach
       </div>
