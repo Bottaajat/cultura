@@ -7,7 +7,7 @@
 </div>
 
 {{ Form::open(array('action'=> array('ExerciseController@store'), 'method'=>'POST')) }}
-<form class="form-horizontal">
+<form accept-charset="UTF-8" class="form-horizontal">
 	<div class="form-group">
 		{!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Harjoituksen nimi')) !!}
 	</div>	
