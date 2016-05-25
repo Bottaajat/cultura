@@ -29,7 +29,7 @@
           <p class="list-group-item-text">{{$material->contents}}</p>
           @endif
           @if($material->type == "sound")
-          <button class="btn btn-default" onClick="playAudio('{{$material->src}}')">
+          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}')">
             {{$material->label}} <br>
             {{$material->contents}}
             <div id="embed"></div>
@@ -60,6 +60,5 @@
     </div>
   </div>
 </div>
-
 
 @stop
