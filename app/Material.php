@@ -13,7 +13,7 @@ class Material extends Model
      */
     protected $table = 'materials';
     // label = tunniste, type = tyyppi, contents = sisältö
-    protected $fillable = [ 'label', 'type', 'contents' ];
+    protected $fillable = [ 'label', 'type', 'contents', 'src'];
 	
 	public function exercise()
     {

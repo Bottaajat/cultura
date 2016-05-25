@@ -24,8 +24,17 @@
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
         @foreach( $exercise->materials as $material )
-        <h4 class="list-group-item-heading">{{$material->label}}</h4>
-        <p class="list-group-item-text">{{$material->contents}}</p>
+          @if($material->type == "info")
+          <h4 class="list-group-item-heading">{{$material->label}}</h4>
+          <p class="list-group-item-text">{{$material->contents}}</p>
+          @endif
+          @if($material->type == "sound")
+          <button class="btn btn-default" onClick="playAudio('{{$material->src}}')">
+            {{$material->label}} <br>
+            {{$material->contents}}
+            <div id="embed"></div>
+          </button>
+          @endif
         @endforeach
       </div>
     </div>
