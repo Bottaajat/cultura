@@ -23,6 +23,11 @@
             <div id="embed"></div>
           </button>
           @endif
+          @if($material->type == "image")
+         	<img src='{{$material->src}}' height='64' width='64'>
+         	{{$material->label}}
+         	{{$material->contents}}
+          @endif
         @endforeach
       </div>
     </div>
