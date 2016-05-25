@@ -2,11 +2,9 @@
 
 @section('content')
 
-<br>
-
-<h4>
-Harjoituksen lisäys
-</h4>
+<div class="page-header">
+	<h1>Harjoituksen lisäys</h1>
+</div>
 
 {{ Form::open(array('action'=> array('ExerciseController@store'), 'method'=>'POST')) }}
 <form class="form-horizontal">
