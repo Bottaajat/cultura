@@ -27,10 +27,9 @@
           @if($material->type == "info")
           <h4 class="list-group-item-heading">{{$material->label}}</h4>
           <p class="list-group-item-text">{{$material->contents}}</p>
-          <br>
           @endif
           @if($material->type == "sound")
-          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}')">
+          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}',this)">
             {{$material->label}} <br>
             {{$material->contents}}
             <div id="embed"></div>
