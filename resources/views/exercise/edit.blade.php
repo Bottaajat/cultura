@@ -13,9 +13,7 @@
       <div class="modal-body">
         {{Form::open(array('action'=>array('ExerciseController@update', $exercise->id), 'method'=>'put'))}}
    
-        {!! Form::label('Nimi', null, ['class' => 'control-label col-sm-2']) !!}
-        {!! Form::text('exercise_name', $exercise->name, array('class'=>'form-control', 'placeholder'=> $exercise->name)) !!}
-        {!! Form::label('Aihe', null, ['class' => 'control-label col-sm-2']) !!}
+        {!! Form::text('exercise_name', $exercise->name, array('class'=>'form-control', 'placeholder'=> 'Harjoituksen nimi')) !!}
         {{ Form::select('topic_id', $topic_list, null, ['class' => 'form-control']) }}
       </div>
       
