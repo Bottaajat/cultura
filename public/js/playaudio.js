@@ -13,4 +13,4 @@ function playAudio(src) {
   
   document.getElementById("play").innerHTML="<embed src='"+src+"' autostart=false loop=false volume=100 hidden=true>";
 	return true;
-}
+} 
