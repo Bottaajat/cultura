@@ -76,21 +76,21 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ж ж',
              'type' => 'sound',
              'contents' => 'ž',
-             'src' => '/audio/ž.mp3',
+             'src' => '/audio/zh.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'З з',
              'type' => 'sound',
              'contents' => 'z',
-             'src' => '/audio/z.mp3',
+             'src' => '/audio/ze.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'И и',
              'type' => 'sound',
              'contents' => 'i',
-             'src' => '/audio/i.mp3',
+             'src' => '/audio/ii.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
@@ -195,42 +195,42 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ч ч',
              'type' => 'sound',
              'contents' => 'tš',
-             'src' => '/audio/tš.mp3',
+             'src' => '/audio/ch.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ш ш',
              'type' => 'sound',
              'contents' => 'š',
-             'src' => '/audio/š.mp3',
+             'src' => '/audio/sh.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Щ щ',
              'type' => 'sound',
-             'contents' => 'šš',
-             'src' => '/audio/šš.mp3',
+             'contents' => '',
+             'src' => '/audio/shch.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ъ ъ',
              'type' => 'sound',
              'contents' => 'kova merkki',
-             'src' => '/audio/kovaMerkki.mp3',
+             'src' => '/audio/tv.znak.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ы ы',
              'type' => 'sound',
              'contents' => 'taka i (y)',
-             'src' => '/audio/takaI(y).mp3',
+             'src' => '/audio/bukvi.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ь ь',
              'type' => 'sound',
              'contents' => 'pehmeä merkki',
-             'src' => '/audio/pehmeäMerkki.mp3',
+             'src' => '/audio/mjag.znak.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
