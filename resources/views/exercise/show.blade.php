@@ -40,6 +40,8 @@
     </div>
   </div>
 </div>
+=======
+@include('material.show')
 
 {{-- Tehtävät --}}
 <div class="panel-group">

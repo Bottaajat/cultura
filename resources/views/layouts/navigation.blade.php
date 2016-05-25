@@ -1,4 +1,4 @@
-<nav class="nav navbar-inverse">
+<nav class="nav navbar-default">
 	<div class="container-fluid">
 
 		<div class="navbar-header">
@@ -6,9 +6,6 @@
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{ URL::to('/') }}">
-				<img alt="Brand" src="/img/thumbnail.png">
-			</a>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
