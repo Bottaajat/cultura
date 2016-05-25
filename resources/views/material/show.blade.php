@@ -24,9 +24,13 @@
           </button>
           @endif
           @if($material->type == "image")
+          <div class="col-sm-2">
+          <div class="thumbnail">
          	<img src='{{$material->src}}' height='64' width='64'>
-         	{{$material->label}}
-         	{{$material->contents}}
+         	<p>{{$material->label}}</p>
+         	<p>{{$material->contents}}</p>
+          </div>
+      	  </div>
           @endif
         @endforeach
       </div>

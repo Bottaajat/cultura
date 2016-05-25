@@ -330,13 +330,13 @@ class MaterialsTableSeeder extends Seeder
              'src' => '/img/suklaa.gif',
              'exercise_id' => '2']
         ]);
-        DB::table('materials')->insert([
+        /*DB::table('materials')->insert([
             ['label' => 'телефон',
              'type' => 'image',
              'contents' => 'puhelin',
              'src' => '/img/telefon.png',
              'exercise_id' => '2']
-        ]);
+        ]);*/
         DB::table('materials')->insert([
             ['label' => 'телевизор',
              'type' => 'image',
