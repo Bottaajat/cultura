@@ -6,29 +6,67 @@
 	<h1>{{ $task->name }}</h1>
 </div>
 
+<style>
+.droptarget {
+    float: left; 
+    width: 30px; 
+    height: 30px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body">
-		<form action="">
-			Lorem ipsum dolor sit amet, Lorem <input type="text" name="blank1"> Ipsum adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-			Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-			ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-			aliquet nec, <input type="text" name="blank1"> eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-			dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi.
-			Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
-			 Aliquam lorem ante, dapibus in, <input type="text" name="blank1"> quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. 
-			 Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. 
-			 Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet 
-			 adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec 
-			 odio et ante tincidunt tempus. <input type="text" name="blank1"> vitae sapien ut libero venenatis faucibus. 
-			 Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla 
-			mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, 
-		</form>
+		<div id="dropboxes">
+		
+			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-a" data-target="a">
+			
+			</div>
+			
+			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-b" data-target="b">
+				
+			</div>
+			
+			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-c" data-target="c">
+			
+			</div>
+		</div>
+		
+		<div id="alphabet">
+			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-a">&#1072;</p>
+			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-b">&#1073;</p>
+			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-c">&#1074;</p>
+		</div>
+		
+		<br>
+		<input class="btn btn-default" type="submit" value="Palauta">
 	</div>
 </div>
 
-<input class="btn btn-default" type="submit" value="Palauta">
+<script>
+
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+	//alert("dragging: " + event.target.id);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+	var drag_id = data.split("-");
+	var drop_id = (event.target.id).split("-");
+	if (drag_id[1] == drop_id[1]) {event.target.appendChild(document.getElementById(data));}
+}
+
+</script>
 
 @stop
