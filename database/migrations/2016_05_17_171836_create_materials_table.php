@@ -16,7 +16,7 @@ class CreateMaterialsTable extends Migration
             $table->increments('id');
             $table->string('label');
             $table->string('type');
-            $table->string('contents');
+            $table->string('contents', 500);
             $table->integer('exercise_id')->unsigned();
             $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();
