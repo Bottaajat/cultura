@@ -8,7 +8,7 @@ class Task extends Model
 {
     protected $fillable = [ 'name' ];
 	
-	public function exercise_id()
+	public function exercise()
 	{
 		return $this->belongsTo('App\Exercise');
 	}
