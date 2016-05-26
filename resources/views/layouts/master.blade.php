@@ -10,7 +10,7 @@
 	@yield('pagehead')
 </head>
 
-<body onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}})">
+<body @yield('stuff')>
 <div class="container">
 @include('layouts.navigation')
 

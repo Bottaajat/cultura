@@ -8,6 +8,10 @@
 	{{Html::script('/js/order.task.js')}} --}}
 @stop
 
+@section('stuff')
+	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}})"
+@stop
+
 @section('content')
 
 <div class="page-header">
