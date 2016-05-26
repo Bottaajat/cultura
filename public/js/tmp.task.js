@@ -2,7 +2,7 @@
 	var correctCards = 0;
 	$( init );
 	 
-	function init() {
+	function init(array) {
 	 
 	  // Hide the success message
 	  $('#successMessage').hide();
@@ -19,10 +19,7 @@
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var curr = "<?php echo $task->name; ?>";
-	  alert(curr);
-
-	  var draggables = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var draggables = array;
 	  draggables.sort( function() { return Math.random() - .5 } );
 	 
 	  for ( var i=0; i<10; i++ ) {
@@ -35,7 +32,7 @@
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var words = array;
 	  for ( var i=1; i<=10; i++ ) {
 		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',

@@ -21,7 +21,7 @@
  
   <div id="successMessage">
     <h2>Oikein!</h2>
-    <button onclick="init()">Kokeile uudestaan</button>
+    <button onclick="init({{$task->exercise->materials->where('type', 'sound')->pluck('label')}})">Kokeile uudestaan</button>
   </div>
  
 </div>
