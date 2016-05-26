@@ -186,11 +186,11 @@ h1, h2, h3, h4 {
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var numbers = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
-	  numbers.sort( function() { return Math.random() - .5 } );
+	  var draggables = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  draggables.sort( function() { return Math.random() - .5 } );
 	 
 	  for ( var i=0; i<10; i++ ) {
-		$('<div>' + numbers[i] + '</div>').data( 'number', numbers[i] ).attr( 'id', 'card'+numbers[i] ).appendTo( '#draggablearea' ).draggable( {
+		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#content',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
@@ -199,9 +199,9 @@ h1, h2, h3, h4 {
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'А а', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g', 'H h', 'I i', 'J j' ];
+	  var words = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
 	  for ( var i=1; i<=10; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'number', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -211,9 +211,9 @@ h1, h2, h3, h4 {
 	}
 	  
 	function handleCardDrop( event, ui ) {
-		var slotNumber = $(this).data( 'number' );
-		var cardNumber = ui.draggable.data( 'number' );
-		alert("slot: "+ slotNumber + " card: " + cardNumber);
+		var slotNumber = $(this).data( 'slot' );
+		var cardNumber = ui.draggable.data( 'dragged' );
+		//alert("slot: "+ slotNumber + " card: " + cardNumber);
 		// If the card was dropped to the correct slot,
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
