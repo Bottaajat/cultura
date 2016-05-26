@@ -18,7 +18,7 @@ class ExercisesTableSeeder extends Seeder
             "topic_id" => '1']
         ]);
         DB::table('exercises')->insert([
-            ["name" => 'Sanasto harjoitus',
+            ["name" => 'Sanastoharjoitus',
             "topic_id" => '1']
         ]);
         DB::table('exercises')->insert([
