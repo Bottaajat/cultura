@@ -223,7 +223,7 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ы ы',
              'type' => 'sound',
              'contents' => 'taka i (y)',
-             'src' => '/audio/bukvi.mp3',
+             'src' => '/audio/ы.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
