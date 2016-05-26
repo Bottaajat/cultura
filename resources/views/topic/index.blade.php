@@ -31,7 +31,7 @@
 			<h4 class="panel-title">
 				<div id="menu-{{$topic->id}}-toggle" data-toggle="collapse" data-parent="#accordion" href='{{"#collapse".$topic->id}}' >
 					{{$topic->name}}
-					<i id=panelarrow class="glyphicon glyphicon-triangle-top pull-right"></i>
+					<i id=panelarrow class="glyphicon glyphicon-triangle-left pull-right"></i>
 				</div>
 			</h4>
 		</div>
