@@ -18,7 +18,7 @@
  
   <div id="droppablearea"> </div>
   <div id="draggablearea"> </div>
- 
+
   <div id="successMessage">
     <h2>Oikein!</h2>
     <button onclick="init()">Kokeile uudestaan</button>

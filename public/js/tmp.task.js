@@ -1,9 +1,9 @@
-	
+function asd(arr) {
 	var correctCards = 0;
 	$( init );
 	 
 	function init() {
-	 
+
 	  // Hide the success message
 	  $('#successMessage').hide();
 	  $('#successMessage').css( {
@@ -19,13 +19,10 @@
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var curr = "<?php echo $task->name; ?>";
-	  alert(curr);
-
-	  var draggables = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var draggables = arr;
 	  draggables.sort( function() { return Math.random() - .5 } );
 	 
-	  for ( var i=0; i<10; i++ ) {
+	  for ( var i=0; i<arr.length; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#content',
 		  stack: '#draggablearea div',
@@ -35,8 +32,8 @@
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
-	  for ( var i=1; i<=10; i++ ) {
+	  var words = arr;
+	  for ( var i=1; i<=arr.length; i++ ) {
 		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
@@ -67,7 +64,7 @@
 		// If all the cards have been placed correctly then display a message
 		// and reset the cards for another go
 
-		if ( correctCards == 10 ) {
+		if ( correctCards == arr.length ) {
 			$('#successMessage').show();
 			$('#successMessage').animate( {
 			left: '380px',
@@ -79,3 +76,4 @@
 		}
 
 	}
+}
