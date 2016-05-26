@@ -165,7 +165,7 @@ h1, h2, h3, h4 {
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <script>
- 
+	
 	var correctCards = 0;
 	$( init );
 	 
@@ -186,11 +186,11 @@ h1, h2, h3, h4 {
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var letters = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
-	  letters.sort( function() { return Math.random() - .5 } );
+	  var numbers = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  numbers.sort( function() { return Math.random() - .5 } );
 	 
 	  for ( var i=0; i<10; i++ ) {
-		$('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', 'card'+letters[i] ).appendTo( '#draggablearea' ).draggable( {
+		$('<div>' + numbers[i] + '</div>').data( 'number', numbers[i] ).attr( 'id', 'card'+numbers[i] ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#content',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
@@ -199,9 +199,9 @@ h1, h2, h3, h4 {
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'A a', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g', 'H h', 'I i', 'J j' ];
+	  var words = [ 'А а', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g', 'H h', 'I i', 'J j' ];
 	  for ( var i=1; i<=10; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'words', i ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + words[i-1] + '</div>').data( 'number', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -209,39 +209,39 @@ h1, h2, h3, h4 {
 	  }
 	 
 	}
-	
+	  
 	function handleCardDrop( event, ui ) {
-	  var slotNumber = $(this).data( 'words' );
-	  var cardNumber = ui.draggable.data( 'letter' );
-	 
-	  // If the card was dropped to the correct slot,
-	  // change the card colour, position it directly
-	  // on top of the slot, and prevent it being dragged
-	  // again
-	 
-	  if ( slotNumber == cardNumber ) {
-		ui.draggable.addClass( 'correct' );
-		ui.draggable.draggable( 'disable' );
-		$(this).droppable( 'disable' );
-		ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-		ui.draggable.draggable( 'option', 'revert', false );
-		correctCards++;
-	  } 
-	   
-	  // If all the cards have been placed correctly then display a message
-	  // and reset the cards for another go
-	 
-	  if ( correctCards == 10 ) {
-		$('#successMessage').show();
-		$('#successMessage').animate( {
-		  left: '380px',
-		  top: '200px',
-		  width: '400px',
-		  height: '100px',
-		  opacity: 1
-		} );
-	  }
-	 
+		var slotNumber = $(this).data( 'number' );
+		var cardNumber = ui.draggable.data( 'number' );
+		alert("slot: "+ slotNumber + " card: " + cardNumber);
+		// If the card was dropped to the correct slot,
+		// change the card colour, position it directly
+		// on top of the slot, and prevent it being dragged
+		// again
+
+		if ( slotNumber == cardNumber ) {
+			ui.draggable.addClass( 'correct' );
+			ui.draggable.draggable( 'disable' );
+			$(this).droppable( 'disable' );
+			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+			ui.draggable.draggable( 'option', 'revert', false );
+			correctCards++;
+		} 
+
+		// If all the cards have been placed correctly then display a message
+		// and reset the cards for another go
+
+		if ( correctCards == 10 ) {
+			$('#successMessage').show();
+			$('#successMessage').animate( {
+			left: '380px',
+			top: '200px',
+			width: '400px',
+			height: '100px',
+			opacity: 1
+			} );
+		}
+
 	}
  
 </script>
