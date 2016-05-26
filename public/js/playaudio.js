@@ -1,20 +1,27 @@
 function playAudio(src,btn) {
 
-
+  // reset button colors
+  var buttons = document.getElementsByTagName("button");
+  for(var i = 0; i < buttons.length; i++){
+    if (buttons[i].id == "soundbtn") {
+       buttons[i].className = "btn btn-primary";
+    }
+  }
+  
+  
   elem = document.getElementById("play")
   if (elem != null) {
-      if (elem.innerHTML.includes("embed src=\""+src+"\"")) {
+      if (elem.innerHTML.includes("src=\""+src+"\"")) {
         elem.parentNode.removeChild(elem);
-        btn.className = "btn btn-primary";
         return false;
       }
-  } else {
-    var div = document.createElement("div");
-    div.id = "play";
-    document.body.appendChild(div);
-    btn.className = "btn btn-success";
   } 
-  
-  document.getElementById("play").innerHTML="<embed src='"+src+"' autostart=false loop=true volume=100 hidden=true>";
+
+  var div = document.createElement("div");
+  div.id = "play";
+  document.body.appendChild(div);
+  btn.className = "btn btn-success";
+
+  document.getElementById("play").innerHTML="<audio autoplay=\"autoplay\" playcount=\"999\" loop src='"+src+"'> Selain ei tue äänitiedostoja </audio>";
 	return true;
 } 

@@ -17,10 +17,9 @@
           <br>
           @endif
           @if($material->type == "sound")
-          <button class="btn btn-primary" onClick="playAudio('{{$material->src}}',this)">
+          <button id="soundbtn" class="btn btn-primary" onClick="playAudio('{{$material->src}}',this)">
             {{$material->label}} <br>
             {{$material->contents}}
-            <div id="embed"></div>
           </button>
           @endif
           @if($material->type == "image")
