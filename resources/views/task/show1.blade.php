@@ -190,7 +190,7 @@ h1, h2, h3, h4 {
 	  letters.sort( function() { return Math.random() - .5 } );
 	 
 	  for ( var i=0; i<10; i++ ) {
-		$('<div>' + letters[i] + '</div>').data( 'number', letters[i] ).attr( 'id', 'card'+letters[i] ).appendTo( '#draggablearea' ).draggable( {
+		$('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', 'card'+letters[i] ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#content',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
@@ -201,7 +201,7 @@ h1, h2, h3, h4 {
 	  // Create the card slots
 	  var words = [ 'A a', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g', 'H h', 'I i', 'J j' ];
 	  for ( var i=1; i<=10; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'number', i ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + words[i-1] + '</div>').data( 'words', i ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -211,8 +211,8 @@ h1, h2, h3, h4 {
 	}
 	
 	function handleCardDrop( event, ui ) {
-	  var slotNumber = $(this).data( 'number' );
-	  var cardNumber = ui.draggable.data( 'number' );
+	  var slotNumber = $(this).data( 'words' );
+	  var cardNumber = ui.draggable.data( 'letter' );
 	 
 	  // If the card was dropped to the correct slot,
 	  // change the card colour, position it directly
@@ -287,33 +287,5 @@ h1, h2, h3, h4 {
 		</div>
 	</div>
 </div>
-
-<script>
-
-
-
-/*
-function dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.id);
-	//alert("dragging: " + event.target.id);
-}
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drop(event) {
-    event.preventDefault();
-    var data = event.dataTransfer.getData("Text");
-	var drag_id = data.split("-");
-	var drop_id = (event.target.id).split("-");
-	if (drag_id[1] == drop_id[1]) {
-		event.target.appendChild(document.getElementById(data));
-		var element = event.target.id;
-		document.getElementById(element).style.border = "1px solid #00FF00";
-	}
-}
-*/
-</script>
 
 @stop
