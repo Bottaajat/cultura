@@ -1,14 +1,16 @@
 $(document).ready(function() {
-	for (var j = 1; j < 4; j++) {
-		$('#menu-' + j + '-toggle').click( function() {
-			var iSelector = $(this).find('i:first');
-			if (iSelector.hasClass('glyphicon-triangle-bottom')) {
-				iSelector.removeClass('glyphicon-triangle-bottom')
-				iSelector.addClass('glyphicon-triangle-top')
-			} else if (iSelector.hasClass('glyphicon-triangle-top')) {
-				iSelector.removeClass('glyphicon-triangle-top')
-				iSelector.addClass('glyphicon-triangle-bottom')
-			}
-		});
-	}
+
+  // When expanded
+  $('#accordion').on('shown.bs.collapse', function (e) {
+    var panel = $(e.target).parent().get(0);
+    var icon = $(panel).find("#panelarrow").get(0);
+    icon.className = "glyphicon glyphicon-triangle-bottom pull-right"
+  })
+
+  // When collapsed
+  $('#accordion').on('hidden.bs.collapse', function (e) {
+    var panel = $(e.target).parent().get(0);
+    var icon = $(panel).find("#panelarrow").get(0);
+    icon.className = "glyphicon glyphicon-triangle-top pull-right"
+  })
 });
