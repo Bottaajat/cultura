@@ -22,6 +22,9 @@ function playAudio(src,btn) {
   document.body.appendChild(div);
   btn.className = "btn btn-success";
 
-  document.getElementById("play").innerHTML="<audio autoplay=\"autoplay\" playcount=\"999\" loop src='"+src+"'> Selain ei tue äänitiedostoja </audio>";
+  document.getElementById("play").innerHTML="<audio id=\"audio\" playcount=\"999\" loop src='"+src+"'> Selain ei tue äänitiedostoja </audio>";
+	
+	var audio = document.getElementById('audio');
+	audio.play();
 	return true;
 } 
