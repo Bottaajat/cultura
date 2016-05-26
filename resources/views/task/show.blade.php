@@ -50,12 +50,11 @@
 		@endforeach
 		@foreach($task->exercise->materials as $material)
 		@if($material->type == "image")
-		<div class="col-sm-2">
-			<div class="thumbnail">
-				<div id="draggable-{{$material->id}}" class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">
+		<div id="draggable-{{$material->id}}" class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true">	
+			<div class="col-sm-2">
+				<div class="thumbnail">
 					{{$material->label}}
 				</div>
-			
 			</div>
 		</div>
 		@endif
