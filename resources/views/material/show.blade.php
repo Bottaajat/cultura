@@ -4,7 +4,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <div id="menu-1-toggle" data-toggle="collapse" href="#collapseMat">
-          Materiaali <i class="glyphicon glyphicon-triangle-bottom"></i>
+          Materiaali <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
       </div>
       </h4>
     </div>

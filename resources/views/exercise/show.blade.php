@@ -19,7 +19,7 @@
     <div class="panel-heading">
       <h4 class="panel-title">
         <div id="menu-2-toggle" data-toggle="collapse" href="#collapseExer">
-          Tehtävät <i class="glyphicon glyphicon-triangle-bottom"></i>
+          Tehtävät <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
         </div>
       </h4>
     </div>
