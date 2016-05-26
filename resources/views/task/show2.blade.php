@@ -9,7 +9,8 @@
 @stop
 
 @section('stuff')
-	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}})"
+	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}},
+			{{$task->exercise->materials->where('type', 'sound')->pluck('contents')}})"
 @stop
 
 @section('content')

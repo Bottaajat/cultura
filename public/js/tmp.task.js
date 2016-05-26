@@ -1,4 +1,4 @@
-function asd(arr) {
+function asd(arr1, arr2) {
 	var correctCards = 0;
 	$( init );
 	 
@@ -19,10 +19,10 @@ function asd(arr) {
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var draggables = arr;
+	  var draggables = arr1;
 	  draggables.sort( function() { return Math.random() - .5 } );
 	 
-	  for ( var i=0; i<arr.length; i++ ) {
+	  for ( var i=0; i<arr1.length; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#content',
 		  stack: '#draggablearea div',
@@ -32,8 +32,8 @@ function asd(arr) {
 	  }
 	 
 	  // Create the card slots
-	  var words = arr;
-	  for ( var i=1; i<=arr.length; i++ ) {
+	  var words = arr2;
+	  for ( var i=1; i<=arr1.length; i++ ) {
 		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
@@ -64,7 +64,7 @@ function asd(arr) {
 		// If all the cards have been placed correctly then display a message
 		// and reset the cards for another go
 
-		if ( correctCards == arr.length ) {
+		if ( correctCards == arr1.length ) {
 			$('#successMessage').show();
 			$('#successMessage').animate( {
 			left: '380px',

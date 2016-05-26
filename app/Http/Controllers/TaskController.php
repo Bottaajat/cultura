@@ -13,6 +13,6 @@ class TaskController extends Controller
     public function show($topic, $exercise, $task)
 	{
 		$task_ = Task::where('name', $task)->first();
-		return view('task.show2', array('task' => $task_));
+		return view('task.show', array('task' => $task_));
 	}
 }
