@@ -11,7 +11,7 @@ function playAudio(src,btn) {
   
   elem = document.getElementById("play")
   if (elem != null) {
-      if (elem.innerHTML.includes("src=\""+src+"\"")) {
+      if (elem.innerHTML.indexOf("src=\""+src+"\"") > -1) {
         elem.parentNode.removeChild(elem);
         return false;
       }
