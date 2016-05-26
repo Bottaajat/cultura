@@ -7,14 +7,6 @@
 </div>
 
 <style>
-.droptarget {
-    float: left; 
-    width: 30px; 
-    height: 30px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
-}
 /* Add some margin to the page and set a default font and colour */
  
 body {
@@ -165,7 +157,7 @@ h1, h2, h3, h4 {
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
 <script>
- 
+	
 	var correctCards = 0;
 	$( init );
 	 
@@ -186,12 +178,12 @@ h1, h2, h3, h4 {
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var letters = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
-	  letters.sort( function() { return Math.random() - .5 } );
+	  var draggables = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  draggables.sort( function() { return Math.random() - .5 } );
 	 
 	  for ( var i=0; i<10; i++ ) {
-		$('<div>' + letters[i] + '</div>').data( 'letter', letters[i] ).attr( 'id', 'card'+letters[i] ).appendTo( '#draggablearea' ).draggable( {
-		  containment: '#content',
+		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
+		  containment: '#limit',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
 		  revert: true
@@ -199,9 +191,10 @@ h1, h2, h3, h4 {
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'A a', 'B b', 'C c', 'D d', 'E e', 'F f', 'G g', 'H h', 'I i', 'J j' ];
+	  var correct = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var show = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ];
 	  for ( var i=1; i<=10; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'words', i ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'correct', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -209,82 +202,56 @@ h1, h2, h3, h4 {
 	  }
 	 
 	}
-	
+	  
 	function handleCardDrop( event, ui ) {
-	  var slotNumber = $(this).data( 'words' );
-	  var cardNumber = ui.draggable.data( 'letter' );
-	 
-	  // If the card was dropped to the correct slot,
-	  // change the card colour, position it directly
-	  // on top of the slot, and prevent it being dragged
-	  // again
-	 
-	  if ( slotNumber == cardNumber ) {
-		ui.draggable.addClass( 'correct' );
-		ui.draggable.draggable( 'disable' );
-		$(this).droppable( 'disable' );
-		ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-		ui.draggable.draggable( 'option', 'revert', false );
-		correctCards++;
-	  } 
-	   
-	  // If all the cards have been placed correctly then display a message
-	  // and reset the cards for another go
-	 
-	  if ( correctCards == 10 ) {
-		$('#successMessage').show();
-		$('#successMessage').animate( {
-		  left: '380px',
-		  top: '200px',
-		  width: '400px',
-		  height: '100px',
-		  opacity: 1
-		} );
-	  }
-	 
+		var slotNumber = $(this).data( 'correct' );
+		var cardNumber = ui.draggable.data( 'dragged' );
+		//alert("slot: "+ slotNumber + " card: " + cardNumber);
+		// If the card was dropped to the correct slot,
+		// change the card colour, position it directly
+		// on top of the slot, and prevent it being dragged
+		// again
+
+		if ( slotNumber == cardNumber ) {
+			ui.draggable.addClass( 'correct' );
+			ui.draggable.draggable( 'disable' );
+			$(this).droppable( 'disable' );
+			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+			ui.draggable.draggable( 'option', 'revert', false );
+			correctCards++;
+		} 
+
+		// If all the cards have been placed correctly then display a message
+		// and reset the cards for another go
+
+		if ( correctCards == 10 ) {
+			$('#successMessage').show();
+			$('#successMessage').animate( {
+			left: '380px',
+			top: '200px',
+			width: '400px',
+			height: '100px',
+			opacity: 1
+			} );
+		}
+
 	}
  
 </script>
 
-<div id="content">
- 
-  <div id="droppablearea"> </div>
-  <div id="draggablearea"> </div>
  
   <div id="successMessage">
     <h2>You did it!</h2>
     <button onclick="init()">Play Again</button>
   </div>
- 
-</div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
-	<div class="panel-body">
-		<div class="droppablearea">
-			<!--
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-a" data-target="a">
-			
-			</div>
-			
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-b" data-target="b">
-				
-			</div>
-			
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-c" data-target="c">
-			
-			</div>
-			-->
-		</div>
-		<div class="draggablearea">
-			<!--
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-a">&#1072;</p>
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-b">&#1073;</p>
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-c">&#1074;</p>
-			-->
-		</div>
+	<div class="panel-body" id="limit">
+		<div id="droppablearea"> </div>
+		<div id="draggablearea"> </div>
 	</div>
 </div>
 
