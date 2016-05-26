@@ -7,14 +7,6 @@
 </div>
 
 <style>
-.droptarget {
-    float: left; 
-    width: 30px; 
-    height: 30px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
-}
 /* Add some margin to the page and set a default font and colour */
  
 body {
@@ -191,7 +183,7 @@ h1, h2, h3, h4 {
 	 
 	  for ( var i=0; i<10; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
-		  containment: '#content',
+		  containment: '#limit',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
 		  revert: true
@@ -199,9 +191,10 @@ h1, h2, h3, h4 {
 	  }
 	 
 	  // Create the card slots
-	  var words = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var correct = [ 'А а', 'Б б', 'В в', 'Г г', 'Д д', 'Е е', 'Ё ё', 'Ж ж', 'З з', 'И и' ];
+	  var show = [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ];
 	  for ( var i=1; i<=10; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'correct', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -211,7 +204,7 @@ h1, h2, h3, h4 {
 	}
 	  
 	function handleCardDrop( event, ui ) {
-		var slotNumber = $(this).data( 'slot' );
+		var slotNumber = $(this).data( 'correct' );
 		var cardNumber = ui.draggable.data( 'dragged' );
 		//alert("slot: "+ slotNumber + " card: " + cardNumber);
 		// If the card was dropped to the correct slot,
@@ -246,45 +239,19 @@ h1, h2, h3, h4 {
  
 </script>
 
-<div id="content">
- 
-  <div id="droppablearea"> </div>
-  <div id="draggablearea"> </div>
  
   <div id="successMessage">
     <h2>You did it!</h2>
     <button onclick="init()">Play Again</button>
   </div>
- 
-</div>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
-	<div class="panel-body">
-		<div class="droppablearea">
-			<!--
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-a" data-target="a">
-			
-			</div>
-			
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-b" data-target="b">
-				
-			</div>
-			
-			<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)" id="droptarget-c" data-target="c">
-			
-			</div>
-			-->
-		</div>
-		<div class="draggablearea">
-			<!--
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-a">&#1072;</p>
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-b">&#1073;</p>
-			<p class="draggable" ondragstart="dragStart(event)" ondrag="dragging(event)" draggable="true" id="draggable-c">&#1074;</p>
-			-->
-		</div>
+	<div class="panel-body" id="limit">
+		<div id="droppablearea"> </div>
+		<div id="draggablearea"> </div>
 	</div>
 </div>
 
