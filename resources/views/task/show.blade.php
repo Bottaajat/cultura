@@ -3,11 +3,11 @@
 @section('pagehead')
 	{{Html::style('/css/tmp.show.css')}}
 	{{Html::script('/js/jquery-ui.min.js')}}
+	{{Html::script('/js/touch.js')}}
 	{{Html::script('/js/tmp.task.js')}}
 {{-- {{Html::style('/css/task.show.css')}}
 	{{Html::script('/js/order.task.js')}} --}}
 @stop
-
 @section('stuff')
 	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}},
 			{{$task->exercise->materials->where('type', 'sound')->pluck('contents')}})"
