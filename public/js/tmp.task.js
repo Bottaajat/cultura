@@ -6,6 +6,7 @@ function asd(arr1, arr2) {
 
 	  // Hide the success message
 	  $('#successMessage').hide();
+	  $('#btn').hide();
 	  $('#successMessage').css( {
 		left: '580px',
 		top: '250px',
@@ -66,16 +67,15 @@ function asd(arr1, arr2) {
 		// If all the cards have been placed correctly then display a message
 		// and reset the cards for another go
 
-		if ( correctCards == arr1.length ) {
+		if ( correctCards == 1 ) {
 			$('#successMessage').show();
+			$('#success').show();
 			$('#successMessage').animate( {
-			left: '380px',
-			top: '200px',
-			width: '400px',
-			height: '100px',
 			opacity: 1
 			} );
+			$('#btn').click();
 		}
 
 	}
+	
 }

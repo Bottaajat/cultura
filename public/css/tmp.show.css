@@ -6,13 +6,6 @@ body {
   color: #333;
 }
  
-/* Give headings their own font */
- 
-
- 
-/* Main content area */
- 
- 
 /* Header/footer boxes */
  
 .wideBox {
@@ -34,21 +27,21 @@ body {
 /* Slots for final card positions */
  
 #droppablearea {
-  margin: 50px auto 0 auto;
+  margin: 10px auto 0 auto;
   background: #ddf;
 }
  
 /* The initial pile of unsorted cards */
  
 #draggablearea {
-  margin: 0 auto;
+  margin: 10px auto;
   background: #ffd;
 }
  
 #droppablearea, #draggablearea {
   height: inherit;
   position: relative;
-  padding: 20px;
+  padding: 10px;
   border: 2px solid #333;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -59,7 +52,6 @@ body {
 }
  
 /* Individual cards and slots */
- 
 #droppablearea div, #draggablearea div {
   position: relative;
   float: left;
@@ -88,20 +80,22 @@ body {
   border-style: dashed;
 }
  
+ /* Cards waiting to be dragged */
 #draggablearea div {
   background: #666;
   color: #fff;
-  font-size: 50px;
+  font-size: 40px;
   text-shadow: 0 0 3px #000;
 }
  
+ /* Cards when dragged */
 #draggablearea div.ui-draggable-dragging {
   -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
  
-/* Individually coloured cards */
+/* Individually coloured cards
  
 #card1.correct { background: red; }
 #card2.correct { background: brown; }
@@ -113,15 +107,10 @@ body {
 #card8.correct { background: indigo; }
 #card9.correct { background: purple; }
 #card10.correct { background: violet; }
- 
+ */
  
 /* "You did it!" message */
 #successMessage {
-  position: absolute;
-  left: 580px;
-  top: 250px;
-  width: 0;
-  height: 0;
   z-index: 100;
   background: #dfd;
   border: 2px solid #333;

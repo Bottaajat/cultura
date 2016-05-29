@@ -27,12 +27,34 @@
 	
 		<div id="droppablearea" class="panel-body"> </div>
 		<div id="draggablearea" class="panel-body"> </div>
-		
-		<div id="successMessage">
+		<!--
+		<div id="successMessage" class="col-sm-12">
 			<h2>Oikein!</h2>
-			<button onclick="asd.init">Kokeile uudestaan</button>
+			<button onclick=location.reload()>Kokeile uudestaan</button>
 		</div>
-		
+		-->
+	</div>
+</div>
+
+<div class="btn btn-danger" id="btn" data-toggle="modal" data-target="#success">using jQuery click handler</div>
+
+<div id="success" class="modal fade">
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+		  <div class="modal-header">
+			<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+			<h4 class="modal-title">Tehtävä suoritettu</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>Onneksi olkoon!</p>
+		  </div>
+		  <div class="modal-footer">
+			<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+			<button onclick=location.reload()>Kokeile uudestaan</button>
+		  </div>
+		</div>
+
 	</div>
 </div>
 
