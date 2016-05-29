@@ -1,36 +1,17 @@
-
-.droptarget {
-    float: left; 
-    width: 30px; 
-    height: 30px;
-    margin: 15px;
-    padding: 10px;
-    border: 1px solid #aaaaaa;
-}
 /* Add some margin to the page and set a default font and colour */
  
 body {
   margin: 30px;
-  font-family: "Georgia", serif;
   line-height: 1.8em;
   color: #333;
 }
  
 /* Give headings their own font */
  
-h1, h2, h3, h4 {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
+
  
 /* Main content area */
  
-#content {
-  margin: 80px 70px;
-  text-align: center;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
  
 /* Header/footer boxes */
  
@@ -65,8 +46,8 @@ h1, h2, h3, h4 {
 }
  
 #droppablearea, #draggablearea {
-  width: 910px;
-  height: 120px;
+  height: inherit;
+  position: relative;
   padding: 20px;
   border: 2px solid #333;
   -moz-border-radius: 10px;
@@ -80,17 +61,18 @@ h1, h2, h3, h4 {
 /* Individual cards and slots */
  
 #droppablearea div, #draggablearea div {
+  position: relative;
   float: left;
   width: 58px;
   height: 78px;
   padding: 10px;
-  padding-top: 40px;
-  padding-bottom: 0;
-  border: 2px solid #333;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid #;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  margin: 0 0 0 10px;
+  margin: 10px 0 10px 10px;
   background: #fff;
 }
  

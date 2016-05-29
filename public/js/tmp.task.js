@@ -20,11 +20,13 @@ function asd(arr1, arr2) {
 	 
 	  // Create the pile of shuffled cards
 	  var draggables = arr1;
+	  var correct = arr1.slice(0);
 	  draggables.sort( function() { return Math.random() - .5 } );
-	 
+	  //document.getElementById("droppablearea").style.height = 120*(Math.ceil(arr1.length/12))+"px";
+	  //document.getElementById("draggablearea").style.height = 120*(Math.ceil(arr1.length/12))+"px";
 	  for ( var i=0; i<arr1.length; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
-		  containment: '#content',
+		  containment: '#limit',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
 		  revert: true
@@ -32,9 +34,9 @@ function asd(arr1, arr2) {
 	  }
 	 
 	  // Create the card slots
-	  var words = arr2;
+	  var show = arr2;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div>' + words[i-1] + '</div>').data( 'slot', words[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
