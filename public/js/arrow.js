@@ -3,11 +3,9 @@ $(document).ready(function() {
 
   $('#accordion').on('shown.bs.collapse', function (e) {
     changeIcon(e, true);
-    $(e).collapse()
   })
   $('#accordion').on('hidden.bs.collapse', function (e) {
     changeIcon(e, false);
-    $(e).collapse()
   })
   
   
