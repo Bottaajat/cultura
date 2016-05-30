@@ -35,6 +35,10 @@ function asd(arr1, arr2) {
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
+		/*
+		NÄMÄ 3 RIVIÄ EPÄKOMMENTOITAVA JOS KÄYTETÄÄN KUVIA
+		myös tmp.show.css kommentoitava laatikoiden leveys ja korkeus säädöt, jotta sanat mahtuvat laatikkoihin
+		*/
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
@@ -44,19 +48,20 @@ function asd(arr1, arr2) {
 	  
 	function handleCardDrop( event, ui ) {
 		var slotNumber = $(this).data( 'slot' );
-		var cardNumber = ui.draggable.data( 'dragged' );
-		//alert("slot: "+ slotNumber + " card: " + cardNumber);
+		var card = ui.draggable.data( 'dragged' );
+		alert("slot: "+ slotNumber + " card: " + card);
 		// If the card was dropped to the correct slot,
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
 		// again
 
-		if ( slotNumber == cardNumber ) {
+		if ( slotNumber == card ) {
 			ui.draggable.addClass( 'correct' );
 			ui.draggable.draggable( 'disable' );
 			$(this).droppable( 'disable' );
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
+			//$( '#dragged'+card ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan päältä, kun oikein
 			correctCards++;
 		} 
 
