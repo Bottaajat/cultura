@@ -5,14 +5,7 @@ function asd(arr1, arr2) {
 	function init() {
 
 	  // Hide the success message
-	  $('#successMessage').hide();
 	  $('#btn').hide();
-	  $('#successMessage').css( {
-		left: '580px',
-		top: '250px',
-		width: 0,
-		height: 0
-	  } );
 	 
 	  // Reset the game
 	  correctCards = 0;
@@ -37,11 +30,14 @@ function asd(arr1, arr2) {
 	  // Create the card slots
 	  var show = arr2;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div id="'+show[i-1]+'-drop">' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	 
 	}
@@ -68,11 +64,6 @@ function asd(arr1, arr2) {
 		// and reset the cards for another go
 
 		if ( correctCards == 1 ) {
-			$('#successMessage').show();
-			$('#success').show();
-			$('#successMessage').animate( {
-			opacity: 1
-			} );
 			$('#btn').click();
 		}
 
