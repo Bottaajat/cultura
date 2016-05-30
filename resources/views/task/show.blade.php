@@ -11,6 +11,8 @@
 @section('stuff')
 	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}},
 			{{$task->exercise->materials->where('type', 'sound')->pluck('contents')}})"
+	{{-- onLoad="asd({{$task->exercise->materials->where('type', 'image')->pluck('label')}},
+			{{$task->exercise->materials->where('type', 'image')->pluck('contents')}})"--}}
 @stop
 
 @section('content')
@@ -24,16 +26,13 @@
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body" id="limit">
-	
 		<div id="droppablearea" class="panel-body"> </div>
 		<div id="draggablearea" class="panel-body"> </div>
-		<!--
-		<div id="successMessage" class="col-sm-12">
-			<h2>Oikein!</h2>
-			<button onclick=location.reload()>Kokeile uudestaan</button>
-		</div>
-		-->
 	</div>
+</div>
+
+<div style="float:right, padding-top: 20px">
+	<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
 </div>
 
 <div class="btn btn-danger" id="btn" data-toggle="modal" data-target="#success">using jQuery click handler</div>

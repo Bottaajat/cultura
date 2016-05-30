@@ -5,14 +5,7 @@ function asd(arr1, arr2) {
 	function init() {
 
 	  // Hide the success message
-	  $('#successMessage').hide();
 	  $('#btn').hide();
-	  $('#successMessage').css( {
-		left: '580px',
-		top: '250px',
-		width: 0,
-		height: 0
-	  } );
 	 
 	  // Reset the game
 	  correctCards = 0;
@@ -37,30 +30,38 @@ function asd(arr1, arr2) {
 	  // Create the card slots
 	  var show = arr2;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div id="'+show[i-1]+'-drop">' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
+		/*
+		NÄMÄ 3 RIVIÄ EPÄKOMMENTOITAVA JOS KÄYTETÄÄN KUVIA
+		myös tmp.show.css kommentoitava laatikoiden leveys ja korkeus säädöt, jotta sanat mahtuvat laatikkoihin
+		*/
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
+		//$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	 
 	}
 	  
 	function handleCardDrop( event, ui ) {
 		var slotNumber = $(this).data( 'slot' );
-		var cardNumber = ui.draggable.data( 'dragged' );
-		//alert("slot: "+ slotNumber + " card: " + cardNumber);
+		var card = ui.draggable.data( 'dragged' );
+		alert("slot: "+ slotNumber + " card: " + card);
 		// If the card was dropped to the correct slot,
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
 		// again
 
-		if ( slotNumber == cardNumber ) {
+		if ( slotNumber == card ) {
 			ui.draggable.addClass( 'correct' );
 			ui.draggable.draggable( 'disable' );
 			$(this).droppable( 'disable' );
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
+			//$( '#dragged'+card ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan päältä, kun oikein
 			correctCards++;
 		} 
 
@@ -68,11 +69,6 @@ function asd(arr1, arr2) {
 		// and reset the cards for another go
 
 		if ( correctCards == 1 ) {
-			$('#successMessage').show();
-			$('#success').show();
-			$('#successMessage').animate( {
-			opacity: 1
-			} );
 			$('#btn').click();
 		}
 
