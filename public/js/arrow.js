@@ -1,10 +1,13 @@
 $(document).ready(function() {
+ 
 
   $('#accordion').on('shown.bs.collapse', function (e) {
     changeIcon(e, true);
+    $(e).collapse()
   })
   $('#accordion').on('hidden.bs.collapse', function (e) {
     changeIcon(e, false);
+    $(e).collapse()
   })
   
   
@@ -33,5 +36,5 @@ function changeIcon(elem, isDown) {
     icon.className = "glyphicon glyphicon-triangle-bottom pull-right"
   } else {
     icon.className = "glyphicon glyphicon-triangle-left pull-right"
-  }
+  }  
 } 

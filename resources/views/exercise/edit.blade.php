@@ -13,7 +13,7 @@
       {{Form::open(array('action'=>array('ExerciseController@update', $exercise->id), 'method'=>'put'))}}
       <div class="modal-body">
         {!! Form::text('exercise_name', $exercise->name, array('class'=>'form-control', 'placeholder'=> 'Harjoituksen nimi')) !!}
-        {{ Form::select('topic_id', $topic_list, null, ['class' => 'form-control']) }}
+        {!! Form::select('topic_id', $topic_list, null, ['class' => 'form-control']) !!}
       </div>
       
       <div class="modal-footer">

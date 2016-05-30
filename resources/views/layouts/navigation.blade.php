@@ -12,8 +12,16 @@
 			<ul class="nav nav-pills">
 				<li><a href="{{ URL::to('/') }}" >{{ "Etusivu" }}</a></li>
 				<li><a href="{{ URL::previous() }}">{{ "Palaa" }}</a></li>
+        <li class="dropdown dropdown-submenu pull-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallinta</a>
+								<ul class="dropdown-menu">
+                  @include('exercise.create')
+								</ul>
+        </li>		
 			</ul>
 		</div>	
 	
 	</div>
 </nav>
+
+

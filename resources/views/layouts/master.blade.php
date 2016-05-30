@@ -5,12 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 	{{ Html::style("/css/bootstrap.min.css") }}
 	{{ Html::style("/css/bootstrap-theme.min.css") }}
+  {{ Html::style("/css/main.css") }}
 	{{ Html::script("/js/jquery.min.js") }}
 	{{ Html::script("/js/bootstrap.min.js") }}
 	@yield('pagehead')
 </head>
 
 <body @yield('stuff')>
+
 <div class="container">
 @include('layouts.navigation')
 
@@ -37,7 +39,7 @@
 	<div class="container-fluid">
 		@yield('content')
 	</div>
-
 </div>
+
 </body>
 </html>
