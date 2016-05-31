@@ -11,7 +11,7 @@ class ExercisesTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {	
+    {
 
         DB::table('exercises')->insert([
             ["name" => 'Aakkoset',
@@ -22,19 +22,19 @@ class ExercisesTableSeeder extends Seeder
             "topic_id" => '1']
         ]);
         DB::table('exercises')->insert([
-            ["name" => 'Harjoitustehtävä 1',
+            ["name" => 'Kahvilassa',
 			"topic_id" => '2']
         ]);
         DB::table('exercises')->insert([
-            ["name" => 'Harjoitustehtävä 2',
+            ["name" => 'Harjoitustehtävä 1',
 			"topic_id" => '2']
         ]);
 		DB::table('exercises')->insert([
-            ["name" => 'Harjoitustehtävä 3',
+            ["name" => 'Harjoitustehtävä 2',
 			"topic_id" => '3']
         ]);
 		DB::table('exercises')->insert([
-            ["name" => 'Harjoitustehtävä 4',
+            ["name" => 'Harjoitustehtävä 3',
 			"topic_id" => '3']
         ]);
     }
