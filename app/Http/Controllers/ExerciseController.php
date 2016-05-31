@@ -43,21 +43,6 @@ class ExerciseController extends Controller
 	}
 
 
-
-	// WORK IN PROGRESS!!!
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create() {
-    	$topics = Topic::all();
-		$topic_names = $topics->pluck('name');
-		$topic_list = Topic::lists('name', 'id');
-    	return view('exercise.create', array('topics' => $topic_names, 'topic_list' => $topic_list));
-    }
-
     /**
      * Store a newly created resource in storage.
      *
