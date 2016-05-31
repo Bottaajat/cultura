@@ -14,9 +14,9 @@ class CreateDescriptionsTable extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('content');
-            $table->integer('material_id')->unsigned();
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->string('content', 400);
+            $table->integer('exercise_id')->unsigned();
+            $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();
         });
     }

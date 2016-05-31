@@ -4,20 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Material extends Model
+class Description extends Model
 {
      /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'materials';
+    protected $table = 'descriptions';
     // label = tunniste, type = tyyppi, contents = sisältö
-    protected $fillable = [ 'label', 'type', 'contents', 'src'];
+    protected $fillable = [ 'content' ];
 
 	  public function exercise()
     {
         return $this->belongsTo('App\Exercise');
     }
-
 }

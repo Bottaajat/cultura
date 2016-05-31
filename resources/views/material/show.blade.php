@@ -10,12 +10,13 @@
     </div>
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
+
+        @foreach( $exercise->descriptions as $description )
+          <p class="list-group-item-text">{{$description->content}}</p><br>
+        @endforeach
+
         @foreach( $exercise->materials as $material )
-          @if($material->type == "info")
-          <h4 class="list-group-item-heading">{{$material->label}}</h4>
-          <p class="list-group-item-text">{{$material->contents}}</p>
-          <br>
-          @endif
+
           @if($material->type == "sound")
           <button id="soundbtn" class="btn btn-primary" onClick="playAudio('{{$material->src}}',this)">
             {{$material->label}} <br>
