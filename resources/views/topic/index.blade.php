@@ -10,8 +10,8 @@
 <div class="page-header">
 <div class="row">
 <div class="container">
-  <h1> 
-    <div class="pull-left"> 
+  <h1>
+    <div class="pull-left">
       Aiheet
     </div>
   </h1>
