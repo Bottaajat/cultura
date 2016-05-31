@@ -38,8 +38,10 @@ class ExerciseController extends Controller
      * @return \Illuminate\Http\Response
      */
 	public function show($topic, $name) {
-		$exercise = Exercise::where('name', $name)->first();
-		return view('exercise.show', array('exercise' => $exercise));
+        $exercise = Exercise::where('name', $name)->first();
+		if($exercise != NULL and $exercise->topic->name == $topic)
+            return view('exercise.show', array('exercise' => $exercise));
+        return view('testi'); 
 	}
 
 
