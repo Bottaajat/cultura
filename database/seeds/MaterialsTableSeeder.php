@@ -336,5 +336,72 @@ class MaterialsTableSeeder extends Seeder
              'src' => '/img/vaasi.gif',
              'exercise_id' => '2']
         ]);
+
+        DB::table('materials')->insert([
+          [
+           'type' => 'text',
+           'contents' => '1)
+           
+                          Официант: 	Здравствуйте!
+                          Клиент:	Здравствуйте!
+                          Официант:	Что Вам?
+                          Клиент:	Мне кофе с молоком и бутерброд.
+                          Официант:	Какой бутерброд?
+                          Клиент:	Да, это всё. Сколько стоит?
+                          Официант:	Хорошо. Это всё?
+                          Клиент:	С ветчиной, пожалуйста.
+                          Официант:	6 евро.',
+           'exercise_id' => '3'
+          ]
+        ]);
+        DB::table('materials')->insert([
+          [
+           'type' => 'text',
+           'contents' => 'Словарь			Sanasto
+
+                          Что Вам?			Mitä saisi olla?
+                          кофе				kahvi
+                          молоко; с молоком		maito; maidolla
+                          бутерброд			voileipä
+                          ветчина; с ветчиной		kinkku; kinkulla
+                          Это всё?			Oliko siinä kaikki?
+                          Сколько стоит?			Paljonko maksaa?
+                          евро				euro',
+           'exercise_id' => '3'
+          ]
+        ]);
+        DB::table('materials')->insert([
+          [
+           'type' => 'text',
+           'contents' => '2)
+
+                          Официант:	Добрый вечер! Вот меню.
+                          Клиент:	Добрый вечер! У вас есть меню по-русски?
+                          Официант:	Да, конечно. Вот, пожалуйста.
+                          Клиент: 	Спасибо. ----- Мне, пожалуйста, шоколадный торт и чай.
+                          Официант: 	Чёрный или зелёный чай?
+                          Клиент:	Чёрный, пожалуйста. Сколько стоит?
+                          Официант:	7, 50.',
+           'exercise_id' => '3'
+          ]
+        ]);
+        DB::table('materials')->insert([
+          [
+           'type' => 'text',
+           'contents' => 'Словарь			Sanasto
+
+                          У вас есть?			Onko teillä?
+                          меню				menu, ruokalista
+                          по-русски			venäjäksi
+                          конечно			tietenkin, totta kai
+                          вот				tässä
+                          шоколадный торт		suklaakakku
+                          чай				tee
+                          чёрный				musta
+                          или				vai, tai
+                          зелёный			vihreä',
+           'exercise_id' => '3'
+          ]
+        ]);
     }
 }

@@ -23,14 +23,19 @@
             {{$material->contents}}
           </button>
           @endif
+
           @if($material->type == "image")
           <div class="col-sm-2">
-          <div class="thumbnail">
-         	<img src='{{$material->src}}' height='64' width='64'>
-         	<p>{{$material->label}}</p>
-         	<p>{{$material->contents}}</p>
-          </div>
+            <div class="thumbnail">
+         	    <img src='{{$material->src}}' height='64' width='64'>
+         	    <p>{{$material->label}}</p>
+         	    <p>{{$material->contents}}</p>
+            </div>
       	  </div>
+          @endif
+
+          @if( $material->type == "text" )
+            <p class="list-group-item-text">{!! nl2br(e($material->contents)) !!}<p/><br />
           @endif
         @endforeach
       </div>
