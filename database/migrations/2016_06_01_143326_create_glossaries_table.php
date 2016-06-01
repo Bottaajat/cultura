@@ -14,7 +14,11 @@ class CreateGlossariesTable extends Migration
     {
         Schema::create('glossaries', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('rus', 400);
+            $table->string('fin', 400);
             $table->timestamps();
+            $table->integer('material_id')->unsigned();
+            $table->foreign('material_id')->references('id')->on('materials');
         });
     }
 
