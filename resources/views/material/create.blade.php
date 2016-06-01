@@ -11,7 +11,20 @@
       {!! Form::open(array('action'=> array('MaterialController@store'), 'method'=>'POST')) !!}
 
       <div class="modal-body">
-        {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Harjoituksen nimi')) !!}
+        {!! Form::text('label', null, array('required', 'class'=>'form-control', 'placeholder'=>'Materiaalin otsikko')) !!}
+        {!! Form::textarea('content', null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
+        {!! Form::select('type', ["text"=>'Teksti', "audio"=>'Ääni', "image"=>'Kuva', "video"=>'Video'],null, ['class' => 'form-control']) !!}
+        <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+          <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i>
+            <span class="fileinput-filename"></span>
+          </div>
+          <span class="input-group-addon btn btn-info btn-file">
+            <span class="fileinput-new">Valitse tiedosto</span>
+            <span class="fileinput-exists">Vaihda tiedostoa</span>
+            <input type="file" name="...">
+          </span>
+          <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Poista</a>
+        </div>
       </div>
 
       <div class="modal-footer">
