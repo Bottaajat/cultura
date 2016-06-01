@@ -35,11 +35,16 @@
           @endif
 
           @if( $material->type == "text" )
-            <p class="list-group-item-text">{!! nl2br(e($material->contents)) !!}<p/><br />
+            <table class="table table-bordered ">
+            <tr><th>{{$material->label}}</th></tr>
+            @foreach(stringToArray($material->contents) as $line)
+              <tr class="info"><td>{{ $line }}</td></tr>
+            @endforeach
+            </table>
           @endif
           
           @if($material->glossary)
-            <table class="table table-striped table-bordered table-hover" id="glossary"> 
+            <table class="table table-striped table-bordered table-hover"> 
             <tr>
               <th>Venäjäksi</th>
               <th>Suomeksi</th>
