@@ -50,14 +50,14 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Е е',
              'type' => 'sound',
-             'contents' => '(j)e',
+             'contents' => 'je',
              'src' => '/audio/je.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ё ё',
              'type' => 'sound',
-             'contents' => '(j)o',
+             'contents' => 'jo',
              'src' => '/audio/jo.mp3',
              'exercise_id' => '1']
         ]);
@@ -197,7 +197,7 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Щ щ',
              'type' => 'sound',
-             'contents' => 'šš',
+             'contents' => 'štš',
              'src' => '/audio/shch.mp3',
              'exercise_id' => '1']
         ]);
@@ -232,14 +232,14 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Ю ю',
              'type' => 'sound',
-             'contents' => '(j)u',
+             'contents' => 'ju',
              'src' => '/audio/ju.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Я я',
              'type' => 'sound',
-             'contents' => '(j)a',
+             'contents' => 'ja',
              'src' => '/audio/ja.mp3',
              'exercise_id' => '1']
         ]);
