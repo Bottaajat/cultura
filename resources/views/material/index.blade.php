@@ -13,8 +13,8 @@
       <th>Nimi</th>
       <th>Harjoitus</th>
       <th>Tyyppi</th>
-      <th></th>
-      <th></th>
+      <th>Muokkaa</th>
+      <th>Poista</th>
     </tr>
   </thead>
 
@@ -25,15 +25,11 @@
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
         <td>{!! $material->type !!}</td>
-        <td>
-          <button type="button" class="btn btn-info center-block">
-            <span class="glyphicon glyphicon-pencil"></span>
-          </button>
+        <td class="rowlink-skip">
+          @include('material.edit')
         </td>
-        <td>
-          <button type="button" class="btn btn-danger pull-right">
-            <span class="glyphicon glyphicon-remove"></span>
-          </button>
+        <td class="rowlink-skip">
+          @include('material.destroy')
         </td>
       </tr>
     @endforeach

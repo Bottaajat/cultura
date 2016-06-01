@@ -43,7 +43,9 @@ class MaterialController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destory($id) {
-    return "asd";
+  public function destroy($id) {
+    $material = Material::find($id);
+    $material->delete();
+    return back()->with('success', 'Harjoitus poistettu!');
   }
 }
