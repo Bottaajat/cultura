@@ -31,7 +31,7 @@ $(document).ready(function(){
    $('a[href="#createMaterialLink"]').click(function(){
       var modal = document.getElementById( "createMaterialModal" );
       $( modal ).detach().appendTo( document.body);
-      $("#createMaterilModal").modal();
+      $("#createMaterialModal").modal();
    });
 });
 </script>
