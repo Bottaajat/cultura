@@ -17,6 +17,7 @@
 								<ul class="dropdown-menu">
                   @include('exercise.create')
 									@include('material.create')
+									<li> <a href="{{ URL::to('/material/') }}">Materiaalin listaus</a> </li>
 								</ul>
         </li>
 			</ul>

@@ -11,6 +11,11 @@ use App\Material;
 class MaterialController extends Controller
 {
 
+  public function index() {
+    $materials = Material::all();
+    return view('material.index', array('materials' => $materials));
+  }
+
   /**
   * Store a newly created resource in storage.
   *

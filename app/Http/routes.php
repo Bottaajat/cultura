@@ -17,7 +17,7 @@ Route::resource('exercise', 'ExerciseController',
 	array('only' => array('store', 'update', 'destroy')));
 
 Route::resource('material', 'MaterialController',
-	array('only'=> array('store', 'update', 'destroy')));
+	array('only'=> array('index', 'store', 'update', 'destroy')));
 
 Route::resource('description', 'DescriptionController',
 	array('only'=> array('store', 'update', 'destroy')));
