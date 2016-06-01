@@ -38,11 +38,20 @@
             <p class="list-group-item-text">{!! nl2br(e($material->contents)) !!}<p/><br />
           @endif
           
-                    
           @if($material->glossary)
-            <b> {!! $material->glossary->fin !!} = {!! $material->glossary->rus !!} </b>
+            <table class="table table-striped table-bordered table-hover" id="glossary"> 
+            <tr>
+              <th>Venäjäksi</th>
+              <th>Suomeksi</th>
+            </tr>
+            @foreach(GlossaryRusToFin($material->glossary) as $rus => $fin)
+            <tr> 
+                <td>{{ $rus }}</td>
+                <td>{{ $fin }}</td>
+            </tr>
+            @endforeach
           @endif
-          
+          </table>
         @endforeach
       </div>
     </div>
