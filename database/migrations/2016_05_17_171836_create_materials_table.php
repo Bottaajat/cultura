@@ -21,6 +21,7 @@ class CreateMaterialsTable extends Migration
             $table->integer('exercise_id')->unsigned();
             $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

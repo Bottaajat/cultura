@@ -5,7 +5,7 @@
   <h1>Materiaali</h1>
 </div>
 
-<table class="table table-hover">
+<table class="table table-bordered table-hover">
 
   <thead>
     <tr>
@@ -13,16 +13,28 @@
       <th>Nimi</th>
       <th>Harjoitus</th>
       <th>Tyyppi</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-link="row" class="rowlink">
     @foreach($materials as $material)
       <tr>
-        <td>{!! $material->id !!}</td>
+        <td><a href="{!! URL::to('/' . $material->exercise->topic->name . '/' . $material->exercise->name) !!}">{!! $material->id !!}</a></td>
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
         <td>{!! $material->type !!}</td>
+        <td>
+          <button type="button" class="btn btn-info center-block">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger pull-right">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </td>
       </tr>
     @endforeach
   </tbody>

@@ -10,7 +10,8 @@
         "twbs/bootstrap": "^3.3",
         "components/jquery": "^1.12",
         "components/jqueryui": "^1.11",
-        "laravelcollective/html": "5.2.*"
+        "laravelcollective/html": "5.2.*",
+        "jasny/bootstrap": "3.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

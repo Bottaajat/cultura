@@ -340,8 +340,9 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
           [
            'type' => 'text',
+           'label' => 'Kahvilassa 1',
            'contents' => '1)
-           
+
                           Официант: 	Здравствуйте!
                           Клиент:	Здравствуйте!
                           Официант:	Что Вам?
@@ -357,22 +358,7 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
           [
            'type' => 'text',
-           'contents' => 'Словарь			Sanasto
-
-                          Что Вам?			Mitä saisi olla?
-                          кофе				kahvi
-                          молоко; с молоком		maito; maidolla
-                          бутерброд			voileipä
-                          ветчина; с ветчиной		kinkku; kinkulla
-                          Это всё?			Oliko siinä kaikki?
-                          Сколько стоит?			Paljonko maksaa?
-                          евро				euro',
-           'exercise_id' => '3'
-          ]
-        ]);
-        DB::table('materials')->insert([
-          [
-           'type' => 'text',
+           'label' => 'Kahvilassa 2',
            'contents' => '2)
 
                           Официант:	Добрый вечер! Вот меню.
@@ -382,24 +368,6 @@ class MaterialsTableSeeder extends Seeder
                           Официант: 	Чёрный или зелёный чай?
                           Клиент:	Чёрный, пожалуйста. Сколько стоит?
                           Официант:	7, 50.',
-           'exercise_id' => '3'
-          ]
-        ]);
-        DB::table('materials')->insert([
-          [
-           'type' => 'text',
-           'contents' => 'Словарь			Sanasto
-
-                          У вас есть?			Onko teillä?
-                          меню				menu, ruokalista
-                          по-русски			venäjäksi
-                          конечно			tietenkin, totta kai
-                          вот				tässä
-                          шоколадный торт		suklaakakku
-                          чай				tee
-                          чёрный				musta
-                          или				vai, tai
-                          зелёный			vihreä',
            'exercise_id' => '3'
           ]
         ]);

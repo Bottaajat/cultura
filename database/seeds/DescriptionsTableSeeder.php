@@ -26,5 +26,10 @@ class DescriptionsTableSeeder extends Seeder
           ["content" => 'Tässä harjoituksessa opit muutaman sanan venäjäksi kuvien avulla.',
           "exercise_id" => '2']
       ]);
+
+      DB::table('descriptions')->insert([
+          ["content" => 'Lue dialogit ja tee kaksi tehtävää.',
+          "exercise_id" => '3']
+      ]);
     }
 }
