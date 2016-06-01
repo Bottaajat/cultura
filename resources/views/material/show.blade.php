@@ -10,7 +10,9 @@
     </div>
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
-
+        <button type="button" class="btn btn-info" href="">
+          <span class="glyphicon glyphicon-list"></span>
+        </button>
         @foreach( $exercise->descriptions as $description )
           <p class="list-group-item-text">{{$description->content}}</p><br>
         @endforeach
