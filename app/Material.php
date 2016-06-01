@@ -19,5 +19,9 @@ class Material extends Model
     {
         return $this->belongsTo('App\Exercise');
     }
-
+    
+    public function glossary()
+    {
+        return $this->hasOne('App\Glossary');
+    }
 }
