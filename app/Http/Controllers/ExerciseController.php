@@ -13,7 +13,6 @@ use App\Topic;
 class ExerciseController extends Controller
 {
 
-
 	/**
    * Display a listing of the resource based on given $topic.
    * Otherwise display 404.
