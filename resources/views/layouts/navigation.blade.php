@@ -7,7 +7,7 @@
 				<span class="icon-bar"></span>
 			</button>
 		</div>
-		
+
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav nav-pills">
 				<li><a href="{{ URL::to('/') }}" >{{ "Etusivu" }}</a></li>
@@ -16,12 +16,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallinta</a>
 								<ul class="dropdown-menu">
                   @include('exercise.create')
+									@include('material.create')
 								</ul>
-        </li>		
+        </li>
 			</ul>
-		</div>	
-	
+		</div>
+
 	</div>
 </nav>
-
-

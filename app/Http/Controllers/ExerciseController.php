@@ -15,12 +15,12 @@ class ExerciseController extends Controller
 
 
 	/**
-     * Display a listing of the resource based on given $topic.
-     * Otherwise display 404.
-     *
-     * @param string $topic
-     * @return \Illuminate\Http\Response
-     */
+   * Display a listing of the resource based on given $topic.
+   * Otherwise display 404.
+   *
+   * @param string $topic
+   * @return \Illuminate\Http\Response
+   */
 	public function list_exercises($topic) {
 		if($topic_ = Topic::where('name', $topic)->first())
 		{
@@ -32,43 +32,36 @@ class ExerciseController extends Controller
 
 
 	/**
-     * Display the specified resource.
-     *
-     * @param  string  $topic, $name
-     * @return \Illuminate\Http\Response
-     */
+   * Display the specified resource.
+   *
+   * @param  string  $topic, $name
+   * @return \Illuminate\Http\Response
+   */
 	public function show($topic, $name) {
         $exercise = Exercise::where('name', $name)->first();
-		if($exercise != NULL and $exercise->topic->name == $topic)
+				if($exercise != NULL and $exercise->topic->name == $topic)
             return view('exercise.show', array('exercise' => $exercise));
-        return view('testi'); 
+        return view('testi');
 	}
 
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-		$topic_id = $request->input('topic_id');
+    	$name = $request->input('name');
+			$topic_id = $request->input('topic_id');
 
-		//$topic = Topic::where('name', $topic_name)->first();
-		//$topic_id = $topic->pluck('topic_id');
-		/*
-		Exercise::insert([
-					['name' => $name, 'topic_id' => $topic_id]
-				]);
-		*/
-		$exercise = new Exercise;
-		$exercise->name = $request->input('name');
-		$exercise->topic()->associate($topic_id);
-		$exercise->save();
+			$exercise = new Exercise;
+			$exercise->name = $request->input('name');
+			$exercise->topic()->associate($topic_id);
+			$exercise->save();
 
-		return redirect('/')->with('success', 'Harjoitus lisätty');
+			return redirect('/')->with('success', 'Harjoitus lisätty');
     }
 
     /**
@@ -83,10 +76,10 @@ class ExerciseController extends Controller
       if (strlen($request->input('exercise_name')) < 4) {
         return back()->withErrors("Anna pidempi harjotusnimi!");
       }
-      
+
       $exercise = Exercise::find($id);
       $exercise_name = $request->input('exercise_name');
-      
+
       $topic_id = $request->input('topic_id');
       $topic = Topic::find($topic_id);
 

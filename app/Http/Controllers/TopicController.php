@@ -10,11 +10,8 @@ use App\Topic;
 
 class TopicController extends Controller
 {
-    public function index()
-	{
-    $topics = Topic::all();
-    return view('topic.index', array('topics' => $topics));
-	}
-
-
+    public function index() {
+      $topics = Topic::all();
+      return view('topic.index', array('topics' => $topics));
+    }
 }
