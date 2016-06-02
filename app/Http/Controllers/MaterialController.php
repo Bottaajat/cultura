@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use File;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -39,11 +41,11 @@ class MaterialController extends Controller
 
         if($material->type == "image") {
             $res = "/img/";
-            $dst = public_path() . '/img';
+            $dst = public_path() . $res;
         }
         if($material->type == "audio") {
             $res = "/audio/";
-            $dst = public_path() . '/audio';
+            $dst = public_path() . $res;
         }
 
         $material->src = $res . $filename;
@@ -98,6 +100,7 @@ class MaterialController extends Controller
    */
   public function destroy($id) {
     $material = Material::find($id);
+    File::delete(public_path() . $material->src);
     $material->delete();
     return back()->with('success', 'Materiaali poistettu!');
   }
