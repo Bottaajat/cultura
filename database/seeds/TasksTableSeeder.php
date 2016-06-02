@@ -24,6 +24,11 @@ class TasksTableSeeder extends Seeder
 			       "type" => 'monivalinta',
 			       "exercise_id" => '3']
             ]);
+		DB::table('tasks')->insert([
+            ["name" => 'Sanajärjestys',
+			       "type" => 'järjestys/sanat',
+			       "exercise_id" => '3']
+            ]);
     // MOKKI DATAA!
 		DB::table('tasks')->insert([
             ["name" => 'Tehtävä 2',

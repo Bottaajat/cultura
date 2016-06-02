@@ -1,4 +1,4 @@
-function asd(arr1, arr2) {
+function asd(arr1, arr2, arr3) {
 	var correctCards = 0;
 	$( init );
 	 
@@ -48,18 +48,20 @@ function asd(arr1, arr2) {
 		// again
 
 		if ( slot == card ) {
-			alert("slot: "+ slot + " card: " + card);
 			ui.draggable.addClass( 'correct' );
 			ui.draggable.draggable( 'disable' );
 			$(this).droppable( 'disable' );
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
-			//$( '#dragged'+card ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
-			var width = $( '#'+slot+'-drop' ).css( "width");
-			var height = $( '#'+slot+'-drop' ).css( 'height');
-			alert (width + ' ' + height);
-			$( '#'+card+'-drag' ).css( 'width', width);
-			$( '#'+card+'-drag' ).css( 'height', height);
+			/*
+			var width = $(this).css('width');
+			var height = $(this).css('height');
+			$( ui.draggable ).css( 'width', width ); //poistaa tekstin kuvan p√§√§lt√§, kun oikein
+			$( ui.draggable ).css( 'height', height );
+			*/
+			$( ui.draggable ).css( 'visibility', 'hidden' );
+			$(this).text(slot);
+			$(this).css( 'border-color', '#00FF00' );
 			correctCards++;
 		} 
 
