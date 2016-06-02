@@ -13,4 +13,11 @@ class Glossary extends Model
     {
         return $this->belongsTo('App\Material');
     }
+    
+    function get($from,$to)
+    {
+      $fromarr = preg_split("/(\r\n|\n|\r)/", $this->$from);
+      $toarr = preg_split("/(\r\n|\n|\r)/", $this->$to);
+      return array_combine($fromarr,$toarr);
+    }
 }

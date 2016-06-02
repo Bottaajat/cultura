@@ -24,6 +24,5 @@ class HelperServiceProvider extends ServiceProvider
     public function register()
     {
         require base_path().'/app/Helpers/GlobalHelper.php';
-        require base_path().'/app/Helpers/GlossaryHelper.php';
     }
 }

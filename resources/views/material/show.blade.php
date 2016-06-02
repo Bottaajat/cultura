@@ -49,7 +49,7 @@
               <th>Venäjäksi</th>
               <th>Suomeksi</th>
             </tr>
-            @foreach(GlossaryRusToFin($material->glossary) as $rus => $fin)
+            @foreach($material->glossary->get('rus','fin') as $rus => $fin)
             <tr> 
                 <td>{{ $rus }}</td>
                 <td>{{ $fin }}</td>
