@@ -11,12 +11,12 @@ class TasksTableSeeder extends Seeder
     {
         DB::table('tasks')->insert([
             ["name" => 'Aakkosjärjestys',
-			       "type" => 'järjestys',
+			       "type" => 'järjestys/sanat',
 			       "exercise_id" => '1']
             ]);
         DB::table('tasks')->insert([
             ["name" => 'Kuvajärjestys',
-			       "type" => 'järjestys',
+			       "type" => 'järjestys/kuvat',
 			       "exercise_id" => '2']
             ]);
         DB::table('tasks')->insert([
