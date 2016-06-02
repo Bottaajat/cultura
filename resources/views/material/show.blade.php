@@ -10,7 +10,7 @@
     </div>
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
-
+      
         @foreach( $exercise->descriptions as $description )
           <p class="list-group-item-text">{{$description->content}}</p><br>
         @endforeach
@@ -35,8 +35,28 @@
           @endif
 
           @if( $material->type == "text" )
-            <p class="list-group-item-text">{!! nl2br(e($material->contents)) !!}<p/><br />
+            <table class="table table-bordered ">
+            <tr><th>{{$material->label}}</th></tr>
+            @foreach(stringToArray($material->contents) as $line)
+              <tr class="info"><td>{{ $line }}</td></tr>
+            @endforeach
+            </table>
           @endif
+          
+          @if($material->glossary)
+            <table class="table table-striped table-bordered table-hover"> 
+            <tr>
+              <th>Venäjäksi</th>
+              <th>Suomeksi</th>
+            </tr>
+            @foreach(GlossaryRusToFin($material->glossary) as $rus => $fin)
+            <tr> 
+                <td>{{ $rus }}</td>
+                <td>{{ $fin }}</td>
+            </tr>
+            @endforeach
+          @endif
+          </table>
         @endforeach
       </div>
     </div>

@@ -25,17 +25,15 @@ class ExercisesTableSeeder extends Seeder
             ["name" => 'Kahvilassa',
 			"topic_id" => '2']
         ]);
-        DB::table('exercises')->insert([
+
+        // MOKKI DATAA!
+		    DB::table('exercises')->insert([
             ["name" => 'Harjoitustehtävä 1',
-			"topic_id" => '2']
-        ]);
-		DB::table('exercises')->insert([
+			       "topic_id" => '3']
+            ]);
+		   DB::table('exercises')->insert([
             ["name" => 'Harjoitustehtävä 2',
-			"topic_id" => '3']
-        ]);
-		DB::table('exercises')->insert([
-            ["name" => 'Harjoitustehtävä 3',
-			"topic_id" => '3']
-        ]);
+			       "topic_id" => '3']
+            ]);
     }
 }

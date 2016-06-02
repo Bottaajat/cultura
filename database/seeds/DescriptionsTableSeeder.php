@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DescriptionTableSeeder extends Seeder
+class DescriptionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -25,6 +25,11 @@ class DescriptionTableSeeder extends Seeder
       DB::table('descriptions')->insert([
           ["content" => 'Tässä harjoituksessa opit muutaman sanan venäjäksi kuvien avulla.',
           "exercise_id" => '2']
+      ]);
+
+      DB::table('descriptions')->insert([
+          ["content" => 'Lue dialogit ja tee kaksi tehtävää.',
+          "exercise_id" => '3']
       ]);
     }
 }

@@ -50,14 +50,14 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Е е',
              'type' => 'sound',
-             'contents' => '(j)e',
+             'contents' => 'je',
              'src' => '/audio/je.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Ё ё',
              'type' => 'sound',
-             'contents' => '(j)o',
+             'contents' => 'jo',
              'src' => '/audio/jo.mp3',
              'exercise_id' => '1']
         ]);
@@ -197,7 +197,7 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Щ щ',
              'type' => 'sound',
-             'contents' => 'šš',
+             'contents' => 'štš',
              'src' => '/audio/shch.mp3',
              'exercise_id' => '1']
         ]);
@@ -232,14 +232,14 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
             ['label' => 'Ю ю',
              'type' => 'sound',
-             'contents' => '(j)u',
+             'contents' => 'ju',
              'src' => '/audio/ju.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
             ['label' => 'Я я',
              'type' => 'sound',
-             'contents' => '(j)a',
+             'contents' => 'ja',
              'src' => '/audio/ja.mp3',
              'exercise_id' => '1']
         ]);
@@ -340,9 +340,8 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
           [
            'type' => 'text',
-           'contents' => '1)
-           
-                          Официант: 	Здравствуйте!
+           'label' => 'Kahvilassa 1',
+           'contents' => 'Официант: 	Здравствуйте!
                           Клиент:	Здравствуйте!
                           Официант:	Что Вам?
                           Клиент:	Мне кофе с молоком и бутерброд.
@@ -357,49 +356,14 @@ class MaterialsTableSeeder extends Seeder
         DB::table('materials')->insert([
           [
            'type' => 'text',
-           'contents' => 'Словарь			Sanasto
-
-                          Что Вам?			Mitä saisi olla?
-                          кофе				kahvi
-                          молоко; с молоком		maito; maidolla
-                          бутерброд			voileipä
-                          ветчина; с ветчиной		kinkku; kinkulla
-                          Это всё?			Oliko siinä kaikki?
-                          Сколько стоит?			Paljonko maksaa?
-                          евро				euro',
-           'exercise_id' => '3'
-          ]
-        ]);
-        DB::table('materials')->insert([
-          [
-           'type' => 'text',
-           'contents' => '2)
-
-                          Официант:	Добрый вечер! Вот меню.
-                          Клиент:	Добрый вечер! У вас есть меню по-русски?
-                          Официант:	Да, конечно. Вот, пожалуйста.
-                          Клиент: 	Спасибо. ----- Мне, пожалуйста, шоколадный торт и чай.
-                          Официант: 	Чёрный или зелёный чай?
-                          Клиент:	Чёрный, пожалуйста. Сколько стоит?
-                          Официант:	7, 50.',
-           'exercise_id' => '3'
-          ]
-        ]);
-        DB::table('materials')->insert([
-          [
-           'type' => 'text',
-           'contents' => 'Словарь			Sanasto
-
-                          У вас есть?			Onko teillä?
-                          меню				menu, ruokalista
-                          по-русски			venäjäksi
-                          конечно			tietenkin, totta kai
-                          вот				tässä
-                          шоколадный торт		suklaakakku
-                          чай				tee
-                          чёрный				musta
-                          или				vai, tai
-                          зелёный			vihreä',
+           'label' => 'Kahvilassa 2',
+           'contents' =>'Официант:	Добрый вечер! Вот меню.
+                         Клиент:	Добрый вечер! У вас есть меню по-русски?
+                         Официант:	Да, конечно. Вот, пожалуйста.
+                         Клиент: 	Спасибо. ----- Мне, пожалуйста, шоколадный торт и чай.
+                         Официант: 	Чёрный или зелёный чай?
+                         Клиент:	Чёрный, пожалуйста. Сколько стоит?
+                         Официант:	7, 50.',
            'exercise_id' => '3'
           ]
         ]);

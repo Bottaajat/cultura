@@ -16,11 +16,12 @@ class CreateMaterialsTable extends Migration
             $table->increments('id');
             $table->string('label');
             $table->string('type');
-            $table->string('contents', 400);
+            $table->string('contents', 1000);
             $table->string('src');
             $table->integer('exercise_id')->unsigned();
             $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

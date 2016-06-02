@@ -3,11 +3,13 @@
 <head>
 	<title> Cultura </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-	{{ Html::style("/css/bootstrap.min.css") }}
-	{{ Html::style("/css/bootstrap-theme.min.css") }}
-  {{ Html::style("/css/main.css") }}
-	{{ Html::script("/js/jquery.min.js") }}
-	{{ Html::script("/js/bootstrap.min.js") }}
+	{!! Html::style("/css/bootstrap.min.css") !!}
+	{!! Html::style("/css/bootstrap-theme.min.css") !!}
+  {!! Html::style("/css/main.css") !!}
+	{!! Html::style("/css/jasny-bootstrap.min.css") !!}
+	{!! Html::script("/js/jquery.min.js") !!}
+	{!! Html::script("/js/bootstrap.min.js") !!}
+	{!! Html::script("/js/jasny-bootstrap.min.js") !!}
 	@yield('pagehead')
 </head>
 
