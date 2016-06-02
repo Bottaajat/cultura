@@ -63,7 +63,31 @@ class MaterialController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    return "asd";
+    $material = Material::find($id);
+    $material->label = $request->input('label');
+    $material->contents = $request->input('contents');
+    $material->type = $request->input('type');
+
+    if( $material->type == "image" || $material->type == "audio" ) {
+      if($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = basename($material->src);
+
+        if($material->type == "image") {
+            $res = "/img/";
+            $dst = public_path() . '/img';
+        }
+        if($material->type == "audio") {
+            $res = "/audio/";
+            $dst = public_path() . '/audio';
+        }
+
+        $file->move($dst, $filename);
+      }
+    }
+
+    $material->save();
+    return back()->with('success', 'Materiaali päivitetty!');
   }
 
   /**
