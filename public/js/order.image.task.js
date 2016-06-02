@@ -16,7 +16,7 @@ function asd(arr1, arr2) {
 	  var correct = arr1.slice(0);
 	  draggables.sort( function() { return Math.random() - .5 } );
 	  for ( var i=0; i<arr1.length; i++ ) {
-		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', 'dragged'+draggables[i] ).appendTo( '#draggablearea' ).draggable( {
+		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', draggables[i]+'-drag'  ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#limit',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
@@ -27,14 +27,14 @@ function asd(arr1, arr2) {
 	  // Create the card slots
 	  var show = arr2;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div>' + correct[i-1] + '</div>').text('').data( 'slot', correct[i-1] ).attr( 'id', show[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
+		$('<div style="min-height: 88px; min-width: 88px">' + correct[i-1] + '</div>').text('').data( 'slot', correct[i-1] ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
-		$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
-		$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
-		$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
+		$( '#'+correct[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
+		$( '#'+correct[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
+		$( '#'+correct[i-1]+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	}
 	  
@@ -46,14 +46,16 @@ function asd(arr1, arr2) {
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
 		// again
-
+		
+		//alert("slot: "+ slot + " card: " + card);
 		if ( slot == card ) {
 			ui.draggable.addClass( 'correct' );
 			ui.draggable.draggable( 'disable' );
 			$(this).droppable( 'disable' );
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
-			$( '#dragged'+card ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
+			$( '#'+card+'-drag' ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
+			$( '#'+slot+'-drop' ).css( 'color', '#00FF00' );
 			correctCards++;
 		} 
 

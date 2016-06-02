@@ -30,5 +30,3 @@ Route::get('{topic}','ExerciseController@list_exercises');
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
-
-//Route::get('{exerciselevel}', 'ExerciseLevelsController@test');

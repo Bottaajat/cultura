@@ -53,14 +53,11 @@ onLoad="asd(["{{str_replace(',', '","', implode(',', $draggables))}}"],
 		<div class="modal-content">
 		  <div class="modal-header">
 			<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-			<h4 class="modal-title">Tehtävä suoritettu</h4>
-		  </div>
-		  <div class="modal-body">
-			<p>Onneksi olkoon!</p>
+			<h4 class="modal-title">Onneksi olkoon! Tehtävä suoritettu.</h4>
 		  </div>
 		  <div class="modal-footer">
-			<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-			<button onclick=location.reload()>Kokeile uudestaan</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button class="btn btn-primary" onclick=location.reload()>Kokeile uudestaan</button>
 		  </div>
 		</div>
 
