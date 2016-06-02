@@ -1,6 +1,7 @@
 # cultura
 http://cultura.akkunavenajalle.fi
 
+[![Dependency Status](https://www.versioneye.com/user/projects/575005f1e298f3003e688a65/badge.svg?style=flat)](https://www.versioneye.com/user/projects/575005f1e298f3003e688a65)
 [![Code Climate](https://codeclimate.com/github/Bottaajat/cultura/badges/gpa.svg)](https://codeclimate.com/github/Bottaajat/cultura)
 [![Issue Count](https://codeclimate.com/github/Bottaajat/cultura/badges/issue_count.svg)](https://codeclimate.com/github/Bottaajat/cultura)
 
