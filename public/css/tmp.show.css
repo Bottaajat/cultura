@@ -28,19 +28,18 @@ body {
  
 #droppablearea {
   margin: 10px auto 0 auto;
-  background: #ddf;
 }
  
 /* The initial pile of unsorted cards */
  
 #draggablearea {
   margin: 10px auto;
-  background: #ffd;
 }
  
 #droppablearea, #draggablearea {
   height: inherit;
   position: relative;
+  background: #DDDDDD;
   padding: 10px;
   border: 2px solid #333;
   -moz-border-radius: 10px;
@@ -55,8 +54,13 @@ body {
 #droppablearea div, #draggablearea div {
   position: relative;
   float: left;
-  width: 58px;
-  height: 78px;
+  font-size: 28px;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 44px; 
+  min-height: 44px;
+  min-width: 64px;
   padding: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -84,12 +88,13 @@ body {
 #draggablearea div {
   background: #666;
   color: #fff;
-  font-size: 40px;
   text-shadow: 0 0 3px #000;
 }
  
  /* Cards when dragged */
 #draggablearea div.ui-draggable-dragging {
+  height: inherit;
+  width: inherit;
   -moz-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
@@ -108,17 +113,3 @@ body {
 #card9.correct { background: purple; }
 #card10.correct { background: violet; }
  */
- 
-/* "You did it!" message */
-#successMessage {
-  z-index: 100;
-  background: #dfd;
-  border: 2px solid #333;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  -moz-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
-  -webkit-box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
-  box-shadow: .3em .3em .5em rgba(0, 0, 0, .8);
-  padding: 20px;
-}
