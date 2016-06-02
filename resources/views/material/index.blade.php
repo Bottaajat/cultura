@@ -15,6 +15,7 @@
       <th>Tyyppi</th>
       <th>Muokkaa</th>
       <th>Poista</th>
+      <th>Sanasto</th>
     </tr>
   </thead>
 
@@ -30,6 +31,13 @@
         </td>
         <td class="rowlink-skip">
           @include('material.destroy')
+        </td>
+        <td class="rowlink-skip">
+          @if($material->glossary)
+            @include('glossary.edit')
+          @else
+            @include('glossary.create')
+          @endif
         </td>
       </tr>
     @endforeach
