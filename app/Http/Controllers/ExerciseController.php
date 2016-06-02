@@ -40,7 +40,7 @@ class ExerciseController extends Controller
         $exercise = Exercise::where('name', $name)->first();
 				if($exercise != NULL and $exercise->topic->name == $topic)
             return view('exercise.show', array('exercise' => $exercise));
-        return view('testi');
+        return view('errors.404');
 	}
 
 
