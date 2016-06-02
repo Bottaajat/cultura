@@ -22,6 +22,9 @@ Route::resource('material', 'MaterialController',
 Route::resource('description', 'DescriptionController',
 	array('only'=> array('store', 'update', 'destroy')));
 
+Route::resource('glossary', 'GlossaryController',
+	array('only'=> array('store', 'update', 'destroy')));
+	
 Route::get('{topic}','ExerciseController@list_exercises');
 
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
