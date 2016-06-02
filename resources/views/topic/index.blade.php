@@ -19,8 +19,6 @@
 </div>
 </div>
 
-
-
 <div class="panel-group" id="accordion">
 @foreach($topics as $topic)
 

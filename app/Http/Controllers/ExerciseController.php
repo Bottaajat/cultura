@@ -26,7 +26,7 @@ class ExerciseController extends Controller
 			$exercises = $topic_->exercises;
 			return view('exercise.list_exercises', array('exercises' => $exercises));
 		}
-		else return view('testi');
+		else return view('errors.404');
 	}
 
 
@@ -52,7 +52,6 @@ class ExerciseController extends Controller
     */
     public function store(Request $request)
     {
-    	$name = $request->input('name');
 			$topic_id = $request->input('topic_id');
 
 			$exercise = new Exercise;
