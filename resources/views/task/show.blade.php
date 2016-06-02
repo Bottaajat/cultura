@@ -4,15 +4,25 @@
 	{{Html::style('/css/tmp.show.css')}}
 	{{Html::script('/js/jquery-ui.min.js')}}
 	{{Html::script('/js/touch.js')}}
-	{{Html::script('/js/tmp.task.js')}}
 {{-- {{Html::style('/css/task.show.css')}}
 	{{Html::script('/js/order.task.js')}} --}}
 @stop
 @section('stuff')
-	onLoad="asd({{$task->exercise->materials->where('type', 'sound')->pluck('label')}},
-			{{$task->exercise->materials->where('type', 'sound')->pluck('contents')}})"
-	{{-- onLoad="asd({{$task->exercise->materials->where('type', 'image')->pluck('label')}},
-			{{$task->exercise->materials->where('type', 'image')->pluck('contents')}})"--}}
+<?php
+
+	echo '</body>';
+	
+	if ($task['type']=='järjestys/sanat') echo'<script src="/js/order.text.task.js"></script>';
+	if ($task['type']=='järjestys/kuvat') echo'<script src="/js/order.image.task.js"></script>';
+	echo '<script>asd(["'.str_replace(',', '","', implode(',', $draggables)).'"],["'.str_replace(',', '","', implode(',', $droppables)).'"])</script>';
+
+?>
+
+{{--
+onLoad="asd(["{{str_replace(',', '","', implode(',', $draggables))}}"],
+			["{{str_replace(',', '","', implode(',', $droppables))}}"])"
+--}}
+
 @stop
 
 @section('content')

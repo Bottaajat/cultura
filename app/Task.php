@@ -12,4 +12,9 @@ class Task extends Model
 	{
 		return $this->belongsTo('App\Exercise');
 	}
+	
+	public function orderings()
+	{
+			return $this->hasMany('App\Ordering');
+	}
 }

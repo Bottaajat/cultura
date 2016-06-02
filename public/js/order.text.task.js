@@ -1,5 +1,6 @@
 function asd(arr1, arr2) {
 	var correctCards = 0;
+	
 	$( init );
 	 
 	function init() {
@@ -28,9 +29,9 @@ function asd(arr1, arr2) {
 	  }
 	 
 	  // Create the card slots
-	  var show = arr2;
+	  var droppables = arr2;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div id="'+show[i-1]+'-drop">' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
+		$('<div id="'+droppables[i-1]+'-drop">' + correct[i-1] + '</div>').text(droppables[i-1]).data( 'slot', correct[i-1] ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
@@ -42,14 +43,14 @@ function asd(arr1, arr2) {
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
 		//$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
-	  }
+		}
 	 
 	}
-	  
+	 
 	function handleCardDrop( event, ui ) {
 		var slotNumber = $(this).data( 'slot' );
 		var card = ui.draggable.data( 'dragged' );
-		alert("slot: "+ slotNumber + " card: " + card);
+		//alert("slot: "+ slotNumber + " card: " + card);
 		// If the card was dropped to the correct slot,
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
@@ -68,10 +69,9 @@ function asd(arr1, arr2) {
 		// If all the cards have been placed correctly then display a message
 		// and reset the cards for another go
 
-		if ( correctCards == 1 ) {
+		if ( correctCards == droppables.length() ) {
 			$('#btn').click();
 		}
 
-	}
-	
+	}	
 }
