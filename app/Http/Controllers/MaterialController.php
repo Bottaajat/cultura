@@ -18,6 +18,32 @@ class MaterialController extends Controller
     return view('material.index', array('materials' => $materials));
   }
 
+  private function handleFiles(Request $request, $material) {
+    $src = "";
+    if($request->hasFile('file')) {
+      $file = $request->file('file');
+
+      if(strlen($material->src) == 0) {
+        $extension = $file->getClientOriginalExtension();
+        $filename = rand(11111,99999).'.'.$extension;
+      } else {
+        $filename = basename($material->src);
+      }
+
+      if($material->type == "image") {
+          $res = "/img/";
+          $dst = public_path() . $res;
+      }
+      if($material->type == "audio") {
+          $res = "/audio/";
+          $dst = public_path() . $res;
+      }
+      $file->move($dst, $filename);
+      $src = $res . $filename;
+    }
+    return $src;
+  }
+
   /**
   * Store a newly created resource in storage.
   *
@@ -31,26 +57,9 @@ class MaterialController extends Controller
     $material->type = $request->input('type');
     $material->exercise()->associate($request->input('exercise_id'));
 
-    //filen käsittely
-    //voisiko joku refaktoroida :,(
+
     if( $material->type == "image" || $material->type == "audio" ) {
-      if($request->hasFile('file')) {
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-        $filename = rand(11111,99999).'.'.$extension;
-
-        if($material->type == "image") {
-            $res = "/img/";
-            $dst = public_path() . $res;
-        }
-        if($material->type == "audio") {
-            $res = "/audio/";
-            $dst = public_path() . $res;
-        }
-
-        $material->src = $res . $filename;
-        $file->move($dst, $filename);
-      }
+      $material->src = handleFiles($request, $material);
     }
 
     $material->save();
@@ -71,21 +80,7 @@ class MaterialController extends Controller
     $material->type = $request->input('type');
 
     if( $material->type == "image" || $material->type == "audio" ) {
-      if($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = basename($material->src);
-
-        if($material->type == "image") {
-            $res = "/img/";
-            $dst = public_path() . '/img';
-        }
-        if($material->type == "audio") {
-            $res = "/audio/";
-            $dst = public_path() . '/audio';
-        }
-
-        $file->move($dst, $filename);
-      }
+      $material->src = handleFiles($request, $material);
     }
 
     $material->save();
