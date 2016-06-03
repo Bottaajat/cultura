@@ -6,4 +6,8 @@
 	@include('ordering.show')
 @endif
 
+@if($task->type == 'Monivalinta')
+	@include('multipleChoices.show')
+@endif
+
 @stop
