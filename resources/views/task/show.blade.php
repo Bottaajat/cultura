@@ -47,7 +47,7 @@
 			<h4 class="modal-title">Onneksi olkoon! Tehtävä suoritettu.</h4>
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
 			<button class="btn btn-primary" onclick=location.reload()>Kokeile uudestaan</button>
 		  </div>
 		</div>

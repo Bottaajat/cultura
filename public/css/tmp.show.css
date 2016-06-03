@@ -1,10 +1,6 @@
 /* Add some margin to the page and set a default font and colour */
  
-body {
-  line-height: 1.8em;
-  color: #333;
-}
- 
+
 /* Header/footer boxes */
  
 .wideBox {
