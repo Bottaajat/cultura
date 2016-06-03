@@ -1,4 +1,4 @@
-function asd(arr1, arr2, arr3) {
+function asd(arr1, arr2, arr3, source) {
 	var correctCards = 0;
 	$( init );
 	 
@@ -25,21 +25,22 @@ function asd(arr1, arr2, arr3) {
 	  }
 	 
 	  // Create the card slots
-	  var show = arr2;
+	  var label = arr2;
+	  var showable = arr3;
 	  for ( var i=1; i<=arr1.length; i++ ) {
-		$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot', correct[i-1] ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
+	    var info = correct[i-1]+'/'+showable[i-1];
+		$('<div>' + correct[i-1] + '</div>').text(label[i-1]).data( 'info',info ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
+		//$('<div>' + correct[i-1] + '</div>').text(show[i-1]).data( 'slot',correct[i-1]).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
-		//$( '#'+show[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+show[i-1]+'.gif) ' );
-		//$( '#'+show[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
-		//$( '#'+show[i-1]+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	}
 	  
 	function handleCardDrop( event, ui ) {
-		var slot = $(this).data( 'slot' );
+		var info = ($(this).data( 'info' )).split("/");
+		var slot = info[0];
 		var card = ui.draggable.data( 'dragged' );
 		//alert("slot: "+ slotNumber + " card: " + cardNumber);
 		// If the card was dropped to the correct slot,
@@ -59,9 +60,10 @@ function asd(arr1, arr2, arr3) {
 			$( ui.draggable ).css( 'width', width ); //poistaa tekstin kuvan päältä, kun oikein
 			$( ui.draggable ).css( 'height', height );
 			*/
+			//var showable = $(this).data( 'info[1]' );
 			$( ui.draggable ).css( 'visibility', 'hidden' );
-			$(this).text(slot);
 			$(this).css( 'border-color', '#00FF00' );
+			$(this).text(info[1]);
 			correctCards++;
 		} 
 

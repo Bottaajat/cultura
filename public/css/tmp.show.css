@@ -1,7 +1,6 @@
 /* Add some margin to the page and set a default font and colour */
  
 body {
-  margin: 30px;
   line-height: 1.8em;
   color: #333;
 }

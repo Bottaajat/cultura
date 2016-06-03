@@ -1,4 +1,4 @@
-function asd(arr1, arr2, arr3) {
+function asd(arr1, arr2, arr3, source) {
 	var correctCards = 0;
 	$( init );
 	 
@@ -25,8 +25,6 @@ function asd(arr1, arr2, arr3) {
 	  }
 	 
 	  // Create the card slots
-	  var show = arr2;
-	  var source = arr3;
 	  for ( var i=1; i<=arr1.length; i++ ) {
 		$('<div style="min-height: 88px; min-width: 88px">' + correct[i-1] + '</div>').text('').data( 'slot', correct[i-1] ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',

@@ -20,8 +20,9 @@ class TaskController extends Controller
 			  foreach ($contents as $content) {
 				      $draggables_[$i] = $content->draggable;
 				      $droppables_[$i] = $content->droppable;
+					  $showables_[$i] = $content->showable;
 				      $i++;
 			  }
-		    return view('task.show', array('task' => $task_, 'draggables' => $draggables_, 'droppables' => $droppables_, 'srcs' => $srcs));
+		    return view('task.show', array('task' => $task_, 'draggables' => $draggables_, 'droppables' => $droppables_, 'showables' => $showables_, 'srcs' => $srcs));
 	 }
 }

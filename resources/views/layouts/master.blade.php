@@ -12,9 +12,9 @@
 	{!! Html::script("/js/jasny-bootstrap.min.js") !!}
 	@yield('pagehead')
 </head>
-
+<!--
 <body @yield('stuff')>
-
+-->
 <div class="container">
 @include('layouts.navigation')
 

@@ -12,44 +12,50 @@ class OrderingTask4Seeder extends Seeder
     public function run()
     {
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'Какой',
 			"droppable" => 'сандвич',
+			"showable" => 'Какой сандвич',
 			"task_id" => '4']
         ]);
 		
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'Это',
 			"droppable" => 'всё',
+			"showable" => 'Это всё',
 			"task_id" => '4']
         ]);
 		
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'У вас есть',
 			"droppable" => 'меню',
+			"showable" => 'У вас есть меню',
 			"task_id" => '4']
         ]);
 		
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'Сколько',
 			"droppable" => 'стоит',
+			"showable" => 'Сколько стоит',
 			"task_id" => '4']
         ]);
 		
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'Добрый',
 			"droppable" => 'день',
+			"showable" => 'Добрый день',
 			"task_id" => '4']
         ]);
 		
 		DB::table('orderings')->insert([
-            ["type" => 'words',
+            [
 			"draggable" => 'Что',
 			"droppable" => 'Вам',
+			"showable" => 'Что Вам',
 			"task_id" => '4']
         ]);
     }

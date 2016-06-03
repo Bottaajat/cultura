@@ -7,28 +7,20 @@
 {{-- {{Html::style('/css/task.show.css')}}
 	{{Html::script('/js/order.task.js')}} --}}
 @stop
-@section('stuff')
-<?php
-
-	echo '</body>';
-	if ($task['type']=='järjestys/sanat') echo'<script src="/js/order.text.task.js"></script>';
-	if ($task['type']=='järjestys/kuvat') echo'<script src="/js/order.image.task.js"></script>';
-	echo '<script>asd(["'.str_replace(',', '","', implode(',', $draggables)).'"],["'.str_replace(',', '","', implode(',', $droppables)).'"],["'.str_replace(',', '","', implode(',', $srcs)).'"])</script>';
-
-?>
-
-{{--
-onLoad="asd(["{{str_replace(',', '","', implode(',', $draggables))}}"],
-			["{{str_replace(',', '","', implode(',', $droppables))}}"])"
---}}
-
-@stop
 
 @section('content')
 
 <div class="page-header">
 	<h1>{{ $task->name }}</h1>
 </div>
+
+<?php
+
+	if ($task['type']=='järjestys/sanat') echo'<script src="/js/order.text.task.js"></script>';
+	if ($task['type']=='järjestys/kuvat') echo'<script src="/js/order.image.task.js"></script>';
+	echo '<script>asd(["'.str_replace(',', '","', implode(',', $draggables)).'"],["'.str_replace(',', '","', implode(',', $droppables)).'"],["'.str_replace(',', '","', implode(',', $showables)).'"],["'.str_replace(',', '","', implode(',', $srcs)).'"])</script>';
+
+?>
 
 <div class="panel panel-default">
 	<div class="panel-heading">
