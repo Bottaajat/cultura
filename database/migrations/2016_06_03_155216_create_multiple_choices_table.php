@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssignmentsTable extends Migration
+class CreateMultipleChoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,11 @@ class CreateAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assignments', function (Blueprint $table) {
+        Schema::create('multiple_choices', function (Blueprint $table) {
             $table->increments('id');
-			      $table->string('content', 1000);
+            $table->string('question');
+            $table->string('choices', 1000);
+            $table->string('solution');
             $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->timestamps();
@@ -28,6 +30,6 @@ class CreateAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('assignments');
+        Schema::drop('multiple_choices');
     }
 }
