@@ -7,7 +7,7 @@
 @endif
 
 @if($task->type == 'Monivalinta')
-	@include('multipleChoices.show')
+	@include('multipleChoice.show')
 @endif
 
 @stop
