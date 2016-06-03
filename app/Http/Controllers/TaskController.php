@@ -16,6 +16,7 @@ class TaskController extends Controller
 		    $task_ = Task::where('name', $task)->first();
 			  $contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
         $srcs = array_pluck($task_->exercise->materials, 'src');
+		$assignment = array_pluck($task_->assignment, 'content');
 			  $i = 0;
 			  foreach ($contents as $content) {
 				      $draggables_[$i] = $content->draggable;
@@ -23,6 +24,6 @@ class TaskController extends Controller
 					  $showables_[$i] = $content->showable;
 				      $i++;
 			  }
-		    return view('task.show', array('task' => $task_, 'draggables' => $draggables_, 'droppables' => $droppables_, 'showables' => $showables_, 'srcs' => $srcs));
+		    return view('task.show', array('task' => $task_, 'draggables' => $draggables_, 'droppables' => $droppables_, 'showables' => $showables_, 'srcs' => $srcs, 'assignment'=> $assignment));
 	 }
 }

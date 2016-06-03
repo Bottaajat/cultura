@@ -27,6 +27,7 @@
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body" id="limit">
+		{{ $task->assignment->content}}
 		<div id="droppablearea" class="panel-body"> </div>
 		<div id="draggablearea" class="panel-body"> </div>
 	</div>
