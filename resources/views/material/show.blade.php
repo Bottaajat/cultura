@@ -11,9 +11,9 @@
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
 
-        @foreach( $exercise->descriptions as $description )
-          <p class="list-group-item-text">{!! $description->content !!}</p><br>
-        @endforeach
+        @if( $exercise->descriptions )
+          <p class="list-group-item-text">{!! $exercise->descriptions->content !!}</p><br>
+        @endif
 
         @foreach( $exercise->materials as $material )
 

@@ -33,7 +33,7 @@ euro',
 DB::table('glossaries')->insert([
         
 ['rus' => 'У вас есть?
-меню menu
+меню
 по-русски
 конечно
 вот
@@ -42,7 +42,7 @@ DB::table('glossaries')->insert([
 чёрный',
              
 'fin' => 'Onko teillä?
-ruokalista
+menu, ruokalista
 venäjäksi
 tietenkin, totta kai
 tässä

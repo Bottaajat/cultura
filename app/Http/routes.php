@@ -14,7 +14,7 @@
 Route::get('/','TopicController@index');
 
 Route::resource('exercise', 'ExerciseController',
-	array('only' => array('store', 'update', 'destroy')));
+	array('only' => array('index', 'store', 'update', 'destroy')));
 
 Route::resource('material', 'MaterialController',
 	array('only'=> array('index', 'store', 'update', 'destroy')));
@@ -30,3 +30,5 @@ Route::get('{topic}','ExerciseController@list_exercises');
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
+
+

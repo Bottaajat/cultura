@@ -13,6 +13,11 @@ use App\Topic;
 class ExerciseController extends Controller
 {
 
+  public function index() {
+    $exercises = Exercise::all();
+    return view('exercise.index', array('exercises' => $exercises));
+  }
+  
 	/**
    * Display a listing of the resource based on given $topic.
    * Otherwise display 404.
@@ -42,7 +47,6 @@ class ExerciseController extends Controller
             return view('exercise.show', array('exercise' => $exercise));
         return view('errors.404');
 	}
-
 
     /**
     * Store a newly created resource in storage.

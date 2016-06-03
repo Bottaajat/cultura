@@ -24,7 +24,7 @@ class Exercise extends Model
 
 	public function tasks()
   {
-        return $this->hasMany('App\Task');
+    return $this->hasMany('App\Task');
   }
 
 	public function materials()
@@ -34,6 +34,6 @@ class Exercise extends Model
 
 	public function descriptions()
 	{
-			return $this->hasMany('App\Description');
+			return $this->hasOne('App\Description');
 	}
 }
