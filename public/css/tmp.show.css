@@ -65,6 +65,7 @@
   border-radius: 10px;
   margin: 10px 0 10px 10px;
   background: #fff;
+  white-space: nowrap;
 }
  
 #droppablearea div:first-child, #draggablearea div:first-child {
