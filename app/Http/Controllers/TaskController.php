@@ -15,7 +15,7 @@ class TaskController extends Controller
     public function show($topic, $exercise, $task) {
 		    $task_ = Task::where('name', $task)->first();
 
-        if(dirname($task_->type)="järjestys") {
+        if(dirname($task_->type)=="järjestys") {
           $contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
           $srcs = array_pluck($task_->exercise->materials, 'src');
 		      $assignment = array_pluck($task_->assignment, 'content');
@@ -35,6 +35,6 @@ class TaskController extends Controller
           return view('task.show', array('task' => $task_));
         }
 
-        else return view(errors.404);
+        else return view('errors.404');
 	 }
 }
