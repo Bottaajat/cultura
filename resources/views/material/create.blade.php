@@ -15,6 +15,7 @@
         {!! Form::textarea('contents', null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
         {!! Form::select('type', ["text"=>'Teksti', "audio"=>'Ääni', "image"=>'Kuva', "video"=>'Video'],null, ['class' => 'form-control']) !!}
         {!! Form::select('exercise_id', $exercise_list, null, ['class' => 'form-control']) !!}
+
         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
           <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i>
             <span class="fileinput-filename"></span>
