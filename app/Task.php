@@ -23,4 +23,8 @@ class Task extends Model
 			return $this->hasMany('App\Ordering');
 	}
 	
+	public function orderings()
+	{
+			return $this->hasMany('App\MultipleChoice');
+	}	
 }
