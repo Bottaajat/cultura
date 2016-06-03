@@ -5,38 +5,42 @@
 <div class="modal fade" id="editGlossaryModal{{$material->glossary->id}}" tabindex="-1" role="dialog" aria-labelledby="editGlossaryModal{{$material->glossary->id}}Label">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-    
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title" id="editModal{{$material->id}}Label"> Sanaston "{{$material->label}}" muokkaus</h4>
       </div>
-     
+
       {{Form::open(array('action'=>array('GlossaryController@update', $material->glossary->id), 'method'=>'put'))}}
       <div class="modal-body">
         <p> Erottele sanat omille riveille samassa järjestyksessä. </p>
-        <table class="">
+        <table>
           <thead>
-            <td>Venäjäksi</td>
-            <td>Suomeksi</td>
+            <tr>
+              <th>Venäjäksi</th>
+              <th>Suomeksi</th>
+            </tr>
           </thead>
-          <tr>
-            <td>{!! Form::textarea('rus',  $material->glossary->rus, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'слово')) !!}</td>
-            <td>{!! Form::textarea('fin',  $material->glossary->fin, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'sana')) !!}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>{!! Form::textarea('rus',  $material->glossary->rus, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'слово')) !!}</td>
+              <td>{!! Form::textarea('fin',  $material->glossary->fin, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'sana')) !!}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
-      
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>            
+        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
         <button type="submit" class="btn btn-primary"> Päivitä </button>
         <button type="button" class="btn btn-danger center-block pull-left" data-toggle="modal" data-target="#delModalGlossary{{$material->glossary->id}}">
           Poista
         </button>
       </div>
       {{Form::close()}}
-      
+
     </div>
-    
+
   </div>
 </div>
 

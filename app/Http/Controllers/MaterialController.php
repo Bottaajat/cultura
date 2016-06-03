@@ -12,10 +12,58 @@ use App\Material;
 
 class MaterialController extends Controller
 {
+  // SALLITUT AUDIO TIEDOSTO FORMAATIT
+  protected $audio = ['3gp', 'aa', 'aac', 'aax', 'act', 'aiff', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
+            'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',
+            'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
+
+  // SALLITUT KUVA TIEDOSTO FORMAATIT
+  protected $image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
 
   public function index() {
     $materials = Material::all();
     return view('material.index', array('materials' => $materials));
+  }
+
+
+  private function allowedExtension($extension, $array) {
+    return in_array($extension, $array);
+  }
+
+  private function handleFiles(Request $request, $material) {
+    if($request->hasFile('file')) {
+      if($material->type == 'video' || $material->type == 'text') {
+        return false;
+      }
+
+      $file = $request->file('file');
+      $extension = $file->getClientOriginalExtension();
+
+      if($material->type == "image") {
+          if(!$this->allowedExtension($extension, $this->image)) return false;
+          $res = "/img/";
+      }
+      if($material->type == "audio") {
+        if(!$this->allowedExtension($extension, $this->audio)) return false;
+        $res = "/audio/";
+      }
+
+      if(strlen($material->src) == 0) {
+        $filename = rand(11111,99999).'.'.$extension;
+      } else {
+        $filename = basename($material->src);
+      }
+
+      $dst = public_path() . $res;
+      $file->move($dst, $filename);
+      $material->src = $res . $filename;
+      return true;
+    } else {
+      if($material->type == "image" || $material->type == "audio")
+        return false;
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -31,27 +79,8 @@ class MaterialController extends Controller
     $material->type = $request->input('type');
     $material->exercise()->associate($request->input('exercise_id'));
 
-    //filen käsittely
-    //voisiko joku refaktoroida :,(
-    if( $material->type == "image" || $material->type == "audio" ) {
-      if($request->hasFile('file')) {
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-        $filename = rand(11111,99999).'.'.$extension;
-
-        if($material->type == "image") {
-            $res = "/img/";
-            $dst = public_path() . $res;
-        }
-        if($material->type == "audio") {
-            $res = "/audio/";
-            $dst = public_path() . $res;
-        }
-
-        $material->src = $res . $filename;
-        $file->move($dst, $filename);
-      }
-    }
+    if(!$this->handleFiles($request, $material))
+      return back()->withErrors('Virheellinen tiedostoformaatti!');
 
     $material->save();
     return back()->with('success', 'Materiaali lisätty!');
@@ -70,23 +99,8 @@ class MaterialController extends Controller
     $material->contents = $request->input('contents');
     $material->type = $request->input('type');
 
-    if( $material->type == "image" || $material->type == "audio" ) {
-      if($request->hasFile('file')) {
-        $file = $request->file('file');
-        $filename = basename($material->src);
-
-        if($material->type == "image") {
-            $res = "/img/";
-            $dst = public_path() . '/img';
-        }
-        if($material->type == "audio") {
-            $res = "/audio/";
-            $dst = public_path() . '/audio';
-        }
-
-        $file->move($dst, $filename);
-      }
-    }
+    if(!$this->handleFiles($request, $material))
+      return back()->withErrors('Virheellinen tiedostoformaatti!');
 
     $material->save();
     return back()->with('success', 'Materiaali päivitetty!');

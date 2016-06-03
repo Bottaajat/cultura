@@ -10,24 +10,28 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h4 class="modal-title" id="createModalGlossary{{$material->id}}label">Luo materiaalille "{{$material->label}}" sanasto</h4>
       </div>
-      
+
       {{Form::open(array('action'=>array('GlossaryController@store', $material->id), 'method'=>'POST'))}}
       <div class="modal-body">
         <p> Erottele sanat omille riveille samassa järjestyksessä. </p>
-        <table class="table table-striped">
+        <table>
           <thead>
-            <td>Venäjäksi</td>
-            <td>Suomeksi</td>
+            <tr>
+              <th>Venäjäksi</th>
+              <th>Suomeksi</th>
+            </tr>
           </thead>
-          <tr>
-            <td>{!! Form::textarea('rus',  null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'слово')) !!}</td>
-            <td>{!! Form::textarea('fin',  null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'sana')) !!}</td>
-          </tr>
+            <tbody>
+              <tr>
+                <td>{!! Form::textarea('rus',  null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'слово')) !!}</td>
+                <td>{!! Form::textarea('fin',  null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'sana')) !!}</td>
+              </tr>
+            </tbody>
         </table>
       </div>
-   
+
       {{ Form::hidden('material_id', $material->id) }}
-  
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
         <button type="submit" class="btn btn-primary"> OK </button>
