@@ -1,10 +1,11 @@
 {{-- Materiaalinäkymä --}}
 <div class="panel-group">
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" data-toggle="collapse" data-target="#collapseMat">
       <h4 class="panel-title">
-        <div id="menu-1-toggle" data-toggle="collapse" href="#collapseMat">
-          Materiaali <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
+        <div id="menu-1-toggle">
+          Materiaali
+          <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
       </div>
       </h4>
     </div>
@@ -55,8 +56,8 @@
                 <td>{{ $fin }}</td>
             </tr>
             @endforeach
+            </table>
           @endif
-          </table>
         @endforeach
       </div>
     </div>
