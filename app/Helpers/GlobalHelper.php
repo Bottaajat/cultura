@@ -6,12 +6,10 @@ function stringToArray($str)
 
 function truncateString($string,$length)
 {
-  if (strlen($string) > $length) 
+  if (strlen($string) > $length)
   {
       $string = preg_replace('/\s+?(\S+)?$/', '', substr($string, 0, $length+1));
       $string = $string . "...";
   }
   return $string;
 }
-
-

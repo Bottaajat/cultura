@@ -2,8 +2,6 @@
 	{{Html::style('/css/tmp.show.css')}}
 	{{Html::script('/js/jquery-ui.min.js')}}
 	{{Html::script('/js/touch.js')}}
-{{-- {{Html::style('/css/task.show.css')}}
-	{{Html::script('/js/order.task.js')}} --}}
 @stop
 
 <div class="page-header">
@@ -23,7 +21,9 @@
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
 	<div class="panel-body" id="limit">
-		{{ $task->assignment->content}}
+		@if($task->assignment)
+		  {!! $task->assignment->content !!}
+    @endif
 		<div id="droppablearea" class="panel-body"> </div>
 		<div id="draggablearea" class="panel-body"> </div>
 	</div>
