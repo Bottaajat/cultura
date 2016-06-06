@@ -10,7 +10,9 @@
 	@include('multipleChoice.show')
 @endif
 
-<<<<<<< HEAD
+@if($task->type == 'Sanaristikko')
+	@include('crossword.show')
+@endif
 
 <div style="float:right, padding-top: 20px">
 	<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
@@ -33,12 +35,5 @@
 
 	</div>
 </div>
-
-
-=======
-@if($task->type == 'Sanaristikko')
-	@include('crossword.show')
-@endif
->>>>>>> crosswords
 
 @stop
