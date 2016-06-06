@@ -37,28 +37,7 @@
 	</div>
 </div>
 
-<div style="float:right, padding-top: 20px">
-	<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
-</div>
-
 <div class="btn btn-danger" id="btn" data-toggle="modal" data-target="#success">using jQuery click handler</div>
-
-<div id="success" class="modal fade">
-	<div class="modal-dialog">
-
-		<div class="modal-content">
-		  <div class="modal-header">
-			<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-			<h4 class="modal-title">Onneksi olkoon! Tehtävä suoritettu.</h4>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
-			<button class="btn btn-primary" onclick=location.reload()>Kokeile uudestaan</button>
-		  </div>
-		</div>
-
-	</div>
-</div>
 
 <?php
 

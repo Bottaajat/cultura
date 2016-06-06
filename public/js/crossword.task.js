@@ -63,6 +63,7 @@ function init (answers, clues, positions, orientations) {
 			//alert(next);
 			var this_text = $(this).text();
 			if(this_text.length >= 1){
+				$(this).css('color','black');
 				$(this).text(this_text.slice(0,1));
 				next = next.split(',');
 				var next_x = Number(next[0]);
@@ -94,6 +95,7 @@ function init (answers, clues, positions, orientations) {
 function clear_all () {
 	$('.letter').each(function(i, obj) {
 		$(this).text('');
+		$(this).css('color','black');
 	});
 }
 
