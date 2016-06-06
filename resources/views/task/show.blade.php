@@ -10,4 +10,8 @@
 	@include('multipleChoice.show')
 @endif
 
+@if($task->type == 'Sanaristikko')
+	@include('crossword.show')
+@endif
+
 @stop

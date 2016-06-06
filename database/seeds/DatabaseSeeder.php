@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderingTask2Seeder::class);
         $this->call(OrderingTask4Seeder::class);
         $this->call(AssignmentsTableSeeder::class);
+		$this->call(CrosswordTaskSeeder::class);
     }
 }

@@ -27,4 +27,9 @@ class Task extends Model
 	{
 			return $this->hasMany('App\MultipleChoice');
 	}	
+	
+	public function crosswords()
+	{
+			return $this->hasMany('App\Crossword');
+	}	
 }

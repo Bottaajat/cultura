@@ -26,5 +26,10 @@ class AssignmentsTableSeeder extends Seeder
 			       "content" => 'Yhdistä ilmaisujen eri osat toisiinsa',
 			       "task_id" => '4']
             ]);
+		DB::table('assignments')->insert([
+            [
+			       "content" => 'Tee sanaristikko',
+			       "task_id" => '5']
+            ]);	
     }
 }
