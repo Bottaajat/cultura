@@ -16,7 +16,7 @@ class CrosswordTaskSeeder extends Seeder
             [
 			"answer" => 'sana',
 			"clue" => 'sana',
-			"position" => '2.1',
+			"position" => '0.-1',
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
@@ -25,7 +25,7 @@ class CrosswordTaskSeeder extends Seeder
             [
 			"answer" => 'sanat',
 			"clue" => 'sanat',
-			"position" => '3.0',
+			"position" => '1.-2',
 			"orientation" => 'vertical',
 			"task_id" => '5']
         ]);
@@ -34,7 +34,7 @@ class CrosswordTaskSeeder extends Seeder
             [
 			"answer" => 'sanat',
 			"clue" => 'sanat',
-			"position" => '0.3',
+			"position" => '-2.1',
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);

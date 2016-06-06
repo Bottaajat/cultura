@@ -8,7 +8,7 @@ function init (answers, clues, positions, orientations) {
 	
 	var limits = grid_size(positions, answers, orientations);
 	var grid = grid_create(limits[0], limits[1], limits[2], limits[3]);
-	var filled_grid = grid_fill(grid, positions, answers,orientations);
+	var filled_grid = grid_fill(grid, positions, answers, orientations, limits[0]);
 
 	//draw puzzle
 	for (var y = limits[2]; y < limits[3]; y++) {
@@ -135,25 +135,19 @@ function grid_size (positions, answers, orientations) {
 		x_end = 0;
 		y_end = 0;
 		//alert('start '+x_start+' '+y_start);
-		if (i == 0) {
-			if (orientations[0] == 'horizontal') {
-				x_end = x_start + answers[0].length;
-				y_end = y_start;
-			}
-			else{
-				y_end = y_start + answers[0].length;
-				x_end = x_start;
-			}
+		if (orientations[i] == 'horizontal') {
+			x_end = x_start + answers[i].length;
+			y_end = y_start;
 		}
-		else {
-			if (orientations[i] == 'horizontal') {
-				x_end = x_start + answers[i].length;
-				y_end = y_start;
-			}
-			else{
-				y_end = y_start + answers[i].length;
-				x_end = x_start;
-			}
+		else{
+			y_end = y_start + answers[i].length;
+			x_end = x_start;
+		}
+		if (i == 0) {
+			x_min = x_start;
+			x_max = x_end;
+			y_min = y_start;
+			y_max = y_end;
 		}
 		//alert('end '+x_end+' '+y_end);
 		if (x_min > x_start) x_min = x_start;
@@ -179,7 +173,7 @@ function grid_create(x_min, x_max, y_min, y_max) {
 	return grid;
 }
 
-function grid_fill(grid, positions, answers, orientations) {
+function grid_fill(grid, positions, answers, orientations, x_min) {
 	
     for (i = 0; i < positions.length; i++) {
 	
@@ -196,7 +190,7 @@ function grid_fill(grid, positions, answers, orientations) {
 		if (orientations[i] == 'horizontal') {
 			x_end = x_start + answers[i].length;
 			var row = grid[y_start];
-			for (x = 0; x < row.length; x++) {
+			for (x = x_min; x < row.length; x++) {
 				if (x >= x_start && x < x_end) {
 					row[x] = answer[letter];
 					letter ++;
