@@ -30,8 +30,8 @@
 		</div>
 		
 		<div id="buttons_container">
-			<button id="clear" class="btn btn-warning" onclick=clear_all()>Clear All</button>
-			<button id="check" class="btn btn-success" onclick=check()>Check</button>
+			<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
+			<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
 		</div>
 
 	</div>
