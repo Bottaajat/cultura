@@ -1,3 +1,6 @@
+@section('pagehead')
+  {!! Html::script("/js/multipleChoice.js") !!}
+@stop
 
 <div class="page-header">
 	<h1>{!! $task->name !!}</h1>
@@ -12,25 +15,29 @@
 		  {!! $task->assignment->content !!}
     @endif
 
-	<form>
+	<form id="form">
     @foreach($task->multiplechoises as $mc)
     <div class="form-group">
         <label>{!! $mc->id . ". " . $mc->question !!}</label>
+        
+        <input id="hidden-{{$mc->id}}" type="hidden" value="{!! $mc->solution !!}">
 
         @foreach(stringToArray($mc->choices) as $key => $choice)
-        <div class="radio">
-          <label>
-            <input type="radio" name="optionsRadios-{{$mc->id}}" id="optionsRadios-{{$mc->id}}-{{$key}}" value="{{$choice}}">
-            {{$choice}}
-          </label>
+        <div class="has-success">
+          <div class="radio">
+            <label>
+              <!-- id="optionsRadios-{{$mc->id}}-{{$key}}" -->
+              <input type="radio" name="optionsRadios-{{$mc->id}}"  value="{{$choice}}">
+              {{$choice}}
+            </label>
+          </div>
         </div>
         @endforeach
 
-        <input id="hidden-{{$mc->id}}" type="hidden" value="{!! $mc->solution !!}">
     </div>
     @endforeach
 
-    <button class="btn btn-primary" id="checkResults">Tarkista</button>
+    <button class="btn btn-primary" type="submit">Tarkista</button>
 
   </form>
 
