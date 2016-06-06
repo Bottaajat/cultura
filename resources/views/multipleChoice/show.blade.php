@@ -15,24 +15,23 @@
 		  {!! $task->assignment->content !!}
     @endif
 
-	<form id="form">
+<form onSubmit="checkSolutions(); return false;">
     @foreach($task->multiplechoises as $mc)
-    <div class="form-group">
+    <div name="question" class="form-group">
         <label>{!! $mc->id . ". " . $mc->question !!}</label>
-        
-        <input id="hidden-{{$mc->id}}" type="hidden" value="{!! $mc->solution !!}">
 
+    
         @foreach(stringToArray($mc->choices) as $key => $choice)
-        <div class="has-success">
-          <div class="radio">
-            <label>
-              <!-- id="optionsRadios-{{$mc->id}}-{{$key}}" -->
-              <input type="radio" name="optionsRadios-{{$mc->id}}"  value="{{$choice}}">
-              {{$choice}}
-            </label>
-          </div>
+        <div class="radio">
+          <label>
+           <input type="radio" name="optionsRadios-{{$mc->id}}" id="optionsRadios-{{$mc->id}}-{{$key}}" value="{{ strcmp($choice, $mc->solution) }}">
+            {{ $choice }}
+          </label>
         </div>
         @endforeach
+
+        <input id="hidden-{{$mc->id}}" type="hidden" value="{!! $mc->solution !!}">
+
 
     </div>
     @endforeach
