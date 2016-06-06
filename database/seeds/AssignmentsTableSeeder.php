@@ -23,8 +23,15 @@ class AssignmentsTableSeeder extends Seeder
             ]);
         DB::table('assignments')->insert([
             [
+			       "content" => 'Valitse oikea vaihtoehto',
+			       "task_id" => '3']
+            ]);
+        DB::table('assignments')->insert([
+            [
 			       "content" => 'Yhdistä ilmaisujen eri osat toisiinsa',
 			       "task_id" => '4']
             ]);
+            
+
     }
 }
