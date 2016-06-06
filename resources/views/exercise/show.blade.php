@@ -16,10 +16,11 @@
 {{-- Tehtävät --}}
 <div class="panel-group">
   <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading"  data-toggle="collapse" data-target='#collapseExer'>
       <h4 class="panel-title">
-        <div id="menu-2-toggle" data-toggle="collapse" href="#collapseExer">
-          Tehtävät <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
+        <div id="menu-2-toggle">
+          Tehtävät 
+          <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
         </div>
       </h4>
     </div>
