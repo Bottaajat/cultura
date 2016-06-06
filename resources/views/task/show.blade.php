@@ -14,11 +14,6 @@
 	@include('crossword.show')
 @endif
 
-<div style="float:right, padding-top: 20px">
-	<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
-	<a class="btn btn-info pull-right" href="{!! URL::to('/' .  $task->exercise->topic->name . '/' . $task->exercise->name ) !!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
-</div>
-
 <div id="success" class="modal fade">
 	<div class="modal-dialog">
 

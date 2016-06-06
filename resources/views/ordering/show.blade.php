@@ -26,10 +26,14 @@
     @endif
 		<div id="droppablearea" class="panel-body"> </div>
 		<div id="draggablearea" class="panel-body"> </div>
+
+		<div style="float:right, padding-top: 20px">
+			<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
+			<a class="btn btn-info pull-right" href="{!! URL::to('/' .  $task->exercise->topic->name . '/' . $task->exercise->name ) !!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
+		</div>
 	</div>
 </div>
 
 
 
 <div class="btn btn-danger" id="btn" data-toggle="modal" data-target="#success">using jQuery click handler</div>
-

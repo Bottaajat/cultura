@@ -20,7 +20,7 @@
     <div name="question" class="form-group">
         <label>{!! $mc->id . ". " . $mc->question !!}</label>
 
-    
+
         @foreach(stringToArray($mc->choices) as $key => $choice)
         <div class="radio">
           <label>
@@ -36,8 +36,10 @@
     </div>
     @endforeach
 
-    <button class="btn btn-primary" type="submit">Tarkista</button>
-
+    <div style="float:right, padding-top: 20px">
+    	<button class="btn btn-primary" type="submit">Tarkista</button>
+    	<a class="btn btn-info pull-right" href="{!! URL::to('/' .  $task->exercise->topic->name . '/' . $task->exercise->name ) !!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
+    </div>
   </form>
 
 
