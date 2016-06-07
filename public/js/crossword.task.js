@@ -69,7 +69,7 @@ function init (answers, clues, positions, orientations) {
 				var next_x = Number(next[0]);
 				var next_y = Number(next[1]);
 				//alert(next_x+' '+next_y);
-				orientation = orientations[index];
+				var orientation = orientations[index];
 				if (orientation == 'horizontal') {
 					next_x++;
 				}
