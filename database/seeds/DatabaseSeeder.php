@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(OrderingTask4Seeder::class);
         $this->call(AssignmentsTableSeeder::class);
         $this->call(FillingTask6Seeder::class);
-        $this->call(CrosswordTaskSeeder::class);
+        $this->call(CrosswordTask5Seeder::class);
         $this->call(SchoolsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
     }
