@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ordering extends Model
+class School extends Model
 {
 
   protected $fillable = [
