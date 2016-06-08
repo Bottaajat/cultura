@@ -18,8 +18,5 @@ class TopicsTableSeeder extends Seeder
         DB::table('topics')->insert([
             ["name" => 'Selviytyminen']
         ]);
-        DB::table('topics')->insert([
-            ["name" => 'Ammatti']
-        ]);
     }
 }
