@@ -9,19 +9,21 @@ function fill (text) {
 			fillable = true;
 		}
 		else {
-			$("#text").append('<span id = "'+text[i]+'" class= "box" contenteditable="true">');
+			//$("#text").append('<span id = "'+text[i]+'" class= "box" contenteditable="true">');
+			//$("#text").append('<input type = "text" id = "'+text[i]+'">');
+			$("#text").append('<input type = "text" class = "keyboard" id = "'+text[i]+'">');
 			fillable = false;
 		}
 	}
 	
 	//Muokkaa laatikoiden leveydet sanan pituuden mukaan
-	$('.box').each(function(i, obj) {
+	$('.keyboard').each(function(i, obj) {
 		var width = (this.id).length * 8;
 		$(this).css('width',width+'px');
 	});
 	
 	//Palauta väri mustaksi, jos värjätty tarkistuksen yhteydessä
-	$(".box").click(function(){
+	$(".keyboard").click(function(){
 		$(this).css('color','black');	
 	});
 	
@@ -29,9 +31,9 @@ function fill (text) {
 
 function check () {
 	var correct = true;
-	$('.box').each(function(i, obj) {
-		if ($(this).text() != '') {
-			if (this.id == $(this).text()) {
+	$('.keyboard').each(function(i, obj) {
+		if ($(this).val() != '') {
+			if (this.id == $(this).val()) {
 				$(this).css('color','green');
 			}
 			else {
@@ -45,8 +47,8 @@ function check () {
 }
 
 function clear_all () {
-	$('.box').each(function(i, obj) {
-		$(this).text('');
+	$('.keyboard').each(function(i, obj) {
+		$(this).val('');
 		$(this).css('color','black');
 	});
 }

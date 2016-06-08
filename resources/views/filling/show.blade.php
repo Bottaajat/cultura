@@ -1,7 +1,13 @@
 @section('pagehead')
 	{{Html::script('/js/jquery-ui.min.js')}}
 	{{Html::script('/js/filling.task.js')}}
+	{{Html::script('/js/keyboard.js')}}
+	{{Html::script('/js/virtual-keyboard.js')}}
+	{{Html::script('/js/russian.js')}}
+	
 	{{Html::style('/css/filling.show.css')}}
+	{{Html::style('/css/keyboard.css')}}
+	
 @stop
 
 <div class="page-header">
@@ -16,10 +22,8 @@
 		<div id="assignment">
 			{{ $task->assignment->content}}
 		</div>
-		
 		<div id="text">
 		</div>
-		
 		<div id="buttons_container">
 			<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
 			<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
