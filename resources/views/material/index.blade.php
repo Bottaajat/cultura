@@ -17,8 +17,7 @@
       <th>Nimi</th>
       <th>Harjoitus</th>
       <th>Tyyppi</th>
-      <th>Muokkaa</th>
-      <th>Poista</th>
+      <th>Materiaali</th>
       <th>Sanasto</th>
     </tr>
   </thead>
@@ -32,9 +31,6 @@
         <td>{!! $material->type !!}</td>
         <td class="rowlink-skip">
           @include('material.edit')
-        </td>
-        <td class="rowlink-skip">
-          @include('material.destroy')
         </td>
         <td class="rowlink-skip">
           @if($material->glossary)
