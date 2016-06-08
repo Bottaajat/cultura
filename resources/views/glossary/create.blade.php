@@ -1,5 +1,6 @@
 <button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#createModalGlossary{{$material->id}}">
   <span class="glyphicon glyphicon-plus"></span>
+  Luo
 </button>
 
 <div class="modal fade" id="createModalGlossary{{$material->id}}" tabindex="-1" role="dialog" aria-labelledby="#createModalGlossary{{$material->id}}label">

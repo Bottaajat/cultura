@@ -1,5 +1,6 @@
 <button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editGlossaryModal{{$material->glossary->id}}">
   <span class="glyphicon glyphicon-pencil"></span>
+  Muokkaa
 </button>
 
 <div class="modal fade" id="editGlossaryModal{{$material->glossary->id}}" tabindex="-1" role="dialog" aria-labelledby="editGlossaryModal{{$material->glossary->id}}Label">
