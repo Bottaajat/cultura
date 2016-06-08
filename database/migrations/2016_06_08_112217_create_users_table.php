@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             
             $table->string('firstname');
             $table->string('lastname');
+            $table->boolean('is_admin');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('intro')->nullable();
