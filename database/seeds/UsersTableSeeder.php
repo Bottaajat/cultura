@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             "email" => 'ville.virtuaali@hax.me',
             "phone" => '13371337',
             "intro" => 'Status: Lomalla
-            Lempiruoka: Kukkakaali'
+            Lempiruoka: Kukkakaali',
             "password" => 'apuvaa',
             "school_id" => 1]
         ]);
@@ -31,7 +31,7 @@ class UsersTableSeeder extends Seeder
             "email" => 'pp@wut.me',
             "phone" => '13371337',
             "intro" => 'Status: Lomalla
-            Lempiruoka: Kukkakaali'
+            Lempiruoka: Kukkakaali',
             "password" => 'ruokaa',
             "school_id" => 1]
         ]);

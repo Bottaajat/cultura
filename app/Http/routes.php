@@ -13,6 +13,9 @@
 
 Route::get('/','TopicController@index');
 
+Route::resource('user', 'UserController',
+	array('only' => array('index', 'store', 'update', 'destroy')));
+
 Route::resource('exercise', 'ExerciseController',
 	array('only' => array('index', 'store', 'update', 'destroy')));
 
@@ -28,3 +31,5 @@ Route::resource('glossary', 'GlossaryController',
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
+
+
