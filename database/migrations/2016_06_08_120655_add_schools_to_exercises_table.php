@@ -26,7 +26,8 @@ class AddSchoolsToExercisesTable extends Migration
     public function down()
     {
         Schema::table('exercises', function (Blueprint $table) {
-            $table->dropForeign('school_id');
+            $table->dropForeign(['school_id']);
+            $table->dropColumn('school_id');
         });
     }
 }
