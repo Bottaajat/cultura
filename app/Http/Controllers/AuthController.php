@@ -27,7 +27,7 @@ class AuthController extends Controller
         $user = User::where('email', '=',Input::get('email'))->first();
 				return Redirect::to('/')->with('success', 'Tervetuloa ' . $user->firstname . " " . $user->lastname."!");
 			} else {
-				return Redirect::to('login')->withErrors('Tarkista syötteet!');
+				return Redirect::to('login')->withErrors('Sisäänkirjaantuminen epäonnistui!');
 			}
 		}
 
