@@ -29,7 +29,6 @@
 
 <body id="master-layout">
 
-<div class="container">
 @include('layouts.navigation')
 
 @if(!($errors->first()==NULL))
@@ -52,8 +51,11 @@
 	</div>
 @endif
 
-	<div class="container-fluid">
-		@yield('content')
+<div class="container">
+	<div class="row">
+  	<div class="col-md-10 col-md-offset-1">
+			@yield('content')
+		</div>
 	</div>
 </div>
 
