@@ -24,6 +24,7 @@
 					<ul class="dropdown-menu">
 						<li> <a href="{{ url('/material/') }}"><i class="fa fa-btn fa-align-justify"></i> Materiaalin listaus</a> </li>
 						<li> <a href="{{ url('/exercise/') }}"><i class="fa fa-btn fa-align-justify"></i> Harjoitusten listaus</a> </li>
+						<li> <a href="{{ URL::to('/user/') }}">Käyttäjien listaus</a> </li>
 						<li role="separator" class="divider"></li>
 						<li> <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Kirjaudu ulos</a> </li>
 					</ul>

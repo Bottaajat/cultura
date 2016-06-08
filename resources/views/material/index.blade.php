@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="page-header">
-  <h1>Materiaali</h1>@include('material.create')
+  <h1>Materiaali</h1>
+</div>
+
+<div id="createbuttondiv">
+  @include('material.create')
 </div>
 
 <table class="table table-bordered table-hover">
