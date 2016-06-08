@@ -20,7 +20,7 @@
         {!! Form::text('phone', $user->phone, array('class'=>'form-control', 'placeholder'=>'Puhelinnumero')) !!}
         {!! Form::select('school_id', $school_list, null, ['class' => 'form-control']) !!}
         
-        {!! Form::textarea('intro', $user->intro, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
+        {!! Form::textarea('intro', $user->intro, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Esittely')) !!}
    
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>

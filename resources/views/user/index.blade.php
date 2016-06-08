@@ -5,6 +5,10 @@
   <h1>Käyttäjät</h1>
 </div>
 
+<div id="createbuttondiv">
+  @include('user.create')
+</div>
+
 <table class="table table-bordered table-hover">
 
   <thead>

@@ -17,6 +17,7 @@
 								<ul class="dropdown-menu">
 									<li> <a href="{{ URL::to('/material/') }}">Materiaalin listaus</a> </li>
 									<li> <a href="{{ URL::to('/exercise/') }}">Harjoitusten listaus</a> </li>
+									<li> <a href="{{ URL::to('/user/') }}">Käyttäjien listaus</a> </li>
 								</ul>
         </li>
 			</ul>

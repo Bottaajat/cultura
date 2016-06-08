@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="page-header">
-  <h1>Harjoitukset</h1>@include('exercise.create')
+  <h1>Harjoitukset </h1>
+</div>
+
+<div id="createbuttondiv">
+  @include('exercise.create')
 </div>
 
 <table class="table table-bordered">

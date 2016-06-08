@@ -1,4 +1,7 @@
-<li> <a href="#createExerciseLink">Luo uusi harjoitus</a> </li>
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createExerciseModal">
+  <span class="glyphicon glyphicon-plus"> </span> 
+  Luo uusi harjoitus 
+</button>
 
 <div id="createExerciseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createExeciseLabel">
   <div class="modal-dialog">
@@ -25,14 +28,3 @@
     </div>
   </div>
 </div>
-
-{{-- Modal ei voi sijaita nav-baarissa --}}
-<script>
-$(document).ready(function(){
-   $('a[href="#createExerciseLink"]').click(function(){
-      var modal = document.getElementById( "createExerciseModal" );
-      $( modal ).detach().appendTo( document.body);
-      $("#createExerciseModal").modal();
-   });
-});
-</script>

@@ -1,4 +1,8 @@
-<li> <a href="#createMaterialLink">Lisää materiaalia</a> </li>
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createMaterialModal">
+  <span class="glyphicon glyphicon-plus"> </span> 
+  Lisää materiaalia 
+</button>
+
 
 <div id="createMaterialModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createMaterialLabel">
   <div class="modal-dialog">
@@ -40,14 +44,3 @@
     </div>
   </div>
 </div>
-
-{{-- Modal ei voi sijaita nav-baarissa --}}
-<script>
-$(document).ready(function(){
-   $('a[href="#createMaterialLink"]').click(function(){
-      var modal = document.getElementById( "createMaterialModal" );
-      $( modal ).detach().appendTo( document.body);
-      $("#createMaterialModal").modal();
-   });
-});
-</script>
