@@ -17,7 +17,7 @@ class ExerciseController extends Controller
     $exercises = Exercise::all();
     return view('exercise.index', array('exercises' => $exercises));
   }
-  
+
 	/**
    * Display a listing of the resource based on given $topic.
    * Otherwise display 404.
@@ -25,14 +25,14 @@ class ExerciseController extends Controller
    * @param string $topic
    * @return \Illuminate\Http\Response
    */
-	public function list_exercises($topic) {
+/*	public function list_exercises($topic) {
 		if($topic_ = Topic::where('name', $topic)->first())
 		{
 			$exercises = $topic_->exercises;
 			return view('exercise.list_exercises', array('exercises' => $exercises));
 		}
 		else return view('errors.404');
-	}
+	}*/
 
 
 	/**

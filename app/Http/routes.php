@@ -25,8 +25,6 @@ Route::resource('description', 'DescriptionController',
 Route::resource('glossary', 'GlossaryController',
 	array('only'=> array('store', 'update', 'destroy')));
 
-Route::get('{topic}','ExerciseController@list_exercises');
-
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
