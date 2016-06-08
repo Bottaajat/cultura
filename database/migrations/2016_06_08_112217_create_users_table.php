@@ -25,8 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
 
-            $table->integer('task_id')->unsigned();
-            $table->foreign('task_id')->references('id')->on('tasks');
             $table->integer('school_id')->unsigned();
             $table->foreign('school_id')->references('id')->on('schools');
         });
