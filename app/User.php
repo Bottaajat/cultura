@@ -29,4 +29,18 @@ class User extends Authenticatable
         return $this->belongsTo('App\School');
     }
 
+    public function validator() {
+		return Validator::make(
+			$this->getAttributes(),
+			array('firstname' => 'required',
+			      'lastname' => 'required',
+			      'email' => 'required|email|unique:users',
+			      'phone' => 'between:8,12'),
+			array('firstname.required' => 'Anna etunimi.',
+			'lastname.required' => 'Anna sukunimi.',
+			'email.email' => 'Sähköpostiosoitteen täytyy olla kelvollinen.',
+			'position.required' => 'Anna puhelinnumero.',
+			'username.unique' => 'Sähköpostiosoite on varattu.'
+		));
+  	}
 }

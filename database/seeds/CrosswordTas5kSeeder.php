@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CrosswordTask5Seeder extends Seeder
+class CrosswordTaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class CrosswordTask5Seeder extends Seeder
      */
     public function run()
     {
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'кофе',
@@ -20,7 +20,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'торт',
@@ -29,7 +29,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'чёрный',
@@ -38,7 +38,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'ветчина',
@@ -47,7 +47,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'чай',
@@ -56,7 +56,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'меню',
@@ -65,7 +65,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'хорошо',
@@ -74,7 +74,7 @@ class CrosswordTask5Seeder extends Seeder
 			"orientation" => 'horizontal',
 			"task_id" => '5']
         ]);
-		
+
 		DB::table('crosswords')->insert([
             [
 			"answer" => 'конечно',

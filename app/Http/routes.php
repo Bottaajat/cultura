@@ -11,6 +11,12 @@
 |
 */
 
+//Authentication
+Route::get('login', 'AuthController@showLoginForm');
+Route::post('login', 'AuthController@login');
+Route::get('logout', 'AuthController@logout');
+
+
 Route::get('/','TopicController@index');
 
 Route::resource('user', 'UserController',
@@ -31,5 +37,3 @@ Route::resource('glossary', 'GlossaryController',
 Route::get('{topic}/{exercise}', 'ExerciseController@show');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
-
-

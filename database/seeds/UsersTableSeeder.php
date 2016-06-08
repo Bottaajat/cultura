@@ -20,10 +20,10 @@ class UsersTableSeeder extends Seeder
             "phone" => '13371337',
             "intro" => 'Status: Lomalla
             Lempiruoka: Kukkakaali',
-            "password" => 'apuvaa',
+            "password" => bcrypt('apuvaa'),
             "school_id" => 1]
         ]);
-        
+
         DB::table('users')->insert([
             ["firstname" => 'Pipsa',
             "lastname" => 'Pouta',
@@ -32,9 +32,9 @@ class UsersTableSeeder extends Seeder
             "phone" => '13371337',
             "intro" => 'Status: Lomalla
             Lempiruoka: Kukkakaali',
-            "password" => 'ruokaa',
+            "password" => bcrypt('ruokaa'),
             "school_id" => 1]
         ]);
-        
+
     }
 }
