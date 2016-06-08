@@ -367,5 +367,14 @@ class MaterialsTableSeeder extends Seeder
            'exercise_id' => '3'
           ]
         ]);
+		
+		DB::table('materials')->insert([
+          [
+           'type' => 'text',
+           'label' => 'Hätätilanne 1',
+           'contents' =>'filleri',
+           'exercise_id' => '4'
+          ]
+        ]);
     }
 }

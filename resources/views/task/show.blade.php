@@ -14,6 +14,10 @@
 	@include('crossword.show')
 @endif
 
+@if($task->type == 'Täyttö')
+	@include('filling.show')
+@endif
+
 <div id="success" class="modal fade">
 	<div class="modal-dialog">
 

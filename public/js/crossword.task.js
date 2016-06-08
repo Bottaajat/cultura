@@ -169,6 +169,7 @@ function grid_create(x_min, x_max, y_min, y_max) {
 			row[j] = 0;
 		}
 		grid[i]=row;
+		//alert('created row '+i)
 	}
 	return grid;
 }
@@ -190,6 +191,7 @@ function grid_fill(grid, positions, answers, orientations, x_min) {
 		if (orientations[i] == 'horizontal') {
 			x_end = x_start + answers[i].length;
 			var row = grid[y_start];
+			//alert('loop '+i+' '+y_start+' row='+row);
 			for (x = x_min; x < row.length; x++) {
 				if (x >= x_start && x < x_end) {
 					row[x] = answer[letter];

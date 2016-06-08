@@ -31,5 +31,10 @@ class Task extends Model
 	public function crosswords()
 	{
 			return $this->hasMany('App\Crossword');
+	}
+	
+	public function filling()
+	{
+			return $this->hasOne('App\Filling');
 	}	
 }

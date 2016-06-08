@@ -25,6 +25,11 @@ class ExercisesTableSeeder extends Seeder
             ["name" => 'Kahvilassa',
 			"topic_id" => '2']
         ]);
+		
+		DB::table('exercises')->insert([
+            ["name" => 'Hätätilanne',
+			"topic_id" => '2']
+        ]);
 
         // MOKKI DATAA!
 		    DB::table('exercises')->insert([

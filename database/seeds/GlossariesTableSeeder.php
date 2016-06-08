@@ -52,5 +52,53 @@ musta',
             
 'material_id' => '48' ]]);
 
+
+DB::table('glossaries')->insert([
+        
+['rus' => 'На помощь!	
+пожар
+МЧС: министерство по чрезвычайным ситуациям
+пожарные
+кража
+украсть
+Мой паспорт украден.
+Мой кошелёк украден.
+Моя сумка украдена.
+полиция
+полицейский участок, отделение полиции
+страхование
+справка
+Посольство Финляндии (в Москве)
+Консульство Финляндии (в Петербурге)
+авария / несчастный случай
+Помогите!
+Помощь!
+первая помощь
+скорая помощь
+',
+             
+'fin' => 'Apuun!
+tulipalo
+”pelastuslaitos”
+palokunta
+varkaus
+varastaa
+Passini on varastettu.
+Lompakkoni on varastettu.
+Laukkuni on varastettu.
+poliisi
+poliisiasema
+vakuutus
+lupakirja, kuitti (esim. rekisteröinnin aikana)
+Suomen suurlähetystö (Moskova)
+Suomen konsulaatti (Pietari)
+onnettomuus
+Auttakaa!
+Apua!
+ensiapu
+ambulanssi
+',
+            
+'material_id' => '49' ]]);
   }
 }

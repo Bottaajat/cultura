@@ -42,6 +42,11 @@ class TaskController extends Controller
 			$orientations = array_pluck($task_->crosswords, 'orientation');
 			return view('task.show', array('task' => $task_, 'answers' => $answers, 'clues' => $clues, 'positions' => $positions, 'orientations' => $orientations));
         }
+		
+		if($task_->type=='Täyttö') {
+			$text = DB::table('fillings')->where('task_id', $task_['id'])->value('text');
+			return view('task.show', array('task' => $task_, 'text' => $text ));
+        }
 
         else return view('errors.404');
 	 }
