@@ -12,7 +12,7 @@
 	{!! Html::style("/css/jasny-bootstrap.min.css") !!}
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine&effect=fire-animation">
 
 	{!! Html::script("/js/jquery.min.js") !!}
 	{!! Html::script("/js/bootstrap.min.js") !!}
@@ -22,15 +22,16 @@
 
 	<style>
       body {
-        font-family: 'Tangerine', serif;
-        font-size: 18px;
+        font-family: "Tangerine", serif;
+        font-size: 24px;
+				text-shadow: 4px 4px 4px #aaa;
       }
     </style>
 </head>
 
 <body id="master-layout">
 
-<div class="container">
+<div class="container font-effect-fire-animation">
 @include('layouts.navigation')
 
 @if(!($errors->first()==NULL))

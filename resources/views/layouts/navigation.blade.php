@@ -16,9 +16,9 @@
 
 		<div class="collapse navbar-collapse" id="app-navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-			{{--	@if(Auth::guest())
-					<li><a href="{{ url('/login') }}">Kirjaudu sisään</a></li>
-				@else --}}
+			@if(Auth::guest())
+					<li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
+				@else
         <li class="dropdown dropdown-submenu pull-right">
         	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-cog"></i> Hallinta</a>
 					<ul class="dropdown-menu">
@@ -29,7 +29,7 @@
 						<li> <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Kirjaudu ulos</a> </li>
 					</ul>
         </li>
-				{{--@endif --}}
+				@endif
 			</ul>
 		</div>
 
