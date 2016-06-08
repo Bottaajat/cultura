@@ -1,24 +1,34 @@
-<nav class="nav navbar-default">
+<nav class="nav navbar-default nav-static-top">
 	<div class="container-fluid">
 
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+        <span class="icon-bar"></span>
 			</button>
+
+			<a class="navbar-brand" href="{{ url('/') }}">
+      	Cultura
+      </a>
 		</div>
 
-		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			<ul class="nav nav-pills">
-				<li><a href="{{ URL::to('/') }}" >{{ "Etusivu" }}</a></li>
-				<li><a href="{{ URL::previous() }}">{{ "Palaa" }}</a></li>
+		<div class="collapse navbar-collapse" id="app-navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+			{{--	@if(Auth::guest())
+					<li><a href="{{ url('/login') }}">Kirjaudu sisään</a></li>
+				@else --}}
         <li class="dropdown dropdown-submenu pull-right">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallinta</a>
-								<ul class="dropdown-menu">
-									<li> <a href="{{ URL::to('/material/') }}">Materiaalin listaus</a> </li>
-									<li> <a href="{{ URL::to('/exercise/') }}">Harjoitusten listaus</a> </li>
-								</ul>
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-cog"></i> Hallinta</a>
+					<ul class="dropdown-menu">
+						<li> <a href="{{ url('/material/') }}"><i class="fa fa-btn fa-align-justify"></i> Materiaalin listaus</a> </li>
+						<li> <a href="{{ url('/exercise/') }}"><i class="fa fa-btn fa-align-justify"></i> Harjoitusten listaus</a> </li>
+						<li role="separator" class="divider"></li>
+						<li> <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Kirjaudu ulos</a> </li>
+					</ul>
         </li>
+				{{--@endif --}}
 			</ul>
 		</div>
 

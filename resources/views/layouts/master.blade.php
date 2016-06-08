@@ -2,19 +2,34 @@
 <html>
 <head>
 	<title> Cultura </title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	{!! Html::style("/css/bootstrap.min.css") !!}
 	{!! Html::style("/css/bootstrap-theme.min.css") !!}
   {!! Html::style("/css/main.css") !!}
 	{!! Html::style("/css/jasny-bootstrap.min.css") !!}
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
 	{!! Html::script("/js/jquery.min.js") !!}
 	{!! Html::script("/js/bootstrap.min.js") !!}
 	{!! Html::script("/js/jasny-bootstrap.min.js") !!}
+
 	@yield('pagehead')
+
+	<style>
+      body {
+        font-family: 'Tangerine', serif;
+        font-size: 18px;
+      }
+    </style>
 </head>
-<!--
-<body @yield('stuff')>
--->
+
+<body id="master-layout">
+
 <div class="container">
 @include('layouts.navigation')
 
