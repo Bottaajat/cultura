@@ -25,8 +25,8 @@ $(function() {
 
       css: {
         // input & preview
-        //input: 'form-control input-sm',
-		input: 'input-sm',
+        input: 'box',
+		//input: 'input-sm',
         // keyboard container
         container: 'center-block dropdown-menu', // jumbotron
         // default state
@@ -38,7 +38,7 @@ $(function() {
         buttonAction: 'active',
         // used when disabling the decimal button {dec}
         // when a decimal exists in the input area
-        buttonDisabled: 'disabled'
+        buttonDisabled: 'disabled',
     },
 	
 	usePreview: false,

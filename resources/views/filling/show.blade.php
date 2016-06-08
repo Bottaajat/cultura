@@ -24,7 +24,7 @@
 		</div>
 		<div id="text">
 		</div>
-		<div id="buttons_container">
+		<div id="buttons_container" style="padding:15px">
 			<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
 			<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
 		</div>

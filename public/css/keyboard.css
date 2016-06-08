@@ -159,3 +159,19 @@ button.ui-keyboard-extender span {
 	.ui-body .ui-keyboard-button { height: 2.5em; }
 	.ui-body .ui-btn-inner { height: 2.5em; padding: 0.5em 0; }
 }
+
+.ui-keyboard button.ui-keyboard-accept {
+    background: #00b85c;
+}
+
+.ui-keyboard button.ui-keyboard-cancel {
+    background: #d9534f;
+}
+
+.ui-keyboard button.ui-keyboard-enter {
+    background: #31b0d5;
+}
+
+.ui-keyboard button.ui-keyboard-tab {
+    background: #31b0d5;
+}

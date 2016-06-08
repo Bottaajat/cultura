@@ -18,8 +18,9 @@ function fill (text) {
 	
 	//Muokkaa laatikoiden leveydet sanan pituuden mukaan
 	$('.keyboard').each(function(i, obj) {
-		var width = (this.id).length * 8;
+		var width = (this.id).length * 9;
 		$(this).css('width',width+'px');
+		$(this).css('dispaly','inline');
 	});
 	
 	//Palauta väri mustaksi, jos värjätty tarkistuksen yhteydessä
