@@ -15,25 +15,9 @@ class ExerciseController extends Controller
 
   public function index() {
     $exercises = Exercise::all();
-    return view('exercise.index', array('exercises' => $exercises));
+    $topic_list = Topic::lists('name', 'id');
+    return view('exercise.index', array('exercises' => $exercises, 'topic_list'=> $topic_list));
   }
-
-	/**
-   * Display a listing of the resource based on given $topic.
-   * Otherwise display 404.
-   *
-   * @param string $topic
-   * @return \Illuminate\Http\Response
-   */
-/*	public function list_exercises($topic) {
-		if($topic_ = Topic::where('name', $topic)->first())
-		{
-			$exercises = $topic_->exercises;
-			return view('exercise.list_exercises', array('exercises' => $exercises));
-		}
-		else return view('errors.404');
-	}*/
-
 
 	/**
    * Display the specified resource.

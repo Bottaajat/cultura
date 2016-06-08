@@ -10,6 +10,8 @@ use App\Http\Requests;
 
 use App\Material;
 
+use App\Exercise;
+
 class MaterialController extends Controller
 {
   // SALLITUT AUDIO TIEDOSTO FORMAATIT
@@ -22,7 +24,8 @@ class MaterialController extends Controller
 
   public function index() {
     $materials = Material::all();
-    return view('material.index', array('materials' => $materials));
+    $exercise_list = Exercise::lists('name', 'id');
+    return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
   }
 
 

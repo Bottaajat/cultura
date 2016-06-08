@@ -43,12 +43,6 @@
         <div class="pull-left">
           <a class="list-group-item" style="margin-left:10px" href="{{URL::to($topic->name.'/'.$exercise->name)}}"> {{$exercise->name}} </a>
         </div>
-        <div class="pull-right" style="margin-right:5px">
-          @include('exercise.destroy')
-        </div>
-        <div class="pull-right" style="margin-right:5px">
-          @include('exercise.edit')
-        </div>
       </div>
     </div>
     @endforeach

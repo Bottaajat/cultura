@@ -15,11 +15,4 @@ use View;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
-
-     public function __construct() {
-       $topic_list = Topic::lists('name', 'id');
-       $exercise_list = Exercise::lists('name', 'id');
-       View::share(['topic_list'=> $topic_list, 'exercise_list' => $exercise_list ]);
-    }
-
 }

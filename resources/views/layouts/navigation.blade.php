@@ -15,8 +15,6 @@
         <li class="dropdown dropdown-submenu pull-right">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hallinta</a>
 								<ul class="dropdown-menu">
-                  @include('exercise.create')
-									@include('material.create')
 									<li> <a href="{{ URL::to('/material/') }}">Materiaalin listaus</a> </li>
 									<li> <a href="{{ URL::to('/exercise/') }}">Harjoitusten listaus</a> </li>
 								</ul>
