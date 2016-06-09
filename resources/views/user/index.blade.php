@@ -5,9 +5,11 @@
   <h1>Käyttäjät</h1>
 </div>
 
-<div id="createbuttondiv">
-  @include('user.create')
-</div>
+@if(Auth::check())
+  <div id="createbuttondiv">
+    @include('user.create')
+  </div>
+@endif
 
 <table class="table table-bordered table-hover">
 
@@ -18,9 +20,10 @@
       <th>Sukunimi</th>
       <th>Sähköposti</th>
       <th>Puhelinnumero</th>
-      <th>Salasana</th>
       <th>Koulu</th>
-      <th>Editoi</th>
+      @if(Auth::check())
+        <th>Editoi</th>
+      @endif
     </tr>
   </thead>
 
@@ -32,13 +35,13 @@
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
         <td>{!! $user->phone !!}</td>
-        <td>{!! $user->password !!}</td>
         <td>{!! $user->school->name !!}</td>
-        <td>@include('user.edit')</td>
+        @if(Auth::check())
+          <td>@include('user.edit')</td>
+        @endif
       </tr>
     @endforeach
   </tbody>
 
 </table>
-
 @stop

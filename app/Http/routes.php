@@ -16,6 +16,9 @@ Route::auth(['only' => ['login', 'logout']]);
 
 Route::get('/','TopicController@index');
 
+Route::resource('school', 'SchoolController',
+	array('only' => array('index', 'store', 'update', 'destroy')));
+
 Route::resource('user', 'UserController',
 	array('only' => array('index', 'store', 'update', 'destroy')));
 

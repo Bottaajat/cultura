@@ -12,13 +12,9 @@ use Auth;
 class UserController extends Controller
 {
   public function index() {
-    if(Auth::check() && Auth::user()->is_admin ) {
       $users = User::all();
       $school_list = School::lists('name', 'id');
       return view('user.index', array('users' => $users,'school_list' => $school_list));
-    } else {
-      return back()->withErrors("Ei oikeuksia");
-    }
   }
   
   public function store(Request $request) {

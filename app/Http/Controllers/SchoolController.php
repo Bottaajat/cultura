@@ -10,6 +10,10 @@ use App\School;
 
 class SchoolController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth');
+  }
+  
   public function index() {
     $Schools = School::all();
     $school_list = School::lists('name', 'id');
