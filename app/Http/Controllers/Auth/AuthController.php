@@ -70,17 +70,4 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Handle an authentication attempt.
-     *
-     * @return Response
-     */
-    public function authenticate()
-    {
-      echo Auth::attempt(['email' => $email, 'password' => $password]);
-        //if (Auth::attempt(['email' => $email, 'password' => $password])) {
-
-            //return redirect()->intended('dashboard');
-        //}
-    }
 }

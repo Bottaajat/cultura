@@ -12,10 +12,7 @@
 */
 
 //Authentication
-Route::get('login', 'AuthController@showLoginForm');
-Route::post('login', 'AuthController@login');
-Route::get('logout', 'AuthController@logout');
-
+Route::auth(['only' => ['login', 'logout']]);
 
 Route::get('/','TopicController@index');
 
