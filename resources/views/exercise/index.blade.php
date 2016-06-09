@@ -27,7 +27,7 @@
     @foreach($exercises as $exercise)
       <tr>
         <td>{!! $exercise->id !!}</td>
-        <td>{!! $exercise->name !!}</td>
+        <td><a href="{{route('exercise.show', ['id' => $exercise->id]) }}">{!! $exercise->name !!}</a></td>
         <td>{!! $exercise->topic->name !!}</td>
         <td>@include('exercise.edit')</td>
         <td>@include('exercise.destroy')</td>

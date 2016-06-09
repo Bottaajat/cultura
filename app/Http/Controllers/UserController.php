@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
 
 use App\User;
 use App\School;
-use Auth;
 
 class UserController extends Controller
 {
   public function index() {
-    if(Auth::check() && Auth::user()->is_admin ) {
-      $users = User::all();
-      $school_list = School::lists('name', 'id');
-      return view('user.index', array('users' => $users,'school_list' => $school_list));
-    } else {
-      return back()->withErrors("Ei oikeuksia");
-    }
+    $users = User::all();
+    $school_list = School::lists('name', 'id');
+    return view('user.index', array('users' => $users,'school_list' => $school_list));
   }
-  
+
   public function store(Request $request) {
     $user = new User();
     $user->firstname = $request->input('firstname');
@@ -52,5 +48,5 @@ class UserController extends Controller
     $user->delete();
     return back()->with('success', 'Käyttäjä poistettu!');
   }
-  
+
 }
