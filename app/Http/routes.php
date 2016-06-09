@@ -23,7 +23,7 @@ Route::resource('user', 'UserController',
 	array('only' => array('index', 'store', 'update', 'destroy')));
 
 Route::resource('exercise', 'ExerciseController',
-	array('only' => array('index', 'store', 'update', 'destroy')));
+	array('only' => array('index', 'show','store', 'update', 'destroy')));
 
 Route::resource('material', 'MaterialController',
 	array('only'=> array('index', 'store', 'update', 'destroy')));
@@ -34,11 +34,6 @@ Route::resource('description', 'DescriptionController',
 Route::resource('glossary', 'GlossaryController',
 	array('only'=> array('store', 'update', 'destroy')));
 
-Route::get('exercise/{id}', function($id) {
-	$exercise = App\Exercise::find($id);
-	return redirect($exercise->topic->name . "/" . $exercise->name);
-});
-
-Route::get('{topic}/{exercise}', 'ExerciseController@show');
+Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@show');

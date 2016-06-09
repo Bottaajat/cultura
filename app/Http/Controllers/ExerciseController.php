@@ -13,7 +13,7 @@ use App\Topic;
 class ExerciseController extends Controller
 {
   public function __construct() {
-    $this->middleware('auth', ['except' => ['index', 'show']]);
+    $this->middleware('auth', ['except' => ['index', 'show', 'showActual']]);
   }
 
   public function index() {
@@ -22,13 +22,18 @@ class ExerciseController extends Controller
     return view('exercise.index', array('exercises' => $exercises, 'topic_list'=> $topic_list));
   }
 
-	/**
+  /**
    * Display the specified resource.
    *
    * @param  string  $topic, $name
    * @return \Illuminate\Http\Response
    */
-	public function show($topic, $name) {
+  public function show($id) {
+    $exercise = Exercise::find($id);
+  	return redirect($exercise->topic->name . "/" . $exercise->name);
+  }
+
+	public function showActual($topic, $name) {
         $exercise = Exercise::where('name', $name)->first();
 				if($exercise != NULL && $exercise->topic->name == $topic)
             return view('exercise.show', array('exercise' => $exercise));

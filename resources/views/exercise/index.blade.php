@@ -18,6 +18,7 @@
       <th>Taso</th>
       <th>Muokkaa</th>
       <th>Poista</th>
+      <th></th>
       <th>Kuvaus</th>
       <th>Kuvauksen Muokkaus</th>
     </tr>
@@ -27,10 +28,11 @@
     @foreach($exercises as $exercise)
       <tr>
         <td>{!! $exercise->id !!}</td>
-        <td>{!! $exercise->name !!}</td>
+        <td><a href="{{route('exercise.show', ['id' => $exercise->id]) }}">{!! $exercise->name !!}</a></td>
         <td>{!! $exercise->topic->name !!}</td>
         <td>@include('exercise.edit')</td>
         <td>@include('exercise.destroy')</td>
+        <td></td>
         <td>
           @if($exercise->descriptions)
             {{ truncateString($exercise->descriptions->content, 75) }}
