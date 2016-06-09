@@ -6,7 +6,10 @@
 
 @section('content')
 
+@if( isset($topics) )
+  @include('errors.db')
 
+@else
 <div class="page-header">
 <div class="row">
 <div class="container">
@@ -53,5 +56,7 @@
 
 @endforeach
 </div>
+
+@endif
 
 @stop
