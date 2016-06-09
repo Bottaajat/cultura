@@ -17,7 +17,7 @@ function asd(arr1, arr2, arr3, source) {
 	  draggables.sort( function() { return Math.random() - .5 } );
 	  for ( var i=0; i<arr1.length; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', draggables[i]+'-drag'  ).appendTo( '#draggablearea' ).draggable( {
-		  containment: '#limit',
+		  containment: '#task',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
 		  revert: true
