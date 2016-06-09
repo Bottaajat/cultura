@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CrosswordTaskSeeder extends Seeder
+class CrosswordTask5Seeder extends Seeder
 {
     /**
      * Run the database seeds.
