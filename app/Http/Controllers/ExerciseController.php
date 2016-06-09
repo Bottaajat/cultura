@@ -30,7 +30,7 @@ class ExerciseController extends Controller
    */
 	public function show($topic, $name) {
         $exercise = Exercise::where('name', $name)->first();
-				if($exercise != NULL and $exercise->topic->name == $topic)
+				if($exercise != NULL && $exercise->topic->name == $topic)
             return view('exercise.show', array('exercise' => $exercise));
         return view('errors.404');
 	}
