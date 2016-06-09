@@ -99,6 +99,42 @@ ensiapu
 ambulanssi
 ',
             
+'material_id' => '49' ]]);
+
+DB::table('glossaries')->insert([
+        
+['rus' => 'путешествовать
+несколько лет назад
+мне случилось
+во-первых
+связаться
+получить
+довольно быстро
+ездить
+попасть
+к счастье
+пострадавшие
+позвонить
+видеть
+страшно
+',
+             
+'fin' => 'matkustella
+muutama vuosi sitten
+minulle sattui
+ensinnäkin
+ottaa yhteyttä
+saada
+melko nopeasti
+matkustaa
+joutua
+onneksi
+loukkaantuneet
+soittaa
+nähdä
+kauheaa
+',
+            
 'task_id' => '6' ]]);
   }
 }

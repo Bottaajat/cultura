@@ -2,21 +2,59 @@
 
 @section('content')
 
-@if(dirname($task->type) == 'järjestys')
-	@include('ordering.show')
-@endif
+<div class="page-header">
+	<h1>{{ $task->name }}</h1>
+</div>
 
-@if($task->type == 'Monivalinta')
-	@include('multipleChoice.show')
-@endif
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="panel-title">{{$task->type}}</div>
+	</div>
+	<div class="panel-body" id="glossary">
+		@if($task->glossary)
+			<table class="table table-striped table-bordered table-hover">
+			<tr>
+			  <th>Venäjäksi</th>
+			  <th>Suomeksi</th>
+			</tr>
+			@foreach($task->glossary->get('rus','fin') as $rus => $fin)
+			<tr>
+				<td>{{ $rus }}</td>
+				<td>{{ $fin }}</td>
+			</tr>
+			@endforeach
+			</table>
+		@endif
+	</div>
+	<div class="panel-body" id="assignment">
+		@if($task->assignment)
+			{!! $task->assignment->content !!}
+		@endif
+	</div>
+	<div class="panel-body" id="task">
+		@if(dirname($task->type) == 'järjestys')
+			@include('ordering.show')
+		@endif
 
-@if($task->type == 'Sanaristikko')
-	@include('crossword.show')
-@endif
+		@if($task->type == 'Monivalinta')
+			@include('multipleChoice.show')
+		@endif
 
-@if($task->type == 'Täyttö')
-	@include('filling.show')
-@endif
+		@if($task->type == 'Sanaristikko')
+			@include('crossword.show')
+		@endif
+
+		@if($task->type == 'Täyttö')
+			@include('filling.show')
+		@endif
+	</div>
+	<div id = "buttons" class="panel-body">
+		<button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
+		<a class="btn btn-info pull-right" href="{!! URL::to('/' .  $task->exercise->topic->name . '/' . $task->exercise->name ) !!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
+	</div>
+</div>
+
+<div class="btn btn-danger" id="btn" style="display: none;" data-toggle="modal" data-target="#success">Modal</div>
 
 <div id="success" class="modal fade">
 	<div class="modal-dialog">
