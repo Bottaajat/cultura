@@ -16,19 +16,24 @@
 
 		<div class="collapse navbar-collapse" id="app-navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
-				@if(Auth::guest())
-					<li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
-				@else
+
         <li class="dropdown dropdown-submenu pull-right">
-        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-cog"></i> Hallinta</a>
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-cog"></i> Menu</a>
 					<ul class="dropdown-menu">
-						<li> <a href="{{ url('/material/') }}"><i class="fa fa-btn fa-list"></i> Materiaalin listaus</a> </li>
-						<li> <a href="{{ url('/exercise/') }}"><i class="fa fa-btn fa-list"></i> Harjoitusten listaus</a> </li>
-						<li> <a href="{{ URL::to('/user/') }}"><i class="fa fa-btn fa-list"></i> Käyttäjien listaus</a> </li>
+						<li> <a href="{{ URL::to('/user/') }}"><i class="fa fa-btn fa-users"></i> Käyttäjien listaus</a> </li>
+						<li> <a href="{{ url('/exercise/') }}"><i class="fa fa-btn fa-book"></i> Harjoitusten listaus</a> </li>
+						@if(Auth::check())
+						<li role="separator" class="divider"></li>
+						<li> <a href="{{ url('school/')}}"><i class="fa fa-btn fa-building"></i> Koulut</a> </li>
+						<li> <a href="{{ url('/material/') }}"><i class="fa fa-btn fa-file"></i> Materiaalin listaus</a> </li>
 						<li role="separator" class="divider"></li>
 						<li> <a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Kirjaudu ulos</a> </li>
+						@endif
 					</ul>
         </li>
+
+				@if(Auth::guest())
+					<li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
 				@endif
 			</ul>
 		</div>
