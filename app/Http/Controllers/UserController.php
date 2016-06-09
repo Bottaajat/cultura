@@ -9,8 +9,14 @@ use App\Http\Requests;
 use App\User;
 use App\School;
 
+use Auth, Hash;
+
 class UserController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth', ['except' => ['index']]);
+  }
+
   public function index() {
     $users = User::all();
     $school_list = School::lists('name', 'id');
@@ -18,16 +24,19 @@ class UserController extends Controller
   }
 
   public function store(Request $request) {
-    $user = new User();
-    $user->firstname = $request->input('firstname');
-    $user->lastname = $request->input('lastname');
-    $user->email = $request->input('email');
-    $user->phone = $request->input('phone');
-    $user->intro = $request->input('intro');
-    $user->school()->associate($request->input('school_id'));
-
-    $user->save();
-    return back()->with('success', 'Käyttäjä luotu!');
+    if(Auth::user()->is_admin) {
+      $user = new User();
+      $user->firstname = $request->input('firstname');
+      $user->lastname = $request->input('lastname');
+      $user->email = $request->input('email');
+      $user->phone = $request->input('phone');
+      $user->intro = $request->input('intro');
+      $user->school()->associate($request->input('school_id'));
+      $user->password = Hash::make($request->password);
+      $user->save();
+      return back()->with('success', 'Käyttäjä luotu!');
+    }
+    return back()->withErrors('Toiminto ei ole sallittu');
   }
 
   public function update(Request $request, $id) {
