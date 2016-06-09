@@ -6,7 +6,7 @@
 
 @section('content')
 
-@if( isset($topics) )
+@if($topics->isEmpty())
   @include('errors.db')
 
 @else
