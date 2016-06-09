@@ -10,6 +10,9 @@ use App\Glossary;
 
 class GlossaryController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth');
+  }
 
   public function store(Request $request) {
     $glossary = new Glossary();
@@ -25,7 +28,7 @@ class GlossaryController extends Controller
     $glossary = Glossary::find($id);
     $glossary->rus = $request->input('rus');
     $glossary->fin = $request->input('fin');
-   
+
     $glossary->save();
     return back()->with('success', 'Sanasto päivitetty!');
   }
@@ -35,5 +38,5 @@ class GlossaryController extends Controller
     $glossary->delete();
     return back()->with('success', 'Sanasto poistettu!');
   }
-  
+
 }

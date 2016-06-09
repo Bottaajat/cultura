@@ -10,6 +10,9 @@ use App\Description;
 
 class DescriptionController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth');
+  }
 
   public function store(Request $request) {
     $description = new description();
@@ -21,7 +24,7 @@ class DescriptionController extends Controller
 
   public function update(Request $request, $id) {
     $description = description::find($id);
-    $description->content = $request->input('content'); 
+    $description->content = $request->input('content');
     $description->save();
     return back()->with('success', 'Kuvaus päivitetty!');
   }
@@ -31,5 +34,5 @@ class DescriptionController extends Controller
     $description->delete();
     return back()->with('success', 'Kuvaus poistettu!');
   }
-  
+
 }

@@ -14,6 +14,10 @@ use App\Exercise;
 
 class MaterialController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth');
+  }
+
   // SALLITUT AUDIO TIEDOSTO FORMAATIT
   protected $audio = ['3gp', 'aa', 'aac', 'aax', 'act', 'aiff', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
             'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',

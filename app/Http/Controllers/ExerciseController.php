@@ -12,6 +12,9 @@ use App\Topic;
 
 class ExerciseController extends Controller
 {
+  public function __construct() {
+    $this->middleware('auth', ['except' => ['index', 'show']]);
+  }
 
   public function index() {
     $exercises = Exercise::all();
