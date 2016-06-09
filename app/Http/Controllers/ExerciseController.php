@@ -55,7 +55,7 @@ class ExerciseController extends Controller
 			$exercise->topic()->associate($topic_id);
 			$exercise->save();
 
-			return redirect('/')->with('success', 'Harjoitus lisätty');
+			return back()->with('success', 'Harjoitus lisätty');
     }
 
     /**

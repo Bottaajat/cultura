@@ -1,5 +1,6 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editDescriptionModal{{$exercise->descriptions->id}}">
+<button type="button" class="btn btn-info center-block" data-toggle="modal" data-target="#editDescriptionModal{{$exercise->descriptions->id}}">
   <span class="glyphicon glyphicon-pencil"></span>
+  Muokkaa
 </button>
 
 <div class="modal fade" id="editDescriptionModal{{$exercise->descriptions->id}}" tabindex="-1" role="dialog">

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editGlossaryModal{{$material->glossary->id}}">
+<button type="button" class="btn btn-info center-block" data-toggle="modal" data-target="#editGlossaryModal{{$material->glossary->id}}">
   <span class="glyphicon glyphicon-pencil"></span>
   Muokkaa
 </button>

@@ -1,5 +1,6 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#createDescriptionModal{{$exercise->id}}">
+<button type="button" class="btn btn-info center-block" data-toggle="modal" data-target="#createDescriptionModal{{$exercise->id}}">
   <span class="glyphicon glyphicon-plus"></span>
+  Luo
 </button>
 
 <div class="modal fade" id="createDescriptionModal{{$exercise->id}}" tabindex="-1" role="dialog">

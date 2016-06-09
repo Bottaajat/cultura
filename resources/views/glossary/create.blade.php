@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#createModalGlossary{{$material->id}}">
+<button type="button" class="btn btn-info center-block" data-toggle="modal" data-target="#createModalGlossary{{$material->id}}">
   <span class="glyphicon glyphicon-plus"></span>
   Luo
 </button>
