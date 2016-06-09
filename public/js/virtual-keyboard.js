@@ -47,13 +47,16 @@ $(function() {
     enterNavigation: true
  })
  
-   
+   /*
   $('.keyboard').click(function() {
-    var kb = $('#keyboard').getkeyboard();
-    // typeIn( text, delay, callback );
-    kb.reveal();
+	//var kb = $('#keyboard').getkeyboard();
+	//kb.reveal();
   });
+  */
   
+  $('.keyboard').on('focus click tap vclick', function (event) {
+		var kb = $('.keyboard').getkeyboard();
+	});
   
 
 });
