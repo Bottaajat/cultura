@@ -4,8 +4,8 @@ function checkSolutions() {
   for(var i = 0; i <= questions.length; i++) {
     if(questions[i]) {
       var radio = questions[i].getElementsByTagName("input")[0];
-      if(radio.checked == true) {
-        if(radio.getAttribute('value') == 0) {
+      if(radio.checked === true) {
+        if(radio.getAttribute('value') === 0) {
           radio.parentNode.parentNode.style.backgroundColor = "green";
           corrects = corrects + 1;
         } else {
@@ -16,5 +16,5 @@ function checkSolutions() {
       }
     }
   }
-  if (corrects == 4) $("#success").modal() 
+  if (corrects === 4) $("#success").modal() 
 }
