@@ -12,4 +12,9 @@ class MultipleChoice extends Model {
 		return $this->belongsTo('App\Task');
 	}	
 	
+	public function randomOrderChoices() {
+    $choices = stringToArray($this->choices);
+    shuffle($choices);
+    return $choices;
+	}
 }
