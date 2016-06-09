@@ -36,5 +36,10 @@ class Task extends Model
 	public function filling()
 	{
 			return $this->hasOne('App\Filling');
-	}	
+	}
+	
+	public function glossary()
+	{
+			return $this->hasOne('App\Glossary');
+	}
 }

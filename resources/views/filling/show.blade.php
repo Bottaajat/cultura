@@ -22,6 +22,22 @@
 		<div id="assignment">
 			{{ $task->assignment->content}}
 		</div>
+		<div id="glossary">
+			@if($task->glossary)
+				<table class="table table-striped table-bordered table-hover">
+				<tr>
+				  <th>Venäjäksi</th>
+				  <th>Suomeksi</th>
+				</tr>
+				@foreach($task->glossary->get('rus','fin') as $rus => $fin)
+				<tr>
+					<td>{{ $rus }}</td>
+					<td>{{ $fin }}</td>
+				</tr>
+				@endforeach
+				</table>
+			@endif
+		</div>
 		<div id="text">
 		</div>
 		<div id="buttons_container" style="padding:15px">
