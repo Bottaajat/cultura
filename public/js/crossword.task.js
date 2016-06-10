@@ -66,28 +66,27 @@ function init (answers, clues, positions, orientations) {
 	//click
 	
 	$(".letter").keyup(function(){
-		var this_text = $(this).val();
-		if(this_text.length >= 1){
-			var next = this.id;
-			$(this).val(this_text.slice(0,1));
-			next = next.split(',');
-			var next_x = Number(next[0]);
-			var next_y = Number(next[1]);
-			if (orientations[next_y] == 'horizontal') {
-				next_x++;
-			}
-			else {
-				next_y++;
-			}
-			next = next_x.toString()+','+next_y.toString();
-			//alert(next);
-			//next.focus;
-			if ( document.getElementById(next) != null) {
-				document.getElementById(next).focus();
-			}
-			else {
+		if (isMobile == true) {
+			var this_text = $(this).val();
+			if(this_text.length >= 1){
 				$(this).val(this_text.slice(0,1));
-				//this.select();
+				var next = this.id;
+				next = next.split(',');
+				var next_x = Number(next[0]);
+				var next_y = Number(next[1]);
+				if (orientations[next_y] == 'horizontal') {
+					next_x++;
+				}
+				else {
+					next_y++;
+				}
+				next = next_x.toString()+','+next_y.toString();
+				if ( document.getElementById(next) != null) {
+					document.getElementById(next).focus();
+				}
+				else {
+					$(this).val(this_text.slice(0,1));
+				}
 			}
 		}
 	});
