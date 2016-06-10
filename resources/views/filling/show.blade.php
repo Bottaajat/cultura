@@ -1,9 +1,9 @@
 @section('pagehead')
 	{{Html::script('/js/jquery-ui.min.js')}}
-	{{Html::script('/js/filling.task.js')}}
 	{{Html::script('/js/keyboard.js')}}
-	{{Html::script('/js/virtual-keyboard.js')}}
 	{{Html::script('/js/russian.js')}}
+	{{Html::script('/js/filling.virtual-keyboard.js')}}
+	{{Html::script('/js/filling.task.js')}}
 	
 	{{Html::style('/css/filling.show.css')}}
 	{{Html::style('/css/keyboard.css')}}
