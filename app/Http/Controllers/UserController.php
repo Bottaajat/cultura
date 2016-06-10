@@ -24,6 +24,10 @@ class UserController extends Controller
     return view('user.index', array('users' => $users,'school_list' => $school_list));
   }
 
+  public function show($id) {
+    return view('user.show', ['user' => User::findOrFail($id)]);
+  }
+
   public function store(Request $request) {
     if(Auth::user()->is_admin) {
       $user = new User();
