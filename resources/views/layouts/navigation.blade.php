@@ -1,5 +1,5 @@
 <nav class="nav navbar-default  nav-static-top">
-	<div class="container-fluid">
+	<div class="container">
 
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -17,7 +17,7 @@
 		<div class="collapse navbar-collapse" id="app-navbar-collapse">
 			<ul class="nav navbar-nav navbar-right">
 
-        <li class="dropdown dropdown-submenu pull-right">
+        <li class="dropdown dropdown-submenu">
         	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-cog"></i> Menu</a>
 					<ul class="dropdown-menu">
 						<li> <a href="{{ URL::to('/user/') }}"><i class="fa fa-btn fa-users"></i> Käyttäjien listaus</a> </li>
@@ -33,7 +33,7 @@
         </li>
 
 				@if(Auth::guest())
-					<li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
+					<li class="pull-right"><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
 				@endif
 			</ul>
 		</div>

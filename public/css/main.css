@@ -41,3 +41,24 @@ body {
 .navbar-default {
   background-color: #7ccde5;
 }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #030d10;
+    color: #eef8fc;
+}
+
+.footer .table th, .table td {
+     border-top: none !important;
+ }
+
+.footer .shameless-self-promotion {
+  font-family: "Ubuntu";
+  font-size: 12px;
+}
+
+.footer .shameless-self-promotion .bottaajat-link {
+  color: #8cd3e8;
+}

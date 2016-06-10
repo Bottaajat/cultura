@@ -14,7 +14,7 @@
 
 		<!-- Font -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100|Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100|Lobster|Ubuntu&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
 
 	<link rel="shortcut icon" href="/img/favicon.ico">
@@ -31,9 +31,10 @@
 </head>
 
 <body id="master-layout">
-<div class="container-fluid">
 
 @include('layouts.navigation')
+
+<div class="container-fluid">
 
 @if(!($errors->first()==NULL))
 	<div class="alert alert-danger">
@@ -56,9 +57,13 @@
 @endif
 
 
-@yield('content')
+<div class='container'>
+	@yield('content')
+</div>
 
 </div>
+
+@include('layouts.footer')
 
 </body>
 </html>
