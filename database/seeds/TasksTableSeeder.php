@@ -13,37 +13,31 @@ class TasksTableSeeder extends Seeder
             ["name" => 'Aakkosjärjestys',
 			       "type" => 'järjestys/sanat',
 			       "exercise_id" => '1']
-        ]);
+            ]);
         DB::table('tasks')->insert([
             ["name" => 'Kuvajärjestys',
 			       "type" => 'järjestys/kuvat',
 			       "exercise_id" => '2']
-        ]);
+            ]);
         DB::table('tasks')->insert([
             ["name" => 'Luetun ymmärtäminen',
 			       "type" => 'Monivalinta',
 			       "exercise_id" => '3']
-        ]);
+            ]);
         DB::table('tasks')->insert([
-            ["name" => 'Sanajärjestys',
-             "type" => 'järjestys/sanat',
-             "exercise_id" => '3']
-        ]);
-        DB::table('tasks')->insert([
-            ["name" => 'Sanaristikko',
-             "type" => 'Sanaristikko',
-             "exercise_id" => '3']
-        ]);
-        DB::table('tasks')->insert([
-            ["name" => 'Täyttö',
-             "type" => 'Täyttö',
-             "exercise_id" => '4']
-        ]);
-        DB::table('tasks')->insert([
-            ["name" => 'Videotehtävä',
-             "type" => 'Monivalinta',
-             "exercise_id" => '5']
-        ]);
-        
+                ["name" => 'Sanajärjestys',
+                 "type" => 'järjestys/sanat',
+                 "exercise_id" => '3']
+            ]);
+		DB::table('tasks')->insert([
+                ["name" => 'Sanaristikko',
+                 "type" => 'Sanaristikko',
+                 "exercise_id" => '3']
+            ]);
+		DB::table('tasks')->insert([
+                ["name" => 'Täyttö',
+                 "type" => 'Täyttö',
+                 "exercise_id" => '4']
+            ]);
     }
 }
