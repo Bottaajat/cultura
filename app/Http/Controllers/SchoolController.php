@@ -11,15 +11,16 @@ use App\School;
 class SchoolController extends Controller
 {
   public function __construct() {
+    parent::__construct();
     $this->middleware('auth');
   }
-  
+
   public function index() {
     $Schools = School::all();
     $school_list = School::lists('name', 'id');
     return view('school.index', array('schools' => $Schools,'school_list' => $school_list));
   }
-  
+
   public function store(Request $request) {
     $School = new School();
     $School->name = $request->input('name');
@@ -41,5 +42,5 @@ class SchoolController extends Controller
     $School->delete();
     return back()->with('success', 'Koulu poistettu!');
   }
-  
+
 }

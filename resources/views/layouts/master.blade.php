@@ -34,6 +34,7 @@
 
 @include('layouts.navigation')
 
+<div id="wrap">
 <div class="container-fluid">
 
 @if(!($errors->first()==NULL))
@@ -61,9 +62,12 @@
 	@yield('content')
 </div>
 
+
+</div>
 </div>
 
 @include('layouts.footer')
+
 
 </body>
 </html>

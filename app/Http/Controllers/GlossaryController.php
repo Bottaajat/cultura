@@ -10,20 +10,20 @@ use App\Glossary;
 
 class GlossaryController extends Controller
 {
+  
+  public function __construct() {
+    parent::__construct();
+    $this->middleware('auth');
+  }
 
   private function clearEmptyLines($str) {
     return preg_replace('/^[ \t]*[\r\n]+/m', '', $str);
   }
-  
+
   private function checkLines($rus,$fin) {
     $countRus = count(stringToArray($rus));
     $countFin =  count(stringToArray($fin));
     return ($countRus == $countFin);
-  }
-
-
-  public function __construct() {
-    $this->middleware('auth');
   }
 
   public function store(Request $request) {
@@ -56,6 +56,6 @@ class GlossaryController extends Controller
     $glossary->delete();
     return back()->with('success', 'Sanasto poistettu!');
   }
-  
+
 
 }

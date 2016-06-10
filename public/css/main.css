@@ -1,3 +1,9 @@
+html,
+body {
+  font-family: "Roboto Slab";
+  height: 100%;
+}
+
 /* Korjaa skrollauspalkin tulemisen laajennettaessa */
 .navbar-collapse.in {
     overflow-y: visible;
@@ -27,11 +33,6 @@
   height: 55px;
 }
 
-/* bodyn fontti */
-body {
-  font-family: "Roboto Slab";
-}
-
 .navbar-default .navbar-brand {
   font-family: "Lobster";
   font-size: 36px;
@@ -42,23 +43,32 @@ body {
   background-color: #7ccde5;
 }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #030d10;
-    color: #eef8fc;
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
 }
 
-.footer .table th, .table td {
+#footer {
+  height: 180px;
+  position: relative;
+  background-color: #030d10;
+  color: #eef8fc;
+}
+
+#footer .table th, .table td {
      border-top: none !important;
  }
 
-.footer .shameless-self-promotion {
+#footer .shameless-self-promotion {
   font-family: "Ubuntu";
   font-size: 12px;
 }
 
-.footer .shameless-self-promotion .bottaajat-link {
+#footer .shameless-self-promotion .bottaajat-link {
   color: #8cd3e8;
 }

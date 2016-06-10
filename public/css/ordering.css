@@ -1,8 +1,8 @@
 /* Add some margin to the page and set a default font and colour */
- 
+
 
 /* Header/footer boxes */
- 
+
 .wideBox {
   clear: both;
   text-align: center;
@@ -11,26 +11,26 @@
   background: #ebedf2;
   border: 1px solid #333;
 }
- 
+
 .wideBox h1 {
   font-weight: bold;
   margin: 20px;
   color: #666;
   font-size: 1.5em;
 }
- 
+
 /* Slots for final card positions */
- 
+
 #droppablearea {
   margin: 10px auto 0 auto;
 }
- 
+
 /* The initial pile of unsorted cards */
- 
+
 #draggablearea {
   margin: 10px auto;
 }
- 
+
 #droppablearea, #draggablearea {
   height: inherit;
   position: relative;
@@ -44,7 +44,7 @@
   -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
   box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
 }
- 
+
 /* Individual cards and slots */
 #droppablearea div, #draggablearea div {
   position: relative;
@@ -53,7 +53,7 @@
   display: block;
   text-align: center;
   vertical-align: middle;
-  line-height: 44px; 
+  line-height: 44px;
   min-height: 44px;
   min-width: 64px;
   padding: 10px;
@@ -67,26 +67,26 @@
   background: #fff;
   white-space: nowrap;
 }
- 
+
 #droppablearea div:first-child, #draggablearea div:first-child {
   margin-left: 0;
 }
- 
+
 #droppablearea div.hovered {
   background: #aaa;
 }
- 
+
 #droppablearea div {
   border-style: dashed;
 }
- 
+
  /* Cards waiting to be dragged */
 #draggablearea div {
   background: #666;
   color: #fff;
   text-shadow: 0 0 3px #000;
 }
- 
+
  /* Cards when dragged */
 #draggablearea div.ui-draggable-dragging {
   height: inherit;
@@ -95,17 +95,3 @@
   -webkit-box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
   box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
- 
-/* Individually coloured cards
- 
-#card1.correct { background: red; }
-#card2.correct { background: brown; }
-#card3.correct { background: orange; }
-#card4.correct { background: yellow; }
-#card5.correct { background: green; }
-#card6.correct { background: cyan; }
-#card7.correct { background: blue; }
-#card8.correct { background: indigo; }
-#card9.correct { background: purple; }
-#card10.correct { background: violet; }
- */
