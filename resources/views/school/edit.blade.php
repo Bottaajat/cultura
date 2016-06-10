@@ -16,17 +16,15 @@
 
         {!! Form::text('name', $school->name, array('required', 'class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
        
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
-        <button type="submit" class="btn btn-primary"> Päivitä </button>
-        <button type="button" class="btn btn-danger center-block pull-left" data-toggle="modal" data-target="#delSchoolModal{{$school->id}}">
-          Poista
-        </button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
+          <button type="submit" class="btn btn-primary"> Päivitä </button>
+          <button type="button" class="btn btn-danger center-block pull-left" data-toggle="modal" data-target="#delSchoolModal{{$school->id}}">
+            Poista
+          </button>
+        </div>
       </div>
       {!! Form::close() !!}
-
-    </div>
-
   </div>
 </div>
 

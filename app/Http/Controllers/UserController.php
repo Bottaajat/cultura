@@ -15,7 +15,7 @@ class UserController extends Controller
 {
   public function __construct() {
     parent::__construct();
-    $this->middleware('auth', ['except' => ['index']]);
+    $this->middleware('auth', ['except' => ['index','show']]);
   }
 
   public function index() {
@@ -25,7 +25,8 @@ class UserController extends Controller
   }
 
   public function show($id) {
-    return view('user.show', ['user' => User::findOrFail($id)]);
+    $school_list = School::lists('name', 'id');
+    return view('user.show', ['user' => User::findOrFail($id), 'school_list' => $school_list]);
   }
 
   public function store(Request $request) {
