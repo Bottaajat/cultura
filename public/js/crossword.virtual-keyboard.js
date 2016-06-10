@@ -44,19 +44,8 @@ $(function() {
 	usePreview: false,
 	autoAccept: true,
     tabNavigation: true,
-    enterNavigation: true
+    enterNavigation: true,
+	maxLength: 1
  })
- 
-   /*
-  $('.keyboard').click(function() {
-	//var kb = $('#keyboard').getkeyboard();
-	//kb.reveal();
-  });
-  */
-  
-  $('.keyboard').on('focus click tap vclick', function (event) {
-		var kb = $('.keyboard').getkeyboard();
-	});
-  
 
 });
