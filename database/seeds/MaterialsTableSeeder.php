@@ -79,7 +79,7 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'И и',
              'type' => 'sound',
              'contents' => 'i',
-             'src' => '/audio/ii.mp3',
+             'src' => '',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
@@ -212,7 +212,7 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'Ы ы',
              'type' => 'sound',
              'contents' => 'taka i (y)',
-             'src' => '/audio/ы.mp3',
+             'src' => '/audio/ii.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
@@ -367,7 +367,7 @@ class MaterialsTableSeeder extends Seeder
            'exercise_id' => '3'
           ]
         ]);
-		
+
 		DB::table('materials')->insert([
           [
            'type' => 'text',

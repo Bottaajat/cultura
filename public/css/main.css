@@ -26,3 +26,18 @@
 #createbuttondiv {
   height: 55px;
 }
+
+/* bodyn fontti */
+body {
+  font-family: "Roboto Slab";
+}
+
+.navbar-default .navbar-brand {
+  font-family: "Lobster";
+  font-size: 36px;
+  color: #061a20;
+}
+
+.navbar-default {
+  background-color: #7ccde5;
+}

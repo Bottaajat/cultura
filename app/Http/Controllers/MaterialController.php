@@ -103,7 +103,7 @@ class MaterialController extends Controller
   public function update(Request $request, $id) {
     $material = Material::find($id);
     $material->label = $request->input('label');
-    $material->contents = $request->input('contents');
+    $material->contents = $request->input('content');
     $material->type = $request->input('type');
 
     if(!$this->handleFiles($request, $material))
