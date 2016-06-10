@@ -46,7 +46,7 @@
 
           @if( $material->type == "video" )
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://www.youtube.com/embed/auLDGBX8WB4" allowfullscreen></iframe>
+            <iframe src='{{$material->src}}' allowfullscreen></iframe>
           </div>
           @endif
 
