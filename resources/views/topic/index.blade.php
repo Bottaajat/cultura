@@ -11,15 +11,9 @@
 
 @else
 <div class="page-header">
-<div class="row">
-<div class="container">
   <h1>
-    <div class="pull-left">
-      Aiheet
-    </div>
+    Aiheet
   </h1>
-</div>
-</div>
 </div>
 
 <div class="panel-group" id="accordion">

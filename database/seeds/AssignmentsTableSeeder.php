@@ -41,5 +41,10 @@ class AssignmentsTableSeeder extends Seeder
 			       "content" => 'Lisää puuttuvat ilmaisut paikoilleen',
 			       "task_id" => '6']
             ]);	
+    DB::table('assignments')->insert([
+            [
+			       "content" => 'Valitse oikea vaihtoehto',
+			       "task_id" => '7']
+            ]);
     }
 }

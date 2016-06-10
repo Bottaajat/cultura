@@ -1,5 +1,5 @@
 @section('pagehead')
-	{{Html::style('/css/tmp.show.css')}}
+	{{Html::style('/css/ordering.css')}}
 	{{Html::script('/js/jquery-ui.min.js')}}
 	{{Html::script('/js/touch.js')}}
 @stop

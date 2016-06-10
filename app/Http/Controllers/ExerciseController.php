@@ -13,6 +13,7 @@ use App\Topic;
 class ExerciseController extends Controller
 {
   public function __construct() {
+    parent::__construct();
     $this->middleware('auth', ['except' => ['index', 'show', 'showActual']]);
   }
 
@@ -55,7 +56,7 @@ class ExerciseController extends Controller
 			$exercise->topic()->associate($topic_id);
 			$exercise->save();
 
-			return redirect('/')->with('success', 'Harjoitus lisätty');
+			return back()->with('success', 'Harjoitus lisätty');
     }
 
     /**

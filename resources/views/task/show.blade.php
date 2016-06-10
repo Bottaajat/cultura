@@ -10,8 +10,8 @@
 	<div class="panel-heading">
 		<div class="panel-title">{{$task->type}}</div>
 	</div>
-	<div class="panel-body" id="glossary">
-		@if($task->glossary)
+  @if($task->glossary)
+    <div class="panel-body" id="glossary">
 			<table class="table table-striped table-bordered table-hover">
 			<tr>
 			  <th>Venäjäksi</th>
@@ -24,13 +24,15 @@
 			</tr>
 			@endforeach
 			</table>
-		@endif
-	</div>
-	<div class="panel-body" id="assignment">
-		@if($task->assignment)
-			{!! $task->assignment->content !!}
-		@endif
-	</div>
+    </div>
+  @endif
+  
+  @if($task->assignment)
+    <div class="panel-body" id="assignment">
+      {!! $task->assignment->content !!}
+		</div>
+  @endif
+  
 	<div class="panel-body" id="task">
 		@if(dirname($task->type) == 'järjestys')
 			@include('ordering.show')

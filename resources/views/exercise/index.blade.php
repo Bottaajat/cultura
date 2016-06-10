@@ -5,9 +5,11 @@
   <h1>Harjoitukset </h1>
 </div>
 
-<div id="createbuttondiv">
-  @include('exercise.create')
-</div>
+@if(Auth::check())
+  <div id="createbuttondiv">
+    @include('exercise.create')
+  </div>
+@endif
 
 <table class="table table-bordered">
 
@@ -16,11 +18,14 @@
       <th>#</th>
       <th>Nimi</th>
       <th>Taso</th>
-      <th>Muokkaa</th>
-      <th>Poista</th>
+      @if(Auth::check())
+        <th>Harjoitus</th>
+      @endif
       <th></th>
       <th>Kuvaus</th>
-      <th>Kuvauksen Muokkaus</th>
+      @if(Auth::check())
+        <th>Kuvaus</th>
+      @endif
     </tr>
   </thead>
 
@@ -30,21 +35,24 @@
         <td>{!! $exercise->id !!}</td>
         <td><a href="{{route('exercise.show', ['id' => $exercise->id]) }}">{!! $exercise->name !!}</a></td>
         <td>{!! $exercise->topic->name !!}</td>
-        <td>@include('exercise.edit')</td>
-        <td>@include('exercise.destroy')</td>
+        @if(Auth::check())
+          <td>@include('exercise.edit')</td>
+        @endif
         <td></td>
         <td>
           @if($exercise->descriptions)
             {{ truncateString($exercise->descriptions->content, 75) }}
           @endif
         </td>
-        <td>
-          @if($exercise->descriptions)
-            @include('description.edit')
-          @else
-            @include('description.create')
-          @endif
-        </td>
+        @if(Auth::check())
+          <td>
+            @if($exercise->descriptions)
+              @include('description.edit')
+            @else
+              @include('description.create')
+            @endif
+          </td>
+        @endif
       </tr>
     @endforeach
   </tbody>

@@ -19,8 +19,7 @@ Route::get('/','TopicController@index');
 Route::resource('school', 'SchoolController',
 	array('only' => array('index', 'store', 'update', 'destroy')));
 
-Route::resource('user', 'UserController',
-	array('only' => array('index', 'store', 'update', 'destroy')));
+Route::resource('user', 'UserController', ['except' => ['edit', 'create']]);
 
 Route::resource('exercise', 'ExerciseController',
 	array('only' => array('index', 'show','store', 'update', 'destroy')));
