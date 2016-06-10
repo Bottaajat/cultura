@@ -46,7 +46,7 @@
 
           @if( $material->type == "video" )
           <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://www.youtube.com/embed/9WbCfHutDSE" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/auLDGBX8WB4" allowfullscreen></iframe>
           </div>
           @endif
 
