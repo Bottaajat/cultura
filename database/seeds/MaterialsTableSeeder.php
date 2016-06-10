@@ -379,7 +379,8 @@ class MaterialsTableSeeder extends Seeder
 
         DB::table('materials')->insert([
           ['type' => 'video',
-           'src' => "https://www.youtube.com/embed/qfRynBrXVAM",
+           'label' => 'Esittäytyminen video',
+           'src' => "https://www.youtube.com/embed/auLDGBX8WB4",
            'exercise_id' => '5']
           ]);
 

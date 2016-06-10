@@ -87,6 +87,9 @@ class MaterialController extends Controller
     $material->type = $request->input('type');
     $material->exercise()->associate($request->input('exercise_id'));
 
+    if($material->type == "video")
+      $material->src = $request->input('src');
+
     if(!$this->handleFiles($request, $material))
       return back()->withErrors('Virheellinen tiedostoformaatti!');
 
@@ -106,6 +109,9 @@ class MaterialController extends Controller
     $material->label = $request->input('label');
     $material->contents = $request->input('content');
     $material->type = $request->input('type');
+
+    if($material->type == "video")
+      $material->src = $request->input('src');
 
     if(!$this->handleFiles($request, $material))
       return back()->withErrors('Virheellinen tiedostoformaatti!');

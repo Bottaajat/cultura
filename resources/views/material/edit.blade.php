@@ -28,6 +28,11 @@
           </span>
           <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Poista</a>
         </div>
+
+        <hr></hr>
+        <label>Lisää tähän videon embed urli.</label>
+        {!! Form::text('src', null, ['required', 'class' => 'form-control', 'placeholder' => 'https://www.youtube.com/embed/auLDGBX8WB4']) !!}
+
       </div>
 
       <div class="modal-footer">
