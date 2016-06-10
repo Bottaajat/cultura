@@ -376,5 +376,12 @@ class MaterialsTableSeeder extends Seeder
            'exercise_id' => '4'
           ]
         ]);
+
+        DB::table('materials')->insert([
+          ['type' => 'video',
+           'src' => "https://www.youtube.com/embed/qfRynBrXVAM",
+           'exercise_id' => '5']
+          ]);
+
     }
 }

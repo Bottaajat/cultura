@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+.vertical{
+	 background-color: #D0D0D0;
+}
+
 #puzzle_container{
 	float: left;
 	height: 50%;

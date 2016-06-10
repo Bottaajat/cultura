@@ -31,10 +31,15 @@ class DescriptionsTableSeeder extends Seeder
           ["content" => 'Lue dialogit ja tee kaksi tehtävää.',
           "exercise_id" => '3']
       ]);
-	  
+
 	  DB::table('descriptions')->insert([
           ["content" => 'Jos jotain sattuuu… Alla on muutamia hyödyllisiä sanoja ja ilmauksia tulipalon, varkauden tai muun epämiellyttävän asian tapahtuessa. Lue sanasto ja tee alla oleva tehtävä.',
           "exercise_id" => '4']
+      ]);
+
+      DB::table('descriptions')->insert([
+          ["content" => 'Katso video ja tee tehtävät',
+          "exercise_id" => '5']
       ]);
     }
 }

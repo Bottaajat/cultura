@@ -1,7 +1,12 @@
 @section('pagehead')
-	{{Html::style('/css/crossword.show.css')}}
 	{{Html::script('/js/jquery-ui.min.js')}}
+	{{Html::script('/js/keyboard.js')}}
+	{{Html::script('/js/russian.js')}}
+	{{Html::script('/js/crossword.virtual-keyboard.js')}}
 	{{Html::script('/js/crossword.task.js')}}
+	
+	{{Html::style('/css/crossword.show.css')}}
+	{{Html::style('/css/keyboard.css')}}
 @stop
 
 <div id="puzzle_container">
@@ -10,10 +15,10 @@
 </div>
 
 <div id="hints_container">
-	<h4>Pystysuoraan</h4>
-		<div id="vertical_hints_container"></div>
 	<h4>Vaakasuoraan</h4>
 		<div id="horizontal_hints_container"></div>
+	<h4>Pystysuoraan</h4>
+		<div id="vertical_hints_container"></div>
 </div>
 
 <div id="buttons_container" class="panel-body">

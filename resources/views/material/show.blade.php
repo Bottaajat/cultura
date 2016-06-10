@@ -44,6 +44,12 @@
             </table>
           @endif
 
+          @if( $material->type == "video" )
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe src='{{$material->src}}' allowfullscreen></iframe>
+          </div>
+          @endif
+
           @if($material->glossary)
             <table class="table table-striped table-bordered table-hover">
             <tr>
