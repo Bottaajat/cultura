@@ -8,7 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-use View;
 use App\User;
 
 class Controller extends BaseController
@@ -17,6 +16,6 @@ class Controller extends BaseController
 
     public function __construct() {
       $users = User::all();
-      View::share('userlist', $users);
+      view()->share('userlist', $users);
     }
 }

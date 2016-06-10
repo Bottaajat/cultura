@@ -37,7 +37,7 @@
 <div id="wrap">
 <div class="container-fluid">
 
-@if(!($errors->first()==NULL))
+@if(isset($errors) and !($errors->first()==NULL))
 	<div class="alert alert-danger">
 		@foreach($errors->getMessages() as $error)
 			<b>{{$error[0]}}</b>
