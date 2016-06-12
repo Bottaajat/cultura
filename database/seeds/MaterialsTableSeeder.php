@@ -368,15 +368,6 @@ class MaterialsTableSeeder extends Seeder
           ]
         ]);
 
-		DB::table('materials')->insert([
-          [
-           'type' => 'text',
-           'label' => 'Hätätilanne 1',
-           'contents' =>'filleri',
-           'exercise_id' => '4'
-          ]
-        ]);
-
         DB::table('materials')->insert([
           ['type' => 'video',
            'label' => 'Esittäytyminen video',

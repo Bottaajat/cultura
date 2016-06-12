@@ -9,9 +9,9 @@ class Glossary extends Model
     protected $table = 'glossaries';
     protected $fillable = [ 'rus', 'fin'];
 
-	public function material()
+	public function exercise()
     {
-        return $this->belongsTo('App\Material');
+        return $this->belongsTo('App\Exercise');
     }
 	
 	public function task()

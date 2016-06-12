@@ -50,21 +50,22 @@
           </div>
           @endif
 
-          @if($material->glossary)
+        @endforeach
+		
+		@if($exercise->glossary)
             <table class="table table-striped table-bordered table-hover">
             <tr>
               <th>Venäjäksi</th>
               <th>Suomeksi</th>
             </tr>
-            @foreach($material->glossary->get('rus','fin') as $rus => $fin)
+            @foreach($exercise->glossary->get('rus','fin') as $rus => $fin)
             <tr>
                 <td>{{ $rus }}</td>
                 <td>{{ $fin }}</td>
             </tr>
             @endforeach
             </table>
-          @endif
-        @endforeach
+         @endif
       </div>
     </div>
   </div>

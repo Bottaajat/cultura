@@ -16,7 +16,7 @@ $(function() {
       position: {
         // null = attach to input/textarea;
         // use $(sel) to attach elsewhere
-        of: null,
+        of: $('#puzzle_container'),
         my: 'center top',
         at: 'center top',
         // used when "usePreview" is false

@@ -31,19 +31,20 @@
 
 #puzzle_container{
 	float: left;
-	height: 50%;
+	height: 40%;
 	overflow:hidden;
 }
 
 #hints_container{
 	float: left;
-	width:50%;
+	width:20%;
 	height: 50%;
     margin-left: 25px;
 }
 
 #buttons_container{
-    clear: both;
+	float: left;
+	width:20%;
     padding-top: 20px;
     margin-left: 50px;
 }

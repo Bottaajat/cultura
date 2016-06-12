@@ -1,6 +1,6 @@
 @section('pagehead')
 	{{Html::script('/js/jquery-ui.min.js')}}
-	{{Html::script('/js/keyboard.js')}}
+	{{Html::script('/js/crossword.keyboard.js')}}
 	{{Html::script('/js/russian.js')}}
 	{{Html::script('/js/crossword.virtual-keyboard.js')}}
 	{{Html::script('/js/crossword.task.js')}}
@@ -14,16 +14,24 @@
 	</table>
 </div>
 
-<div id="hints_container">
-	<h4>Vaakasuoraan</h4>
-		<div id="horizontal_hints_container"></div>
-	<h4>Pystysuoraan</h4>
-		<div id="vertical_hints_container"></div>
+<div style="width:470px;height:165px">
+	
 </div>
 
-<div id="buttons_container" class="panel-body">
-	<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
-	<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
+<div style="display:inline-block; white-space: nowrap;">
+	<div id="hints_container">
+		<h4>Vaakasuoraan</h4>
+			<div id="horizontal_hints_container"></div>
+		<h4>Pystysuoraan</h4>
+			<div id="vertical_hints_container"></div>
+	</div>
+
+	<div id="buttons_container" class="panel-body">
+		<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
+		<br>
+		<br>
+		<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
+	</div>
 </div>
 
 <?php

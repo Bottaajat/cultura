@@ -27,7 +27,7 @@ Oliko siinä kaikki?
 Paljonko maksaa?
 euro',
             
-'material_id' => '47' ]]);
+'exercise_id' => '3' ]]);
 
 
 DB::table('glossaries')->insert([
@@ -50,7 +50,7 @@ suklaakakku
 tee
 musta',
             
-'material_id' => '48' ]]);
+'exercise_id' => '3' ]]);
 
 
 DB::table('glossaries')->insert([
@@ -99,7 +99,7 @@ ensiapu
 ambulanssi
 ',
             
-'material_id' => '49' ]]);
+'exercise_id' => '4' ]]);
 
 DB::table('glossaries')->insert([
         

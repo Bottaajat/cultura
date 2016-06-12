@@ -31,6 +31,11 @@ class Exercise extends Model
 	{
 		return $this->hasMany('App\Material');
 	}
+	
+	public function glossary()
+    {
+        return $this->hasOne('App\Glossary');
+    }
 
 	public function descriptions()
 	{
