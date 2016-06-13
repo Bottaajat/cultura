@@ -34,7 +34,7 @@
 
         <hr></hr>
         <label>Lisää tähän videon embed urli.</label>
-        {!! Form::text('src', null, ['required', 'class' => 'form-control', 'placeholder' => 'https://www.youtube.com/embed/auLDGBX8WB4']) !!}
+        {!! Form::text('src', null, ['class' => 'form-control', 'placeholder' => 'https://www.youtube.com/embed/auLDGBX8WB4']) !!}
 
       </div>
 

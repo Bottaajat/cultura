@@ -20,9 +20,6 @@
       <th>Sukunimi</th>
       <th>Sähköposti</th>
       <th>Puhelinnumero</th>
-      @if(Auth::user() && Auth::user()->is_admin)
-      <th>Salasana</th>
-      @endif
       <th>Koulu</th>
       @if(Auth::user() && Auth::user()->is_admin)
       <th>Editoi</th>
@@ -38,9 +35,6 @@
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
         <td>{!! $user->phone !!}</td>
-        @if(Auth::user() && Auth::user()->is_admin)
-        <td>{!! $user->password !!}</td>
-        @endif
         <td>{!! $user->school->name !!}</td>
         @if(Auth::user() && Auth::user()->is_admin)
         <td class="rowlink-skip">@include('user.edit')</td>
