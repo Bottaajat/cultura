@@ -56,7 +56,8 @@ class ExerciseController extends Controller
 			$exercise = new Exercise;
 			$exercise->name = $request->input('name');
 			$exercise->topic()->associate($topic_id);
-      $exercise->school()->associate(Auth::user()->school);
+      if(!Auth::user()->is_admin)
+        $exercise->school()->associate(Auth::user()->school);
 			$exercise->save();
 
 			return back()->with('success', 'Harjoitus lisätty');
@@ -76,6 +77,12 @@ class ExerciseController extends Controller
       }
 
       $exercise = Exercise::find($id);
+
+      if(!Auth::user()->is_admin && $exercise->school == NULL)
+        return back()->withErrors('Et voi päivittää tätä harjoitusta!');
+      if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+        return back()->withErrors('Et voi tehdä toisen koulun harjoitukseen muutoksia!');
+
       $exercise_name = $request->input('exercise_name');
 
       $topic_id = $request->input('topic_id');
@@ -97,8 +104,14 @@ class ExerciseController extends Controller
      */
     public function destroy($id) {
         $exercise = Exercise::find($id);
+
+        if(!Auth::user()->is_admin && $exercise->school == NULL)
+          return back()->withErrors('Et voi poistaa tätä harjoitusta!');
+        if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+          return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
+
         $exercise->delete();
-        return redirect('/')->with('success', 'Harjoitus poistettu!');
+        return redirect('/exercise')->with('success', 'Harjoitus poistettu!');
     }
 
 }
