@@ -9,16 +9,17 @@
 	{{Html::style('/css/keyboard.css')}}
 @stop
 
-<div id="puzzle_container">
-	<table id="puzzle">
-	</table>
+<div id ="puzzle+vkb_container" style="float:left;">
+	<div id="puzzle_container">
+		<table id="puzzle">
+		</table>
+	</div>
+	<div id ="vkb_container">
+		
+	</div>
 </div>
-
-<div style="width:470px;height:165px">
 	
-</div>
-
-<div style="display:inline-block; white-space: nowrap;">
+<div style="display:inline-block; white-space: nowrap; float:left;">
 	<div id="hints_container">
 		<h4>Vaakasuoraan</h4>
 			<div id="horizontal_hints_container"></div>
