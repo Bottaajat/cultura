@@ -370,6 +370,7 @@ class MaterialsTableSeeder extends Seeder
 
         DB::table('materials')->insert([
           ['type' => 'glossary',
+           'label' => 'Hätätilanne',
             'exercise_id' => '4'
           ]
         ]);
