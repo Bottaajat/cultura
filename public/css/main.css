@@ -54,7 +54,11 @@ body {
   /* padding: 0 0 60px; */
 }
 
-#footer {
+.push {
+    height: 180px;
+}
+
+#footer{
   height: 180px;
 
   background-color: #030d10;
