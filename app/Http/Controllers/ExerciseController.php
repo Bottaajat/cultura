@@ -51,10 +51,10 @@ class ExerciseController extends Controller
     */
     public function store(Request $request)
     {
-      if (strlen($request->input('exercise_name')) < 4) {
+      if (strlen($request->input('name')) < 4) {
         return back()->withErrors("Anna pidempi harjotusnimi!");
       }
-      
+
 			$topic_id = $request->input('topic_id');
 
 			$exercise = new Exercise;
