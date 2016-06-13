@@ -15,4 +15,8 @@ class School extends Model
 	{
 		return $this->hasMany('App\Models\User');
 	}
+
+  public function exercise() {
+    return $this->hasMany('App\Models\Exercise');
+  }
 }

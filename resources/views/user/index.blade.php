@@ -30,10 +30,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-link="row" class="rowlink">
     @foreach($users as $user)
       <tr>
-        <td>{!! $user->id !!}</td>
+        <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $user->id !!}</a></td>
         <td>{!! $user->firstname !!}</td>
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
@@ -43,7 +43,7 @@
         @endif
         <td>{!! $user->school->name !!}</td>
         @if(Auth::user() && Auth::user()->is_admin)
-        <td>@include('user.edit')</td>
+        <td class="rowlink-skip">@include('user.edit')</td>
         @endif
       </tr>
     @endforeach

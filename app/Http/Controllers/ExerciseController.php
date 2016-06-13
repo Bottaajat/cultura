@@ -10,6 +10,8 @@ use App\Models\Exercise;
 
 use App\Models\Topic;
 
+use Auth;
+
 class ExerciseController extends Controller
 {
   public function __construct() {
@@ -54,6 +56,7 @@ class ExerciseController extends Controller
 			$exercise = new Exercise;
 			$exercise->name = $request->input('name');
 			$exercise->topic()->associate($topic_id);
+      $exercise->school()->associate(Auth::user()->school);
 			$exercise->save();
 
 			return back()->with('success', 'Harjoitus lisätty');

@@ -17,6 +17,10 @@ class Exercise extends Model
 
   protected $dates = ['deleted_at'];
 
+	public function school() {
+		return $this->belongsTo('App\Models\School');
+	}
+
 	public function topic()
 	{
 		return $this->belongsTo('App\Models\Topic');

@@ -25,7 +25,7 @@
   <tbody data-link="row" class="rowlink">
     @foreach($materials as $material)
       <tr>
-        <td><a href="{!! URL::to('/' . $material->exercise->topic->name . '/' . $material->exercise->name) !!}">{!! $material->id !!}</a></td>
+        <td><a href="{!! action('ExerciseController@show', ['id' => $material->exercise->id]) !!}">{!! $material->id !!}</a></td>
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
         <td>{!! $material->type !!}</td>
