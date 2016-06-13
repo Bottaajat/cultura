@@ -11,7 +11,7 @@ class Glossary extends Model
 
 	public function material()
     {
-        return $this->belongsTo('App\Models\Exercise');
+        return $this->belongsTo('App\Models\Material');
     }
 
 	public function task()
