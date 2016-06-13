@@ -21,7 +21,7 @@ class Authenticate
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('login');
+                return redirect()->guest('login')->withErrors('Tämä toiminto on sallittu vain sisäänkirjautuneille!');
             }
         }
 
