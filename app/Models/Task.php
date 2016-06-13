@@ -40,6 +40,6 @@ class Task extends Model
 
 	public function glossary()
 	{
-			return $this->hasOne('App\Models\Glossary');
+			return $this->hasOne('App\Models\TaskGlossary');
 	}
 }

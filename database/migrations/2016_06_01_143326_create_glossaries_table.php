@@ -17,10 +17,8 @@ class CreateGlossariesTable extends Migration
             $table->string('rus', 400);
             $table->string('fin', 400);
             $table->timestamps();
-            $table->integer('exercise_id')->unsigned()->nullable();
-            $table->foreign('exercise_id')->references('id')->on('exercises');
-			$table->integer('task_id')->unsigned()->nullable();
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->integer('material_id')->unsigned();
+            $table->foreign('material_id')->references('id')->on('materials');
         });
     }
 

@@ -369,6 +369,12 @@ class MaterialsTableSeeder extends Seeder
         ]);
 
         DB::table('materials')->insert([
+          ['type' => 'glossary',
+            'exercise_id' => '4'
+          ]
+        ]);
+
+        DB::table('materials')->insert([
           ['type' => 'video',
            'label' => 'Esittäytyminen video',
            'src' => "https://www.youtube.com/embed/auLDGBX8WB4",
