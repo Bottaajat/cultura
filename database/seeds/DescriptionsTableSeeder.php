@@ -41,5 +41,10 @@ class DescriptionsTableSeeder extends Seeder
           ["content" => 'Katso video ja tee tehtävät',
           "exercise_id" => '5']
       ]);
+
+      DB::table('descriptions')->insert([
+          ["content" => 'Katso video ja tee tehtävät',
+          "exercise_id" => '6']
+      ]);
     }
 }

@@ -39,5 +39,10 @@ class TasksTableSeeder extends Seeder
                  "type" => 'Täyttö',
                  "exercise_id" => '4']
             ]);
+            DB::table('tasks')->insert([
+              ['name' => 'Videotehtävä',
+               'type' => 'Monivalinta',
+               'exercise_id' => '5']
+            ]);
     }
 }

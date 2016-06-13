@@ -378,7 +378,7 @@ class MaterialsTableSeeder extends Seeder
           ['type' => 'video',
            'label' => 'Esittäytyminen video',
            'src' => "https://www.youtube.com/embed/auLDGBX8WB4",
-           'exercise_id' => '5']
+           'exercise_id' => '6']
           ]);
 
     }

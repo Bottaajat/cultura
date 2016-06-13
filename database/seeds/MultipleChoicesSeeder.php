@@ -11,7 +11,7 @@ class MultipleChoicesSeeder extends Seeder
      */
     public function run()
     {
-    
+
     DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
@@ -21,7 +21,7 @@ vihreää teetä
 mustaa kahvia',
 			"solution" => 'kahvia maidon kanssa']
         ]);
-    
+
         DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
@@ -31,7 +31,7 @@ juustopatongin
 kinkkuvoileivän',
 			"solution" => 'kinkkuvoileivän']
         ]);
-    
+
         DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
@@ -41,8 +41,8 @@ suklaakakku
 suklaamousse',
 			"solution" => 'suklaakakku']
         ]);
-   
-   
+
+
            DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
@@ -52,7 +52,28 @@ vihreää
 hedelmäteetä',
 			"solution" => 'mustaa']
         ]);
-   
-   
+
+   DB::table('multiple_choices')->insert([
+     ['task_id'=>'7',
+      "question" => 'Masha kysyy: ”Millaisia ……. teillä on”?',
+      "choices" => 'pelmenejä
+      hampurilaisia
+      blinejä
+      jälkiruokia',
+      "solution" => 'blinejä'
+    ]
+   ]);
+
+   DB::table('multiple_choices')->insert([
+     ['task_id'=>'7',
+      "question" => ' Mitä Masha lopulta tilaa? Huom. kaksi oikeaa vaihtoehtoa',
+      			"choices" => 'blinin
+leivoksen
+kahvia
+teetä',
+"solution" => 'blinin
+teetä'      
+    ]
+   ]);
     }
 }
