@@ -16,11 +16,11 @@ $(function() {
       position: {
         // null = attach to input/textarea;
         // use $(sel) to attach elsewhere
-        of: $('#puzzle_container'),
-        my: 'center top',
-        at: 'center top',
+        of: $('#vkb_container'),
+        my: 'center ',
+        at: 'center ',
         // used when "usePreview" is false
-        at2: 'center bottom'
+        at2: 'center '
       },
 
       css: {
