@@ -21,7 +21,6 @@
       @if(Auth::check())
         <th>Harjoitus</th>
       @endif
-      <th></th>
       <th>Kuvaus</th>
       @if(Auth::check())
         <th>Kuvaus</th>
@@ -38,7 +37,6 @@
         @if(Auth::check())
           <td>@include('exercise.edit')</td>
         @endif
-        <td></td>
         <td>
           @if($exercise->descriptions)
             {{ truncateString($exercise->descriptions->content, 75) }}
