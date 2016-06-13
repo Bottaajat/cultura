@@ -65,7 +65,7 @@
 
 <div class="row">
   <div class="col-xs-6 col-md-6">
-    @if(Auth::user()->image)
+    @if(Auth::user() && Auth::user()->image)
       <img class="thumbnail" src="{!! Auth::user()->image !!}">
     @else
       <img class="thumbnail" src="/img/defaultuser.png">
