@@ -1,7 +1,20 @@
 <div id="footer">
   <div class="container">
     @if(isset($userlist))
-    <table class="table">
+
+    <div class="row">
+
+      @foreach($userlist as $user)
+      <div class="col-xs-3">
+      <b class="muted credit">{{$user->school->name}}</b>
+      <p class="muted credit">{{$user->firstname . " " . $user->lastname}}</p>
+      <p class="muted credit">{{$user->phone}}</p>
+      <p class="muted credit">{{$user->email}}</p>
+      </div>
+      @endforeach
+
+    </div>
+    {{--<table class="table">
       <tbody>
         @foreach($userlist as $user)
         <td>
@@ -12,7 +25,7 @@
         </td>
         @endforeach
       </tbody>
-    </table>
+    </table> --}}
     @endif
 
    <div class="shameless-self-promotion">

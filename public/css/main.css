@@ -46,16 +46,17 @@ body {
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
-  height: auto;
+  height: auto !important;
+  height: 100%;
   /* Negative indent footer by its height */
-  margin: 0 auto -60px;
+  margin: 0 auto -180px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  /* padding: 0 0 60px; */
 }
 
 #footer {
   height: 180px;
-  position: relative;
+
   background-color: #030d10;
   color: #eef8fc;
 }
