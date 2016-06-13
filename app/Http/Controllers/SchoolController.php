@@ -13,6 +13,7 @@ class SchoolController extends Controller
   public function __construct() {
     parent::__construct();
     $this->middleware('auth');
+    $this->middleware('school.crud', ['except' => ['index']]);
   }
 
   public function index() {
