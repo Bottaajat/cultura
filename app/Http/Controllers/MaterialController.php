@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use File;
+use File, Auth;
 
 use Illuminate\Http\Request;
 
@@ -81,6 +81,12 @@ class MaterialController extends Controller
   * @return \Illuminate\Http\Response
   */
   public function store(Request $request) {
+    $exercise = Exercise::find($request->input('exercise_id'));
+    if(!Auth::user()->is_admin && $exercise->school == NULL)
+      return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
+    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+      return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
+
     $material = new Material();
     $material->label = $request->input('label');
     $material->contents = $request->input('contents');
@@ -106,6 +112,12 @@ class MaterialController extends Controller
    */
   public function update(Request $request, $id) {
     $material = Material::find($id);
+    $exercise = $material->exercise;
+    if(!Auth::user()->is_admin && $exercise->school == NULL)
+      return back()->withErrors('Et voi päivittää tätä materiaalia!');
+    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+      return back()->withErrors('Et voi päivittää tätä materiaalia!');
+
     $material->label = $request->input('label');
     $material->contents = $request->input('content');
     $material->type = $request->input('type');
@@ -128,6 +140,12 @@ class MaterialController extends Controller
    */
   public function destroy($id) {
     $material = Material::find($id);
+    $exercise = $material->exercise;
+    if(!Auth::user()->is_admin && $exercise->school == NULL)
+      return back()->withErrors('Et voi poistaa tätä materiaalia!');
+    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+      return back()->withErrors('Et voi poistaa tätä materiaalia!');
+
     File::delete(public_path() . $material->src);
     $material->delete();
     return back()->with('success', 'Materiaali poistettu!');
