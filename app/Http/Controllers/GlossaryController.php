@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Models\Glossary;
 use App\Models\Material;
 
+use Auth;
+
 class GlossaryController extends Controller
 {
 

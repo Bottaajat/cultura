@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Models\Description;
 use App\Models\Exercise;
 
+use Auth;
+
 class DescriptionController extends Controller
 {
   public function __construct() {
