@@ -61,7 +61,10 @@ class UserController extends Controller
   public function destroy($id) {
     $user = User::find($id);
     $user->delete();
-    return back()->with('success', 'Käyttäjä poistettu!');
+    if(Auth::user()->id == $id)
+      return redirect('logout')->with('success', 'Käyttäjä poistettu!');
+    else
+      return back()->with('success', 'Käyttäjä poistettu!');
   }
 
 }
