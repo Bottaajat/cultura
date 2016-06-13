@@ -34,6 +34,8 @@
 
 				@if(Auth::guest())
 					<li class="pull-right"><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
+				@else
+					<li class="pull-right"><a href="{{ action('UserController@show', ['id' => Auth::user()->id]) }}"><i class="fa fa-btn fa-user"></i> {!! Auth::user()->name() !!}</a></li>
 				@endif
 			</ul>
 		</div>
