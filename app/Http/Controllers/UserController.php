@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\User;
-use App\School;
+use App\Models\User;
+use App\Models\School;
 
 use Auth, Hash;
 

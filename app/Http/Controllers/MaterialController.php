@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Material;
+use App\Models\Material;
 
-use App\Exercise;
+use App\Models\Exercise;
 
 class MaterialController extends Controller
 {

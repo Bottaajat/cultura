@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Exercise;
+use App\Models\Exercise;
 
-use App\Topic;
+use App\Models\Topic;
 
 class ExerciseController extends Controller
 {

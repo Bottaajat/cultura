@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Glossary;
+use App\Models\Glossary;
 
 class GlossaryController extends Controller
 {
-  
+
   public function __construct() {
     parent::__construct();
     $this->middleware('auth');

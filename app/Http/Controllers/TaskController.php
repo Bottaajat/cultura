@@ -8,7 +8,7 @@ use DB;
 
 use App\Http\Requests;
 
-use App\Task;
+use App\Models\Task;
 
 class TaskController extends Controller
 {
@@ -33,7 +33,7 @@ class TaskController extends Controller
 			if($task_->type=='Monivalinta') {
 				return view('task.show', array('task' => $task_));
 			}
-			
+
 			if($task_->type=='Sanaristikko') {
 				$answers = array_pluck($task_->crosswords, 'answer');
 				$clues = array_pluck($task_->crosswords, 'clue');
@@ -41,7 +41,7 @@ class TaskController extends Controller
 				$orientations = array_pluck($task_->crosswords, 'orientation');
 				return view('task.show', array('task' => $task_, 'answers' => $answers, 'clues' => $clues, 'positions' => $positions, 'orientations' => $orientations));
 			}
-			
+
 			if($task_->type=='Täyttö') {
 				$text = DB::table('fillings')->where('task_id', $task_['id'])->value('text');
 				return view('task.show', array('task' => $task_, 'text' => $text ));

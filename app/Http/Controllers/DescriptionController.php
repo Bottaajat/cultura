@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\Description;
+use App\Models\Description;
 
 class DescriptionController extends Controller
 {

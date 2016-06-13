@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
-use App\School;
+use App\Models\School;
 
 class SchoolController extends Controller
 {
