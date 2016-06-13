@@ -4,15 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Glossary extends Model
+class TaskGlossary extends Model
 {
-    protected $table = 'glossaries';
+    protected $table = 'task_glossaries';
     protected $fillable = [ 'rus', 'fin'];
-
-	public function material()
-    {
-        return $this->belongsTo('App\Models\Exercise');
-    }
 
 	public function task()
     {
