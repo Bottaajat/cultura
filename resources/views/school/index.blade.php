@@ -5,9 +5,11 @@
   <h1>Koulut</h1>
 </div>
 
+@if(Auth::user() && Auth::user()->is_admin)
 <div id="createbuttondiv">
   @include('school.create')
 </div>
+@endif
 
 <table class="table table-bordered table-hover">
 
@@ -15,7 +17,9 @@
     <tr>
       <th>#</th>
       <th>Koulun nimi</th>
-      <th>Editoi</th>
+      @if(Auth::user() && Auth::user()->is_admin)
+        <th>Editoi</th>
+      @endif
     </tr>
   </thead>
 
@@ -24,7 +28,9 @@
       <tr>
         <td>{!! $school->id !!}</td>
         <td>{!! $school->name !!}</td>
-        <td>@include('school.edit')</td>
+        @if(Auth::user() && Auth::user()->is_admin)
+          <td>@include('school.edit')</td>
+        @endif
       </tr>
     @endforeach
   </tbody>
