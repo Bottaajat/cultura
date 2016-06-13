@@ -3,15 +3,15 @@
 @stop
 
 <form onSubmit="checkSolutions(); return false;">
-  
+
     @foreach($task->multiplechoises as $mc)
     <div name="question" class="form-group">
         <label>{!! $mc->id . ". " . $mc->question !!}</label>
-        
+
         @foreach($mc->randomOrderChoices() as $key => $choice)
         <div class="question">
           <p>
-            @if($mc->getSolutionCount() == 1) 
+            @if($mc->getSolutionCount() == 1)
               <input type="radio" autocomplete="off" class="option" name="optionsRadios-{!!$mc->id!!}" id="optionsRadios-{!!$mc->id!!}-{!!$key!!}" value="{!! $mc->checkSolution($choice) !!}">
             @else
               <input type="checkbox" autocomplete="off" class="option" name="optionsRadios-{!!$mc->id!!}" id="optionsRadios-{!!$mc->id!!}-{!!$key!!}" value="{!! $mc->checkSolution($choice) !!}">

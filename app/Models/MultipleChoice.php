@@ -4,11 +4,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class MultipleChoice extends Model {
-
   protected $fillable = [ 'question', 'choices', 'solution' ];
-
 	public function task() {
-		return $this->belongsTo('App\Models\Task');
+		return $this->belongsTo('App\Task');
 	}
 
 	// Returns shuffled array of choices

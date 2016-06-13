@@ -22,7 +22,7 @@ mustaa kahvia',
 			"solution" => 'kahvia maidon kanssa']
         ]);
 
-        DB::table('multiple_choices')->insert([
+    DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
 			"question" => 'Millaisen voileivän asiakas halusi?',
@@ -32,7 +32,7 @@ kinkkuvoileivän',
 			"solution" => 'kinkkuvoileivän']
         ]);
 
-        DB::table('multiple_choices')->insert([
+    DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
 			"question" => 'Mitä syötävää toisessa dialogissa tilattiin?',
@@ -43,7 +43,7 @@ suklaamousse',
         ]);
 
 
-           DB::table('multiple_choices')->insert([
+     DB::table('multiple_choices')->insert([
             [
       "task_id" => '3',
 			"question" => 'Millaista teetä asiakas halusi?',
@@ -53,27 +53,32 @@ hedelmäteetä',
 			"solution" => 'mustaa']
         ]);
 
-   DB::table('multiple_choices')->insert([
-     ['task_id'=>'7',
-      "question" => 'Masha kysyy: ”Millaisia ……. teillä on”?',
-      "choices" => 'pelmenejä
-      hampurilaisia
-      blinejä
-      jälkiruokia',
-      "solution" => 'blinejä'
-    ]
-   ]);
 
-   DB::table('multiple_choices')->insert([
-     ['task_id'=>'7',
-      "question" => ' Mitä Masha lopulta tilaa? Huom. kaksi oikeaa vaihtoehtoa',
-      			"choices" => 'blinin
+    DB::table('multiple_choices')->insert([
+            [
+      "task_id" => '7',
+			"question" => 'Masha kysyy: ”Millaisia ……. teillä on”?',
+			"choices" => 'pelmenejä
+hampurilaisia
+blinejä
+jälkiruokia',
+			"solution" => 'blinejä']
+        ]);
+
+
+    DB::table('multiple_choices')->insert([
+            [
+      "task_id" => '7',
+			"question" => ' Mitä Masha lopulta tilaa? Huom. kaksi oikeaa vaihtoehtoa',
+			"choices" => 'blinin
 leivoksen
 kahvia
 teetä',
-"solution" => 'blinin
-teetä'      
-    ]
-   ]);
+			"solution" => 'blinin
+teetä']
+        ]);
+
+
+
     }
 }
