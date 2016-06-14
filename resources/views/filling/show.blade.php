@@ -1,21 +1,17 @@
 @section('pagehead')
 	{{Html::script('/js/jquery-ui.min.js')}}
-	{{Html::script('/js/keyboard.js')}}
-	{{Html::script('/js/russian.js')}}
-	{{Html::script('/js/filling.virtual-keyboard.js')}}
 	{{Html::script('/js/filling.task.js')}}
+	{{Html::script('/js/touch.js')}}
 	
 	{{Html::style('/css/filling.show.css')}}
-	{{Html::style('/css/keyboard.css')}}
 	
 @stop
 
-<div id="text">
+<div id="text" class="panel-body">
 
 </div>
-<div id="buttons_container" class="panel-body">
-	<button id="clear" class="btn btn-warning" onclick=clear_all()>Tyhjennä</button>
-	<button id="check" class="btn btn-success" onclick=check()>Tarkista</button>
+<div id="draggablearea" class="panel-body">
+
 </div>
 
 <?php

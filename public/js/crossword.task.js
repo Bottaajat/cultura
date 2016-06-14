@@ -116,18 +116,39 @@ function clear_all () {
 //CHECK
 function check () {
 	var correct = true;
+	var current_word = '';
+	var last_word = '';
+	var whole_word = [];
+	var correct_word = [];
 	$('.letter').each(function(i, obj) {
+		current_word = $(this).attr('word');
+		if (last_word != current_word) {
+			last_word = current_word;
+			whole_word[current_word] = true;
+			correct_word[current_word] = true;
+		}
 		if ($(this).val() != '') {
-			if ($(this).attr('letter')==$(this).val()) {
-				$(this).css('color','green');
+			if ($(this).attr('letter')== ($(this).val()).toLowerCase()) {
+				
 			}
 			else {
-				$(this).css('color','red');
+				correct_word[current_word] = false;
 				correct = false;
 			}
 		}
-		else correct = false;
+		else {
+			correct = false;
+			whole_word[current_word] = false;
+		}
 	});
+	$('.letter').each(function(i, obj) {
+		current_word = $(this).attr('word');
+		if (last_word != current_word) {
+			last_word = current_word;
+		}
+		if (whole_word[current_word] == true && correct_word[current_word] == true) $(this).css('color','green');
+		else if (whole_word[current_word] == true) $(this).css('color','red');
+	});	
 	if (correct == true) $('#btn').click();
 }
 

@@ -3,8 +3,6 @@ function asd(arr1, arr2, arr3, source) {
 	$( init );
 	 
 	function init() {
-
-	  $('#btn').hide();
 	 
 	  // Reset the game
 	  correctCards = 0;

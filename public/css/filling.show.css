@@ -12,3 +12,53 @@
 	border-bottom: solid;
 	border-bottom-width: 1px;
 }
+
+.wideBox {
+  clear: both;
+  text-align: center;
+  margin: 70px;
+  padding: 10px;
+  background: #ebedf2;
+  border: 1px solid #333;
+}
+
+.wideBox h1 {
+  font-weight: bold;
+  margin: 20px;
+  color: #666;
+  font-size: 1.5em;
+}
+
+/* The initial pile of unsorted cards */
+
+#draggablearea {
+  margin: 10px auto;
+}
+
+#droppablearea, #draggablearea {
+  height: inherit;
+  position: relative;
+  background: #DDDDDD;
+  padding: 10px;
+  border: 2px solid #333;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+  box-shadow: 0 0 .3em rgba(0, 0, 0, .8);
+}
+
+#draggablearea div {
+  position: relative;
+  float: left;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  margin: 10px 0 10px 10px;
+  white-space: nowrap;
+}
