@@ -1,5 +1,6 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editSchoolModal{{$school->id}}">
-  <span class="glyphicon glyphicon-pencil"></span>
+<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#editSchoolModal{{$school->id}}">
+  <i class="glyphicon glyphicon-pencil"></i>
+  Muokkaa
 </button>
 
 <div class="modal fade" id="editSchoolModal{{$school->id}}" tabindex="-1" role="dialog" aria-labelledby="editSchoolModal{{$school->id}}Label">
@@ -15,7 +16,7 @@
       <div class="modal-body">
 
         {!! Form::text('name', $school->name, array('required', 'class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
-       
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
           <button type="submit" class="btn btn-primary"> Päivitä </button>
@@ -44,4 +45,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

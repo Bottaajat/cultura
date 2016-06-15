@@ -23,10 +23,10 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-link="row" class="rowlink">
     @foreach($schools as $school)
       <tr>
-        <td>{!! $school->id !!}</td>
+        <td><a href="{!! action('SchoolController@show', ['id' => $school->id]) !!}">{!! $school->id !!}</a></td>
         <td>{!! $school->name !!}</td>
         @if(Auth::user() && Auth::user()->is_admin)
           <td>@include('school.edit')</td>
