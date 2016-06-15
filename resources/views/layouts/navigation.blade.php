@@ -34,7 +34,7 @@
 
 
 				<li class="dropdown dropdown-submenu">
-        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-power-off"></i></a>
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-power-off"></i> Profiili</a>
 					<ul class="dropdown-menu">
 						@if(Auth::guest())
 							<li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-user"></i> Rekisteröidy</a></li>

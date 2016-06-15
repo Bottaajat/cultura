@@ -1,35 +1,13 @@
 <div id="footer">
   <div class="container">
-    @if(isset($userlist))
-
-    <div class="row">
-
-      @foreach($userlist as $user)
-      <div class="col-xs-3">
-      <b class="muted credit">{{$user->school->name}}</b>
-      <p class="muted credit">{{$user->firstname . " " . $user->lastname}}</p>
-      <p class="muted credit">{{$user->phone}}</p>
-      <p class="muted credit">{{$user->email}}</p>
-      </div>
-      @endforeach
-
+    <div class="contact">
+     <a class="footer-link" href="http://www.akkunavenajalle.fi">Akkuna venäjälle</a>
+     <a class="footer-link" href="https://www.youtube.com/channel/UCWtlywbFLyl8Ey-IavTZ2HQ"><i class="fa fa-youtube-play" aria-hidden="true"></i> YouTube kanava </a>
+     <a class="footer-link" href="mailto:venaja.verkkokurssi@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i> Uusia videoita?</a>
     </div>
-    {{--<table class="table">
-      <tbody>
-        @foreach($userlist as $user)
-        <td>
-          <b class="muted credit">{{$user->school->name}}</b>
-          <p class="muted credit">{{$user->firstname . " " . $user->lastname}}</p>
-          <p class="muted credit">{{$user->phone}}</p>
-          <p class="muted credit">{{$user->email}}</p>
-        </td>
-        @endforeach
-      </tbody>
-    </table> --}}
-    @endif
 
-   <div class="shameless-self-promotion">
-    Sivuston suunnitteli ja kokosi <a class="bottaajat-link" href="https://github.com/Bottaajat/cultura">https://github.com/Bottaajat/cultura</a>.
+  <div class="shameless-self-promotion">
+    <p>Sivuston suunnitteli ja kokosi <a class="footer-link" href="https://github.com/Bottaajat/cultura">https://github.com/Bottaajat/cultura</a></p>
   </div>
  </div>
 </div>
