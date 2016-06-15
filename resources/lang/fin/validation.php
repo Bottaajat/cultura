@@ -59,6 +59,7 @@ return [
     ],
     'not_in'               => 'The selected :attribute is invalid.',
     'numeric'              => 'The :attribute must be a number.',
+    'phone'                => 'Puhelinnumero on virheellinen.',
     'present'              => 'The :attribute field must be present.',
     'regex'                => 'The :attribute format is invalid.',
     'required'             => 'Syötä :attribute.',
@@ -75,10 +76,10 @@ return [
         'string'  => 'The :attribute must be :size characters.',
         'array'   => 'The :attribute must contain :size items.',
     ],
-    'string'               => 'The :attribute must be a string.',
+    'string'               => 'Tämän :attribute on oltava merkkijono.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => ':attribute on varattu.',
-    'url'                  => 'The :attribute format is invalid.',
+    'unique'               => 'Tämä :attribute on varattu.',
+    'url'                  => 'Virheellinen :attribute.',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +112,7 @@ return [
     'attributes' => [
       'firstname' => 'etunimi',
       'lastname' => 'sukunimi',
-      'email' => 'sähköposti',
+      'email' => 'sähköpostiosoite',
       'phone' => 'puhelinnumero',
       'password' => 'salasana',
     ],

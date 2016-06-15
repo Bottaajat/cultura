@@ -5,14 +5,6 @@
   <h1>Käyttäjät</h1>
 </div>
 
-
-{{-- KORJAA TÄMÄ POIS
-@if(Auth::user() && Auth::user()->is_admin)
-<div id="createbuttondiv">
-  @include('user.create')
-</div>
-@endif --}}
-
 <table class="table table-bordered table-hover">
 
   <thead>

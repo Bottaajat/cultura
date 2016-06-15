@@ -12,7 +12,7 @@
 */
 
 //Authentication
-Route::auth(['only' => ['login', 'logout']]);
+Route::auth();
 
 Route::get('/','TopicController@index');
 
@@ -46,4 +46,4 @@ Route::resource('task', 'TaskController',
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
-Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');
+Route::get('{topic}/{exercise}/{task}', 'TaskController@show');

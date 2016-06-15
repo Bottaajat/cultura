@@ -14,15 +14,14 @@
 
       <div class="modal-body">
         {!! Form::open(array('action'=>array('UserController@update', $user->id), 'method'=>'put')) !!}
-   
+
         {!! Form::text('firstname', $user->firstname, array('required', 'class'=>'form-control', 'placeholder'=>'Etunimi')) !!}
         {!! Form::text('lastname', $user->lastname, array('required', 'class'=>'form-control', 'placeholder'=>'Sukunimi')) !!}
         {!! Form::text('email', $user->email, array('required', 'class'=>'form-control', 'placeholder'=>'Sähköposti')) !!}
         {!! Form::text('phone', $user->phone, array('class'=>'form-control', 'placeholder'=>'Puhelinnumero')) !!}
-        {!! Form::select('school_id', $school_list, null, ['class' => 'form-control']) !!}
-        
+
         {!! Form::textarea('intro', $user->intro, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Esittely')) !!}
-   
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
           <button type="submit" class="btn btn-primary"> Päivitä </button>

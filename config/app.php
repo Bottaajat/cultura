@@ -162,6 +162,13 @@ return [
          */
         Collective\Html\HtmlServiceProvider::class,
 
+        /*
+         * laravel-phone
+         */
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
+
+        Propaganistas\LaravelPhone\LaravelPhoneServiceProvider::class,
     ],
 
     /*

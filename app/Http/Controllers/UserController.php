@@ -28,23 +28,6 @@ class UserController extends Controller
     return view('user.show', ['user' => User::findOrFail($id), 'school_list' => $school_list]);
   }
 
-/* POISTA TÄMÄ!
-  public function store(Request $request) {
-    if(Auth::user()->is_admin) {
-      $user = new User();
-      $user->firstname = $request->input('firstname');
-      $user->lastname = $request->input('lastname');
-      $user->email = $request->input('email');
-      $user->phone = $request->input('phone');
-      $user->intro = $request->input('intro');
-      $user->school()->associate($request->input('school_id'));
-      $user->password = Hash::make($request->password);
-      $user->save();
-      return back()->with('success', 'Käyttäjä luotu!');
-    }
-    return back()->withErrors('Toiminto ei ole sallittu');
-  } */
-
   public function update(Request $request, $id) {
     $user = User::find($id);
     $user->firstname = $request->input('firstname');
@@ -52,8 +35,6 @@ class UserController extends Controller
     $user->email = $request->input('email');
     $user->phone = $request->input('phone');
     $user->intro = $request->input('intro');
-    $user->school()->associate($request->input('school_id'));
-
     $user->save();
     return back()->with('success', 'Käyttäjätiedot päivitetty!');
   }

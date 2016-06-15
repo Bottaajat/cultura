@@ -72,6 +72,10 @@
         <button type="submit" class="btn btn-primary">
          <i class="fa fa-btn fa-user"></i> Rekisteröidy
         </button>
+
+        <a role="button" class="btn btn-default" href="{{ url('/login') }}">
+          <i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään
+        </a>
        </div>
       </div>
   </form>

@@ -9,10 +9,8 @@
         {{ csrf_field() }}
 
         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-          <label for="email" class="col-md-4 control-label">Sähköposti</label>
-
-            <div class="col-md-6">
-              <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+            <div class="col-md-8 col-md-offset-2">
+              <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Sähköpostiosoite">
 
               @if ($errors->has('email'))
                 <span class="help-block">
@@ -23,10 +21,9 @@
           </div>
 
           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-            <label for="password" class="col-md-4 control-label">Salasana</label>
 
-            <div class="col-md-6">
-              <input id="password" type="password" class="form-control" name="password">
+            <div class="col-md-8 col-md-offset-2">
+              <input id="password" type="password" class="form-control" name="password" placeholder="Salasana">
 
               @if ($errors->has('password'))
                 <span class="help-block">
@@ -37,7 +34,7 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-2">
               <div class="checkbox">
                   <label>
                     <input type="checkbox" name="remember"> Muista minut
@@ -47,12 +44,14 @@
           </div>
 
           <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-2">
               <button type="submit" class="btn btn-primary">
                 <i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään
               </button>
 
-              <a class="btn btn-link" href="{{ url('/password/reset') }}">Unohditko salasanasi?</a>
+              <a role="button" class="btn btn-default" href="{{ url('/register') }}">
+                <i class="fa fa-btn fa-user"></i> Rekisteröidy
+              </a>
             </div>
           </div>
     </form>
