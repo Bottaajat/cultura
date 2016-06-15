@@ -10,15 +10,38 @@ use App\Http\Requests;
 
 use App\Models\Task;
 
+use App\Models\Exercise;
+
+use App\Models\Ordering;
+
+use App\Models\Crossword;
+
+use App\Models\Filling;
+
+use Auth;
+
 class TaskController extends Controller
 {
 	public function index() {
 		$tasks = Task::all();
-		//$topic_list = Topic::lists('name', 'id');
-		return view('task.index', array('tasks' => $tasks));
+		$exercise_list = Exercise::lists('name', 'id');
+		$type_list = Task::distinct('type')->pluck('type');
+		$i=0;
+		foreach($type_list as $type) {
+			$types[$type_list[$i]] = $type_list[$i];
+			$i++;
+		}
+		return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
 	}
 	
-    public function show($topic, $exercise, $task) {
+	public function show($task_id) {
+		$task = Task::find($task_id);
+		//$exercise = Exercise::where('task_id', $task->id)
+		//$topic = Topic::where('exercise_id', $exercise->id)
+		return redirect($task->exercise->topic->name . "/" . $task->exercise->name . "/" . $task->name);
+	}
+	
+    public function showActual($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
 			if(dirname($task_->type)=="järjestys") {
 				$contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
@@ -65,9 +88,29 @@ class TaskController extends Controller
       
     }
 	
-	public function store_filling(Request $request)
+	public function store(Request $request)
     {
-      
+		$exercise_id = $request->input('exercise_id');
+		$i = $request->input('task_type');
+	
+		$task = new Task;
+		$task->name = $request->input('name');
+		$task->type = $request->input('task_type');
+		$task->exercise_id = $request->input('exercise_id');
+		$task->exercise()->associate($exercise_id);
+		$task->save();
+		$task_id = $task->id;
+		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
+		return back()->with('success', 'Tehtävä lisätty');
+    }
+	
+	public function store_filling(Request $request, $task_id)
+    {
+		$filling = new Filling;
+		$filling->text = $request->input('text');
+		$filling->task_id = $task_id;
+		$filling->task()->associate($task_id);
+		$filling->save();
     }
 	
 	public function destroy($id)

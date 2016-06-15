@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="page-header">
-  <h1>Teht‰v‰t </h1>
+  <h1>Teht√§v√§t </h1>
 </div>
 
 @if(Auth::check())
   <div id="createbuttondiv">
-    <!-- @include('task.create') -->
+    @include('task.create')
   </div>
 @endif
 
@@ -17,14 +17,11 @@
     <tr>
       <th>#</th>
       <th>Nimi</th>
-      <th>Harjoitus</th>
-      @if(Auth::check())
-        <th>Teht‰v‰</th>
-      @endif
-      <th>Teht‰v‰nanto</th>
-      @if(Auth::check())
-        <th>Kuvaus</th>
-      @endif
+      <th>Tyyppi</th>
+      <th>Teht√§v√§nanto</th>
+	  @if(Auth::check())
+         <th>Muokkaa</th>
+       @endif
     </tr>
   </thead>
 
@@ -32,26 +29,15 @@
     @foreach($tasks as $task)
       <tr>
         <td>{!! $task->id !!}</td>
-        <td><a href="{{route('task.show', ['id' => $task->id]) }}">{!! $task->name !!}</a></td>
-        <td>{!! $task->name !!}</td>
-        @if(Auth::check())
-         <!-- <td>@include('task.edit')</td> -->
-        @endif
+        <td><a href="{{route('task.show', ['task_id' => $task->id]) }}">{!! $task->name !!}</a></td>
+        <td>{!! $task->type !!}</td>
         <td>
           @if($task->assignment)
             {{ truncateString($task->assignment->content, 75) }}
           @endif
         </td>
-        @if(Auth::check())
-          <td>
-			<!--
-            @if($task->descriptions)
-              @include('assignment.edit')
-            @else
-              @include('assignment.create')
-            @endif
-			-->
-          </td>
+		@if(Auth::check())
+         <!-- <td>@include('task.edit')</td> -->
         @endif
       </tr>
     @endforeach
