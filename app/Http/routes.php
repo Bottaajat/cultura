@@ -16,26 +16,33 @@ Route::auth(['only' => ['login', 'logout']]);
 
 Route::get('/','TopicController@index');
 
-Route::resource('school', 'SchoolController',
-	array('only' => array('index', 'store', 'update', 'destroy')));
+//Resource:
+/* Verb      | Path                | Action  | Route Name       */
+/*==============================================================*/
+/* GET       | /resource           | index   | resource.index   */
+/* GET       | /resource/create    | create  | resource.create  */
+/* POST      | /resource           | store   | resource.store   */
+/* GET 	     | /resource/{id} 	   | show 	 | resource.show    */
+/* GET 	     | /resource/{id}/edit | edit 	 | resource.edit    */
+/* PUT/PATCH | /resource/{id} 	   | update  | resource.update  */
+/* DELETE 	 | /resource/{id} 	   | destroy | resource.destroy */
+
+
+Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
 Route::resource('user', 'UserController', ['except' => ['edit', 'create']]);
 
-Route::resource('exercise', 'ExerciseController',
-	array('only' => array('index', 'show','store', 'update', 'destroy')));
+Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create']]);
 
-Route::resource('material', 'MaterialController',
-	array('only'=> array('index', 'store', 'update', 'destroy')));
+Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);
 
-Route::resource('description', 'DescriptionController',
-	array('only'=> array('store', 'update', 'destroy')));
+Route::resource('description', 'DescriptionController', ['only'=> ['store', 'update', 'destroy']]);
 
-Route::resource('glossary', 'GlossaryController',
-	array('only'=> array('store', 'update', 'destroy')));
+Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
 Route::resource('task', 'TaskController',
 	array('only'=> array('index', 'show', 'store', /*'update',*/ 'destroy')));
-	
+
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
