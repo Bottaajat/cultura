@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname','is_admin','email','phone','intro'
+        'firstname', 'lastname','is_admin','email','phone','intro','password'
     ];
 
     /**
@@ -32,21 +32,5 @@ class User extends Authenticatable
   	public function name() {
       return $this->firstname . " " . $this->lastname;
   	}
-
-    public function validator() {
-		return Validator::make(
-			$this->getAttributes(),
-			array('firstname' => 'required',
-			      'lastname' => 'required',
-			      'email' => 'required|email|unique:users',
-			      'phone' => 'between:8,12'),
-			array('firstname.required' => 'Anna etunimi.',
-            'lastname.required' => 'Anna sukunimi.',
-            'email.email' => 'Sähköpostiosoitteen täytyy olla kelvollinen.',
-            'position.required' => 'Anna puhelinnumero.',
-            'username.unique' => 'Sähköpostiosoite on varattu.'
-      ));
-  	}
-
 
 }

@@ -12,11 +12,11 @@
   {!! Html::style("/css/main.css") !!}
 	{!! Html::style("/css/jasny-bootstrap.min.css") !!}
 
-		<!-- Font -->
+	<!-- Font -->
 	<link rel="stylesheet" href="/css/font-awesome.min.css">
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300,100|Lobster|Ubuntu&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
-
+	<!-- Favicon -->
 	<link rel="shortcut icon" href="/img/favicon.ico">
 
 
@@ -35,8 +35,8 @@
 @include('layouts.navigation')
 
 <div id="wrap">
-<div class="container-fluid">
 
+<div class="container">
 @if(isset($errors) and !($errors->first()==NULL))
 	<div class="alert alert-danger">
 		@foreach($errors->getMessages() as $error)
@@ -58,6 +58,7 @@
 @endif
 
 
+
 <div class='container'>
 	@yield('content')
 </div>
@@ -65,7 +66,6 @@
 <div class="push"></div>
 </div>
 </div>
-
 @include('layouts.footer')
 
 

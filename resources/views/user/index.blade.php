@@ -5,11 +5,13 @@
   <h1>Käyttäjät</h1>
 </div>
 
+
+{{-- KORJAA TÄMÄ POIS
 @if(Auth::user() && Auth::user()->is_admin)
 <div id="createbuttondiv">
   @include('user.create')
 </div>
-@endif
+@endif --}}
 
 <table class="table table-bordered table-hover">
 
@@ -35,7 +37,11 @@
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
         <td>{!! $user->phone !!}</td>
+        @if($user->school == NULL)
+        <td>Ei jäsenenä</td>
+        @else
         <td>{!! $user->school->name !!}</td>
+        @endif
         @if(Auth::user() && Auth::user()->is_admin)
         <td class="rowlink-skip">@include('user.edit')</td>
         @endif

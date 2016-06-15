@@ -11,8 +11,7 @@ use App\Models\School;
 class SchoolController extends Controller
 {
   public function __construct() {
-    parent::__construct();
-    $this->middleware('auth');
+    $this->middleware('auth', ['except' => ['index']]);
     $this->middleware('school.crud', ['except' => ['index']]);
   }
 

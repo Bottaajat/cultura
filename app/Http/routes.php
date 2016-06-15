@@ -30,7 +30,7 @@ Route::get('/','TopicController@index');
 
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
-Route::resource('user', 'UserController', ['except' => ['edit', 'create']]);
+Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
 
 Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create']]);
 

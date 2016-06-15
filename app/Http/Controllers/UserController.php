@@ -14,7 +14,6 @@ use Auth, Hash;
 class UserController extends Controller
 {
   public function __construct() {
-    parent::__construct();
     $this->middleware('auth', ['except' => ['index','show']]);
   }
 
@@ -29,6 +28,7 @@ class UserController extends Controller
     return view('user.show', ['user' => User::findOrFail($id), 'school_list' => $school_list]);
   }
 
+/* POISTA TÄMÄ!
   public function store(Request $request) {
     if(Auth::user()->is_admin) {
       $user = new User();
@@ -43,7 +43,7 @@ class UserController extends Controller
       return back()->with('success', 'Käyttäjä luotu!');
     }
     return back()->withErrors('Toiminto ei ole sallittu');
-  }
+  } */
 
   public function update(Request $request, $id) {
     $user = User::find($id);
