@@ -12,6 +12,12 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
+	public function index() {
+		$tasks = Task::all();
+		//$topic_list = Topic::lists('name', 'id');
+		return view('task.index', array('tasks' => $tasks));
+	}
+	
     public function show($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
 			if(dirname($task_->type)=="järjestys") {
@@ -48,4 +54,24 @@ class TaskController extends Controller
 			}
       } else return view('errors.404');
 	 }
+	 
+	 public function store_ordering(Request $request)
+    {
+      
+    }
+	
+	public function store_crossword(Request $request)
+    {
+      
+    }
+	
+	public function store_filling(Request $request)
+    {
+      
+    }
+	
+	public function destroy($id)
+	{
+        
+    }
 }

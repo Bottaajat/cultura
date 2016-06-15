@@ -22,6 +22,7 @@
 					<ul class="dropdown-menu">
 						<li> <a href="{{ URL::to('/user/') }}"><i class="fa fa-btn fa-users"></i> Käyttäjien listaus</a> </li>
 						<li> <a href="{{ url('/exercise/') }}"><i class="fa fa-btn fa-book"></i> Harjoitusten listaus</a> </li>
+						<li> <a href="{{ url('/task/') }}"><i class="fa fa-btn fa-pencil"></i> Tehtävien listaus</a> </li>
 						@if(Auth::check())
 						<li role="separator" class="divider"></li>
 						<li> <a href="{{ url('school/')}}"><i class="fa fa-btn fa-building"></i> Koulut</a> </li>

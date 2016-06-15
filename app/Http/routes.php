@@ -33,7 +33,9 @@ Route::resource('description', 'DescriptionController',
 Route::resource('glossary', 'GlossaryController',
 	array('only'=> array('store', 'update', 'destroy')));
 
-
+Route::resource('task', 'TaskController',
+	array('only'=> array('index', 'show', 'store', /*'update',*/ 'destroy')));
+	
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
