@@ -36,6 +36,10 @@ Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
 
 Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
 
+Route::resource('video', 'VideoController',
+	array('only' => array('index', 'store', 'update', 'destroy', 'show')));
+
+
 Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create']]);
 
 Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);

@@ -13,6 +13,11 @@ class Task extends Model
 		return $this->belongsTo('App\Models\Exercise');
 	}
 
+	public function video()
+	{
+		return $this->belongsTo('App\Models\Video');
+	}
+
 	public function assignment()
 	{
 			return $this->hasOne('App\Models\Assignment');

@@ -19,4 +19,9 @@ class School extends Model
   public function exercise() {
     return $this->hasMany('App\Models\Exercise');
   }
+  
+  public function video() {
+    return $this->hasMany('App\Models\Video');
+  }
+  
 }

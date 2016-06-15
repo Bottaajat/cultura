@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CrosswordTask5Seeder::class);
         $this->call(SchoolsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(VideosTableSeeder::class);
     }
 }
