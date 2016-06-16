@@ -27,8 +27,9 @@ function yhdistaminen_sanat() {
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );
 	$("#new_pair").on( 'click', function() {
 		var pair_add = $('<div id="pair-'+words+'" class="word_pair">');
-		$(pair_add).append('<input type="text" id="droppable-'+words+'" placeholder="droppable"/>');
-		$(pair_add).append('<input type="text" id="draggable-'+words+'" placeholder="draggable"/>');
+		$(pair_add).append('<input type="text" name="droppable[]"  id="droppable-'+words+'" placeholder="droppable"/>');
+		$(pair_add).append('<input type="text" name="draggable[]"  id="draggable-'+words+'" placeholder="draggable"/>');
+		$(pair_add).append('<input type="text" name="showable[]"  id="showable-'+words+'" placeholder="showable"/>');
 		$(pair_add).append('</div>');
 		$("#input").append(pair_add);
 		words++;
