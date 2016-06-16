@@ -43,20 +43,13 @@ class TaskController extends Controller
 	
     public function showActual($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
-			if(dirname($task_->type)=="järjestys") {
-				$contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
+			if($task_->type=="Sanojen yhdistäminen" || $task_->type=="Kuvien yhdistäminen") {
+				$droppables = array_pluck($task_->orderings, 'droppable');
+				$draggables = array_pluck($task_->orderings, 'draggable');
+				$showables = array_pluck($task_->orderings, 'showable');
 				$srcs = array_pluck($task_->exercise->materials, 'src');
-				$assignment = array_pluck($task_->assignment, 'content');
-				$i = 0;
-				foreach ($contents as $content) {
-					$draggables_[$i] = $content->draggable;
-					$droppables_[$i] = $content->droppable;
-					$showables_[$i] = $content->showable;
-					$i++;
-				}
 				return view('task.show', array('task' => $task_,
-				'draggables' => $draggables_, 'droppables' => $droppables_,
-				'showables' => $showables_, 'srcs' => $srcs, 'assignment'=> $assignment));
+				'draggables' => $draggables, 'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs));
 			}
 
 			if($task_->type=='Monivalinta') {
@@ -76,12 +69,7 @@ class TaskController extends Controller
 				return view('task.show', array('task' => $task_, 'text' => $text ));
 			}
       } else return view('errors.404');
-	 }
-	 
-	 public function store_ordering(Request $request)
-    {
-      
-    }
+	}
 	
 	public function store_crossword(Request $request)
     {
@@ -91,8 +79,6 @@ class TaskController extends Controller
 	public function store(Request $request)
     {
 		$exercise_id = $request->input('exercise_id');
-		$i = $request->input('task_type');
-	
 		$task = new Task;
 		$task->name = $request->input('name');
 		$task->type = $request->input('task_type');
@@ -100,8 +86,37 @@ class TaskController extends Controller
 		$task->exercise()->associate($exercise_id);
 		$task->save();
 		$task_id = $task->id;
+		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering($request, $task_id);
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
+    }
+	
+	public function store_ordering(Request $request, $task_id)
+    {
+		$count = 0;
+		foreach ($request->input('droppable') as $droppable) {
+			$droppables[$count] = $droppable;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('draggable') as $draggable) {
+			$draggables[$count] = $draggable;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('showable') as $showable) {
+			$showables[$count] = $showable;
+			$count++;
+		}
+		for ($i = 0; $i < $count; $i++) {
+			$ordering = new Ordering;
+			$ordering->droppable = $droppables[$i];
+			$ordering->draggable = $draggables[$i];
+			$ordering->showable = $showables[$i];
+			$ordering->task_id = $task_id;
+			$ordering->task()->associate($task_id);
+			$ordering->save();
+		}
     }
 	
 	public function store_filling(Request $request, $task_id)

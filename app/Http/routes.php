@@ -44,8 +44,6 @@ Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create'
 
 Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);
 
-Route::resource('description', 'DescriptionController', ['only'=> ['store', 'update', 'destroy']]);
-
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
 Route::resource('task', 'TaskController',
@@ -54,4 +52,4 @@ Route::resource('task', 'TaskController',
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
-Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
+Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');

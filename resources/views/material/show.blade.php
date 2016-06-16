@@ -12,8 +12,8 @@
     <div id="collapseMat" class="panel-collapse collapse in">
       <div class="panel-body">
 
-        @if( $exercise->descriptions )
-          <p class="list-group-item-text">{!! $exercise->descriptions->content !!}</p><br>
+        @if( $exercise->description )
+          <p class="list-group-item-text">{!! $exercise->description !!}</p><br>
         @endif
 
         @foreach( $exercise->materials as $material )
@@ -28,14 +28,15 @@
           @if($material->type == "image")
           <div class="col-sm-2">
             <div class="thumbnail">
-         	    <img src="{!! $material->src !!}" height="64" width="64">
-         	    <p>{!! $material->label !!}</p>
-         	    <p>{!! $material->contents !!}</p>
+              <img src="{!! $material->src !!}" height="64" width="64">
+              <p>{!! $material->label !!}</p>
+              <p>{!! $material->contents !!}</p>
             </div>
-      	  </div>
+          </div>
           @endif
 
           @if( $material->type == "text" )
+            <div style="height:20px"></div>
             <table class="table table-bordered ">
             <tr><th>{{$material->label}}</th></tr>
             @foreach(stringToArray($material->contents) as $line)
@@ -44,14 +45,8 @@
             </table>
           @endif
 
-          @if( $material->type == "video" )
-          <div class="embed-responsive embed-responsive-16by9">
-            <iframe src='{{$material->src}}' allowfullscreen></iframe>
-          </div>
-          @endif
-
-
-		    @if($material->glossary)
+          @if($material->glossary)
+            <div style="height:20px"></div>
             <table class="table table-striped table-bordered table-hover">
             <tr>
               <th>Venäjäksi</th>

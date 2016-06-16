@@ -1,4 +1,4 @@
-function asd(arr1, arr2, arr3, source) {
+function init(arr1, arr2, arr3, source) {
 	var correctCards = 0;
 	$( init );
 	 

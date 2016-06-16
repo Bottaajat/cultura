@@ -32,15 +32,15 @@ class ExerciseController extends Controller
    */
   public function show($id) {
     $exercise = Exercise::find($id);
-  	return redirect($exercise->topic->name . "/" . $exercise->name);
+    return redirect($exercise->topic->name . "/" . $exercise->name);
   }
 
-	public function showActual($topic, $name) {
+  public function showActual($topic, $name) {
         $exercise = Exercise::where('name', $name)->first();
-				if($exercise != NULL && $exercise->topic->name == $topic)
+        if($exercise != NULL && $exercise->topic->name == $topic)
             return view('exercise.show', array('exercise' => $exercise));
         return view('errors.404');
-	}
+  }
 
     /**
     * Store a newly created resource in storage.
@@ -54,16 +54,17 @@ class ExerciseController extends Controller
         return back()->withErrors("Anna pidempi harjotusnimi!");
       }
 
-			$topic_id = $request->input('topic_id');
+      $topic_id = $request->input('topic_id');
 
-			$exercise = new Exercise;
-			$exercise->name = $request->input('name');
-			$exercise->topic()->associate($topic_id);
+      $exercise = new Exercise;
+      $exercise->name = $request->input('name');
+      $exercise->description = $request->input('description');
+      $exercise->topic()->associate($topic_id);
       if(!Auth::user()->is_admin)
         $exercise->school()->associate(Auth::user()->school);
-			$exercise->save();
+      $exercise->save();
 
-			return back()->with('success', 'Harjoitus lisätty');
+      return back()->with('success', 'Harjoitus lisätty');
     }
 
     /**
@@ -93,6 +94,7 @@ class ExerciseController extends Controller
 
       $exercise->name = $exercise_name;
       $exercise->topic()->associate($topic);
+      $exercise->description = $request->input('description');
 
       $exercise->update();
 
