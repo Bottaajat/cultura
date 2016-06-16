@@ -37,40 +37,21 @@ class MaterialController extends Controller
     return in_array($extension, $array);
   }
 
+
   private function handleFiles(Request $request, $material) {
     if($request->hasFile('file')) {
-      if($material->type == 'text') {
-        return false;
-      }
-
-      $file = $request->file('file');
-      $extension = $file->getClientOriginalExtension();
+      $extension = $request->file('file')->getClientOriginalExtension();
 
       if($material->type == "image") {
-          if(!$this->allowedExtension($extension, $this->image)) return false;
-          $res = "/img/";
-      }
-      if($material->type == "audio") {
+        if(!$this->allowedExtension($extension, $this->image)) return false;
+        else return handleFile($request, $material, public_path() . "/img/");
+      } elseif ($material->type == "audio") {
         if(!$this->allowedExtension($extension, $this->audio)) return false;
-        $res = "/audio/";
-      }
-
-      if(strlen($material->src) == 0) {
-        $filename = rand(11111,99999).'.'.$extension;
+        else return handleFile($request, $material, public_path() . "/audio/");
       } else {
-        $filename = basename($material->src);
-      }
-
-      $dst = public_path() . $res;
-      $file->move($dst, $filename);
-      $material->src = $res . $filename;
-      return true;
-    } else {
-      if($material->type == "image" || $material->type == "audio")
         return false;
-      return true;
-    }
-    return false;
+      }
+    } return false;
   }
 
   /**
@@ -93,7 +74,7 @@ class MaterialController extends Controller
     $material->exercise()->associate($request->input('exercise_id'));
 
     if(!$this->handleFiles($request, $material))
-      return back()->withErrors('Virheellinen tiedostoformaatti!');
+      return back()->withErrors('Vain kuva ja äänitiedostot ovat sallittuja!');
 
     $material->save();
     return back()->with('success', 'Materiaali lisätty!');

@@ -3,7 +3,7 @@ body {
   font-family: "Roboto Slab";
   height: 100%;
   background-image: url("../img/bodybg_russia.jpg");
-  background-size: 20% auto;
+  background-size: 382px auto;
   background-repeat: repeat;
 }
 
@@ -58,6 +58,7 @@ body {
 
 #footer{
   height: 92px;
+  width: 100%;
   background-color: #030d10;
   color: #eef8fc;
 }

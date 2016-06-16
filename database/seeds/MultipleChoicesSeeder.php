@@ -137,7 +137,7 @@ kahvia',
 100 ruplaa
 65 ruplaa
 5 ruplaa',
-			"solution" => '5 euroa'] // FIX THIS !!
+			"solution" => '65 ruplaa']
         ]);
 
 
