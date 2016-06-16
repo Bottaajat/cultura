@@ -22,17 +22,36 @@ $('#task_type').on( 'change', function() {
 
 function yhdistaminen_sanat() {
 	var words = 0;
-	$('<div><input type="button" value="Lisää pari"/></div>').attr( 'id', 'new_pair' ).appendTo( '#input' );
+	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'new_pair' ).appendTo( '#input' );
+	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del_pair' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'words' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );
-	$("#new_pair").on( 'click', function() {
+	
+	for (var i = 0; i < 3; i++){
 		var pair_add = $('<div id="pair-'+words+'" class="word_pair">');
-		$(pair_add).append('<input type="text" name="droppable[]"  id="droppable-'+words+'" placeholder="droppable"/>');
-		$(pair_add).append('<input type="text" name="draggable[]"  id="draggable-'+words+'" placeholder="draggable"/>');
-		$(pair_add).append('<input type="text" name="showable[]"  id="showable-'+words+'" placeholder="showable"/>');
+		$(pair_add).append('<input type="text" name="droppable[]"  id="droppable-'+words+'" placeholder="kohde" required/>');
+		$(pair_add).append('<input type="text" name="draggable[]"  id="draggable-'+words+'" placeholder="vedettävä" required/>');
+		$(pair_add).append('<input type="text" name="showable[]"  id="showable-'+words+'" placeholder="näytettävä" required/>');
 		$(pair_add).append('</div>');
 		$("#input").append(pair_add);
 		words++;
+	}
+	
+	$("#new_pair").on( 'click', function() {
+		var pair_add = $('<div id="pair-'+words+'" class="word_pair">');
+		$(pair_add).append('<input type="text" name="droppable[]"  id="droppable-'+words+'" placeholder="kohde" required/>');
+		$(pair_add).append('<input type="text" name="draggable[]"  id="draggable-'+words+'" placeholder="vedettävä" required/>');
+		$(pair_add).append('<input type="text" name="showable[]"  id="showable-'+words+'" placeholder="näytettävä" required/>');
+		$(pair_add).append('</div>');
+		$("#input").append(pair_add);
+		words++;
+	});
+	
+	$("#del_pair").on( 'click', function() {
+		if (words > 3) {
+			$( '#pair-'+(words-1) ).remove();
+			words--;
+		}
 	});
 }
 
@@ -59,6 +78,6 @@ function Sanaristikko() {
 }
 
 function Taytto() {
-	$('<textarea name="text" id="text" rows="8"/textarea>').appendTo( '#input' );
+	$('<textarea name="text" id="text" rows="8" required/textarea>').appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );
 }

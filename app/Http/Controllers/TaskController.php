@@ -44,18 +44,12 @@ class TaskController extends Controller
     public function showActual($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
 			if($task_->type=="Sanojen yhdistäminen" || $task_->type=="Kuvien yhdistäminen") {
-				$contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
+				$droppables = array_pluck($task_->orderings, 'droppable');
+				$draggables = array_pluck($task_->orderings, 'draggable');
+				$showables = array_pluck($task_->orderings, 'showable');
 				$srcs = array_pluck($task_->exercise->materials, 'src');
-				$i = 0;
-				foreach ($contents as $content) {
-					$draggables_[$i] = $content->draggable;
-					$droppables_[$i] = $content->droppable;
-					$showables_[$i] = $content->showable;
-					$i++;
-				}
 				return view('task.show', array('task' => $task_,
-				'draggables' => $draggables_, 'droppables' => $droppables_,
-				'showables' => $showables_, 'srcs' => $srcs));
+				'draggables' => $draggables, 'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs));
 			}
 
 			if($task_->type=='Monivalinta') {
@@ -85,8 +79,6 @@ class TaskController extends Controller
 	public function store(Request $request)
     {
 		$exercise_id = $request->input('exercise_id');
-		$i = $request->input('task_type');
-	
 		$task = new Task;
 		$task->name = $request->input('name');
 		$task->type = $request->input('task_type');
@@ -107,12 +99,12 @@ class TaskController extends Controller
 			$count++;
 		}
 		$count = 0;
-		foreach ($request->input('droppable') as $draggable) {
+		foreach ($request->input('draggable') as $draggable) {
 			$draggables[$count] = $draggable;
 			$count++;
 		}
 		$count = 0;
-		foreach ($request->input('droppable') as $showable) {
+		foreach ($request->input('showable') as $showable) {
 			$showables[$count] = $showable;
 			$count++;
 		}
