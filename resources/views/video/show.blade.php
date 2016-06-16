@@ -1,22 +1,29 @@
-@extends('layouts.master')
+@extends(isset($video) ? 'layouts.master' : 'layouts.empty') 
 
-@section('content')
-<div class="page-header">
-  <h1>{!! $video->title !!}</h1>
-</div>
+@if (isset($video) && $video)
+  @section('content')
+  
+  <div class="page-header">
+    <h1> {{ $video->title }}</h1>
+  </div>
+  
+  <div class="videoframe">
+    <iframe 
+        width="100%" 
+        src="https://www.youtube.com/embed/{{ $video->emb_src }}"
+        frameborder="0" allowfullscreen="true">
+     </iframe>
+   </div>
+  @stop
+  
+@elseif (isset($task) && $task->video)
+  
+  <div class="videoframe">
+  <iframe 
+      width="100%" 
+      src="https://www.youtube.com/embed/{{ $task->video->emb_src }}"
+      frameborder="0" allowfullscreen="true">
+   </iframe>
+ </div>
 
-@if(Auth::user())
-<div id="createbuttondiv">
-  @include('video.edit')
-</div>
 @endif
-
-
-<iframe 
-    width="1280" height="720" 
-    src="https://www.youtube.com/embed/{{ $video->emb_src }}"
-    frameborder="0" allowfullscreen>
- </iframe>
- 
-
-@stop
