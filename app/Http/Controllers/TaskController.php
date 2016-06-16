@@ -43,7 +43,7 @@ class TaskController extends Controller
 	
     public function showActual($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
-			if(dirname($task_->type)=="järjestys") {
+			if($task_->type=="Sanojen yhdistäminen" || $task_->type=="Kuvien yhdistäminen") {
 				$contents = DB::table('orderings')->where('task_id', $task_['id'])->get();
 				$srcs = array_pluck($task_->exercise->materials, 'src');
 				$assignment = array_pluck($task_->assignment, 'content');

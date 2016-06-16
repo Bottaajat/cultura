@@ -52,4 +52,4 @@ Route::resource('task', 'TaskController',
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
-Route::get('{topic}/{exercise}/{task}', 'TaskController@show');
+Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');

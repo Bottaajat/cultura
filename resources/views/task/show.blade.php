@@ -34,7 +34,7 @@
   @endif
   
 	<div class="panel-body" id="task">
-		@if(dirname($task->type) == 'järjestys')
+		@if($task->type == 'Sanojen yhdistäminen' || $task->type == 'Kuvien yhdistäminen')
 			@include('ordering.show')
 		@endif
 
