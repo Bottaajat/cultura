@@ -16,7 +16,7 @@ class ExercisesTableSeeder extends Seeder
         DB::table('exercises')->insert([
             ["name" => 'Aakkoset',
             "description" => 'Kyrillisessä kirjaimistossa on 33 kirjainta, joista kaksi ei ole varsinaisia kirjaimia, vaan merkkejä (pehmennysmerkki ja kova merkki). Iso osa kyrillisistä kirjaimista on helppoja tunnistaa ja uudetkin oppii nopeasti. Venäjän kuuluisasta ”7 ässästä” 6 löytyy muistakin kielistä (esim. englannista), joten oppiminen ei varmasti kaadu niihin!
-            
+
             Paina kirjainta kuullaksesi ääntämyksen!',
             "topic_id" => '1']
         ]);
@@ -37,10 +37,6 @@ class ExercisesTableSeeder extends Seeder
             "topic_id" => '2']
         ]);
 
-        DB::table('exercises')->insert([
-            ["name" => 'Esittäytyminen',
-            "topic_id" => '1']
-        ]);
 
     }
 }
