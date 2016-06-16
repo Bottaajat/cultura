@@ -2,8 +2,8 @@ $(window).load(function(){
 	var type = ($( '#task_type option:selected' ).text());
 	$( '#input' ).empty();
 	$( '#preview' ).empty();
-	if (type == 'järjestys/sanat') jarjestys_sanat();
-	if (type == 'järjestys/kuvat') jarjestys_kuvat();
+	if (type == 'Sanojen yhdistäminen') yhdistaminen_sanat();
+	if (type == 'Kuvien yhdistäminen') yhdistaminen_kuvat();
 	if (type == 'Monivalinta') Monivalinta();
 	if (type == 'Sanaristikko') Sanaristikko();
 	if (type == 'Täyttö') Taytto();
@@ -13,14 +13,14 @@ $('#task_type').on( 'change', function() {
 	var type = ($( '#task_type option:selected' ).text());
 	$( '#input' ).empty();
 	$( '#preview' ).empty();
-	if (type == 'järjestys/sanat') jarjestys_sanat();
-	if (type == 'järjestys/kuvat') jarjestys_kuvat();
+	if (type == 'Sanojen yhdistäminen') yhdistaminen_sanat();
+	if (type == 'Kuvien yhdistäminen') yhdistaminen_kuvat();
 	if (type == 'Monivalinta') Monivalinta();
 	if (type == 'Sanaristikko') Sanaristikko();
 	if (type == 'Täyttö') Taytto();
 });
 
-function jarjestys_sanat() {
+function yhdistaminen_sanat() {
 	var words = 0;
 	$('<div><input type="button" value="Lisää pari"/></div>').attr( 'id', 'new_pair' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'words' ).appendTo( '#input' );
@@ -35,7 +35,7 @@ function jarjestys_sanat() {
 	});
 }
 
-function jarjestys_kuvat() {
+function yhdistaminen_kuvat() {
 	$('<div><input type="button" value="Lisää pari"/></div>').attr( 'id', 'new_pair' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'words' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );

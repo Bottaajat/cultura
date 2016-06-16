@@ -11,12 +11,12 @@ class TasksTableSeeder extends Seeder
     {
         DB::table('tasks')->insert([
             ["name" => 'Aakkosjärjestys',
-			       "type" => 'järjestys/sanat',
+			       "type" => 'Sanojen yhdistäminen',
 			       "exercise_id" => '1']
             ]);
         DB::table('tasks')->insert([
             ["name" => 'Kuvajärjestys',
-			       "type" => 'järjestys/kuvat',
+			       "type" => 'Kuvien yhdistäminen',
 			       "exercise_id" => '2']
             ]);
         DB::table('tasks')->insert([
@@ -26,7 +26,7 @@ class TasksTableSeeder extends Seeder
             ]);
         DB::table('tasks')->insert([
                 ["name" => 'Sanajärjestys',
-                 "type" => 'järjestys/sanat',
+                 "type" => 'Sanojen yhdistäminen',
                  "exercise_id" => '3']
             ]);
 		DB::table('tasks')->insert([
