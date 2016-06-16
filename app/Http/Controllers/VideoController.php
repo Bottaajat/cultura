@@ -14,7 +14,6 @@ use Auth, Hash;
 
 class VideoController extends Controller
 {
-  private $gkey = "PUT YOUR KEY HERE";
 
   public function __construct() {
     $this->middleware('auth', ['except' => ['index','show']]);
@@ -80,7 +79,8 @@ class VideoController extends Controller
   
   private function videoInfo($vid) {
       try {
-        $dur = file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=".$vid."&key=".$this->gkey."");
+        $gkey = env('GOOGLE_API_KEY');
+        $dur = file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=".$vid."&key=".$gkey."");
         $data = json_decode($dur, true);
         return $data['items'][0]['snippet'];
       } catch (Exception $e) {
