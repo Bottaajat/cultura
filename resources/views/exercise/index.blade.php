@@ -18,12 +18,9 @@
       <th>#</th>
       <th>Nimi</th>
       <th>Taso</th>
-      @if(Auth::check())
-        <th>Harjoitus</th>
-      @endif
       <th>Kuvaus</th>
       @if(Auth::check())
-        <th>Kuvaus</th>
+        <th>Harjoitus</th>
       @endif
     </tr>
   </thead>
@@ -34,22 +31,13 @@
         <td>{!! $exercise->id !!}</td>
         <td><a href="{{route('exercise.show', ['id' => $exercise->id]) }}">{!! $exercise->name !!}</a></td>
         <td>{!! $exercise->topic->name !!}</td>
-        @if(Auth::check())
-          <td>@include('exercise.edit')</td>
-        @endif
         <td>
-          @if($exercise->descriptions)
-            {{ truncateString($exercise->descriptions->content, 75) }}
+          @if($exercise->description)
+            {{ truncateString($exercise->description, 75) }}
           @endif
         </td>
         @if(Auth::check())
-          <td>
-            @if($exercise->descriptions)
-              @include('description.edit')
-            @else
-              @include('description.create')
-            @endif
-          </td>
+          <td>@include('exercise.edit')</td>
         @endif
       </tr>
     @endforeach

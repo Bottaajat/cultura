@@ -17,7 +17,6 @@ class VideoController extends Controller
   private $gkey = "PUT YOUR KEY HERE";
 
   public function __construct() {
-    parent::__construct();
     $this->middleware('auth', ['except' => ['index','show']]);
   }
 

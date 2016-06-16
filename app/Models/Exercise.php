@@ -17,27 +17,22 @@ class Exercise extends Model
 
   protected $dates = ['deleted_at'];
 
-	public function school() {
-		return $this->belongsTo('App\Models\School');
-	}
+  public function school() {
+    return $this->belongsTo('App\Models\School');
+  }
 
-	public function topic()
-	{
-		return $this->belongsTo('App\Models\Topic');
-	}
+  public function topic()
+  {
+    return $this->belongsTo('App\Models\Topic');
+  }
 
-	public function tasks()
+  public function tasks()
   {
     return $this->hasMany('App\Models\Task');
   }
 
-	public function materials()
-	{
-		return $this->hasMany('App\Models\Material');
-	}
-
-	public function descriptions()
-	{
-			return $this->hasOne('App\Models\Description');
-	}
+  public function materials()
+  {
+    return $this->hasMany('App\Models\Material');
+  }
 }

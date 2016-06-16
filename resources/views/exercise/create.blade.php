@@ -16,6 +16,7 @@
       <div class="modal-body">
         {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Harjoituksen nimi')) !!}
         {!! Form::select('topic_id', $topic_list, null, ['class' => 'form-control']) !!}
+        {!! Form::textarea('description',  null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Kuvaus')) !!}
       </div>
 
       <div class="modal-footer">
