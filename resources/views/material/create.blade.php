@@ -17,7 +17,7 @@
       <div class="modal-body">
         {!! Form::text('label', null, array('required', 'class'=>'form-control', 'placeholder'=>'Materiaalin otsikko')) !!}
         {!! Form::textarea('contents', null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
-        {!! Form::select('type', ["text"=>'Teksti', "audio"=>'Ääni', "image"=>'Kuva', "video"=>'Video'],null, ['class' => 'form-control']) !!}
+        {!! Form::select('type', ["text"=>'Teksti', "audio"=>'Ääni', "image"=>'Kuva'],null, ['class' => 'form-control']) !!}
         {!! Form::select('exercise_id', $exercise_list, null, ['class' => 'form-control']) !!}
 
         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
@@ -33,8 +33,6 @@
         </div>
 
         <hr></hr>
-        <label>Lisää tähän videon embed urli.</label>
-        {!! Form::text('src', null, ['class' => 'form-control', 'placeholder' => 'https://www.youtube.com/embed/auLDGBX8WB4']) !!}
 
       </div>
 

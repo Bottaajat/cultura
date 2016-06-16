@@ -15,7 +15,7 @@
       <div class="modal-body">
         {!! Form::text('label', $material->label, array('required', 'class'=>'form-control', 'placeholder'=>'Materiaalin otsikko')) !!}
         {!! Form::textarea('content', $material->contents, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
-        {!! Form::select('type', ["text"=>'Teksti', "sound"=>'Ääni', "image"=>'Kuva', "video"=>'Video'],$material->type , ['class' => 'form-control']) !!}
+        {!! Form::select('type', ["text"=>'Teksti', "sound"=>'Ääni', "image"=>'Kuva'],$material->type , ['class' => 'form-control']) !!}
         {!! Form::select('exercise_id', $exercise_list,$material->exercise->id, ['class' => 'form-control']) !!}
         <div class="fileinput fileinput-new input-group" data-provides="fileinput">
           <div class="form-control" data-trigger="fileinput"><i class="glyphicon glyphicon-file fileinput-exists"></i>
@@ -30,9 +30,7 @@
         </div>
 
         <hr></hr>
-        <label>Lisää tähän videon embed urli.</label>
-        {!! Form::text('src', null, ['class' => 'form-control', 'placeholder' => 'https://www.youtube.com/embed/auLDGBX8WB4']) !!}
-
+       
       </div>
 
       <div class="modal-footer">
