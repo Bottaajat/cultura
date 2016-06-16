@@ -44,8 +44,6 @@ Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create'
 
 Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);
 
-Route::resource('description', 'DescriptionController', ['only'=> ['store', 'update', 'destroy']]);
-
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
 Route::resource('task', 'TaskController',
