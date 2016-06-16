@@ -34,38 +34,37 @@
 
 @include('layouts.navigation')
 
-<div id="wrap">
 
-<div class="container">
-@if(isset($errors) and !($errors->first()==NULL))
-	<div class="alert alert-danger">
+<div id="wrap" class="container">
+
+  @if(isset($errors) and !($errors->first()==NULL))
+	 <div class="alert alert-danger">
 		@foreach($errors->getMessages() as $error)
 			<b>{{$error[0]}}</b>
 		@endforeach
-	</div>
-@endif
+	 </div>
+  @endif
 
-@if(Session::has('success'))
-	<div class="alert alert-success">
+  @if(Session::has('success'))
+	 <div class="alert alert-success">
 		<b>{{Session::get('success')}}</b>
-	</div>
-@endif
+	 </div>
+  @endif
 
-@if(Session::has('info'))
-	<div class="alert alert-info">
-		<p>{{Session::get('info')}}</p>
-	</div>
-@endif
+  @if(Session::has('info'))
+ 	 <div class="alert alert-info">
+	 	<p>{{Session::get('info')}}</p>
+	 </div>
+  @endif
 
 
-
-<div class='container'>
 	@yield('content')
+
+
+ <div class="push"></div>
 </div>
 
-<div class="push"></div>
-</div>
-</div>
+
 @include('layouts.footer')
 
 

@@ -2,6 +2,9 @@ html,
 body {
   font-family: "Roboto Slab";
   height: 100%;
+  background-image: url("../img/bodybg_russia.jpg");
+  background-size: 29% auto;
+  background-repeat: repeat;
 }
 
 /* Korjaa skrollauspalkin tulemisen laajennettaessa */
@@ -46,8 +49,7 @@ body {
   height: 100%;
   /* Negative indent footer by its height */
   margin: 0 auto -92px;
-  /* Pad bottom by footer height */
-  /* padding: 0 0 60px; */
+  background-color: #ffffff;
 }
 
 .push {
@@ -56,7 +58,6 @@ body {
 
 #footer{
   height: 92px;
-
   background-color: #030d10;
   color: #eef8fc;
 }
