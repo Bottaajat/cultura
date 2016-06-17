@@ -35,7 +35,7 @@
   
   @if($task->assignment)
     <div class="panel-body" id="assignment">
-      {!! $task->assignment->content !!}
+      {!! $task->assignment !!}
     </div>
   @endif
   
