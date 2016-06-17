@@ -7,5 +7,12 @@
 }
 
 .word_pair{
+	display: inline-block;
 	margin-top: 2px;
+}
+
+input[type="file"] {
+	max-width: 50%;
+	overflow: hidden;
+	display: inline-block;
 }

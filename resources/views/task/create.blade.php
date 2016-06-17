@@ -13,7 +13,7 @@
         <h4 class="modal-title" id="createTaskLabel"> Luo uusi tehtävä</h4>
       </div>
 
-      {!! Form::open(array('action'=> array('TaskController@store'), 'method'=>'POST')) !!}
+      {!! Form::open(array('action'=> array('TaskController@store'), 'method'=>'POST', 'files' => true)) !!}
 
       <div class="modal-body">
         {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Database\Eloquent\Builder;
-
-use DB;
+//use DB;
 
 use App\Http\Requests;
 
@@ -20,7 +18,7 @@ use App\Models\Crossword;
 
 use App\Models\Filling;
 
-use Auth;
+use File,Auth;
 
 class TaskController extends Controller
 {
@@ -66,7 +64,7 @@ class TaskController extends Controller
 			}
 
 			if($task_->type=='Täyttö') {
-				$text = DB::table('fillings')->where('task_id', $task_['id'])->value('text');
+				$text = $task_->filling->value('text');
 				return view('task.show', array('task' => $task_, 'text' => $text ));
 			}
       } else return view('errors.404');
@@ -87,12 +85,13 @@ class TaskController extends Controller
 		$task->exercise()->associate($exercise_id);
 		$task->save();
 		$task_id = $task->id;
-		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering($request, $task_id);
+		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering_words($request, $task_id);
+		if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->store_ordering_images($request, $task_id);
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
     }
 	
-	public function store_ordering(Request $request, $task_id)
+	public function store_ordering_words(Request $request, $task_id)
     {
 		$count = 0;
 		foreach ($request->input('droppable') as $droppable) {
@@ -107,6 +106,35 @@ class TaskController extends Controller
 		$count = 0;
 		foreach ($request->input('showable') as $showable) {
 			$showables[$count] = $showable;
+			$count++;
+		}
+		for ($i = 0; $i < $count; $i++) {
+			$ordering = new Ordering;
+			$ordering->droppable = $droppables[$i];
+			$ordering->draggable = $draggables[$i];
+			$ordering->showable = $showables[$i];
+			$ordering->task_id = $task_id;
+			$ordering->task()->associate($task_id);
+			$ordering->save();
+		}
+    }
+	
+	public function store_ordering_images(Request $request, $task_id)
+    {
+		$destinationPath = public_path() . "/img/";
+		$count = 0;
+		foreach ($request->file('droppable') as $droppable) {
+			$droppables[$count] = $droppable;
+			$file = $droppable;
+			$filename = $file->getClientOriginalName();
+			$file->move($destinationPath, $filename);
+			$droppables[$count] = $file->getClientOriginalName();
+			$showables[$count] = $file->getClientOriginalExtension();
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('draggable') as $draggable) {
+			$draggables[$count] = $draggable;
 			$count++;
 		}
 		for ($i = 0; $i < $count; $i++) {
