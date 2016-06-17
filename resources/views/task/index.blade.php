@@ -20,8 +20,11 @@
       <th>Tyyppi</th>
       <th>Tehtävänanto</th>
 	  @if(Auth::check())
-         <th>Muokkaa</th>
-       @endif
+        <th>Muokkaa</th>
+      @endif
+	  @if(Auth::check())
+        <th>Poista</th>
+      @endif
     </tr>
   </thead>
 
@@ -33,11 +36,14 @@
         <td>{!! $task->type !!}</td>
         <td>
           @if($task->assignment)
-            {{ truncateString($task->assignment->content, 75) }}
+            {{ truncateString($task->assignment, 75) }}
           @endif
         </td>
 		@if(Auth::check())
-         <!-- <td>@include('task.edit')</td> -->
+			<td>@include('task.edit')</td>
+        @endif
+		@if(Auth::check())
+			<td>@include('task.destroy')</td>
         @endif
       </tr>
     @endforeach

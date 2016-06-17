@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Database\Eloquent\Builder;
+
 use DB;
 
 use App\Http\Requests;
@@ -128,8 +130,36 @@ class TaskController extends Controller
 		$filling->save();
     }
 	
-	public function destroy($id)
-	{
-        
+	public function destroy($id) {
+        $task = Task::find($id);
+
+        if(!Auth::user()->is_admin && $task->exercise->school == NULL)
+          return back()->withErrors('Et voi poistaa tätä harjoitusta!');
+        if(!Auth::user()->is_admin && Auth::user()->school->id != $task->exercise->school->id)
+          return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
+		if($task->type == 'Sanojen yhdistäminen' || $task->type == 'Kuvien yhdistäminen') {
+			$orderings = $task->orderings;
+			foreach($orderings as $ordering) {
+				$ordering->delete();
+			}
+		}
+		if($task->type == 'Monivalinta') {
+			$multiplechoises = $task->multiplechoises;
+			foreach($multiplechoises as $multiplechoice) {
+				$multiplechoice->delete();
+			}
+		}
+		if($task->type == 'Sanaristikko') {
+			$crosswords = $task->crosswords;
+			foreach($crosswords as $crossword) {
+				$crossword->delete();
+			}
+		}
+		if($task->type == 'Täyttö') {
+			$filling = $task->filling;
+			$filling->delete();
+		}
+		$task->delete();
+        return redirect('/task')->with('success', 'Tehtävä poistettu!');
     }
 }
