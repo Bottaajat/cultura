@@ -42,6 +42,7 @@ Route::resource('video', 'VideoController',
 
 Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create']]);
 
+Route::get('search', 'MaterialController@index');
 Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);
 
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
@@ -53,3 +54,5 @@ Route::resource('task', 'TaskController',
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');
+
+

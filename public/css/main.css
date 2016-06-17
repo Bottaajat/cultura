@@ -32,9 +32,17 @@ body {
   transition: height 0.35s ease;
 }
 
-#createbuttondiv {
+.createbuttondiv {
   height: 55px;
+  min-width:350px;
 }
+
+.paginationdiv {
+  text-align:center;
+  height:80px;
+  min-width:350px;
+}
+
 
 .navbar-default .navbar-brand {
   font-family: "Lobster";

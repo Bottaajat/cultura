@@ -5,10 +5,29 @@
   <h1>Materiaali</h1>
 </div>
 
-<div id="createbuttondiv">
-  @include('material.create')
+<div class="createbuttondiv">
+  <div class="row">
+  <div class="col-xs-6 .col-sm-4">
+    {!! Form::open(array('action'=>array('MaterialController@index'), 'method'=>'get')) !!}
+    <div class="input-group">
+      {!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
+      <span class="input-group-btn">
+        {!! Form::submit('Hae', array('class' => 'btn btn-primary')) !!}
+      </span>
+    </div>
+    {!! Form::close() !!}
+  </div>
+    
+    <div class="col-xs-6 .col-sm-4 pull-right">
+      @include('material.create')
+    </div>
+  </div>
 </div>
 
+<div class="paginationdiv">
+  @include('pagination.default', ['paginator' => $materials])
+</div>
+  
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -44,5 +63,9 @@
   </tbody>
 
 </table>
+
+<div class="paginationdiv">
+  @include('pagination.default', ['paginator' => $materials])
+</div>
 
 @stop
