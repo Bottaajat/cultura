@@ -26,9 +26,23 @@ class MaterialController extends Controller
   // SALLITUT KUVA TIEDOSTO FORMAATIT
   protected $image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
 
-  public function index() {
-    $materials = Material::all();
+  public function index(Request $request) {
     $exercise_list = Exercise::lists('name', 'id');
+    $search = $request->input('search');
+    if (strlen($search) > 0) {
+      $materials = Material::Where('label', 'like', "%$search%")
+        ->orWhere('type', "$search")
+        ->orWhere('id', "$search")
+        ->orWhereHas('exercise', function ($query) use ($search) {
+            $query->where('name', 'like', "%$search%");
+          })
+        ->paginate(10)
+        ->appends(['search' => $search]);
+      return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list, 'search' => $search));
+    }
+    else
+      $materials = Material::paginate(10);
+      
     return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
   }
 
