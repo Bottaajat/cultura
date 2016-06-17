@@ -27,7 +27,7 @@ class TaskController extends Controller
 	public function index() {
 		$tasks = Task::all();
 		$exercise_list = Exercise::lists('name', 'id');
-		$type_list = Task::distinct('type')->pluck('type');
+		$type_list = ['Sanojen yhdistäminen','Kuvien yhdistäminen','Monivalinta','Sanaristikko','Täyttö'];
 		$i=0;
 		foreach($type_list as $type) {
 			$types[$type_list[$i]] = $type_list[$i];
@@ -50,8 +50,7 @@ class TaskController extends Controller
 				$draggables = array_pluck($task_->orderings, 'draggable');
 				$showables = array_pluck($task_->orderings, 'showable');
 				$srcs = array_pluck($task_->exercise->materials, 'src');
-				return view('task.show', array('task' => $task_,
-				'draggables' => $draggables, 'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs));
+				return view('task.show', array('task' => $task_, 'draggables' => $draggables, 'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs));
 			}
 
 			if($task_->type=='Monivalinta') {
@@ -128,6 +127,11 @@ class TaskController extends Controller
 		$filling->task_id = $task_id;
 		$filling->task()->associate($task_id);
 		$filling->save();
+    }
+	
+	public function update(Request $request, $id)
+    {
+		return back()->with('success', 'Päivitys onnistui!');
     }
 	
 	public function destroy($id) {

@@ -32,7 +32,6 @@
       </div>
 
       <div class="modal-footer">
-		<button type="button" class="btn btn-warning" style="float:left"> Päivitä esikatselu </button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
         <button type="submit" class="btn btn-primary"> OK </button>
       </div>

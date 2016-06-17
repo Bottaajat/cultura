@@ -47,7 +47,7 @@ Route::resource('material', 'MaterialController', ['except' => ['edit', 'create'
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
 Route::resource('task', 'TaskController',
-	array('only'=> array('index', 'show', 'store', /*'update',*/ 'destroy')));
+	array('only'=> array('index', 'show', 'store', 'update', 'destroy')));
 
 //Custom Routes
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
