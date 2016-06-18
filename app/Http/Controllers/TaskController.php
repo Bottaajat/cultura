@@ -126,10 +126,13 @@ class TaskController extends Controller
 		foreach ($request->file('droppable') as $droppable) {
 			$droppables[$count] = $droppable;
 			$file = $droppable;
-			$filename = $file->getClientOriginalName();
+			$extension = $file->getClientOriginalExtension();
+			
+			if($this->checkExtension($extension) == false) return false;
+	
+			$filename = rand(11111,99999).'.'.$extension;
 			$file->move($destinationPath, $filename);
-			$droppables[$count] = $file->getClientOriginalName();
-			$showables[$count] = $file->getClientOriginalExtension();
+			$droppables[$count] = $filename;
 			$count++;
 		}
 		$count = 0;
@@ -141,12 +144,20 @@ class TaskController extends Controller
 			$ordering = new Ordering;
 			$ordering->droppable = $droppables[$i];
 			$ordering->draggable = $draggables[$i];
-			$ordering->showable = $showables[$i];
+			$ordering->showable = 'img';
 			$ordering->task_id = $task_id;
 			$ordering->task()->associate($task_id);
 			$ordering->save();
 		}
     }
+	
+	private function checkExtension($extension) {
+		$image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
+		for ($i = 0; $i < count($image); $i++ ) {
+			if($extension == $image[$i]) return true;
+		}
+		return back()->withErrors('Tarkista tiedostoformaatti');
+	}
 	
 	public function store_filling(Request $request, $task_id)
     {
@@ -169,9 +180,16 @@ class TaskController extends Controller
           return back()->withErrors('Et voi poistaa tätä harjoitusta!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $task->exercise->school->id)
           return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
-		if($task->type == 'Sanojen yhdistäminen' || $task->type == 'Kuvien yhdistäminen') {
+		if($task->type == 'Sanojen yhdistäminen') {
 			$orderings = $task->orderings;
 			foreach($orderings as $ordering) {
+				$ordering->delete();
+			}
+		}
+		if($task->type == 'Kuvien yhdistäminen') {
+			$orderings = $task->orderings;
+			foreach($orderings as $ordering) {
+				File::delete(public_path().'/img/'. $ordering->droppable);
 				$ordering->delete();
 			}
 		}

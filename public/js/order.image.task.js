@@ -1,4 +1,4 @@
-function init(arr1, arr2, arr3, source) {
+function init(draggables, droppables) {
 	var correctCards = 0;
 	$( init );
 	 
@@ -12,10 +12,10 @@ function init(arr1, arr2, arr3, source) {
 	  $('#droppablearea').html( '' );
 	 
 	  // Create the pile of shuffled cards
-	  var draggables = arr1;
-	  var correct = arr1.slice(0);
+	  //var draggables = arr1;
+	  var correct = draggables.slice();
 	  draggables.sort( function() { return Math.random() - .5 } );
-	  for ( var i=0; i<arr1.length; i++ ) {
+	  for ( var i=0; i<draggables.length; i++ ) {
 		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', draggables[i]+'-drag'  ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#task',
 		  stack: '#draggablearea div',
@@ -25,13 +25,13 @@ function init(arr1, arr2, arr3, source) {
 	  }
 	 
 	  // Create the card slots
-	  for ( var i=1; i<=arr1.length; i++ ) {
+	  for ( var i=1; i<=draggables.length; i++ ) {
 		$('<div style="min-height: 88px; min-width: 88px">' + correct[i-1] + '</div>').text('').data( 'slot', correct[i-1] ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
-		$( '#'+correct[i-1]+'-drop' ).css( 'background-image', 'url('+source[i-1]+') ' );
+		$( '#'+correct[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+droppables[i-1]+') ' );
 		$( '#'+correct[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
 		$( '#'+correct[i-1]+'-drop' ).css( 'background-size', 'contain' );
 	  }
@@ -61,7 +61,7 @@ function init(arr1, arr2, arr3, source) {
 		// If all the cards have been placed correctly then display a message
 		// and reset the cards for another go
 
-		if ( correctCards == arr1.length ) {
+		if ( correctCards == draggables.length ) {
 			$('#btn').click();
 		}
 
