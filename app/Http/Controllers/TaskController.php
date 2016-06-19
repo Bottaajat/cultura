@@ -64,7 +64,7 @@ class TaskController extends Controller
 			}
 
 			if($task_->type=='Täyttö') {
-				$text = $task_->filling->value('text');
+				$text = $task_->filling->text;
 				return view('task.show', array('task' => $task_, 'text' => $text ));
 			}
       } else return view('errors.404');
@@ -82,11 +82,12 @@ class TaskController extends Controller
 		$task->name = $request->input('name');
 		$task->type = $request->input('task_type');
 		$task->exercise_id = $request->input('exercise_id');
+		$task->assignment = $request->input('assignment');
 		$task->exercise()->associate($exercise_id);
 		$task->save();
 		$task_id = $task->id;
-		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering_words($request, $task_id);
-		if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->store_ordering_images($request, $task_id);
+		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering_words($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
+		if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->store_ordering_images($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
     }
@@ -124,15 +125,19 @@ class TaskController extends Controller
 		$destinationPath = public_path() . "/img/";
 		$count = 0;
 		foreach ($request->file('droppable') as $droppable) {
-			$droppables[$count] = $droppable;
 			$file = $droppable;
 			$extension = $file->getClientOriginalExtension();
 			
-			if($this->checkExtension($extension) == false) return false;
-	
-			$filename = rand(11111,99999).'.'.$extension;
-			$file->move($destinationPath, $filename);
-			$droppables[$count] = $filename;
+			$extensionOk = $this->checkExtension($extension);
+			if($extensionOk == true) {
+				$filename = rand(11111,99999).'.'.$extension;
+				$file->move($destinationPath, $filename);
+				$droppables[$count] = $filename;
+			}
+			else {
+				$droppables[$count] = 'no img';
+				//ILMOITUS VIRHEESTÄ
+			}
 			$count++;
 		}
 		$count = 0;
@@ -156,7 +161,7 @@ class TaskController extends Controller
 		for ($i = 0; $i < count($image); $i++ ) {
 			if($extension == $image[$i]) return true;
 		}
-		return back()->withErrors('Tarkista tiedostoformaatti');
+		return false;
 	}
 	
 	public function store_filling(Request $request, $task_id)

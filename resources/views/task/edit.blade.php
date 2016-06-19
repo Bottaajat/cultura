@@ -17,7 +17,8 @@
         {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}
         {!! Form::select('task_id', $exercise_list, null, ['id' => 'task_id', 'class' => 'form-control']) !!}
 		{!! Form::select('task_type', $type_list, null, ['id' => 'task_type', 'class' => 'form-control']) !!}
-      </div>
+		 {!! Form::textarea('assignment', null, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control']) !!}
+	 </div>
 	  
 	  {{Html::script('/js/task.create.js')}}
 

@@ -17,6 +17,7 @@
 <?php
 
 	//echo $text;
+	//echo $task;
 	echo '<script>fill("'.$text.'")</script>';
 	//echo '<script>test()</script>';
 	
