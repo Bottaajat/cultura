@@ -106,12 +106,14 @@ function Crossword() {
 	var words = 0;
 	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'new_word' ).appendTo( '#input' );
 	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del_word' ).appendTo( '#input' );
-	$('<input type="text" disabled/>').attr( 'id', 'vertical' ).appendTo( '#preview' );
+	$('<input type="text" name="vertical" readonly/>').attr( 'id', 'vertical' ).appendTo( '#preview' );
+	$('<input type="text" name="vertical_clue" required/>').attr( 'id', 'vertical_clue' ).appendTo( '#preview' );
 	
 	$("#new_word").on( 'click', function() {
 		var word_add = $('<div id="word-'+words+'" class="word">');
 		$(word_add).append('<input type="text" class="words" name="words[]"  id="words-'+words+'" placeholder="sana" required/>');
-		$(word_add).append('<input type="number" class="middle" name="middle[]"  id="middle-'+words+'" min="1" max="1" value="1" required/>');
+		$(word_add).append('<input type="number" class="middles" name="middles[]"  id="middles-'+words+'" min="1" max="1" value="1" required/>');
+		$(word_add).append('<input type="text" class="clues" name="clues[]"  id="clues-'+words+'" placeholder="vihje" required/>');
 		$(word_add).append('</div>');
 		$("#input").append(word_add);
 		words++;
@@ -131,12 +133,12 @@ function Crossword() {
 	$(".words").on( 'change', function () {
 		var id = this.id;
 		id = id.split('-');
-		$('#middle-'+id[1]).attr('max', $(this).val().length);
+		$('#middles-'+id[1]).attr('max', $(this).val().length);
 	});
 	
-	$(".middle").on( 'change', function () {
+	$(".middles").on( 'change', function () {
 		var middle = '';
-		$('.middle').each(function(i, obj) {
+		$('.middles').each(function(i, obj) {
 			var word = '';
 			var letter ='';
 			if ($('#words-'+i).val().length != 0) {

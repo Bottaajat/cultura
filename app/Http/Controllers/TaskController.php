@@ -59,11 +59,11 @@ class TaskController extends Controller
 				return view('task.show', $this->orderingData($task));
 			} elseif($task->type=='Monivalinta') {
 				return view('task.show', array('task' => $task));
-			} elseif($task_->type=='Täyttö') {
+			} elseif($task->type=='Täyttö') {
 				$text = $task->filling->text;
 				return view('task.show', array('task' => $task, 'text' => $text ));
 			} elseif($task->type=='Sanaristikko') {
-				return view('task.show', $this->crosswordData($data));
+				return view('task.show', $this->crosswordData($task));
 			} else {
 				return view('errors.404');
 			}
@@ -193,7 +193,38 @@ class TaskController extends Controller
 	
 	public function store_crossword(Request $request, $task_id)
     {
-		
+		$count = 0;
+		foreach ($request->input('words') as $word) {
+			$words[$count] = $word;
+			$orientations[$count] = 'horizontal';
+			$count++;
+		}
+		$words[$count] = $request->input('vertical');
+		$orientations[$count] = 'vertical';
+		$count = 0;
+		foreach ($request->input('clues') as $clue) {
+			$clues[$count] = $clue;
+			$count++;
+		}
+		$clues[$count] = $request->input('vertical_clue');
+		$count = 0;
+		foreach ($request->input('middles') as $middle) {
+			$x =  1 - $middle;
+			$start = $x.'.'.$count;
+			$positions[$count] = $start;
+			$count++;
+		}
+		$positions[$count] = '0.0';
+		for ($i = 0; $i <= $count; $i++) {
+			$crossword = new crossword;
+			$crossword->answer = $words[$i];
+			$crossword->clue = $clues[$i];
+			$crossword->position = $positions[$i];
+			$crossword->orientation = $orientations[$i];
+			$crossword->task_id = $task_id;
+			$crossword->task()->associate($task_id);
+			$crossword->save();
+		}
     }
 
 	public function store_filling(Request $request, $task_id)
