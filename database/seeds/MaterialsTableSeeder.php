@@ -79,7 +79,7 @@ class MaterialsTableSeeder extends Seeder
             ['label' => 'И и',
              'type' => 'sound',
              'contents' => 'i',
-             'src' => 'i.mp3',
+             'src' => '/audio/i.mp3',
              'exercise_id' => '1']
         ]);
         DB::table('materials')->insert([
