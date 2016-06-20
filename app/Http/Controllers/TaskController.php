@@ -40,9 +40,8 @@ class TaskController extends Controller
 		$droppables = array_pluck($task->orderings, 'droppable');
 		$draggables = array_pluck($task->orderings, 'draggable');
 		$showables = array_pluck($task->orderings, 'showable');
-		$srcs = array_pluck($task->exercise->materials, 'src');
 		return ['task' => $task, 'draggables' => $draggables,
-		        'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs];
+		        'droppables' => $droppables,'showables' => $showables];
 	}
 
 	private function crosswordData($task) {
@@ -71,35 +70,6 @@ class TaskController extends Controller
 		} else {
 			return view('errors.404');
 		}
-	}
-
-    public function showActual($topic, $exercise, $task) {
-		if($task_ = Task::where('name', $task)->first()) {
-			if($task_->type=="Sanojen yhdistäminen" || $task_->type=="Kuvien yhdistäminen") {
-				$droppables = array_pluck($task_->orderings, 'droppable');
-				$draggables = array_pluck($task_->orderings, 'draggable');
-				$showables = array_pluck($task_->orderings, 'showable');
-				$srcs = array_pluck($task_->exercise->materials, 'src');
-				return view('task.show', array('task' => $task_, 'draggables' => $draggables, 'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs));
-			}
-
-			if($task_->type=='Monivalinta') {
-				return view('task.show', array('task' => $task_));
-			}
-
-			if($task_->type=='Sanaristikko') {
-				$answers = array_pluck($task_->crosswords, 'answer');
-				$clues = array_pluck($task_->crosswords, 'clue');
-				$positions = array_pluck($task_->crosswords, 'position');
-				$orientations = array_pluck($task_->crosswords, 'orientation');
-				return view('task.show', array('task' => $task_, 'answers' => $answers, 'clues' => $clues, 'positions' => $positions, 'orientations' => $orientations));
-			}
-
-			if($task_->type=='Täyttö') {
-				$text = $task_->filling->text;
-				return view('task.show', array('task' => $task_, 'text' => $text ));
-			}
-      } else return view('errors.404');
 	}
 
 	public function store_crossword(Request $request)
