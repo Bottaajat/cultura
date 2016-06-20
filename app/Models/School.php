@@ -8,7 +8,7 @@ class School extends Model
 {
 
   protected $fillable = [
-        'name'
+        'name', 'src'
   ];
 
 	public function users()
@@ -19,9 +19,9 @@ class School extends Model
   public function exercise() {
     return $this->hasMany('App\Models\Exercise');
   }
-  
+
   public function video() {
     return $this->hasMany('App\Models\Video');
   }
-  
+
 }
