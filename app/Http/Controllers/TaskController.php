@@ -72,11 +72,6 @@ class TaskController extends Controller
       } else return view('errors.404');
 	}
 	
-	public function store_crossword(Request $request)
-    {
-      
-    }
-	
 	public function store(Request $request)
     {
 		$exercise_id = $request->input('exercise_id');
@@ -91,6 +86,7 @@ class TaskController extends Controller
 		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering_words($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
 		if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->store_ordering_images($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
 		if ($request->input('task_type') == 'Monivalinta') $this->store_multipleChoice($request, $task_id);
+		if ($request->input('task_type') == 'Sanaristikko') $this->store_crossword($request, $task_id);
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
     }
@@ -195,6 +191,11 @@ class TaskController extends Controller
 		}
 	}
 	
+	public function store_crossword(Request $request, $task_id)
+    {
+		
+    }
+	
 	public function store_filling(Request $request, $task_id)
     {
 		$filling = new Filling;
@@ -213,9 +214,9 @@ class TaskController extends Controller
         $task = Task::find($id);
 
         if(!Auth::user()->is_admin && $task->exercise->school == NULL)
-          return back()->withErrors('Et voi poistaa tätä harjoitusta!');
+          return back()->withErrors('Et voi poistaa tätä tehtävää!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $task->exercise->school->id)
-          return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
+          return back()->withErrors('Et voi poistaa toisen koulun tehtäviä!');
 		if($task->type == 'Sanojen yhdistäminen') {
 			$orderings = $task->orderings;
 			foreach($orderings as $ordering) {
