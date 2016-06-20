@@ -35,14 +35,44 @@ class TaskController extends Controller
 		}
 		return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
 	}
-	
-	public function show($task_id) {
-		$task = Task::find($task_id);
-		//$exercise = Exercise::where('task_id', $task->id)
-		//$topic = Topic::where('exercise_id', $exercise->id)
-		return redirect($task->exercise->topic->name . "/" . $task->exercise->name . "/" . $task->name);
+
+	private function orderingData($task) {
+		$droppables = array_pluck($task->orderings, 'droppable');
+		$draggables = array_pluck($task->orderings, 'draggable');
+		$showables = array_pluck($task->orderings, 'showable');
+		$srcs = array_pluck($task->exercise->materials, 'src');
+		return ['task' => $task, 'draggables' => $draggables,
+		        'droppables' => $droppables,'showables' => $showables, 'srcs' => $srcs];
 	}
-	
+
+	private function crosswordData($task) {
+		$answers = array_pluck($task->crosswords, 'answer');
+		$clues = array_pluck($task->crosswords, 'clue');
+		$positions = array_pluck($task->crosswords, 'position');
+		$orientations = array_pluck($task->crosswords, 'orientation');
+		return ['task' => $task, 'answers' => $answers, 'clues' => $clues,
+		        'positions' => $positions, 'orientations' => $orientations];
+	}
+
+	public function show($id) {
+		if($task = Task::findOrFail($id)) {
+			if($task->type=="Sanojen yhdistäminen" || $task->type=="Kuvien yhdistäminen") {
+				return view('task.show', $this->orderingData($task));
+			} elseif($task->type=='Monivalinta') {
+				return view('task.show', array('task' => $task));
+			} elseif($task_->type=='Täyttö') {
+				$text = $task->filling->text;
+				return view('task.show', array('task' => $task, 'text' => $text ));
+			} elseif($task->type=='Sanaristikko') {
+				return view('task.show', $this->crosswordData($data));
+			} else {
+				return view('errors.404');
+			}
+		} else {
+			return view('errors.404');
+		}
+	}
+
     public function showActual($topic, $exercise, $task) {
 		if($task_ = Task::where('name', $task)->first()) {
 			if($task_->type=="Sanojen yhdistäminen" || $task_->type=="Kuvien yhdistäminen") {
@@ -71,12 +101,12 @@ class TaskController extends Controller
 			}
       } else return view('errors.404');
 	}
-	
+
 	public function store_crossword(Request $request)
     {
-      
+
     }
-	
+
 	public function store(Request $request)
     {
 		$exercise_id = $request->input('exercise_id');
@@ -94,7 +124,7 @@ class TaskController extends Controller
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
     }
-	
+
 	public function store_ordering_words(Request $request, $task_id)
     {
 		$count = 0;
@@ -122,7 +152,7 @@ class TaskController extends Controller
 			$ordering->save();
 		}
     }
-	
+
 	public function store_ordering_images(Request $request, $task_id)
     {
 		$destinationPath = public_path() . "/img/";
@@ -130,7 +160,7 @@ class TaskController extends Controller
 		foreach ($request->file('droppable') as $droppable) {
 			$file = $droppable;
 			$extension = $file->getClientOriginalExtension();
-			
+
 			$extensionOk = $this->checkExtension($extension);
 			if($extensionOk == true) {
 				$filename = rand(11111,99999).'.'.$extension;
@@ -158,7 +188,7 @@ class TaskController extends Controller
 			$ordering->save();
 		}
     }
-	
+
 	private function checkExtension($extension) {
 		$image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
 		for ($i = 0; $i < count($image); $i++ ) {
@@ -166,7 +196,7 @@ class TaskController extends Controller
 		}
 		return false;
 	}
-	
+
 	public function store_multipleChoice(Request $request, $task_id)
 	{
 		$count = 0;
@@ -194,7 +224,7 @@ class TaskController extends Controller
 			$multipleChoice->save();
 		}
 	}
-	
+
 	public function store_filling(Request $request, $task_id)
     {
 		$filling = new Filling;
@@ -203,12 +233,12 @@ class TaskController extends Controller
 		$filling->task()->associate($task_id);
 		$filling->save();
     }
-	
+
 	public function update(Request $request, $id)
     {
 		return back()->with('success', 'Päivitys onnistui!');
     }
-	
+
 	public function destroy($id) {
         $task = Task::find($id);
 

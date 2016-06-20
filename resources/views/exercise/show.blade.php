@@ -19,7 +19,7 @@
     <div class="panel-heading"  data-toggle="collapse" data-target='#collapseExer'>
       <h4 class="panel-title">
         <div id="menu-2-toggle">
-          Tehtävät 
+          Tehtävät
           <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
         </div>
       </h4>
@@ -27,7 +27,7 @@
     <div id="collapseExer" class="panel-collapse collapse in">
       <div class="list-group">
         @foreach($exercise->tasks as $task)
-        <a href="{{URL::to($exercise->topic->name.'/'.$exercise->name.'/'.$task->name)}}" class="list-group-item"> {{ $task->name }} </a>
+        <a href="{!! action('TaskController@show', ['id' => $task->id]) !!}" class="list-group-item"> {{ $task->name }} </a>
         @endforeach
       </div>
     </div>
