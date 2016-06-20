@@ -55,4 +55,11 @@ class SchoolController extends Controller
     return back()->with('success', 'Käyttäjä ' . $user->name . ' lisätty koulun ' . $school->name . ' jäseneksi.');
   }
 
+  public function addLogo(Request $request, $id) {
+    if($request->hasFile('file')) {
+      
+    }
+    return back()->withError('Tapahtui virhe!');
+  }
+
 }

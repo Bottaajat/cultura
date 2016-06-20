@@ -48,4 +48,10 @@ class UserController extends Controller
       return back()->with('success', 'Käyttäjä poistettu!');
   }
 
+  public function addPic(Request $request, $id) {
+    if($request->hasFile('file')) {
+
+    }
+    return back()->withError('Tapahtui virhe!');
+  }
 }

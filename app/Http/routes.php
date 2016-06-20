@@ -27,12 +27,13 @@ Route::get('/','TopicController@index');
 /* PUT/PATCH | /resource/{id} 	   | update  | resource.update  */
 /* DELETE 	 | /resource/{id} 	   | destroy | resource.destroy */
 
-
+Route::post('school/{school}/apply', 'SchoolController@apply');
+Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
-Route::post('school/{school}/apply', 'SchoolController@apply');
-
-Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
+// Logo and user pic
+Route::post('school/{school}/logo', 'SchoolController@addLogo');
+Route::post('user/{user}/profilepic', 'UserController@addPic');
 
 Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
 
@@ -54,5 +55,3 @@ Route::resource('task', 'TaskController',
 Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
 
 Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');
-
-

@@ -42,7 +42,7 @@ class MaterialController extends Controller
     }
     else
       $materials = Material::paginate(10);
-      
+
     return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
   }
 
@@ -89,6 +89,7 @@ class MaterialController extends Controller
 
     if(!$this->handleFiles($request, $material))
       return back()->withErrors('Vain kuva ja äänitiedostot ovat sallittuja!');
+
 
     $material->save();
     return back()->with('success', 'Materiaali lisätty!');
