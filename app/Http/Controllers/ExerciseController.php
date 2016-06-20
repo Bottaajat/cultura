@@ -31,15 +31,7 @@ class ExerciseController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show($id) {
-    $exercise = Exercise::find($id);
-    return redirect($exercise->topic->name . "/" . $exercise->name);
-  }
-
-  public function showActual($topic, $name) {
-        $exercise = Exercise::where('name', $name)->first();
-        if($exercise != NULL && $exercise->topic->name == $topic)
-            return view('exercise.show', array('exercise' => $exercise));
-        return view('errors.404');
+    return view('exercise.show', ['exercise' => Exercise::findOrFail($id)]);
   }
 
     /**

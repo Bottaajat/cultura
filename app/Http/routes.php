@@ -31,17 +31,17 @@ Route::post('school/{school}/apply', 'SchoolController@apply');
 Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
+Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
+
+
 // Logo and user pic
 Route::post('school/{school}/addLogo', 'SchoolController@addLogo');
 Route::post('school/{school}/delLogo', 'SchoolController@delLogo');
 Route::post('user/{user}/addPic', 'UserController@addPic');
 Route::post('user/{user}/delPic', 'UserController@delPic');
 
-Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
 
-Route::resource('video', 'VideoController',
-	array('only' => array('index', 'store', 'update', 'destroy', 'show')));
-
+Route::resource('video', 'VideoController', ['except' => ['create', 'edit']]);
 
 Route::resource('exercise', 'ExerciseController', ['except' => ['edit', 'create']]);
 
@@ -51,10 +51,4 @@ Route::resource('material', 'MaterialController', ['except' => ['edit', 'create'
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 Route::resource('taskglossary', 'TaskGlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
-Route::resource('task', 'TaskController',
-	array('only'=> array('index', 'show', 'store', 'update', 'destroy')));
-
-//Custom Routes
-Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
-
-Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');
+Route::resource('task', 'TaskController', ['except' => ['edit', 'create']]);
