@@ -2,7 +2,7 @@
   <span class="glyphicon glyphicon-remove"></span>
 </button>
 
-<div class="modal fade" id="delModal{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="delModal{{$task->id}}Label">
+<div class="modal fade" id="delModal{{$task->id}}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
     

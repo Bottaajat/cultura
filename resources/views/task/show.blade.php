@@ -11,10 +11,15 @@
     <div class="panel-title">{{$task->type}}</div>
   </div>
   
-  
-  <div class="videocontent">
-    @include('video.show')
-  </div>
+  @if (isset($task) && $task->video)
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe 
+        width="100%" 
+        src="https://www.youtube.com/embed/{{ $task->video->emb_src }}"
+        frameborder="0" allowfullscreen="true">
+     </iframe>
+   </div>
+  @endif
   
   @if($task->glossary)
     <div class="panel-body" id="glossary">

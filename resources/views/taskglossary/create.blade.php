@@ -1,18 +1,18 @@
-<button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModalGlossary{{$material->id}}">
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModalGlossary{!!$task->id!!}">
   <span class="glyphicon glyphicon-plus"></span>
   Luo
 </button>
 
-<div class="modal fade" id="createModalGlossary{{$material->id}}" tabindex="-1" role="dialog" aria-labelledby="#createModalGlossary{{$material->id}}label">
+<div class="modal fade" id="createModalGlossary{!!$task->id!!}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h4 class="modal-title" id="createModalGlossary{{$material->id}}label">Luo materiaalille "{{$material->label}}" sanasto</h4>
+        <h4 class="modal-title" id="createModalGlossary{!!$task->id!!}label">Luo tehtävälle "{!!$task->name!!}" sanasto</h4>
       </div>
 
-      {{Form::open(array('action'=>array('GlossaryController@store', $material->id), 'method'=>'POST'))}}
+      {!!Form::open(array('action'=>array('TaskGlossaryController@store', $task->id), 'method'=>'POST'))!!}
       <div class="modal-body">
         <p> Erottele sanat omille riveille samassa järjestyksessä. </p>
         <table>
@@ -30,15 +30,14 @@
             </tbody>
         </table>
       </div>
-
-      {{ Form::hidden('material_id', $material->id) }}
-
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
         <button type="submit" class="btn btn-primary"> OK </button>
-        {{Form::close()}}
       </div>
+      {!! Form::hidden('task_id', $task->id) !!}
+      {!! Form::close() !!}
+      
     </div>
-
   </div>
 </div>

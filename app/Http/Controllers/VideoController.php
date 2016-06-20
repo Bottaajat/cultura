@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Models\Video;
 use App\Models\User;
 use App\Models\School;
+use App\Models\Task;
 
 use Auth, Hash;
 
@@ -62,6 +63,13 @@ class VideoController extends Controller
 
   public function destroy($id) {
     $video = Video::find($id);
+    $tasks = $video->tasks;
+
+    foreach($tasks as $task) {
+        $task->video()->dissociate();
+        $task->save();
+    }
+    
     $this->deleteThumbIfLast($video);
     $video->delete();
     return back()->with('success', 'Video poistettu!');

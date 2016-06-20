@@ -84,9 +84,8 @@ class TasksTableSeeder extends Seeder
             ['name' => 'Videotehtävä (Tapaaminen)',
             'type' => 'Monivalinta',
             'exercise_id' => '3',
-            'video_id' => '6']
+            'video_id' => '3']
             ]);
-
-
+            
     }
 }

@@ -14,6 +14,8 @@ use App\Models\Exercise;
 
 use App\Models\Ordering;
 
+use App\Models\MultipleChoice;
+
 use App\Models\Crossword;
 
 use App\Models\Filling;
@@ -88,6 +90,7 @@ class TaskController extends Controller
 		$task_id = $task->id;
 		if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->store_ordering_words($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
 		if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->store_ordering_images($request, $task_id);	//DUPLIKAATIT DRAGGABLE JA DROPPABLEISSA AIHEUTTTAVAT ONGELMIA
+		if ($request->input('task_type') == 'Monivalinta') $this->store_multipleChoice($request, $task_id);
 		if ($request->input('task_type') == 'Täyttö') $this->store_filling($request, $task_id);
 		return back()->with('success', 'Tehtävä lisätty');
     }
@@ -162,6 +165,34 @@ class TaskController extends Controller
 			if($extension == $image[$i]) return true;
 		}
 		return false;
+	}
+	
+	public function store_multipleChoice(Request $request, $task_id)
+	{
+		$count = 0;
+		foreach ($request->input('questions') as $question) {
+			$questions[$count] = $question;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('choices') as $choice) {
+			$choices[$count] = $choice;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('solutions') as $solution) {
+			$solutions[$count] = $solution;
+			$count++;
+		}
+		for ($i = 0; $i < $count; $i++) {
+			$multipleChoice = new multipleChoice;
+			$multipleChoice->question = $questions[$i];
+			$multipleChoice->choices = $choices[$i];
+			$multipleChoice->solution = $solutions[$i];
+			$multipleChoice->task_id = $task_id;
+			$multipleChoice->task()->associate($task_id);
+			$multipleChoice->save();
+		}
 	}
 	
 	public function store_filling(Request $request, $task_id)

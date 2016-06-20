@@ -6,7 +6,7 @@
 
     @foreach($task->multiplechoises as $mc)
     <div name="question" class="form-group">
-        <label>{!! $mc->id . ". " . $mc->question !!}</label>
+        <label>{!! $mc->question !!}</label>
 
         @foreach($mc->randomOrderChoices() as $key => $choice)
         <div class="question">

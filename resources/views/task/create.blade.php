@@ -5,7 +5,7 @@
 
 {{Html::style('/css/task.create.css')}}
 
-<div id="createTaskModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createTackLabel">
+<div id="createTaskModal" class="modal fade" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
 

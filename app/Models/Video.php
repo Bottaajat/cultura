@@ -14,12 +14,13 @@ class Video extends Model
     protected $table = 'videos';
     protected $fillable = [ 'title','emb_src','desc','thumb' ];
 
-    public function task()
+    public function tasks()
     {
-      return $this->hasOne('App\Models\Task');
+      return $this->hasMany('App\Models\Task');
     }
     
     public function school() {
       return $this->belongsTo('App\Models\School');
     }
+    
 }
