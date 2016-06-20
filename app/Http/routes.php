@@ -55,6 +55,4 @@ Route::resource('task', 'TaskController',
 	array('only'=> array('index', 'show', 'store', 'update', 'destroy')));
 
 //Custom Routes
-Route::get('{topic}/{exercise}', 'ExerciseController@showActual');
-
 Route::get('{topic}/{exercise}/{task}', 'TaskController@showActual');
