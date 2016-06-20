@@ -2,25 +2,25 @@ $(window).load(function(){
 	var type = ($( '#task_type option:selected' ).text());
 	$( '#input' ).empty();
 	$( '#preview' ).empty();
-	if (type == 'Sanojen yhdistäminen') yhdistaminen_sanat();
-	if (type == 'Kuvien yhdistäminen') yhdistaminen_kuvat();
-	if (type == 'Monivalinta') Monivalinta();
-	if (type == 'Sanaristikko') Sanaristikko();
-	if (type == 'Täyttö') Taytto();
+	if (type == 'Sanojen yhdistäminen') Ordering_words();
+	if (type == 'Kuvien yhdistäminen') Ordering_images();
+	if (type == 'Monivalinta') MultipleChoice();
+	if (type == 'Sanaristikko') Crossword();
+	if (type == 'Täyttö') Filling();
 })
 
 $('#task_type').on( 'change', function() {
 	var type = ($( '#task_type option:selected' ).text());
 	$( '#input' ).empty();
 	$( '#preview' ).empty();
-	if (type == 'Sanojen yhdistäminen') yhdistaminen_sanat();
-	if (type == 'Kuvien yhdistäminen') yhdistaminen_kuvat();
-	if (type == 'Monivalinta') Monivalinta();
-	if (type == 'Sanaristikko') Sanaristikko();
-	if (type == 'Täyttö') Taytto();
+	if (type == 'Sanojen yhdistäminen') Ordering_words();
+	if (type == 'Kuvien yhdistäminen') Ordering_images();
+	if (type == 'Monivalinta') MultipleChoice();
+	if (type == 'Sanaristikko') Crossword();
+	if (type == 'Täyttö') Filling();
 });
 
-function yhdistaminen_sanat() {
+function Ordering_words() {
 	var words = 0;
 	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'new_pair' ).appendTo( '#input' );
 	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del_pair' ).appendTo( '#input' );
@@ -55,7 +55,7 @@ function yhdistaminen_sanat() {
 	});
 }
 
-function yhdistaminen_kuvat() {
+function Ordering_images() {
 	var words = 0;
 	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'new_pair' ).appendTo( '#input' );
 	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del_pair' ).appendTo( '#input' );
@@ -89,11 +89,31 @@ function yhdistaminen_kuvat() {
 	
 }
 
-function Monivalinta() {
+function MultipleChoice() {
+	var questions = 0;
+	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'new_question' ).appendTo( '#input' );
+	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del_question' ).appendTo( '#input' );
+	//$('<div></div>').attr( 'id', questions ).appendTo( '#input' );
 	
+	$("#new_question").on( 'click', function() {
+		var question_add = $('<div id="question-'+questions+'" class="question">');
+		$(question_add).append('<textarea class="column" name="questions[]" rows="4" id="questions-'+questions+'" placeholder="kysymys" required />');
+		$(question_add).append('<textarea class="column" name="choices[]" rows="4" id="choices-'+questions+'" placeholder="vaihtoehdot" required />');
+		$(question_add).append('<textarea class="column" name="solutions[]" rows="4" id="solutions-'+questions+'" placeholder="vastaukset" required />');
+		$(question_add).append('</div>');
+		$("#input").append(question_add);
+		questions++;
+	});
+	
+	$("#del_question").on( 'click', function() {
+		if (questions > 1) {
+			$( '#question-'+(questions-1) ).remove();
+			questions--;
+		}
+	});
 }
 
-function Sanaristikko() {
+function Crossword() {
 	$('<div><input type="button" value="Lisää sana"/></div>').attr( 'id', 'new_word' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'words' ).appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );
@@ -102,7 +122,7 @@ function Sanaristikko() {
 	});
 }
 
-function Taytto() {
-	$('<textarea name="text" id="text" rows="8" required/textarea>').appendTo( '#input' );
+function Filling() {
+	$('<textarea name="text" id="text" rows="8" required />').appendTo( '#input' );
 	$('<div></div>').attr( 'id', 'box' ).appendTo( '#preview' );
 }

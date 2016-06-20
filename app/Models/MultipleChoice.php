@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class MultipleChoice extends Model {
   protected $fillable = [ 'question', 'choices', 'solution' ];
 	public function task() {
-		return $this->belongsTo('App\Task');
+		return $this->belongsTo('App\Models\Task');
 	}
 
 	// Returns shuffled array of choices
