@@ -9,10 +9,13 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\School;
 
-use Auth, Hash;
+use File, Auth, Hash;
 
 class UserController extends Controller
 {
+  // SALLITUT KUVA TIEDOSTO FORMAATIT
+  protected $image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
+
   public function __construct() {
     $this->middleware('auth', ['except' => ['index','show']]);
   }
@@ -29,6 +32,8 @@ class UserController extends Controller
   }
 
   public function update(Request $request, $id) {
+    if(!Auth::user()->is_admin && !Auth::user()->id == $id)
+      return back()->withErrors('Et voi muokata toisen profiilia!');
     $user = User::find($id);
     $user->firstname = $request->input('firstname');
     $user->lastname = $request->input('lastname');
@@ -40,7 +45,12 @@ class UserController extends Controller
   }
 
   public function destroy($id) {
+    if(!Auth::user()->is_admin && !Auth::user()->id == $id)
+      return back()->withErrors('Et voi poistaa toisen profiilia!');
     $user = User::find($id);
+    if($user->src != NULL) {
+      File::delete(public_path() . $user->src);
+    }
     $user->delete();
     if(Auth::user()->id == $id)
       return redirect('logout')->with('success', 'Käyttäjä poistettu!');
@@ -49,9 +59,29 @@ class UserController extends Controller
   }
 
   public function addPic(Request $request, $id) {
+    if(!Auth::user()->is_admin && !Auth::user()->id == $id)
+      return back()->withErrors('Et voi vaihtaa toisen profiilikuvaa!');
     if($request->hasFile('file')) {
-
+      $extension = $request->file('file')->getClientOriginalExtension();
+      if(allowedExtension($extension, allowedImageExtensions())) {
+        $user = User::find($id);
+        handleFile($request, $user, public_path() . "/img/users");
+        $user->save();
+        return back()->with('success', 'Kuvan lisäys onnistui!');
+      } else {
+        return back()->withErrors('Tiedostoformaatti ei ole sallittu.');
+      }
     }
-    return back()->withError('Tapahtui virhe!');
+    return back()->withErrors('Tiedosto puuttuu.');
+  }
+
+  public function delPic($id) {
+    if(!Auth::user()->is_admin && !Auth::user()->id == $id)
+      return back()->withErrors('Et voi poistaa toisen profiilikuvaa!');
+    $user = User::find($id);
+    File::delete(public_path() . $user->src);
+    $user->src = NULL;
+    $user->save();
+    return back()->with('success', 'Profiilikuva poistettu.');
   }
 }

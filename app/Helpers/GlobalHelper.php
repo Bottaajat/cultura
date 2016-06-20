@@ -44,8 +44,24 @@ function handleFile(Illuminate\Http\Request $request, Illuminate\Database\Eloque
     $file->move($destination, $filename);
 
     //napataan public kansion loppu talteen esim /img/kuva.jpg
-    $resource->src = "/" . basename($destination) . "/" . $filename;
+    $resource->src = str_replace(public_path(), "", $destination) . "/" . $filename;
     return true;
   }
   return false;
+}
+
+function allowedExtension ($extension, $array) {
+  return in_array($extension, $array);
+}
+
+// SALLITUT AUDIO TIEDOSTO FORMAATIT
+function allowedImageExtensions() {
+  return ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
+}
+
+// SALLITUT KUVA TIEDOSTO FORMAATIT
+function allowedAudioExtensions() {
+  return   ['3gp', 'aa', 'aac', 'aax', 'act', 'aiff', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
+            'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',
+            'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
 }

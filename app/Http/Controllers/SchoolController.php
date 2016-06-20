@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Models\School;
 
+use Auth, File;
+
 class SchoolController extends Controller
 {
   public function __construct() {
@@ -42,8 +44,11 @@ class SchoolController extends Controller
   }
 
   public function destroy($id) {
-    $School = School::find($id);
-    $School->delete();
+    $school = School::find($id);
+    if($school->src != NULL) {
+      File::delete(public_path() . $school->src);
+    }
+    $school->delete();
     return back()->with('success', 'Koulu poistettu!');
   }
 
@@ -56,10 +61,30 @@ class SchoolController extends Controller
   }
 
   public function addLogo(Request $request, $id) {
-    if($request->hasFile('file')) {
-      
-    }
-    return back()->withError('Tapahtui virhe!');
+    if(!Auth::user()->is_admin)
+      return back()->withErrors('Et voi lisätä koululle logoa.');
+      if($request->hasFile('file')) {
+        $extension = $request->file('file')->getClientOriginalExtension();
+        if(allowedExtension($extension, allowedImageExtensions())) {
+          $school = School::find($id);
+          handleFile($request, $school, public_path() . "/img/logos");
+          $school->save();
+          return back()->with('success', 'Kuvan lisäys onnistui!');
+        } else {
+          return back()->withErrors('Tiedostoformaatti ei ole sallittu.');
+        }
+      }
+      return back()->withErrors('Tiedosto puuttuu.');
+  }
+
+  public function delLogo($id) {
+    if(!Auth::user()->is_admin)
+      return back()->withErrors('Et voi poistaa koulun logoa!');
+    $school = School::find($id);
+    File::delete(public_path() . $school->src);
+    $school->src = NULL;
+    $school->save();
+    return back()->with('success', 'Profiilikuva poistettu.');
   }
 
 }

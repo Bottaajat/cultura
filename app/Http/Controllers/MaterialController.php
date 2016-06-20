@@ -18,14 +18,6 @@ class MaterialController extends Controller
     $this->middleware('auth');
   }
 
-  // SALLITUT AUDIO TIEDOSTO FORMAATIT
-  protected $audio = ['3gp', 'aa', 'aac', 'aax', 'act', 'aiff', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
-            'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',
-            'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
-
-  // SALLITUT KUVA TIEDOSTO FORMAATIT
-  protected $image = ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
-
   public function index(Request $request) {
     $exercise_list = Exercise::lists('name', 'id');
     $search = $request->input('search');
@@ -46,26 +38,22 @@ class MaterialController extends Controller
     return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
   }
 
-
-  private function allowedExtension($extension, $array) {
-    return in_array($extension, $array);
-  }
-
-
   private function handleFiles(Request $request, $material) {
     if($request->hasFile('file')) {
       $extension = $request->file('file')->getClientOriginalExtension();
 
       if($material->type == "image") {
-        if(!$this->allowedExtension($extension, $this->image)) return false;
+        if(!allowedExtension($extension, allowedImageExtensions())) return false;
         else return handleFile($request, $material, public_path() . "/img/");
       } elseif ($material->type == "audio") {
-        if(!$this->allowedExtension($extension, $this->audio)) return false;
+        if(!allowedExtension($extension, allowedAudioExtensions())) return false;
         else return handleFile($request, $material, public_path() . "/audio/");
       } else {
         return false;
       }
-    } return false;
+    } elseif ($material->type == "text") {
+      return true;
+    }return false;
   }
 
   /**

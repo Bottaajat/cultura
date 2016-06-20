@@ -32,8 +32,10 @@ Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
 // Logo and user pic
-Route::post('school/{school}/logo', 'SchoolController@addLogo');
-Route::post('user/{user}/profilepic', 'UserController@addPic');
+Route::post('school/{school}/addLogo', 'SchoolController@addLogo');
+Route::post('school/{school}/delLogo', 'SchoolController@delLogo');
+Route::post('user/{user}/addPic', 'UserController@addPic');
+Route::post('user/{user}/delPic', 'UserController@delPic');
 
 Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);
 

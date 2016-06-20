@@ -17,14 +17,17 @@
  <div id="createbuttondiv">
   @include('school.edit')
  </div>
+ <div id="logobuttondiv">
+  @include('school.logo')
+ </div>
  @endif
 
 
 
 <div class="row">
  <div class="col-xs-3 col-md-3">
-    @if($school->logo)
-      <img class="thumbnail" src="{!! $school->logo !!}">
+    @if($school->src)
+      <img class="thumbnail" src="{!! $school->src !!}" height="180px" width="180px">
     @else
       <img class="thumbnail" src="/img/defaultuser.png" height="180px" width="180px">
     @endif

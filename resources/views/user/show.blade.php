@@ -9,14 +9,18 @@
 <div id="createbuttondiv">
   @include('user.edit')
 </div>
+
+<div id="picbuttondiv">
+  @include('user.pic')
+</div>
 @endif
 
 <div class="row">
   <div class="col-xs-6 col-md-6">
-    @if($user->image)
-      <img class="thumbnail" src="{!! $user()->image !!}">
+    @if($user->src)
+      <img class="thumbnail" src="{!! $user->src !!}" height="400px" width="375px">
     @else
-      <img class="thumbnail" src="/img/defaultuser.png">
+      <img class="thumbnail" src="/img/defaultuser.png" height="400px" width="375px">
     @endif
   </div>
   <div class="col-xs-6 col-md-6">
