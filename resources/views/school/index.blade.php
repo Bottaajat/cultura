@@ -6,7 +6,7 @@
 </div>
 
 @if(Auth::user() && Auth::user()->is_admin)
-<div id="createbuttondiv">
+<div class="createbuttondiv">
   @include('school.create')
 </div>
 @endif

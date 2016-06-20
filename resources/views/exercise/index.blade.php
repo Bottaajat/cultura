@@ -6,7 +6,7 @@
 </div>
 
 @if(Auth::check())
-  <div id="createbuttondiv">
+  <div class="createbuttondiv">
     @include('exercise.create')
   </div>
 @endif

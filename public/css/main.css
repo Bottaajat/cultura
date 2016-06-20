@@ -37,6 +37,11 @@ body {
   min-width:350px;
 }
 
+.table tbody>tr>td.center-align {
+  text-align: center;
+  vertical-align:middle;
+}
+
 .paginationdiv {
   text-align:center;
   height:80px;

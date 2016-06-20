@@ -47,6 +47,7 @@ Route::get('search', 'MaterialController@index');
 Route::resource('material', 'MaterialController', ['except' => ['edit', 'create', 'show']]);
 
 Route::resource('glossary', 'GlossaryController', ['only'=> ['store', 'update', 'destroy']]);
+Route::resource('taskglossary', 'TaskGlossaryController', ['only'=> ['store', 'update', 'destroy']]);
 
 Route::resource('task', 'TaskController',
 	array('only'=> array('index', 'show', 'store', 'update', 'destroy')));
