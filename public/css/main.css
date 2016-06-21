@@ -48,11 +48,14 @@ body {
   min-width:350px;
 }
 
-
 .navbar-default .navbar-brand {
   font-family: "Lobster";
   font-size: 36px;
   color: #061a20;
+}
+
+#culturas-logo {
+  margin-top: 200px;
 }
 
 /* Wrapper for page content to push down footer */
