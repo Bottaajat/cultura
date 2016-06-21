@@ -7,26 +7,24 @@
 
 <div class="createbuttondiv">
   <div class="row">
-  <div class="col-xs-6 .col-sm-4">
-    {!! Form::open(array('action'=>array('MaterialController@index'), 'method'=>'get')) !!}
-    <div class="input-group">
-      {!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
-      <span class="input-group-btn">
-        {!! Form::submit('Hae', array('class' => 'btn btn-primary')) !!}
-      </span>
-    </div>
-    {!! Form::close() !!}
-  </div>
-    
     <div class="col-xs-6 .col-sm-4 pull-right">
       @include('material.create')
+    </div>
+
+    <div class="col-xs-4 .col-sm-4">
+      {!! Form::open(array('action'=>array('MaterialController@index'), 'method'=>'get')) !!}
+      <div class="input-group">
+        {!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
+        <span class="input-group-btn">
+          {!! Form::submit('Hae', array('class' => 'btn btn-primary')) !!}
+        </span>
+      </div>
+      {!! Form::close() !!}
     </div>
   </div>
 </div>
 
-<div class="paginationdiv">
-  @include('pagination.default', ['paginator' => $materials])
-</div>
+
   
 <table class="table table-bordered table-hover">
 
@@ -36,8 +34,8 @@
       <th>Nimi</th>
       <th>Harjoitus</th>
       <th>Tyyppi</th>
-      <th>Materiaali</th>
-      <th>Sanasto</th>
+      <th width="150px">Materiaali</th>
+      <th width="150px">Sanasto</th>
     </tr>
   </thead>
 
@@ -48,10 +46,10 @@
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
         <td>{!! $material->type !!}</td>
-        <td class="rowlink-skip">
+        <td class="rowlink-skip center-align">
           @include('material.edit')
         </td>
-        <td class="rowlink-skip">
+        <td class="rowlink-skip center-align">
           @if($material->glossary)
             @include('glossary.edit')
           @else
