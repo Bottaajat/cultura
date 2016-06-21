@@ -17,7 +17,7 @@
     </div>
     {!! Form::close() !!}
   </div>
-    
+
     <div class="col-xs-6 .col-sm-4 pull-right">
       @include('material.create')
     </div>
@@ -27,7 +27,7 @@
 <div class="paginationdiv">
   @include('pagination.default', ['paginator' => $materials])
 </div>
-  
+
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -47,7 +47,7 @@
         <td><a href="{!! action('ExerciseController@show', ['id' => $material->exercise->id]) !!}">{!! $material->id !!}</a></td>
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
-        <td>{!! $material->type !!}</td>
+        <td>{!! mb_ucfirst(trans('type.' . $material->type)) !!}</td>
         <td class="rowlink-skip">
           @include('material.edit')
         </td>
