@@ -19,7 +19,7 @@
         {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}
         {!! Form::select('exercise_id', $exercise_list, null, ['id' => 'exercise_id', 'class' => 'form-control']) !!}
 		{!! Form::select('task_type', $type_list, null, ['id' => 'task_type', 'class' => 'form-control']) !!}
-        {!! Form::textarea('assignment', null, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control']) !!}
+        {!! Form::textarea('assignment', null, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control', 'placeholder' => 'Tehtävänanto']) !!}
 	  </div>
 	  
 	  {{Html::script('/js/task.create.js')}}

@@ -14,13 +14,77 @@
       {!! Form::open(array('action'=> array('TaskController@update', $task->id), 'method'=>'put')) !!}
 
       <div class="modal-body">
-        {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}
-        {!! Form::select('task_id', $exercise_list, null, ['id' => 'task_id', 'class' => 'form-control']) !!}
-        {!! Form::select('task_type', $type_list, null, ['id' => 'task_type', 'class' => 'form-control']) !!}
-        {!! Form::textarea('assignment', null, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control']) !!}
+        {!! Form::text('name', $task->name, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}
+        {!! Form::select('task_id', $exercise_list, $task->exercise->id, ['id' => 'task_id', 'class' => 'form-control' ]) !!}
+        {!! Form::select('task_type', $type_list, $task->type, ['disabled', 'id' => 'task_type', 'class' => 'form-control']) !!}
+        {!! Form::textarea('assignment', $task->assignment, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control', 'placeholder' => 'Tehtävänanto']) !!}
       </div>
 
-      {{Html::script('/js/task.create.js')}}
+      {{Html::script('/js/task.edit.js')}}
+	  {{Html::style('/css/task.create.css')}}
+	  
+	  <div id="edit-{!! $task->id !!}-input" class="panel-body">
+        
+      </div>
+	  
+	  <div id="edit-{!! $task->id !!}-preview" class="panel-body">
+        
+      </div>
+	  
+	  <?php
+		
+		if ($task->type == 'Sanojen yhdistäminen') {
+			$i=0;
+			foreach ($task->orderings as $ordering) {
+				$draggables[$i] = $ordering->draggable;
+				$droppables[$i] = $ordering->droppable;
+				$showables[$i] = $ordering->showable;
+				$i++;
+			}
+			$draggables = '["'.str_replace(',', '","', implode(',', $draggables)).'"]';
+			$droppables = '["'.str_replace(',', '","', implode(',', $droppables)).'"]';
+			$showables = '["'.str_replace(',', '","', implode(',', $showables)).'"]';
+			echo '<script>Edit_OrderingWords('.$draggables.','.$droppables.','.$droppables.','.$task->id.')</script>';
+		}
+		if ($task->type == 'Kuvien yhdistäminen') {
+			$i=0;
+			foreach ($task->orderings as $ordering) {
+				$draggables[$i] = $ordering->draggable;
+				$droppables[$i] = $ordering->droppable;
+				$i++;
+			}
+			$draggables = '["'.str_replace(',', '","', implode(',', $draggables)).'"]';
+			$droppables = '["'.str_replace(',', '","', implode(',', $droppables)).'"]';
+			echo '<script>Edit_OrderingImages('.$draggables.','.$droppables.','.$task->id.')</script>';
+		} 
+		if ($task->type == 'Monivalinta') {
+			$i=0;
+			foreach ($task->multiplechoises as $multipleChoice) {
+				$questions[$i] = $multipleChoice->question;
+				$choices[$i] = $multipleChoice->choices;
+				$solutions[$i] = $multipleChoice->solution;
+				$i++;
+			}
+			$questions = '["'.str_replace(',', '","', implode(',', $questions)).'"]';
+			$choices = '["'.str_replace("\n",'###',str_replace(',', '","', implode(',', $choices))).'"]';
+			$solutions = '["'.str_replace("\n",'###',str_replace(',', '","', implode(',', $solutions))).'"]';
+			echo '<script>Edit_MultipleChoice('.$questions.','.$choices.','.$solutions.','.$task->id.')</script>';
+		}
+		if ($task->type == 'Sanaristikko') {
+			$i=0;
+			foreach ($task->crosswords as $crossword) {
+				$answers[$i] = $crossword->answer;
+				$clues[$i] = $crossword->clue;
+				$positions[$i] = $crossword->position;
+				$i++;
+			}
+			$answers = '["'.str_replace(',', '","', implode(',', $answers)).'"]';
+			$clues = '["'.str_replace(',', '","', implode(',', $clues)).'"]';
+			$positions = '["'.str_replace(',', '","', implode(',', $positions)).'"]';
+			echo '<script>Edit_Crossword('.$answers.','.$clues.','.$positions.','.$task->id.')</script>';
+		}
+		if ($task->type == 'Täyttö') echo '<script>Edit_Filling("'.$task->filling->text.'",'.$task->id.')</script>';
+	  ?>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
