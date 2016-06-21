@@ -7,11 +7,12 @@
 
 <div class="createbuttondiv">
   <div class="row">
+
     <div class="col-xs-6 .col-sm-4 pull-right">
       @include('material.create')
     </div>
 
-    <div class="col-xs-4 .col-sm-4">
+    <div class="col-xs-6 .col-sm-4">
       {!! Form::open(array('action'=>array('MaterialController@index'), 'method'=>'get')) !!}
       <div class="input-group">
         {!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
@@ -24,8 +25,6 @@
   </div>
 </div>
 
-
-  
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -45,8 +44,10 @@
         <td><a href="{!! action('ExerciseController@show', ['id' => $material->exercise->id]) !!}">{!! $material->id !!}</a></td>
         <td>{!! $material->label !!}</td>
         <td>{!! $material->exercise->name !!}</td>
-        <td>{!! $material->type !!}</td>
-        <td class="rowlink-skip center-align">
+
+        <td>{!! mb_ucfirst(trans('type.' . $material->type)) !!}</td>
+        <td class="rowlink-skip">
+
           @include('material.edit')
         </td>
         <td class="rowlink-skip center-align">

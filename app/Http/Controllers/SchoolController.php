@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\Models\School;
+use App\Models\User;
 
 use Auth, File;
 
@@ -14,7 +15,7 @@ class SchoolController extends Controller
 {
   public function __construct() {
     $this->middleware('auth', ['except' => ['index', 'show']]);
-    $this->middleware('school.crud', ['except' => ['index', 'show', 'apply']]);
+    $this->middleware('school.crud', ['except' => ['index', 'show', 'apply', 'accept']]);
   }
 
   public function index() {
@@ -24,7 +25,7 @@ class SchoolController extends Controller
   }
 
   public function show($id) {
-    return view('school.show', ['school' => School::findOrFail($id)]);
+    return view('school.show', ['school' => School::findOrFail($id), 'pending' => User::where('pending', $id)->get()]);
   }
 
   public function store(Request $request) {
@@ -52,12 +53,31 @@ class SchoolController extends Controller
     return back()->with('success', 'Koulu poistettu!');
   }
 
-  public function apply($id) {
-    return back()->with('success', 'Jäsenyyspyyntö merkitty!');
+  public function apply($schoolid, $userid) {
+    $user = User::findOrFail($userid);
+    if(Auth::user()->pending != NULL) return back()->withErrors('Edellinen jäsenpyyntösi on vielä käsittelemättä!');
+    if(Auth::user()->school != NULL) return back()->withErrors('Olet jo koulun ' . $user->school->name . ' jäsen!');
+
+    $school = School::findOrFail($schoolid);
+
+    $user->pending = $school->id;
+    $user->save();
+
+    return back()->with('success', $user->name() . ', jäsenyyspyyntösi on merkitty!');
   }
 
-  public function accept($school, $user) {
-    return back()->with('success', 'Käyttäjä ' . $user->name . ' lisätty koulun ' . $school->name . ' jäseneksi.');
+  public function accept($schoolid, $userid) {
+    $user = User::findOrFail($userid);
+    if(!Auth::user()->is_admin && Auth::user()->school->id != $schoolid)
+      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
+
+    $school = School::findOrFail($schoolid);
+
+    $user->pending = NULL;
+    $user->school()->associate($school->id);
+    $user->save();
+
+    return back()->with('success', 'Käyttäjä ' . $user->name() . ' lisätty koulun ' . $school->name . ' jäseneksi.');
   }
 
   public function addLogo(Request $request, $id) {

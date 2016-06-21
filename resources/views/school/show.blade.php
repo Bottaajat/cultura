@@ -55,6 +55,12 @@
     </table>
   </div>
 
+@if(Auth::check() && checkMembership(Auth::user(), $school->id))
+  @if($pending->isEmpty())
+  <div class="col-xs-3 col-md-3">
+    <h3>Ei uusia jäsenyyspyyntöjä</h3>
+  </div>
+  @else
   <div class="col-xs-3 col-md-3">
     <h3>Hakijat</h3>
     <table class="table table-bordered table-hover">
@@ -63,20 +69,29 @@
           <th>#</th>
           <th>Etunimi</th>
           <th>Sukunimi</th>
+          @if(Auth::check() && checkMembership(Auth::user(), $school->id))
+            <th>Hyväksy</th>
+          @endif
         </tr>
       </thead>
       <tbody data-link="row" class="rowlink">
-        @foreach($school->users as $key => $user)
+        @foreach($pending as $key => $item)
           <tr>
-            <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $key+1 !!}</a></td>
-            <td>{!! $user->firstname !!}</td>
-            <td>{!! $user->lastname !!}</td>
+            <td><a href="{!! action('UserController@show', ['id' => $item->id]) !!}">{!! $key+1 !!}</a></td>
+            <td>{!! $item->firstname !!}</td>
+            <td>{!! $item->lastname !!}</td>
+            @if(Auth::check() && checkMembership(Auth::user(), $school->id))
+              <td class="rowlink-skip">@include('school.accept')</td>
+            @endif
           </tr>
           @endforeach
       </tbody>
     </table>
   </div>
-
+  @endif
+@endif
 </div>
 
+
 @stop
+  {{--   @if(Auth::check() && Auth::user()->is_admin || (!Auth::user()->school->isEmpty() && Auth::user()->school->id == $school->id)) --}}

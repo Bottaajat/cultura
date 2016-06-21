@@ -39,4 +39,8 @@
 
 @endif
 
+<a href="http://www.culturas.fi/">
+  <img id="culturas-logo" class="img-rounded center-block" alt="Responsive image" src="/img/juhlarahasto.png" height=200px widht=200px>
+</a>
+
 @stop
