@@ -27,7 +27,7 @@ Route::get('/','TopicController@index');
 /* PUT/PATCH | /resource/{id} 	   | update  | resource.update  */
 /* DELETE 	 | /resource/{id} 	   | destroy | resource.destroy */
 
-Route::post('school/{school}/apply', 'SchoolController@apply');
+Route::post('school/{school}/apply/{user}', 'SchoolController@apply');
 Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 

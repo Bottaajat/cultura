@@ -65,3 +65,10 @@ function allowedAudioExtensions() {
             'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',
             'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
 }
+
+function checkMembership($user, $schoolid) {
+  if($user->is_admin || ($user->school != NULL && $user->school->id == $schoolid) )
+    return TRUE;
+  else
+    return FALSE;
+}
