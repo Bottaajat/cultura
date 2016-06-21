@@ -16,31 +16,31 @@
   </h1>
 </div>
 
+
+
 <div class="row">
-  @foreach($topics as $topic)
-    <div class="col-xs-6 col-md-6">
-      <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading" data-toggle="collapse" data-target="{!! '#collapseTopic' . $topic->id !!}">
-            <h4 class="panel-title">
-              <div id="{!! 'menu-' . $topic->id . '-toggle'!!}}">
-                 {!! $topic->name !!}
-                <i id=panelarrow class="glyphicon glyphicon-triangle-bottom pull-right"></i>
-              </div>
-            </h4>
-          </div>
-          <div id="{!! 'collapseTopic' . $topic->id !!}" class="panel-collapse collapse in">
-            <div class="list-group">
-              @foreach($topic->exercises as $exercise)
-                <a href="{!! action('ExerciseController@show', ['id' => $exercise->id])!!}" class="list-group-item"> {{ $exercise->name }} </a>
-              @endforeach
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+@foreach($topics as $topic)
+  <div class="col-xs-12 col-sm-6 col-md-6">
+  <h4 class="list-group-item-heading">
+    {{ $topic->name }}
+  </h4>
+  <div class="list-group">
+  @foreach($topic->exercises as $exercise)
+    <a href="{!! action('ExerciseController@show', ['id' => $exercise->id])!!}" 
+       class="list-group-item">
+          {{ $exercise->name }}
+    </a>
   @endforeach
+  </div>
+  </div>
+@endforeach
 </div>
+
+
 @endif
+
+<a href="http://www.culturas.fi/">
+  <img id="culturas-logo" class="img-rounded center-block" alt="Responsive image" src="/img/juhlarahasto.png" height=200px widht=200px>
+</a>
 
 @stop

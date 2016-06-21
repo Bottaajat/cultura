@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editModal{{$material->id}}">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{$material->id}}">
   <span class="glyphicon glyphicon-pencil"></span>
   Muokkaa
 </button>
