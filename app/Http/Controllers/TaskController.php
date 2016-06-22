@@ -28,7 +28,7 @@ class TaskController extends Controller
 		$this->middleware('auth', ['except' => ['index','show']]);
 	}
 
-	public function index() {
+	public function index(Request $request) {
 		$tasks = Task::all();
 		$exercise_list = Exercise::lists('name', 'id');
 		$type_list = ['Sanojen yhdistäminen','Kuvien yhdistäminen','Monivalinta','Sanaristikko','Täyttö'];
@@ -37,6 +37,21 @@ class TaskController extends Controller
 			$types[$type_list[$i]] = $type_list[$i];
 			$i++;
 		}
+		
+		$search = $request->input('search');
+		if (strlen($search) > 0) {
+		  $tasks = Task::Where('name', 'like', "%$search%")
+			->orWhere('type', "$search")
+			->orWhere('id', "$search")
+			->orWhereHas('exercise', function ($query) use ($search) {
+				$query->where('name', 'like', "%$search%");
+			  })
+			->paginate(10)
+			->appends(['search' => $search]);
+		  return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
+		}
+		else $tasks = Task::paginate(10);
+		
 		return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
 	}
 
@@ -352,17 +367,30 @@ class TaskController extends Controller
 			if ($file != null) {
 				$extension = $file->getClientOriginalExtension();
 				$extensionOk = $this->checkExtension($extension);
-				if ($orderings[$count]->droppable != null) {
-					File::delete(public_path().'/img/'. $orderings[$count]->droppable);
-				}
-				if($extensionOk == true) {
-					$filename = rand(11111,99999).'.'.$extension;
-					$file->move($destinationPath, $filename);
-					$droppables[$count] = $filename;
+				if ($count < count($orderings)) {
+					if ($orderings[$count]->droppable != null) {
+						File::delete(public_path().'/img/'. $orderings[$count]->droppable);
+					}
+					if($extensionOk == true) {
+						$filename = rand(11111,99999).'.'.$extension;
+						$file->move($destinationPath, $filename);
+						$droppables[$count] = $filename;
+					}
+					else {
+						$droppables[$count] = 'no img';
+						$all_in = false;
+					}
 				}
 				else {
-					$droppables[$count] = 'no img';
-					$all_in = false;
+					if($extensionOk == true) {
+						$filename = rand(11111,99999).'.'.$extension;
+						$file->move($destinationPath, $filename);
+						$droppables[$count] = $filename;
+					}
+					else {
+						$droppables[$count] = 'no img';
+						$all_in = false;
+					}
 				}
 			}
 			else {
