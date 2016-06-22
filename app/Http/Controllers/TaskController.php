@@ -633,7 +633,6 @@ class TaskController extends Controller
   }
   
   public function edit_crossword(Request $request, $task_id)
->>>>>>> Stashed changes
     {
     $task = Task::find($task_id);
     
