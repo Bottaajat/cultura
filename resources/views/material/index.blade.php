@@ -25,6 +25,7 @@
   </div>
 </div>
 
+<div class="table-responsive">
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -62,6 +63,7 @@
   </tbody>
 
 </table>
+</div>
 
 <div class="paginationdiv">
   @include('pagination.default', ['paginator' => $materials])

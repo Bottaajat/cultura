@@ -13,6 +13,7 @@
 </div>
 
 @else
+<div class="table-responsive">
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -50,6 +51,7 @@
   </tbody>
 
 </table>
+</div>
 @endif
 
 @stop
