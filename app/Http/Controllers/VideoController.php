@@ -82,6 +82,9 @@ class VideoController extends Controller
   }
 
   public function destroy($id) {
+    if(Auth::user()->school == NULL)
+      return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
+      
     $video = Video::find($id);
     $tasks = $video->tasks;
 
