@@ -15,7 +15,7 @@
       {!! Form::open(array('action'=>array('SchoolController@update', $school->id), 'method'=>'put')) !!}
       <div class="modal-body">
 
-        {!! Form::text('name', $school->name, array('required', 'class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
+        {!! Form::text('name', $school->name, array('class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
 
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>
