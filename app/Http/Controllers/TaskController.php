@@ -39,7 +39,7 @@ class TaskController extends Controller
 			$types[$type_list[$i]] = $type_list[$i];
 			$i++;
 		}
-		
+
 		$search = $request->input('search');
 		if (strlen($search) > 0) {
 		  $tasks = Task::Where('name', 'like', "%$search%")
@@ -53,7 +53,7 @@ class TaskController extends Controller
 		  return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
 		}
 		else $tasks = Task::paginate(10);
-		
+
 		return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
 	}
 
@@ -98,16 +98,16 @@ class TaskController extends Controller
       return view('errors.404');
     }
   }
-  
+
 	public function store(Request $request)
     {
-		$exercise = Task::find($request->input('exercise_id'));
-		
-		if(!Auth::user()->is_admin && $exercise->school == NULL)
+		$exercise = Exercise::find($request->input('exercise_id'));
+
+		if(!Auth::user()->is_admin && $exercise->school == null)
 			return back()->withErrors('Et voi lisätä tehtäviä tähän harjoitukseen!');
-        if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
 			return back()->withErrors('Et voi tehdä lisätä tehtäviä toisen koulun harjoitukseen!');
-		
+
 		$exercise_id = $request->input('exercise_id');
 		$task = new Task;
 		$task->name = $request->input('name');
@@ -226,7 +226,7 @@ class TaskController extends Controller
 			$multipleChoice->save();
 		}
 	}
-	
+
 	public function store_crossword(Request $request, $task_id)
     {
 		$count = 0;
@@ -287,7 +287,7 @@ class TaskController extends Controller
 	  $task->assignment = $request->input('assignment');
 
       $task->update();
-	
+
 	  if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->edit_ordering_words($request, $id);
 	  if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->edit_ordering_images($request, $id);
 	  if ($request->input('task_type') == 'Monivalinta') $this->edit_multipleChoice($request, $id);
@@ -296,11 +296,11 @@ class TaskController extends Controller
 
       return back()->with('success', 'Päivitys onnistui!');
     }
-	
+
 	public function edit_ordering_words(Request $request, $task_id)
     {
 		$task = Task::find($task_id);
-		
+
 		//HAE SYÖTTEET
 		$count = 0;
 		foreach ($request->input('droppable') as $droppable) {
@@ -317,14 +317,14 @@ class TaskController extends Controller
 			$showables[$count] = $showable;
 			$count++;
 		}
-		
+
 		//HAE TALLENNETUT OBJEKTIT
 		$i=0;
 		foreach ($task->orderings as $ordering) {
 			$orderings[$i] = $ordering;
 			$i++;
 		}
-		
+
 		//SUORITA MUUTOKSET
 		$ordering_count = 0;
 		while ( $ordering_count < count($orderings)) {
@@ -359,19 +359,19 @@ class TaskController extends Controller
 		$task = Task::find($task_id);
 		$destinationPath = public_path() . "/img/";
 		$all_in = true;
-		
+
 		//HAE TALLENNETUT OBJEKTIT
 		$i=0;
 		foreach ($task->orderings as $ordering) {
 			$orderings[$i] = $ordering;
 			$i++;
 		}
-		
+
 		//HAE SYÖTTEET
 		$count = 0;
 		foreach ($request->file('droppable') as $droppable) {
 			$file = $droppable;
-			
+
 			if ($file != null) {
 				$extension = $file->getClientOriginalExtension();
 				$extensionOk = $this->checkExtension($extension);
@@ -411,7 +411,7 @@ class TaskController extends Controller
 			$draggables[$count] = $draggable;
 			$count++;
 		}
-		
+
 		//SUORITA MUUTOKSET
 		$ordering_count = 0;
 		while ( $ordering_count < count($orderings)) {
@@ -443,16 +443,16 @@ class TaskController extends Controller
     }
 
 	public function edit_multipleChoice(Request $request, $task_id)
-	{	
+	{
 		$task = Task::find($task_id);
-		
+
 		//HAE OBJEKTIT
 		$i=0;
 		foreach ($task->multiplechoises as $multiplechoice) {
 			$multiplechoices[$i] = $multiplechoice;
 			$i++;
 		}
-		
+
 		//HAE SYÖTTEET
 		$count = 0;
 		foreach ($request->input('questions') as $question) {
@@ -469,7 +469,7 @@ class TaskController extends Controller
 			$solutions[$count] = $solution;
 			$count++;
 		}
-		
+
 		//SUORITA MUUTOKSET
 		$count = 0;
 		while ( $count < count($multiplechoices)) {
@@ -498,18 +498,18 @@ class TaskController extends Controller
 			$count++;
 		}
 	}
-	
+
 	public function edit_crossword(Request $request, $task_id)
     {
 		$task = Task::find($task_id);
-		
+
 		//HAE OBJEKTIT
 		$i=0;
 		foreach ($task->crosswords as $crossword) {
 			$crosswords[$i] = $crossword;
 			$i++;
 		}
-		
+
 		//HAE SYÖTTEET
 		$count = 0;
 		foreach ($request->input('words') as $word) {
@@ -533,7 +533,7 @@ class TaskController extends Controller
 			$count++;
 		}
 		$positions[$count] = '0.0';
-		
+
 		//SUORITA MUUTOKSET
 		$count = 0;
 		while ( $count < count($crosswords)) {
@@ -564,7 +564,7 @@ class TaskController extends Controller
 			$count++;
 		}
     }
-	
+
 	public function edit_filling(Request $request, $task_id)
     {
 		$task = Task::find($task_id);
@@ -614,7 +614,7 @@ class TaskController extends Controller
 		$task->delete();
         return redirect('/task')->with('success', 'Tehtävä poistettu!');
     }
-    
+
     public function addVideo(Request $request, $id) {
       $task = Task::find($id);
       if($task && Auth::user()->is_admin) {
@@ -636,7 +636,7 @@ class TaskController extends Controller
       }
       return back()->withErrors('Et voi muuttaa tätä tehtävää!');
     }
-    
+
     public function delVideo($id) {
       $task = Task::find($id);
       if($task && Auth::user()->is_admin) {
