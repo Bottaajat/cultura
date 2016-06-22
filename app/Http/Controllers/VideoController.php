@@ -62,7 +62,7 @@ class VideoController extends Controller
 
   public function update(Request $request, $id) {
       if(Auth::user()->school == NULL)
-        return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
+        return back()->withErrors('Sinulla ei ole oikeuksia videoiden päivittelyyn!');
 
       $validate = $this->validator($request->all());
       if($validate->fails()) return back()->withErrors($validate);
@@ -83,8 +83,8 @@ class VideoController extends Controller
 
   public function destroy($id) {
     if(Auth::user()->school == NULL)
-      return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
-      
+      return back()->withErrors('Sinulla ei ole oikeuksia videoiden poistamiseen!');
+
     $video = Video::find($id);
     $tasks = $video->tasks;
 
