@@ -10,7 +10,7 @@ use App\Models\Exercise;
 
 use App\Models\Topic;
 
-use Auth;
+use Auth, Validator;
 
 class ExerciseController extends Controller
 {
@@ -34,6 +34,13 @@ class ExerciseController extends Controller
     return view('exercise.show', ['exercise' => Exercise::findOrFail($id)]);
   }
 
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'name' => 'required|unique:exercises|min:4|max:255',
+      'description' => 'min:3|max:1500',
+    ]);
+  }
+
     /**
     * Store a newly created resource in storage.
     *
@@ -42,9 +49,8 @@ class ExerciseController extends Controller
     */
     public function store(Request $request)
     {
-      if (strlen($request->input('name')) < 4) {
-        return back()->withErrors("Anna pidempi harjotusnimi!");
-      }
+      $validate = $this->validator($request->all());
+      if($validate->fails()) return back()->withErrors($validate);
 
       $topic_id = $request->input('topic_id');
 
@@ -68,10 +74,6 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-      if (strlen($request->input('exercise_name')) < 4) {
-        return back()->withErrors("Anna pidempi harjotusnimi!");
-      }
-
       $exercise = Exercise::find($id);
 
       if(!Auth::user()->is_admin && $exercise->school == NULL)
@@ -79,7 +81,10 @@ class ExerciseController extends Controller
       if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
         return back()->withErrors('Et voi tehdä toisen koulun harjoitukseen muutoksia!');
 
-      $exercise_name = $request->input('exercise_name');
+      $validate = $this->validator($request->all());
+      if($validate->fails()) return back()->withErrors($validate);
+
+      $exercise_name = $request->input('name');
 
       $topic_id = $request->input('topic_id');
       $topic = Topic::find($topic_id);
@@ -106,6 +111,15 @@ class ExerciseController extends Controller
           return back()->withErrors('Et voi poistaa tätä harjoitusta!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
           return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
+
+        foreach($exercise->materials as $material) {
+          $material->exercise()->dissociate();
+          $material->save();
+        }
+        foreach($exercise->tasks as $task) {
+          $task->exercise()->dissociate();
+          $task->save();
+        }
 
         $exercise->delete();
         return redirect('/exercise')->with('success', 'Harjoitus poistettu!');

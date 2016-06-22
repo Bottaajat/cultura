@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Models\TaskGlossary;
 use App\Models\Task;
 
-use Auth;
+use Auth, Validator;
 
 class TaskGlossaryController extends Controller
 {
@@ -28,6 +28,13 @@ class TaskGlossaryController extends Controller
     return ($countRus == $countFin);
   }
 
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'rus' => 'required|max:400',
+      'fin' => 'required|max:400',
+    ]);
+  }
+
   public function store(Request $request) {
     $task = Task::find($request->input('task_id'));
     $exercise = $task->exercise;
@@ -35,6 +42,9 @@ class TaskGlossaryController extends Controller
       return back()->withErrors('Et voi luoda tälle tehtävälle sanastoa!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi luoda tälle tehtävälle sanatoa!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $taskgl = new TaskGlossary();
     $taskgl->rus = $this->clearEmptyLines($request->input('rus'));
@@ -55,6 +65,9 @@ class TaskGlossaryController extends Controller
       return back()->withErrors('Et voi päivittää tätä sanastoa!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi päivittää tätä sanastoa!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $taskgl->rus = $this->clearEmptyLines($request->input('rus'));
     $taskgl->fin = $this->clearEmptyLines($request->input('fin'));
