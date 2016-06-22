@@ -32,7 +32,7 @@ function handleFile(Illuminate\Http\Request $request, Illuminate\Database\Eloque
 
     //Jos luodaan uusi tiedosto
     if(strlen($resource->src) == 0) {
-      $filename = rand(11111,99999).'.'.$extension;
+      $filename = rand(1111111,9999999).'.'.$extension;
     }
 
     //Jos päivitetään tiedostoa
