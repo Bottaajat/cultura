@@ -11,7 +11,14 @@
     <div class="panel-title">{{$task->type}}</div>
   </div>
 
-  @if(Auth::user() && $task->school && $task->school &&
+  @if(Auth::check() && Auth::user()->is_admin)
+  <div class="createbuttondiv">
+    @include('task.addvideo')
+    @if($task->video)
+      @include('task.delvideo')
+    @endif
+  </div>
+  @elseif((Auth::user() && $task->school &&
   checkMembership(Auth::user(), $task->school->id))
   || Auth::user()->is_admin)
   <div class="createbuttondiv">
@@ -21,7 +28,7 @@
     @endif
   </div>
   @endif
-  
+
   @if (isset($task) && $task->video)
     <div class="embed-responsive embed-responsive-16by9">
     <iframe
