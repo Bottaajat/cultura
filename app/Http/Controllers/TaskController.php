@@ -78,6 +78,13 @@ class TaskController extends Controller
 
 	public function store(Request $request)
     {
+		$exercise = Task::find($request->input('exercise_id'));
+		
+		if(!Auth::user()->is_admin && $exercise->school == NULL)
+			return back()->withErrors('Et voi lisätä tehtäviä tähän harjoitukseen!');
+        if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
+			return back()->withErrors('Et voi tehdä lisätä tehtäviä toisen koulun harjoitukseen!');
+		
 		$exercise_id = $request->input('exercise_id');
 		$task = new Task;
 		$task->name = $request->input('name');

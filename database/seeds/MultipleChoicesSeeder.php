@@ -16,9 +16,7 @@ class MultipleChoicesSeeder extends Seeder
             [
       "task_id" => '3',
 			"question" => 'Mitä ensimmäisessä dialogissa juotiin?',
-			"choices" => 'kahvia maidon kanssa
-vihreää teetä
-mustaa kahvia',
+			"choices" => 'kahvia maidon kanssa\r\nvihreää teetä\r\nmustaa kahvia',
 			"solution" => 'kahvia maidon kanssa']
         ]);
 
@@ -26,9 +24,7 @@ mustaa kahvia',
             [
       "task_id" => '3',
 			"question" => 'Millaisen voileivän asiakas halusi?',
-			"choices" => 'tonnikalaleivän
-juustopatongin
-kinkkuvoileivän',
+			"choices" => 'tonnikalaleivän\r\njuustopatongin\r\nkinkkuvoileivän',
 			"solution" => 'kinkkuvoileivän']
         ]);
 
@@ -36,9 +32,7 @@ kinkkuvoileivän',
             [
       "task_id" => '3',
 			"question" => 'Mitä syötävää toisessa dialogissa tilattiin?',
-			"choices" => 'mansikkaleivos
-suklaakakku
-suklaamousse',
+			"choices" => 'mansikkaleivos\r\nsuklaakakku\r\nsuklaamousse',
 			"solution" => 'suklaakakku']
         ]);
 
@@ -47,9 +41,7 @@ suklaamousse',
             [
       "task_id" => '3',
 			"question" => 'Millaista teetä asiakas halusi?',
-			"choices" => 'mustaa
-vihreää
-hedelmäteetä',
+			"choices" => 'mustaa\r\nvihreää\r\nhedelmäteetä',
 			"solution" => 'mustaa']
         ]);
 
@@ -59,10 +51,7 @@ hedelmäteetä',
             [
       "task_id" => '7',
 			"question" => 'Masha kysyy: ”Millaisia ……. teillä on”?',
-			"choices" => 'pelmenejä
-hampurilaisia
-blinejä
-jälkiruokia',
+			"choices" => 'pelmenejä\r\nhampurilaisia\r\nblinejä\r\njälkiruokia',
 			"solution" => 'blinejä']
         ]);
 
@@ -71,12 +60,8 @@ jälkiruokia',
             [
       "task_id" => '7',
 			"question" => ' Mitä Masha lopulta tilaa? Huom. kaksi oikeaa vaihtoehtoa',
-			"choices" => 'blinin
-leivoksen
-kahvia
-teetä',
-			"solution" => 'blinin
-teetä']
+			"choices" => 'blinin\r\nleivoksen\r\nkahvia\r\nteetä',
+			"solution" => 'blinin\r\nteetä']
         ]);
 
 
@@ -85,10 +70,7 @@ teetä']
             [
       "task_id" => '8',
 			"question" => 'Mihin poika on menossa?',
-			"choices" => 'tavarataloon
-Moskovan asemalle
-uimahalliin
-Suomen asemalle',
+			"choices" => 'tavarataloon\r\nMoskovan asemalle\r\nuimahalliin\r\nSuomen asemalle',
 			"solution" => 'Suomen asemalle']
         ]);
 
@@ -97,10 +79,7 @@ Suomen asemalle',
             [
       "task_id" => '8',
 			"question" => 'Millä metroasemalla pitää tehdä vaihto?',
-			"choices" => 'Vladimirskaya
-Spasskaya
-Mayakovskaya
-Narvskaya',
+			"choices" => 'Vladimirskaya\r\nSpasskaya\r\nMayakovskaya\r\nNarvskaya',
 			"solution" => 'Vladimirskaya']
         ]);
 
@@ -108,10 +87,7 @@ Narvskaya',
             [
       "task_id" => '8',
 			"question" => 'Mikä oli päätepysäkki?',
-			"choices" => 'Vladimirskaya
-Ploschad Lenina
-Ploschad Vosstanya
-Avtovo',
+			"choices" => 'Vladimirskaya\r\nPloschad Lenina\r\nPloschad Vosstanya\r\nAvtovo',
 			"solution" => 'Ploschad Lenina']
         ]);
 
@@ -121,10 +97,7 @@ Avtovo',
             [
       "task_id" => '9',
 			"question" => 'Mitä Masha haluaa juoda?',
-			"choices" => 'pepsiä
-coca-colaa
-teetä
-kahvia',
+			"choices" => 'pepsiä\r\ncoca-colaa\r\nteetä\r\nkahvia',
 			"solution" => 'pepsiä']
         ]);
 
@@ -133,10 +106,7 @@ kahvia',
             [
       "task_id" => '9',
 			"question" => 'Paljonko ostos maksaa?',
-			"choices" => '5 euroa
-100 ruplaa
-65 ruplaa
-5 ruplaa',
+			"choices" => '5 euroa\r\n100 ruplaa\r\n65 ruplaa\r\n5 ruplaa',
 			"solution" => '65 ruplaa']
         ]);
 
@@ -146,10 +116,7 @@ kahvia',
             [
       "task_id" => '10',
 			"question" => 'Kuinka pitkä aika on oppitunnin loppumiseen?',
-			"choices" => '5 min
-15 min
-30 min
-20 min',
+			"choices" => '5 min\r\n15 min\r\n30 min\r\n20 min',
 			"solution" => '15 min']
         ]);
 
@@ -159,10 +126,7 @@ kahvia',
             [
       "task_id" => '11',
 			"question" => 'Mitä paikkaa etsitään?',
-			"choices" => 'ruokalaa
-fysiikan luokkaa
-englannin luokkaa
-rehtorin kansliaa',
+			"choices" => 'ruokalaa\r\nfysiikan luokkaa\r\nenglannin luokkaa\r\nrehtorin kansliaa',
 			"solution" => 'fysiikan luokkaa']
         ]);
 
@@ -171,10 +135,7 @@ rehtorin kansliaa',
             [
       "task_id" => '11',
 			"question" => 'Missä kyseinen paikka sijaitsee?',
-			"choices" => 'toisessa kerroksessa
-alakerrassa
-kolmannessa kerroksessa
-tytöt eivät osanneet auttaa',
+			"choices" => 'toisessa kerroksessa\r\nalakerrassa\r\nkolmannessa kerroksessa\r\ntytöt eivät osanneet auttaa',
 			"solution" => 'toisessa kerroksessa']
         ]);
 
@@ -183,10 +144,7 @@ tytöt eivät osanneet auttaa',
             [
       "task_id" => '12',
 			"question" => 'Mitkä olivat tyttöjen nimet?',
-			"choices" => 'Masha ja Nastya
-Tanya ja Katya
-Katya ja Nastya
-Tanya ja Nastya',
+			"choices" => 'Masha ja Nastya\r\nTanya ja Katya\r\nKatya ja Nastya\r\nTanya ja Nastya',
 			"solution" => 'Tanya ja Nastya']
         ]);
 
@@ -195,10 +153,7 @@ Tanya ja Nastya',
             [
       "task_id" => '12',
 			"question" => 'Toiselle tytöistä kuului huonoa. Miksi?',
-			"choices" => 'hänellä oli vessahätä
-hänellä oli nälkä
-hänellä oli flunssaa
-hän ei ollut nukkunut hyvin',
+			"choices" => 'hänellä oli vessahätä\r\nhänellä oli nälkä\r\nhänellä oli flunssaa\r\nhän ei ollut nukkunut hyvin',
 			"solution" => 'hänellä oli nälkä']
         ]);
 
