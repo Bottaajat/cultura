@@ -38,6 +38,7 @@ class ExerciseController extends Controller
     return Validator::make($data, [
       'name' => 'required|unique:exercises|min:4|max:255',
       'description' => 'min:3|max:1500',
+      'topic_id' => 'required',
     ]);
   }
 

@@ -101,6 +101,7 @@ return [
             'required' => 'Syötä suomenkielisiä sanoja',
             'max' => 'Suomenkielisten sanojen kokonaispituus on 400 merkkiä.'
         ],
+        'topic_id' => ['required' =>  'Aihe puuttuu.', ],
     ],
 
     /*
