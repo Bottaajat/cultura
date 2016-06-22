@@ -7,7 +7,7 @@ class CreateVideosTable extends Migration
 {
     /**
      * Run the migrations.
-     * 
+     *
      * @return void
      */
     public function up()
@@ -17,11 +17,11 @@ class CreateVideosTable extends Migration
             $table->string('emb_src');
             $table->string('desc');
             $table->string('thumb');
-        
+
             $table->increments('id');
             $table->timestamps();
-            
-            $table->integer('school_id')->unsigned();
+
+            $table->integer('school_id')->unsigned()->nullable();
             $table->foreign('school_id')->references('id')->on('schools');
         });
     }

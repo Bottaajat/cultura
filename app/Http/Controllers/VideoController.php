@@ -38,6 +38,8 @@ class VideoController extends Controller
   }
 
   public function store(Request $request) {
+    if(Auth::user()->school == NULL)
+      return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
     $vid = $this->getVideoId($request->input('src'));
     if ($vid != NULL) {
       $validate = $this->validator($request->all());
@@ -49,7 +51,8 @@ class VideoController extends Controller
       $video->desc = $this->getDesc($request, $videoinfo);
       $video->title = $this->getTitle($request, $videoinfo);
       $video->thumb = $this->storeThumbnail($video,$videoinfo);
-      $video->school()->associate(Auth::user()->school);
+      if(!Auth::user()->is_admin)
+        $video->school()->associate(Auth::user()->school);
       $video->save();
       return back()->with('success', 'Video luotu!');
     } else {
@@ -58,6 +61,9 @@ class VideoController extends Controller
   }
 
   public function update(Request $request, $id) {
+      if(Auth::user()->school == NULL)
+        return back()->withErrors('Sinulla ei ole oikeuksia videoiden päivittelyyn!');
+
       $validate = $this->validator($request->all());
       if($validate->fails()) return back()->withErrors($validate);
 
@@ -69,12 +75,16 @@ class VideoController extends Controller
       $video->desc = $this->getDesc($request, $videoinfo);
       $video->title = $this->getTitle($request, $videoinfo);
       $video->thumb = $this->storeThumbnail($video,$videoinfo);
-      $video->school()->associate(Auth::user()->school);
+      if(!Auth::user()->is_admin)
+        $video->school()->associate(Auth::user()->school);
       $video->save();
       return back()->with('success', 'Videon tiedot päivitetty!');
   }
 
   public function destroy($id) {
+    if(Auth::user()->school == NULL)
+      return back()->withErrors('Sinulla ei ole oikeuksia videoiden poistamiseen!');
+
     $video = Video::find($id);
     $tasks = $video->tasks;
 
