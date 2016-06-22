@@ -10,17 +10,17 @@
   <div class="panel-heading">
     <div class="panel-title">{{$task->type}}</div>
   </div>
-  
+
   @if (isset($task) && $task->video)
     <div class="embed-responsive embed-responsive-16by9">
-    <iframe 
-        width="100%" 
+    <iframe
+        width="100%"
         src="https://www.youtube.com/embed/{{ $task->video->emb_src }}"
         frameborder="0" allowfullscreen="true">
      </iframe>
    </div>
   @endif
-  
+
   @if($task->glossary)
     <div class="panel-body" id="glossary">
       <table class="table table-striped table-bordered table-hover">
@@ -37,13 +37,13 @@
       </table>
     </div>
   @endif
-  
+
   @if($task->assignment)
     <div class="panel-body" id="assignment">
       {!! $task->assignment !!}
     </div>
   @endif
-  
+
   <div class="panel-body" id="task">
     @if($task->type == 'Sanojen yhdistäminen' || $task->type == 'Kuvien yhdistäminen')
       @include('ordering.show')
@@ -63,7 +63,7 @@
   </div>
   <div id = "buttons" class="panel-body">
     <button class="btn btn-primary" onclick=location.reload()>Aloita alusta</button>
-    <a class="btn btn-info pull-right" href="{!! URL::to('/' .  $task->exercise->topic->name . '/' . $task->exercise->name ) !!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
+    <a class="btn btn-info pull-right" href="{!! action('ExerciseController@show', $task->exercise->id)!!}">Palaa harjoitukseen {{$task->exercise->name}} </a>
   </div>
 </div>
 
