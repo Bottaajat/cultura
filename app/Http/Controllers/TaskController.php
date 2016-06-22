@@ -649,6 +649,5 @@ class TaskController extends Controller
     }
     return back()->withErrors('Et voi muuttaa tätä tehtävää!');
     }
-  }
   
 }
