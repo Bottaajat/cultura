@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\School;
 use App\Models\Task;
 
-use Auth, Hash;
+use Auth, Validator;
 
 class VideoController extends Controller
 {
@@ -24,15 +24,25 @@ class VideoController extends Controller
     $videos = Video::all();
     return view('video.index', array('videos' => $videos));
   }
-  
+
   public function show($id) {
     $video = Video::find($id);
     return view('video.show', ['video' => $video]);
   }
-  
+
+  protected function validator(array $data) {
+      return Validator::make($data, [
+        'title' => 'unique:videos|min:3|max:255',
+        'desc' => 'min:3|max:255',
+      ]);
+  }
+
   public function store(Request $request) {
     $vid = $this->getVideoId($request->input('src'));
     if ($vid != NULL) {
+      $validate = $this->validator($request->all());
+      if($validate->fails()) return back()->withErrors($validate);
+
       $video = new Video();
       $video->emb_src = $vid;
       $videoinfo = $this->videoInfo($vid);
@@ -48,6 +58,9 @@ class VideoController extends Controller
   }
 
   public function update(Request $request, $id) {
+      $validate = $this->validator($request->all());
+      if($validate->fails()) return back()->withErrors($validate);
+
       $video = Video::find($id);
       $newvid = $this->getVideoId($request->input('src'));
       $vid = (strlen($newvid) == 0) ? $video->emb_src : $newvid;
@@ -69,14 +82,14 @@ class VideoController extends Controller
         $task->video()->dissociate();
         $task->save();
     }
-    
+
     $this->deleteThumbIfLast($video);
     $video->delete();
     return back()->with('success', 'Video poistettu!');
   }
-  
+
   // Private functions ...
-  
+
   private function getVideoId($src) {
     if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $src, $match)) {
       return $match[1];
@@ -84,7 +97,7 @@ class VideoController extends Controller
       return NULL;
     }
   }
-  
+
   private function videoInfo($vid) {
       try {
         $gkey = env('GOOGLE_API_KEY');
@@ -95,7 +108,7 @@ class VideoController extends Controller
         return NULL;
       }
   }
-  
+
   private function getTitle($request, $videoinfo) {
     if ($request->input('title'))
       return $request->input('title');
@@ -104,7 +117,7 @@ class VideoController extends Controller
     else
       return "";
   }
-  
+
   private function getDesc($request, $videoinfo) {
     if ($request->input('desc'))
       return $request->input('desc');
@@ -113,7 +126,7 @@ class VideoController extends Controller
     else
       return "";
   }
-  
+
   private function deleteThumbIfLast($video) {
     $fileusers = \DB::table('videos')->where('thumb', $video->thumb)->count();
     if ($fileusers == 1) {
@@ -123,11 +136,11 @@ class VideoController extends Controller
       return FALSE;
     }
   }
-  
+
   private function storeThumbnail($video, $videoinfo) {
     try {
-      if ($video->thumb && strcmp($video->thumb, '/img/yt/'.$video->emb_src.'.jpg') == 0 
-          && file_exists ( public_path().$video->thumb ) ) 
+      if ($video->thumb && strcmp($video->thumb, '/img/yt/'.$video->emb_src.'.jpg') == 0
+          && file_exists ( public_path().$video->thumb ) )
         return $video->thumb;
       else {
         $destFolder ='/img/yt/';

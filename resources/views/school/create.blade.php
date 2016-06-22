@@ -14,7 +14,7 @@
       {!! Form::open(array('action'=> array('SchoolController@store'), 'method'=>'POST')) !!}
 
       <div class="modal-body">
-        {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
+        {!! Form::text('name', null, array('class'=>'form-control', 'placeholder'=>'Koulun nimi')) !!}
       </div>
 
       <div class="modal-footer">

@@ -122,6 +122,8 @@ return [
       'password' => 'salasana',
       'name' => 'nimi',
       'description' => 'kuvaus',
+      'desc' => 'kuvaus',
+      'title' => 'otsikko',
       'label' => 'materiaalin otsikko',
       'contents' => 'sisältö',
     ],
