@@ -26,7 +26,7 @@
   </h4>
   <div class="list-group">
   @foreach($topic->exercises as $exercise)
-    <a href="{!! action('ExerciseController@show', ['id' => $exercise->id])!!}" 
+    <a href="{!! action('ExerciseController@show', ['id' => $exercise->id])!!}"
        class="list-group-item">
           {{ $exercise->name }}
     </a>

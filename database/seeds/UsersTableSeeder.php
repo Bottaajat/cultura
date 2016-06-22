@@ -13,28 +13,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ["firstname" => 'Ville',
-            "lastname" => 'Virtuaali',
+            ["firstname" => 'Admin',
             "is_admin" => True,
-            "email" => 'ville.virtuaali@hax.me',
-            "phone" => '13371337',
-            "intro" => 'Status: Lomalla
-            Lempiruoka: Kukkakaali',
-            "password" => bcrypt('apuvaa'),
-            "school_id" => 1]
+            "email" => 'admin@whm13.louhi.net',
+            "password" => '$2y$10$vP4I.1ZDAKhWCPmHy82kresGURDO10ajRVbcTeZA61grGchHDIp7S']
         ]);
-
-        DB::table('users')->insert([
-            ["firstname" => 'Pipsa',
-            "lastname" => 'Pouta',
-            "is_admin" => True,
-            "email" => 'pp@wut.me',
-            "phone" => '13371337',
-            "intro" => 'Status: Lomalla
-            Lempiruoka: Kukkakaali',
-            "password" => bcrypt('ruokaa'),
-            "school_id" => 1]
-        ]);
-
     }
 }
