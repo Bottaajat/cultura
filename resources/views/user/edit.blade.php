@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#editUserModal{{$user->id}}">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModal{{$user->id}}">
   <i class="glyphicon glyphicon-pencil"></i>
   Muokkaa
 </button>

@@ -6,12 +6,9 @@
 </div>
 
 @if(Auth::user() && (Auth::user()->is_admin || Auth::user()->id ==$user->id))
-<div id="createbuttondiv">
-  @include('user.edit')
-</div>
-
-<div id="picbuttondiv">
+<div class="createbuttondiv">
   @include('user.pic')
+  @include('user.edit')
 </div>
 @endif
 
@@ -24,9 +21,9 @@
     @endif
   </div>
   <div class="col-xs-12 col-md-4 ">
-    <p class='h3'>
+    <h3>
       Yhteystiedot:
-    </p>
+    </h3>
     <p class='h3'>
       Sähköposti: <br>
       {!! $user->email !!}
