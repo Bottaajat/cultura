@@ -22,9 +22,9 @@
   </thead>
 
   <tbody data-link="row" class="rowlink">
-    @foreach($users as $user)
+    @foreach($users as $key => $user)
       <tr>
-        <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $user->id !!}</a></td>
+        <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $key+1 !!}</a></td>
         <td>{!! $user->firstname !!}</td>
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
