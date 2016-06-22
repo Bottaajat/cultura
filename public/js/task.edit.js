@@ -54,6 +54,7 @@ function Edit_OrderingImages(draggables,droppables,id) {
 		$('#edit-'+id+'-add').click();
 		$('#edit-'+id+'-draggable-'+i).val(draggables[i]);
 		if (droppables[i] === 'no img') $('#edit-'+id+'-droppable-'+i).addClass("warning");
+		else document.getElementById('edit-'+id+'-droppable-'+i).required = false;
 	}
 }
 
@@ -81,8 +82,8 @@ function Edit_MultipleChoice(questions,choices,solutions,id) {
 	
 	for (var i = 0; i < questions.length; i++){
 		$('#edit-'+id+'-add').click();
-		var choices_lines = (choices[i]).replace(/###/g,"\n");
-		var solutions_lines = (solutions[i]).replace(/###/g,"\n");
+		var choices_lines = (choices[i]).replace(/###/g,"\r\n");
+		var solutions_lines = (solutions[i]).replace(/###/g,"\r\n");
 		$('#edit-'+id+'-questions-'+i).val(questions[i]);
 		$('#edit-'+id+'-choices-'+i).val(choices_lines);
 		$('#edit-'+id+'-solutions-'+i).val(solutions_lines);

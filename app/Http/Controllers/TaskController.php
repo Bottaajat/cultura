@@ -24,6 +24,10 @@ use File,Auth;
 
 class TaskController extends Controller
 {
+	public function __construct() {
+		$this->middleware('auth', ['except' => ['index','show']]);
+	}
+
 	public function index() {
 		$tasks = Task::all();
 		$exercise_list = Exercise::lists('name', 'id');
@@ -123,6 +127,7 @@ class TaskController extends Controller
     {
 		$destinationPath = public_path() . "/img/";
 		$count = 0;
+		$all_in = true;
 		foreach ($request->file('droppable') as $droppable) {
 			$file = $droppable;
 			$extension = $file->getClientOriginalExtension();
@@ -135,7 +140,7 @@ class TaskController extends Controller
 			}
 			else {
 				$droppables[$count] = 'no img';
-				//ILMOITUS VIRHEESTÄ
+				$all_in = false;
 			}
 			$count++;
 		}
@@ -153,6 +158,7 @@ class TaskController extends Controller
 			$ordering->task()->associate($task_id);
 			$ordering->save();
 		}
+		if ($all_in === false) return back()->withErrors( 'Kaikki kuvat eivät tallentuneet' );
     }
 
 	private function checkExtension($extension) {
@@ -217,7 +223,7 @@ class TaskController extends Controller
 		$positions[$count] = '0.0';
 		for ($i = 0; $i <= $count; $i++) {
 			$crossword = new crossword;
-			$crossword->answer = $words[$i];
+			$crossword->answer = strtolower($words[$i]);
 			$crossword->clue = $clues[$i];
 			$crossword->position = $positions[$i];
 			$crossword->orientation = $orientations[$i];
@@ -238,7 +244,292 @@ class TaskController extends Controller
 
 	public function update(Request $request, $id)
     {
-		return back()->with('success', 'Päivitys onnistui!');
+      $task = Task::find($id);
+
+      if(!Auth::user()->is_admin && $task->exercise->school == NULL)
+        return back()->withErrors('Et voi päivittää tätä tehtävää!');
+      if(!Auth::user()->is_admin && Auth::user()->school->id != $task->exercise->school->id)
+        return back()->withErrors('Et voi tehdä toisen koulun tehtävään muutoksia!');
+
+      $task->name = $request->input('name');
+	  $exercise = Exercise::find($request->input('exercise_id'));
+	  $task->exercise()->associate($exercise);
+	  $task->assignment = $request->input('assignment');
+
+      $task->update();
+	
+	  if ($request->input('task_type') == 'Sanojen yhdistäminen') $this->edit_ordering_words($request, $id);
+	  if ($request->input('task_type') == 'Kuvien yhdistäminen') $this->edit_ordering_images($request, $id);
+	  if ($request->input('task_type') == 'Monivalinta') $this->edit_multipleChoice($request, $id);
+	  if ($request->input('task_type') == 'Sanaristikko') $this->edit_crossword($request, $id);
+	  if ($request->input('task_type') == 'Täyttö') $this->edit_filling($request, $id);
+
+      return back()->with('success', 'Päivitys onnistui!');
+    }
+	
+	public function edit_ordering_words(Request $request, $task_id)
+    {
+		$task = Task::find($task_id);
+		
+		//HAE SYÖTTEET
+		$count = 0;
+		foreach ($request->input('droppable') as $droppable) {
+			$droppables[$count] = $droppable;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('draggable') as $draggable) {
+			$draggables[$count] = $draggable;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('showable') as $showable) {
+			$showables[$count] = $showable;
+			$count++;
+		}
+		
+		//HAE TALLENNETUT OBJEKTIT
+		$i=0;
+		foreach ($task->orderings as $ordering) {
+			$orderings[$i] = $ordering;
+			$i++;
+		}
+		
+		//SUORITA MUUTOKSET
+		$ordering_count = 0;
+		while ( $ordering_count < count($orderings)) {
+			if ( $ordering_count < count($droppables) ) {
+				$ordering = $orderings[$ordering_count];
+				$ordering->droppable = $droppables[$ordering_count];
+				$ordering->draggable = $draggables[$ordering_count];
+				$ordering->showable = $showables[$ordering_count];
+				$ordering->task_id = $task_id;
+				$ordering->task()->associate($task_id);
+				$ordering->update();
+			}
+			else {
+				$orderings[$ordering_count]->delete();
+			}
+			$ordering_count++;
+		}
+		while ($ordering_count < count($droppables)) {
+			$ordering = new Ordering;
+			$ordering->droppable = $droppables[$ordering_count];
+			$ordering->draggable = $draggables[$ordering_count];
+			$ordering->showable = $showables[$ordering_count];
+			$ordering->task_id = $task_id;
+			$ordering->task()->associate($task_id);
+			$ordering->save();
+			$ordering_count++;
+		}
+    }
+
+	public function edit_ordering_images(Request $request, $task_id)
+    {
+		$task = Task::find($task_id);
+		$destinationPath = public_path() . "/img/";
+		$all_in = true;
+		
+		//HAE TALLENNETUT OBJEKTIT
+		$i=0;
+		foreach ($task->orderings as $ordering) {
+			$orderings[$i] = $ordering;
+			$i++;
+		}
+		
+		//HAE SYÖTTEET
+		$count = 0;
+		foreach ($request->file('droppable') as $droppable) {
+			$file = $droppable;
+			
+			if ($file != null) {
+				$extension = $file->getClientOriginalExtension();
+				$extensionOk = $this->checkExtension($extension);
+				if ($orderings[$count]->droppable != null) {
+					File::delete(public_path().'/img/'. $orderings[$count]->droppable);
+				}
+				if($extensionOk == true) {
+					$filename = rand(11111,99999).'.'.$extension;
+					$file->move($destinationPath, $filename);
+					$droppables[$count] = $filename;
+				}
+				else {
+					$droppables[$count] = 'no img';
+					$all_in = false;
+				}
+			}
+			else {
+				if($count < count($orderings) ) $droppables[$count] = $orderings[$count]->droppable;
+			}
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('draggable') as $draggable) {
+			$draggables[$count] = $draggable;
+			$count++;
+		}
+		
+		//SUORITA MUUTOKSET
+		$ordering_count = 0;
+		while ( $ordering_count < count($orderings)) {
+			if ( $ordering_count < count($droppables) ) {
+				$ordering = $orderings[$ordering_count];
+				$ordering->droppable = $droppables[$ordering_count];
+				$ordering->draggable = $draggables[$ordering_count];
+				$ordering->task_id = $task_id;
+				$ordering->task()->associate($task_id);
+				$ordering->update();
+			}
+			else {
+				File::delete(public_path().'/img/'. $orderings[$ordering_count]->droppable);
+				$orderings[$ordering_count]->delete();
+			}
+			$ordering_count++;
+		}
+		while ($ordering_count < count($droppables)) {
+			$ordering = new Ordering;
+			$ordering->droppable = $droppables[$i];
+			$ordering->draggable = $draggables[$i];
+			$ordering->showable = 'img';
+			$ordering->task_id = $task_id;
+			$ordering->task()->associate($task_id);
+			$ordering->save();
+			$ordering_count++;
+		}
+		if ($all_in === false) return back()->withErrors( 'Kaikki kuvat eivät tallentuneet' );
+    }
+
+	public function edit_multipleChoice(Request $request, $task_id)
+	{	
+		$task = Task::find($task_id);
+		
+		//HAE OBJEKTIT
+		$i=0;
+		foreach ($task->multiplechoises as $multiplechoice) {
+			$multiplechoices[$i] = $multiplechoice;
+			$i++;
+		}
+		
+		//HAE SYÖTTEET
+		$count = 0;
+		foreach ($request->input('questions') as $question) {
+			$questions[$count] = $question;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('choices') as $choice) {
+			$choices[$count] = $choice;
+			$count++;
+		}
+		$count = 0;
+		foreach ($request->input('solutions') as $solution) {
+			$solutions[$count] = $solution;
+			$count++;
+		}
+		
+		//SUORITA MUUTOKSET
+		$count = 0;
+		while ( $count < count($multiplechoices)) {
+			if ( $count < count($questions) ) {
+				$multipleChoice = $multiplechoices[$count];
+				$multipleChoice->question = $questions[$count];
+				$multipleChoice->choices = $choices[$count];
+				$multipleChoice->solution = $solutions[$count];
+				$multipleChoice->task_id = $task_id;
+				$multipleChoice->task()->associate($task_id);
+				$multipleChoice->update();
+			}
+			else {
+				$multiplechoices[$count]->delete();
+			}
+			$count++;
+		}
+		while ($count < count($questions)) {
+			$multipleChoice = new multipleChoice;
+			$multipleChoice->question = $questions[$count];
+			$multipleChoice->choices = $choices[$count];
+			$multipleChoice->solution = $solutions[$count];
+			$multipleChoice->task_id = $task_id;
+			$multipleChoice->task()->associate($task_id);
+			$multipleChoice->save();
+			$count++;
+		}
+	}
+	
+	public function edit_crossword(Request $request, $task_id)
+    {
+		$task = Task::find($task_id);
+		
+		//HAE OBJEKTIT
+		$i=0;
+		foreach ($task->crosswords as $crossword) {
+			$crosswords[$i] = $crossword;
+			$i++;
+		}
+		
+		//HAE SYÖTTEET
+		$count = 0;
+		foreach ($request->input('words') as $word) {
+			$words[$count] = $word;
+			$orientations[$count] = 'horizontal';
+			$count++;
+		}
+		$words[$count] = $request->input('vertical');
+		$orientations[$count] = 'vertical';
+		$count = 0;
+		foreach ($request->input('clues') as $clue) {
+			$clues[$count] = $clue;
+			$count++;
+		}
+		$clues[$count] = $request->input('vertical_clue');
+		$count = 0;
+		foreach ($request->input('middles') as $middle) {
+			$x =  1 - $middle;
+			$start = $x.'.'.$count;
+			$positions[$count] = $start;
+			$count++;
+		}
+		$positions[$count] = '0.0';
+		
+		//SUORITA MUUTOKSET
+		$count = 0;
+		while ( $count < count($crosswords)) {
+			if ( $count < count($words) ) {
+				$crossword = $crosswords[$count];
+				$crossword->answer = strtolower($words[$count]);
+				$crossword->clue = $clues[$count];
+				$crossword->position = $positions[$count];
+				$crossword->orientation = $orientations[$count];
+				$crossword->task_id = $task_id;
+				$crossword->task()->associate($task_id);
+				$crossword->update();
+			}
+			else {
+				$crosswords[$count]->delete();
+			}
+			$count++;
+		}
+		while ($count < count($words)) {
+			$crossword = new crossword;
+			$crossword->answer = strtolower($words[$count]);
+			$crossword->clue = $clues[$count];
+			$crossword->position = $positions[$count];
+			$crossword->orientation = $orientations[$count];
+			$crossword->task_id = $task_id;
+			$crossword->task()->associate($task_id);
+			$crossword->save();
+			$count++;
+		}
+    }
+	
+	public function edit_filling(Request $request, $task_id)
+    {
+		$task = Task::find($task_id);
+		$filling = $task->filling;
+		$filling->text = $request->input('text');
+		$filling->task_id = $task_id;
+		$filling->task()->associate($task_id);
+		$filling->update();
     }
 
 	public function destroy($id) {

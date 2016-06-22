@@ -11,12 +11,12 @@
         <h4 class="modal-title" id="editModal{{$task->id}}Label"> {{$task->name}} muokkaus</h4>
       </div>
 
-      {!! Form::open(array('action'=> array('TaskController@update', $task->id), 'method'=>'put')) !!}
+      {!! Form::open(array('action'=> array('TaskController@update', $task->id), 'method'=>'put', 'files' => true)) !!}
 
       <div class="modal-body">
         {!! Form::text('name', $task->name, array('required', 'class'=>'form-control', 'placeholder'=>'Tehtävän nimi')) !!}
-        {!! Form::select('task_id', $exercise_list, $task->exercise->id, ['id' => 'task_id', 'class' => 'form-control' ]) !!}
-        {!! Form::select('task_type', $type_list, $task->type, ['disabled', 'id' => 'task_type', 'class' => 'form-control']) !!}
+        {!! Form::select('exercise_id', $exercise_list, $task->exercise->id, ['id' => 'exercise_id', 'class' => 'form-control' ]) !!}
+        {!! Form::text('task_type', $task->type, ['readonly', 'id' => 'task_type', 'class' => 'form-control']) !!}
         {!! Form::textarea('assignment', $task->assignment, ['id' => 'assignment', 'size' => '30x2', 'class' => 'form-control', 'placeholder' => 'Tehtävänanto']) !!}
       </div>
 
@@ -66,8 +66,8 @@
 				$i++;
 			}
 			$questions = '["'.str_replace(',', '","', implode(',', $questions)).'"]';
-			$choices = '["'.str_replace("\n",'###',str_replace(',', '","', implode(',', $choices))).'"]';
-			$solutions = '["'.str_replace("\n",'###',str_replace(',', '","', implode(',', $solutions))).'"]';
+			$choices = '["'.str_replace("\r\n",'###',str_replace(',', '","', implode(',', $choices))).'"]';
+			$solutions = '["'.str_replace("\r\n",'###',str_replace(',', '","', implode(',', $solutions))).'"]';
 			echo '<script>Edit_MultipleChoice('.$questions.','.$choices.','.$solutions.','.$task->id.')</script>';
 		}
 		if ($task->type == 'Sanaristikko') {
