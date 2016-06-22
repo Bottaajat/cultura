@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Models\User;
 use App\Models\School;
 
-use File, Auth, Hash;
+use File, Auth;
 
 class UserController extends Controller
 {
