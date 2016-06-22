@@ -2,6 +2,8 @@ html,
 body {
   font-family: "Roboto Slab";
   height: 100%;
+  background-image: url("../img/bodybg_russia.jpg");
+  background-size: 382px auto;
   background-repeat: repeat;
 }
 
