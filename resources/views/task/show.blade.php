@@ -18,9 +18,7 @@
       @include('task.delvideo')
     @endif
   </div>
-  @elseif((Auth::user() && $task->school &&
-  checkMembership(Auth::user(), $task->school->id))
-  || Auth::user()->is_admin)
+  @elseif(Auth::check() && !Auth::user()->is_admin && $task->school && checkMembership(Auth::user(), $task->school->id) )
   <div class="createbuttondiv">
     @include('task.addvideo')
     @if($task->video)
