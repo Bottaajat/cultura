@@ -16,8 +16,8 @@
      </iframe>
    </div>
    
-  {{ $video->description }}
-  
+  <div class="page-header"></div>
+  {{ $video->desc }}
   
   @if ($video->tasks()->count() > 0)
   

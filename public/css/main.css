@@ -2,8 +2,6 @@ html,
 body {
   font-family: "Roboto Slab";
   height: 100%;
-  background-image: url("../img/bodybg_russia.jpg");
-  background-size: 382px auto;
   background-repeat: repeat;
 }
 
@@ -92,4 +90,8 @@ body {
 #footer .footer-link {
   margin-right: 10px;
   color: #8cd3e8;
+}
+
+@-moz-document url-prefix() {
+  fieldset { display: table-cell; }
 }

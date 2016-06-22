@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createUserModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
   <span class="glyphicon glyphicon-plus"> </span>
   Luo uusi Video
 </button>

@@ -23,5 +23,10 @@ class School extends Model
   public function video() {
     return $this->hasMany('App\Models\Video');
   }
+  
+  public function tasks()
+  {
+    return $this->hasManyThrough('App\Models\Task', 'App\Models\Exercise');
+  }
 
 }

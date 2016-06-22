@@ -11,13 +11,14 @@
   </div>
 @endif
 
+
 <div class="table-responsive">
 <table class="table table-bordered table-hover">
 
   <thead>
     <tr>
       <th width="120px">Kuvake</th>
-      <th>Otsikko</th>
+      <th width="300px">Otsikko</th>
       <th>Kuvaus</th>
       <th width="120px">Tehtäviä</th>
       @if(Auth::check())
@@ -43,8 +44,10 @@
         </a>
       @endif
     </td>
+
     <td> {!! truncateString($video->desc, 50) !!} </td>
     <td class="center-align rowlink-skip">
+
       @if($video->tasks()->count() > 0)
         @include('video.exerciseModal')
       @else

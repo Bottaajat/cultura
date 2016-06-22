@@ -41,6 +41,10 @@ Route::post('school/{school}/delLogo', 'SchoolController@delLogo');
 Route::post('user/{user}/addPic', 'UserController@addPic');
 Route::post('user/{user}/delPic', 'UserController@delPic');
 
+// Video add
+Route::post('task/{task}/addVid', 'TaskController@addVideo');
+Route::post('task/{task}/delVid', 'TaskController@delVideo');
+
 
 Route::resource('video', 'VideoController', ['except' => ['create', 'edit']]);
 
