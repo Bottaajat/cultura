@@ -28,9 +28,18 @@
       Sähköposti: <br>
       {!! $user->email !!}
     </p>
+    @if($user->phone)
     <p class="h3">
       Puhelinnumero: <br>
       {!! $user->phone !!}
+    </p>
+    @endif
+    <p class="h3">
+    @if($user->school)
+      {!! 'Olet koulun ' . $user->school->name . ' jäsen.' !!}
+    @else
+      {!! 'Et ole vielä minkään koulun jäsen!' !!}
+    @endif
     </p>
     <p class="h4">
       {!! nl2br(e($user->intro)) !!}
