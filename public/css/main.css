@@ -93,35 +93,3 @@ body {
   margin-right: 10px;
   color: #8cd3e8;
 }
-
-
-/* responsive text queries */
-@media screen and (max-width: 992px) {
-  p,.btn,input,div,span,h4 {
-    font-size: 95%;
-  }
-  h1 {
-    font-size: 24px;  
-  }
-  h2 {
-    font-size: 22px;  
-  }
-  h3 {
-    font-size: 18px;  
-  }
-}
-
-@media screen and (max-width: 768px) {
-  p,.btn,input,div,span,h4 {
-    font-size: 90%;
-  }
-  h1 {
-    font-size: 20px;  
-  }
-  h2 {
-    font-size: 18px;  
-  }
-  h3 {
-    font-size: 16px;  
-  }
-}

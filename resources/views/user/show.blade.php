@@ -28,11 +28,11 @@
       Yhteystiedot:
     </p>
     <p class='h3'>
-      Sähköposti:
+      Sähköposti: <br>
       {!! $user->email !!}
     </p>
     <p class="h3">
-      Puhelinnumero:
+      Puhelinnumero: <br>
       {!! $user->phone !!}
     </p>
     <p class="h4">
