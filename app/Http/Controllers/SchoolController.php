@@ -80,6 +80,16 @@ class SchoolController extends Controller
     return back()->with('success', 'Käyttäjä ' . $user->name() . ' lisätty koulun ' . $school->name . ' jäseneksi.');
   }
 
+  public function reject($schoolid, $userid) {
+    $user = User::findOrFail($userid);
+    if(!Auth::user()->is_admin && Auth::user()->id != $userid)
+      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
+    $school = School::findOrFail($schoolid);
+    $user->pending = NULL;
+    $user->save();
+    return back()->with('success', 'Käyttäjän ' . $user->name() . ' jäsenpyyntö peruttu.');
+  }
+
   public function addLogo(Request $request, $id) {
     if(!Auth::user()->is_admin)
       return back()->withErrors('Et voi lisätä koululle logoa.');

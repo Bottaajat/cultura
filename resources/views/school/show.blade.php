@@ -7,7 +7,7 @@
 </div>
 
 
-@if(Auth::user() && !Auth::user()->is_admin)
+@if(Auth::user() && !Auth::user()->is_admin && Auth::user()->pending == NULL)
  <div id="applybuttondiv">
    @include('school.apply')
  </div>
