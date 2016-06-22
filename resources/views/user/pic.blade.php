@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#editPicModal">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editPicModal">
   <i class="fa fa-btn fa-image"></i>
   Lisää
 </button>

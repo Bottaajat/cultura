@@ -7,17 +7,20 @@
 </div>
 
 
-@if(Auth::user() && !Auth::user()->is_admin)
- <div id="applybuttondiv">
+@if(Auth::user() && !Auth::user()->is_admin && Auth::user()->pending == NULL && Auth::user()->school == NULL)
+ <div class="applybuttondiv">
    @include('school.apply')
  </div>
+ @elseif(Auth::user() && Auth::user()->pending == $school->id)
+ <div class="cancelbuttondiv">
+   @include('school.cancel')
+ </div>
+ @else
  @endif
 
  @if(Auth::user() && Auth::user()->is_admin)
- <div id="createbuttondiv">
+ <div class="createbuttondiv">
   @include('school.edit')
- </div>
- <div id="logobuttondiv">
   @include('school.logo')
  </div>
  @endif
@@ -34,6 +37,9 @@
   </div>
 
   <div class="col-xs-3 col-md-3">
+  @if($school->users->isEmpty())
+    <h3>Koululla ei ole vielä jäseniä!</h3>
+  @else
     <h3>Jäsenet</h3>
     <table class="table table-bordered table-hover">
       <thead>
@@ -53,6 +59,7 @@
           @endforeach
       </tbody>
     </table>
+  @endif
   </div>
 
 @if(Auth::check() && checkMembership(Auth::user(), $school->id))
@@ -94,4 +101,3 @@
 
 
 @stop
-  {{--   @if(Auth::check() && Auth::user()->is_admin || (!Auth::user()->school->isEmpty() && Auth::user()->school->id == $school->id)) --}}

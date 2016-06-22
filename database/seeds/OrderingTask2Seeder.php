@@ -14,103 +14,103 @@ class OrderingTask2Seeder extends Seeder
         DB::table('orderings')->insert([
             [
 			"draggable" => 'торт',
-			"droppable" => 'kakku',
+			"droppable" => 'kakku.gif',
 			"showable" => 'торт',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'календарь',
-			"droppable" => 'kalenteri',
+			"droppable" => 'kalenteri.gif',
 			"showable" => 'календарь',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'карта',
-			"droppable" => 'kartta',
+			"droppable" => 'kartta.gif',
 			"showable" => 'карта',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'гитара',
-			"droppable" => 'kitara',
+			"droppable" => 'kitara.gif',
 			"showable" => 'гитара',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'компьютер',
-			"droppable" => 'tietokone',
+			"droppable" => 'kompjuter.png',
 			"showable" => 'компьютер',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'лампа',
-			"droppable" => 'lamppu',
+			"droppable" => 'lamppu.gif',
 			"showable" => 'лампа',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'радио',
-			"droppable" => 'radio',
+			"droppable" => 'radio.gif',
 			"showable" => 'радио',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'салат',
-			"droppable" => 'salaatti',
+			"droppable" => 'salaatti.gif',
 			"showable" => 'салат',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'цирк',
-			"droppable" => 'sirkus',
+			"droppable" => 'sirkus.gif',
 			"showable" => 'цирк',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'шоколад',
-			"droppable" => 'suklaa',
+			"droppable" => 'suklaa.gif',
 			"showable" => 'шоколад',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'телевизор',
-			"droppable" => 'televisio',
+			"droppable" => 'telek.gif',
 			"showable" => 'телевизор',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'стул',
-			"droppable" => 'tuoli',
+			"droppable" => 'tuoli.gif',
 			"showable" => 'стул',
 			"task_id" => '2']
         ]);
-		
+
 		DB::table('orderings')->insert([
             [
 			"draggable" => 'ваза',
-			"droppable" => 'vaasi',
+			"droppable" => 'vaasi.gif',
 			"showable" => 'ваза',
 			"task_id" => '2']
         ]);

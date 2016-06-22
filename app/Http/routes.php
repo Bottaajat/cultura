@@ -29,6 +29,7 @@ Route::get('/','TopicController@index');
 
 Route::post('school/{school}/apply/{user}', 'SchoolController@apply');
 Route::post('school/{school}/accept/{user}', 'SchoolController@accept');
+Route::post('school/{school}/reject/{user}', 'SchoolController@reject');
 Route::resource('school', 'SchoolController', ['except' => ['edit', 'create']]);
 
 Route::resource('user', 'UserController', ['except' => ['edit', 'create', 'store']]);

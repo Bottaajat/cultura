@@ -11,7 +11,7 @@
   </div>
 @endif
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
 
   <thead>
     <tr>
@@ -25,7 +25,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody data-link="row" class="rowlink">
     @foreach($exercises as $exercise)
       <tr>
         <td>{!! $exercise->id !!}</td>
@@ -37,7 +37,7 @@
           @endif
         </td>
         @if(Auth::check())
-          <td>@include('exercise.edit')</td>
+          <td class="rowlink-skip">@include('exercise.edit')</td>
         @endif
       </tr>
     @endforeach

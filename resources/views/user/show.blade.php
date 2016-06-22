@@ -6,36 +6,42 @@
 </div>
 
 @if(Auth::user() && (Auth::user()->is_admin || Auth::user()->id ==$user->id))
-<div id="createbuttondiv">
-  @include('user.edit')
-</div>
-
-<div id="picbuttondiv">
+<div class="createbuttondiv">
   @include('user.pic')
+  @include('user.edit')
 </div>
 @endif
 
 <div class="row">
-  <div class="col-xs-6 col-md-6">
+  <div class="col-xs-12 col-md-offset-3 col-md-3">
     @if($user->src)
-      <img class="thumbnail" src="{!! $user->src !!}" height="400px" width="375px">
+      <img class="thumbnail img-responsive" src="{!! $user->src !!}" width="300px">
     @else
-      <img class="thumbnail" src="/img/defaultuser.png" height="400px" width="375px">
+      <img class="thumbnail img-responsive" src="/img/defaultuser.png" width="300px">
     @endif
   </div>
-  <div class="col-xs-6 col-md-6">
-    <p class='h1'>
+  <div class="col-xs-12 col-md-4 ">
+    <p class='h3'>
       Yhteystiedot:
     </p>
-    <p class='h2'>
-      Sähköposti:
+    <p class='h3'>
+      Sähköposti: <br>
       {!! $user->email !!}
     </p>
-    <p class="h2">
-      Puhelinnumero:
+    @if($user->phone)
+    <p class="h3">
+      Puhelinnumero: <br>
       {!! $user->phone !!}
     </p>
+    @endif
     <p class="h3">
+    @if($user->school)
+      {!! 'Olet koulun ' . $user->school->name . ' jäsen.' !!}
+    @else
+      {!! 'Et ole vielä minkään koulun jäsen!' !!}
+    @endif
+    </p>
+    <p class="h4">
       {!! nl2br(e($user->intro)) !!}
     </p>
   </div>

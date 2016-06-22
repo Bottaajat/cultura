@@ -5,6 +5,14 @@
   <h1>Käyttäjät</h1>
 </div>
 
+@if($users->isEmpty())
+<div class="jumbotron">
+  <p class="text-danger">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Järjestelmässä ei ole vielä käyttäjiä!
+  </p>
+</div>
+
+@else
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -22,9 +30,9 @@
   </thead>
 
   <tbody data-link="row" class="rowlink">
-    @foreach($users as $user)
+    @foreach($users as $key => $user)
       <tr>
-        <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $user->id !!}</a></td>
+        <td><a href="{!! action('UserController@show', ['id' => $user->id]) !!}">{!! $key+1 !!}</a></td>
         <td>{!! $user->firstname !!}</td>
         <td>{!! $user->lastname !!}</td>
         <td>{!! $user->email !!}</td>
@@ -42,5 +50,6 @@
   </tbody>
 
 </table>
+@endif
 
 @stop

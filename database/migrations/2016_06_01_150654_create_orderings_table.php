@@ -14,9 +14,9 @@ class CreateOrderingsTable extends Migration
     {
         Schema::create('orderings', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('draggable');
-			$table->string('droppable');
-			$table->string('showable');
+			      $table->string('draggable');
+			      $table->string('droppable');
+			      $table->string('showable');
             $table->integer('task_id')->unsigned();
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->timestamps();

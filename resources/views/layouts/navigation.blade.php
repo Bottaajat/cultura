@@ -38,9 +38,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-btn fa-power-off"></i> Profiili</a>
           <ul class="dropdown-menu">
             @if(Auth::guest())
-              <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-user"></i> Rekisteröidy</a></li>
-              <li role="separator" class="divider"></li>
               <li><a href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Kirjaudu sisään</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="{{ url('/register') }}"><i class="fa fa-btn fa-user"></i> Rekisteröidy</a></li>
             @else
               <li><a href="{{ action('UserController@show', ['id' => Auth::user()->id]) }}"><i class="fa fa-btn fa-user"></i> {!! Auth::user()->name() !!}</a></li>
               <li role="separator" class="divider"></li>

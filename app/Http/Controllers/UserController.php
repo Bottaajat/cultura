@@ -21,20 +21,26 @@ class UserController extends Controller
   }
 
   public function index() {
-    $users = User::all();
+    $users = User::where('is_admin', 0)->get();
     $school_list = School::lists('name', 'id');
     return view('user.index', array('users' => $users,'school_list' => $school_list));
   }
 
   public function show($id) {
+    $user = User::findOrFail($id);
+    if($user->is_admin)
+      return view('errors.404');
     $school_list = School::lists('name', 'id');
-    return view('user.show', ['user' => User::findOrFail($id), 'school_list' => $school_list]);
+    return view('user.show', ['user' => $user, 'school_list' => $school_list]);
   }
 
   public function update(Request $request, $id) {
     if(!Auth::user()->is_admin && !Auth::user()->id == $id)
       return back()->withErrors('Et voi muokata toisen profiilia!');
     $user = User::find($id);
+    if($user->is_admin)
+      return view('errors.404');
+
     $user->firstname = $request->input('firstname');
     $user->lastname = $request->input('lastname');
     $user->email = $request->input('email');
@@ -48,6 +54,8 @@ class UserController extends Controller
     if(!Auth::user()->is_admin && !Auth::user()->id == $id)
       return back()->withErrors('Et voi poistaa toisen profiilia!');
     $user = User::find($id);
+    if($user->is_admin)
+      return view('errors.404');
     if($user->src != NULL) {
       File::delete(public_path() . $user->src);
     }
