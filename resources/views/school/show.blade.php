@@ -34,6 +34,9 @@
   </div>
 
   <div class="col-xs-3 col-md-3">
+  @if($school->users->isEmpty())
+    <h3>Koululla ei ole vielä jäseniä!</h3>
+  @else
     <h3>Jäsenet</h3>
     <table class="table table-bordered table-hover">
       <thead>
@@ -53,6 +56,7 @@
           @endforeach
       </tbody>
     </table>
+  @endif
   </div>
 
 @if(Auth::check() && checkMembership(Auth::user(), $school->id))

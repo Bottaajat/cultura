@@ -49,7 +49,6 @@ class SchoolController extends Controller
     if($school->src != NULL) {
       File::delete(public_path() . $school->src);
     }
-    foreach($school->exercises)
     $school->delete();
     return back()->with('success', 'Koulu poistettu!');
   }
