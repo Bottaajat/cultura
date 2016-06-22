@@ -15,7 +15,7 @@
       {!! Form::open(array('action'=> 'MaterialController@store', 'method'=>'POST', 'files' => true)) !!}
 
       <div class="modal-body">
-        {!! Form::text('label', null, array('required', 'class'=>'form-control', 'placeholder'=>'Materiaalin otsikko')) !!}
+        {!! Form::text('label', null, array('class'=>'form-control', 'placeholder'=>'Materiaalin otsikko')) !!}
         {!! Form::textarea('contents', null, array('class'=>'form-control', 'rows'=>'3', 'placeholder'=>'Teksti sisältö')) !!}
         {!! Form::select('type', ["text"=>'Teksti', "audio"=>'Ääni', "image"=>'Kuva'],null, ['class' => 'form-control']) !!}
         {!! Form::select('exercise_id', $exercise_list, null, ['class' => 'form-control']) !!}

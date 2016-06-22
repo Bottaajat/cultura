@@ -93,8 +93,13 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'rus' => [
+            'required' => 'Syötä venäjänkielisiä sanoja',
+            'max' => 'Venäjänkielisten sanojen kokonaispituus on 400 merkkiä.'
+        ],
+        'fin' => [
+            'required' => 'Syötä suomenkielisiä sanoja',
+            'max' => 'Suomenkielisten sanojen kokonaispituus on 400 merkkiä.'
         ],
     ],
 
@@ -115,6 +120,10 @@ return [
       'email' => 'sähköpostiosoite',
       'phone' => 'puhelinnumero',
       'password' => 'salasana',
+      'name' => 'nimi',
+      'description' => 'kuvaus',
+      'label' => 'materiaalin otsikko',
+      'contents' => 'sisältö',
     ],
 
 ];

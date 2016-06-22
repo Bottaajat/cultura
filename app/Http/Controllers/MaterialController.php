@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use File, Auth;
+use File, Auth, Validator;
 
 use Illuminate\Http\Request;
 
@@ -56,6 +56,13 @@ class MaterialController extends Controller
     }return false;
   }
 
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'label' => 'required|max:255',
+      'contents' => 'max:1000',
+    ]);
+  }
+
   /**
   * Store a newly created resource in storage.
   *
@@ -68,6 +75,9 @@ class MaterialController extends Controller
       return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $material = new Material();
     $material->label = $request->input('label');
@@ -97,6 +107,9 @@ class MaterialController extends Controller
       return back()->withErrors('Et voi päivittää tätä materiaalia!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi päivittää tätä materiaalia!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $material->label = $request->input('label');
     $material->contents = $request->input('content');

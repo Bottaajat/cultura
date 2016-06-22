@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createExerciseModal">
-  <span class="glyphicon glyphicon-plus"> </span> 
-  Luo uusi harjoitus 
+  <span class="glyphicon glyphicon-plus"> </span>
+  Luo uusi harjoitus
 </button>
 
 <div id="createExerciseModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createExeciseLabel">

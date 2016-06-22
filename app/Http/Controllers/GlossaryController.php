@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Models\Glossary;
 use App\Models\Material;
 
-use Auth;
+use Auth, Validator;
 
 class GlossaryController extends Controller
 {
@@ -28,6 +28,13 @@ class GlossaryController extends Controller
     return ($countRus == $countFin);
   }
 
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'rus' => 'required|max:400',
+      'fin' => 'required|max:400',
+    ]);
+  }
+
   public function store(Request $request) {
     $material = Material::find($request->input('material_id'));
     $exercise = $material->exercise;
@@ -35,6 +42,9 @@ class GlossaryController extends Controller
       return back()->withErrors('Et voi luoda tälle harjoitukselle sanastoa!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi luoda tälle harjoitukselle sanatoa!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $glossary = new Glossary();
     $glossary->rus = $this->clearEmptyLines($request->input('rus'));
@@ -55,6 +65,9 @@ class GlossaryController extends Controller
       return back()->withErrors('Et voi päivittää tätä sanastoa!');
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi päivittää tätä sanastoa!');
+
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
 
     $glossary->rus = $this->clearEmptyLines($request->input('rus'));
     $glossary->fin = $this->clearEmptyLines($request->input('fin'));

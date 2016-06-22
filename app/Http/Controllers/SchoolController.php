@@ -9,7 +9,7 @@ use App\Http\Requests;
 use App\Models\School;
 use App\Models\User;
 
-use Auth, File;
+use Auth, File, Validator;
 
 class SchoolController extends Controller
 {
@@ -28,7 +28,16 @@ class SchoolController extends Controller
     return view('school.show', ['school' => School::findOrFail($id), 'pending' => User::where('pending', $id)->get()]);
   }
 
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'name' => 'required|unique:schools|min:3|max:255',
+    ]);
+  }
+
   public function store(Request $request) {
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
+
     $School = new School();
     $School->name = $request->input('name');
 
@@ -37,6 +46,9 @@ class SchoolController extends Controller
   }
 
   public function update(Request $request, $id) {
+    $validate = $this->validator($request->all());
+    if($validate->fails()) return back()->withErrors($validate);
+
     $School = School::find($id);
     $School->name = $request->input('name');
 
