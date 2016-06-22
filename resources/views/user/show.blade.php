@@ -16,14 +16,14 @@
 @endif
 
 <div class="row">
-  <div class="col-xs-6 col-md-6">
+  <div class="col-xs-12 col-md-offset-3 col-md-3">
     @if($user->src)
       <img class="thumbnail img-responsive" src="{!! $user->src !!}" width="300px">
     @else
       <img class="thumbnail img-responsive" src="/img/defaultuser.png" width="300px">
     @endif
   </div>
-  <div class="col-xs-7 col-md-6">
+  <div class="col-xs-12 col-md-4 ">
     <p class='h3'>
       Yhteystiedot:
     </p>
