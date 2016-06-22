@@ -76,10 +76,10 @@ class TaskController extends Controller
 
   public function show($id) {
     if($task = Task::findOrFail($id)) {
-      $videos;
-      if(Auth::user()->is_admin) {
+      $videos = [];
+      if(Auth::user() && Auth::user()->is_admin) {
         $videos = Video::all();
-      } else {
+      } if (Auth::user() && $task->school) {
         $videos = $task->school->video;
       }
       if($task->type=="Sanojen yhdistäminen" || $task->type=="Kuvien yhdistäminen") {

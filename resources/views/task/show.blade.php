@@ -11,8 +11,8 @@
     <div class="panel-title">{{$task->type}}</div>
   </div>
 
-  @if((Auth::user() && $task->school && 
-  checkMembership(Auth::user(), $task->school->id)) 
+  @if(Auth::user() && $task->school && $task->school &&
+  checkMembership(Auth::user(), $task->school->id))
   || Auth::user()->is_admin)
   <div class="createbuttondiv">
     @include('task.addvideo')
