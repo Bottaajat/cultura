@@ -18,24 +18,24 @@
 <div class="row">
   <div class="col-xs-6 col-md-6">
     @if($user->src)
-      <img class="thumbnail" src="{!! $user->src !!}" height="400px" width="375px">
+      <img class="thumbnail img-responsive" src="{!! $user->src !!}" width="300px">
     @else
-      <img class="thumbnail" src="/img/defaultuser.png" height="400px" width="375px">
+      <img class="thumbnail img-responsive" src="/img/defaultuser.png" width="300px">
     @endif
   </div>
-  <div class="col-xs-6 col-md-6">
-    <p class='h1'>
+  <div class="col-xs-7 col-md-6">
+    <p class='h3'>
       Yhteystiedot:
     </p>
-    <p class='h2'>
+    <p class='h3'>
       Sähköposti:
       {!! $user->email !!}
     </p>
-    <p class="h2">
+    <p class="h3">
       Puhelinnumero:
       {!! $user->phone !!}
     </p>
-    <p class="h3">
+    <p class="h4">
       {!! nl2br(e($user->intro)) !!}
     </p>
   </div>
