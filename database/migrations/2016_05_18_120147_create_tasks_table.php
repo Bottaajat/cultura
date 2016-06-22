@@ -16,7 +16,7 @@ class CreateTasksTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('type');
-			$table->string('assignment',1000)->nullable();
+			      $table->string('assignment',1000)->nullable();
             $table->integer('exercise_id')->unsigned()->nullable();
             $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();

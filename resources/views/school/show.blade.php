@@ -7,17 +7,20 @@
 </div>
 
 
-@if(Auth::user() && !Auth::user()->is_admin && Auth::user()->pending == NULL)
- <div id="applybuttondiv">
+@if(Auth::user() && !Auth::user()->is_admin && Auth::user()->pending == NULL && Auth::user()->school == NULL)
+ <div class="applybuttondiv">
    @include('school.apply')
  </div>
+ @elseif(Auth::user() && Auth::user()->pending == $school->id)
+ <div class="cancelbuttondiv">
+   @include('school.cancel')
+ </div>
+ @else
  @endif
 
  @if(Auth::user() && Auth::user()->is_admin)
- <div id="createbuttondiv">
+ <div class="createbuttondiv">
   @include('school.edit')
- </div>
- <div id="logobuttondiv">
   @include('school.logo')
  </div>
  @endif
@@ -98,4 +101,3 @@
 
 
 @stop
-  {{--   @if(Auth::check() && Auth::user()->is_admin || (!Auth::user()->school->isEmpty() && Auth::user()->school->id == $school->id)) --}}

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#acceptModal{{$item->id}}">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acceptModal{{$item->id}}">
   <i class="fa fa-btn fa-check"></i>
 </button>
 

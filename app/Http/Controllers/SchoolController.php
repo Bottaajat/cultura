@@ -15,7 +15,7 @@ class SchoolController extends Controller
 {
   public function __construct() {
     $this->middleware('auth', ['except' => ['index', 'show']]);
-    $this->middleware('school.crud', ['except' => ['index', 'show', 'apply', 'accept']]);
+    $this->middleware('school.crud', ['except' => ['index', 'show', 'apply', 'accept', 'reject']]);
   }
 
   public function index() {
@@ -49,6 +49,17 @@ class SchoolController extends Controller
     if($school->src != NULL) {
       File::delete(public_path() . $school->src);
     }
+
+    foreach($school->users as $user) {
+      $user->school()->dissociate();
+      $user->save();
+    }
+
+    foreach($school->exercises as $exercise) {
+      $exercise->school()->dissociate();
+      $exercise->save();
+    }
+
     $school->delete();
     return back()->with('success', 'Koulu poistettu!');
   }
@@ -70,7 +81,6 @@ class SchoolController extends Controller
     $user = User::findOrFail($userid);
     if(!Auth::user()->is_admin && Auth::user()->school->id != $schoolid)
       return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
-
     $school = School::findOrFail($schoolid);
 
     $user->pending = NULL;

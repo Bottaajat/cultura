@@ -1,5 +1,5 @@
-<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#createSchoolModal">
-  <span class="glyphicon glyphicon-plus"> </span> 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createSchoolModal">
+  <span class="glyphicon glyphicon-plus"> </span>
   Luo uusi koulu
 </button>
 
