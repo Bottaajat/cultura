@@ -21,9 +21,9 @@
     @endif
   </div>
   <div class="col-xs-12 col-md-4 ">
-    <h3>
+    <p class='h3'>
       Yhteystiedot:
-    </h3>
+    </p>
     <p class='h3'>
       Sähköposti: <br>
       {!! $user->email !!}
