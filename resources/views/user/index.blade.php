@@ -5,6 +5,14 @@
   <h1>Käyttäjät</h1>
 </div>
 
+@if($users->isEmpty())
+<div class="jumbotron">
+  <p class="text-danger">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Järjestelmässä ei ole vielä käyttäjiä!
+  </p>
+</div>
+
+@else
 <table class="table table-bordered table-hover">
 
   <thead>
@@ -42,5 +50,6 @@
   </tbody>
 
 </table>
+@endif
 
 @stop
