@@ -16,13 +16,13 @@
       @for (
           $i = ($paginator->currentPage() < 3 ? 
                   2: 
-                  ($paginator->lastPage()-$paginator->currentPage() > 2 ?
+                  ($paginator->lastPage()-$paginator->currentPage() > 1 ?
                     $paginator->currentPage()-1 :
                     $paginator->lastPage() - 4));
                 
           $i <= ($paginator->currentPage() < 3 ?
                   5:
-                  ($paginator->lastPage()-$paginator->currentPage() > 2 ?
+                  ($paginator->lastPage()-$paginator->currentPage() > 1 ?
                     $paginator->currentPage()+2: 
                     $paginator->lastPage()-1));
           $i++)
