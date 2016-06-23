@@ -611,6 +611,7 @@ class TaskController extends Controller
 			$filling = $task->filling;
 			$filling->delete();
 		}
+		if ($task->glossary != null) $task->glossary->delete();
 		$task->delete();
         return redirect('/task')->with('success', 'Tehtävä poistettu!');
     }
