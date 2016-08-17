@@ -16,7 +16,7 @@ function init(draggables, droppables) {
 	  var correct = draggables.slice();
 	  draggables.sort( function() { return Math.random() - .5 } );
 	  for ( var i=0; i<draggables.length; i++ ) {
-		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', draggables[i]+'-drag'  ).appendTo( '#draggablearea' ).draggable( {
+		$('<div>' + draggables[i] + '</div>').data( 'dragged', draggables[i] ).attr( 'id', i+'-drag'  ).appendTo( '#draggablearea' ).draggable( {
 		  containment: '#task',
 		  stack: '#draggablearea div',
 		  cursor: 'move',
@@ -25,15 +25,15 @@ function init(draggables, droppables) {
 	  }
 	 
 	  // Create the card slots
-	  for ( var i=1; i<=draggables.length; i++ ) {
-		$('<div style="min-height: 88px; min-width: 88px">' + correct[i-1] + '</div>').text('').data( 'slot', correct[i-1] ).attr( 'id', correct[i-1]+'-drop' ).appendTo( '#droppablearea' ).droppable( {
+	  for ( var i=0; i<draggables.length; i++ ) {
+		$('<div style="min-height: 88px; min-width: 88px">' + draggables[i] + '</div>').text('').data( 'slot', draggables[i] ).attr( 'id', (i)+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
-		$( '#'+correct[i-1]+'-drop' ).css( 'background-image', 'url(/img/'+droppables[i-1]+') ' );
-		$( '#'+correct[i-1]+'-drop' ).css( 'background-repeat', 'no-repeat' );
-		$( '#'+correct[i-1]+'-drop' ).css( 'background-size', 'contain' );
+		$( '#'+correct[i]+'-drop' ).css( 'background-image', 'url(/img/'+droppables[i]+') ' );
+		$( '#'+correct[i]+'-drop' ).css( 'background-repeat', 'no-repeat' );
+		$( '#'+correct[i]+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	}
 	  
@@ -53,8 +53,9 @@ function init(draggables, droppables) {
 			$(this).droppable( 'disable' );
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
-			$( '#'+card+'-drag' ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
-			$( '#'+slot+'-drop' ).css( 'color', '#00FF00' );
+			var id = ((this.id).split('-'))[0];
+			$( '#'+id+'-drag' ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
+			$( '#'+id+'-drop' ).css( 'color', '#00FF00' );
 			correctCards++;
 		} 
 

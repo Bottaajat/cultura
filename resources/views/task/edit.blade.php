@@ -44,7 +44,7 @@
 			$draggables = '["'.str_replace(',', '","', implode(',', $draggables)).'"]';
 			$droppables = '["'.str_replace(',', '","', implode(',', $droppables)).'"]';
 			$showables = '["'.str_replace(',', '","', implode(',', $showables)).'"]';
-			echo '<script>Edit_OrderingWords('.$draggables.','.$droppables.','.$droppables.','.$task->id.')</script>';
+			echo '<script>Edit_OrderingWords('.$draggables.','.$droppables.','.$showables.','.$task->id.')</script>';
 		}
 		if ($task->type == 'Kuvien yhdistäminen') {
 			$i=0;

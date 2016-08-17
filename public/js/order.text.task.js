@@ -1,8 +1,8 @@
 function init(draggables, droppables, showables) {
 	var correctCards = 0;
-	$( init );
+	$( order_text );
 	 
-	function init() {
+	function order_text() {
 	 
 	  // Reset the game
 	  correctCards = 0;
