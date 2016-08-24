@@ -95,7 +95,7 @@ function Edit_Crossword(answers,clues,positions,id) {
 	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'edit-'+id+'-add' ).appendTo( '#edit-'+id+'-input' );
 	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'edit-'+id+'-del' ).appendTo( '#edit-'+id+'-input' );
 	$('<input type="text" name="vertical" readonly/>').attr( 'id', 'edit-'+id+'-vertical' ).attr( 'value', answers[answers.length-1] ).attr( 'placeholder', 'pystysana' ).appendTo( '#edit-'+id+'-preview' );
-	$('<input type="text" name="vertical_clue" required/>').attr( 'id', 'edit-'+id+'-vertical_clue' ).attr( 'value', clues[answers.length-1] ).attr( 'placeholder', 'pystysanan vihje' ).appendTo( '#edit-'+id+'-preview' );
+	$('<input type="text" name="vertical_clue"/>').attr( 'id', 'edit-'+id+'-vertical_clue' ).attr( 'value', clues[answers.length-1] ).attr( 'placeholder', 'pystysanan vihje' ).appendTo( '#edit-'+id+'-preview' );
 	
 	$('#edit-'+id+'-add').on( 'click', function() {
 		var word_add = $('<div id="edit-'+id+'-word-'+words+'" class="word">');

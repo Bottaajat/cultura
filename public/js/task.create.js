@@ -107,7 +107,7 @@ function Crossword() {
 	$('<input type="button" class="btn btn-success" value="Lisää uusi"/>').attr( 'id', 'add' ).appendTo( '#input' );
 	$('<input type="button" class="btn btn-danger" value="Poista viimeisin"/>').attr( 'id', 'del' ).appendTo( '#input' );
 	$('<input type="text" name="vertical" readonly/>').attr( 'id', 'vertical' ).attr( 'placeholder', 'pystysana' ).appendTo( '#preview' );
-	$('<input type="text" name="vertical_clue" required/>').attr( 'id', 'vertical_clue' ).attr( 'placeholder', 'pystysanan vihje' ).appendTo( '#preview' );
+	$('<input type="text" name="vertical_clue"/>').attr( 'id', 'vertical_clue' ).attr( 'placeholder', 'pystysanan vihje' ).appendTo( '#preview' );
 	
 	$("#add").on( 'click', function() {
 		var word_add = $('<div id="word-'+words+'" class="word">');
