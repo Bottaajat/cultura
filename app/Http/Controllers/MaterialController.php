@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use File, Auth, Validator;
-
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
 use App\Models\Material;
-
 use App\Models\Exercise;
 
 class MaterialController extends Controller
@@ -30,37 +27,11 @@ class MaterialController extends Controller
           })
         ->paginate(10)
         ->appends(['search' => $search]);
-      return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list, 'search' => $search));
+      return view('material.index', array('materials' => $materials,'exercise_list' => $exercise_list, 'search' => $search));
     }
     else
       $materials = Material::paginate(10);
-
-    return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
-  }
-
-  private function handleFiles(Request $request, $material) {
-    if($request->hasFile('file')) {
-      $extension = $request->file('file')->getClientOriginalExtension();
-
-      if($material->type == "image") {
-        if(!allowedExtension($extension, allowedImageExtensions())) return false;
-        else return handleFile($request, $material, public_path() . "/img/");
-      } elseif ($material->type == "audio") {
-        if(!allowedExtension($extension, allowedAudioExtensions())) return false;
-        else return handleFile($request, $material, public_path() . "/audio/");
-      } else {
-        return false;
-      }
-    } elseif ($material->type == "text") {
-      return true;
-    }return false;
-  }
-
-  protected function validator(array $data) {
-    return Validator::make($data, [
-      'label' => 'required|max:255',
-      'contents' => 'max:1000',
-    ]);
+      return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
   }
 
   /**
@@ -70,27 +41,27 @@ class MaterialController extends Controller
   * @return \Illuminate\Http\Response
   */
   public function store(Request $request) {
-    $exercise = Exercise::find($request->input('exercise_id'));
-    if(!Auth::user()->is_admin && $exercise->school == NULL)
+    $exercise = Exercise::find($request->input('exercise_id'));    
+    if ($this->checkPermissions($exercise)) {
+      $validate = $this->validator($request->all());
+      if($validate->fails()) return back()->withErrors($validate);
+
+      $material = new Material();
+      $material->label = $request->input('label');
+      $material->contents = $request->input('contents');
+      $material->type = $request->input('type');
+      
+      if (!$this->setExercise($request, $material)) {
+        return back()->withErrors('Et voi muuttaa materiaalia harjoitukseen!');
+      }
+      if(!$this->handleFiles($request, $material)) {
+        return back()->withErrors('Vain kuva ja äänitiedostot ovat sallittuja! (Valitse tyyppi)');
+      }
+      $material->save();
+      return back()->with('success', 'Materiaali lisätty!');
+    } else {
       return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
-    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
-      return back()->withErrors('Et voi lisätä tälle harjoitukselle materiaalia!');
-
-    $validate = $this->validator($request->all());
-    if($validate->fails()) return back()->withErrors($validate);
-
-    $material = new Material();
-    $material->label = $request->input('label');
-    $material->contents = $request->input('contents');
-    $material->type = $request->input('type');
-    $material->exercise()->associate($request->input('exercise_id'));
-
-    if(!$this->handleFiles($request, $material))
-      return back()->withErrors('Vain kuva ja äänitiedostot ovat sallittuja!');
-
-
-    $material->save();
-    return back()->with('success', 'Materiaali lisätty!');
+    }
   }
 
   /**
@@ -103,23 +74,33 @@ class MaterialController extends Controller
   public function update(Request $request, $id) {
     $material = Material::find($id);
     $exercise = $material->exercise;
-    if(!Auth::user()->is_admin && $exercise->school == NULL)
+    if ($this->checkPermissions($exercise)) {
+    
+      $validate = $this->validator($request->all());
+      if($validate->fails()) {
+        return back()->withErrors($validate);
+      }
+      $material->label = $request->input('label');
+      $material->contents = $request->input('content');
+
+      if ($request->hasFile('file')) {
+        if(!$this->handleFiles($request, $material)) {
+          return back()->withErrors('Virheellinen tiedostoformaatti!');
+        }
+      } else if ($request->input('type') == "text" && $material->src) {
+          File::delete(public_path() . $material->src);
+      }
+      
+      $material->type = $request->input('type');
+      
+      if (!$this->setExercise($request, $material)) {
+        return back()->withErrors('Et voi muuttaa materiaalia harjoitukseen!');
+      }
+      $material->save();
+      return back()->with('success', 'Materiaali päivitetty!');
+    } else {
       return back()->withErrors('Et voi päivittää tätä materiaalia!');
-    if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
-      return back()->withErrors('Et voi päivittää tätä materiaalia!');
-
-    $validate = $this->validator($request->all());
-    if($validate->fails()) return back()->withErrors($validate);
-
-    $material->label = $request->input('label');
-    $material->contents = $request->input('content');
-    $material->type = $request->input('type');
-
-    if(!$this->handleFiles($request, $material))
-      return back()->withErrors('Virheellinen tiedostoformaatti!');
-
-    $material->save();
-    return back()->with('success', 'Materiaali päivitetty!');
+    }
   }
 
   /**
@@ -131,15 +112,63 @@ class MaterialController extends Controller
   public function destroy($id) {
     $material = Material::find($id);
     $exercise = $material->exercise;
+    if ($this->checkPermissions($exercise)) {
+      if ($material->glossary != null) { 
+        $material->glossary->delete();
+      }
+      File::delete(public_path() . $material->src);
+      $material->delete();
+      return back()->with('success', 'Materiaali poistettu!');
+    } else {
+      return back()->withErrors('Et voi poistaa tätä materiaalia!')->withInput();
+    }
+  }
+  
+  
+  // Tarkistaa että käyttäjä on kirjautunut ja että hänellä on oikeudet hallintaan
+  private function checkPermissions($exercise) {
     if(!Auth::user()->is_admin && $exercise->school == NULL)
-      return back()->withErrors('Et voi poistaa tätä materiaalia!');
+      return false;
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
-      return back()->withErrors('Et voi poistaa tätä materiaalia!');
+      return false;
+    return true;
+  }
+  
+  private function handleFiles(Request $request, $material) {
 
-    if ($material->glossary != null) $material->glossary->delete();
-
-    File::delete(public_path() . $material->src);
-    $material->delete();
-    return back()->with('success', 'Materiaali poistettu!');
+    if ($request->hasFile('file')) {
+      $extension = $request->file('file')->getClientOriginalExtension();
+      
+      if ($request->input('type') == "image" 
+                && allowedExtension($extension, allowedImageExtensions()))
+          return handleFile($request, $material, public_path() . "/img/");
+      
+      if ($request->input('type') == "sound" 
+                && allowedExtension($extension, allowedAudioExtensions()))
+          return handleFile($request, $material, public_path() . "/audio/");
+    }
+    else if ($request->input('type') == "text") {
+      return true;
+    }
+    return false;
+  }
+  
+  // Tarkistaa että käyttäjä voi lisätä harjoitukseen materiaalia
+  private function setExercise(Request $request, $material) {
+    $new_exercise = Exercise::find($request->input('exercise_id'));
+    if ($new_exercise != NULL && 
+          checkMembership(Auth::user(), $new_exercise->school->id)) {
+      $material->exercise()->associate($new_exercise->id);
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  protected function validator(array $data) {
+    return Validator::make($data, [
+      'label' => 'required|max:255',
+      'contents' => 'max:1000',
+    ]);
   }
 }

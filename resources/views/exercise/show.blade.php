@@ -11,6 +11,14 @@
   <h1>{{ $exercise->name }}</h1>
 </div>
 
+<div class="createbuttondiv">
+  <div class="row">
+    <div class="col-xs-6 .col-sm-4 pull-right">
+      @include('material.create')
+    </div>
+  </div>
+</div>
+
 @include('material.show')
 
 {{-- Tehtävät --}}

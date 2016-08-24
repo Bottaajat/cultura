@@ -37,9 +37,11 @@ function handleFile(Illuminate\Http\Request $request, Illuminate\Database\Eloque
 
     //Jos päivitetään tiedostoa
     else {
-      $filename = basename($resource->src);
+      $filename = pathinfo($resource->src, PATHINFO_FILENAME).'.'.$extension;
     }
 
+    // Poistetaan vanha tiedosto 
+    \File::delete(public_path() . $resource->src);
     //siirretään tiedosto $destination polkuun
     $file->move($destination, $filename);
 
@@ -54,12 +56,12 @@ function allowedExtension ($extension, $array) {
   return in_array($extension, $array);
 }
 
-// SALLITUT AUDIO TIEDOSTO FORMAATIT
+// SALLITUT KUVA TIEDOSTO FORMAATIT
 function allowedImageExtensions() {
   return ['jpg', 'jpeg', 'jpe', 'jif', 'jfif', 'jfi', 'gif', 'png', 'apng', 'svg', 'bmp', 'dib', 'ico', 'cur'];
 }
 
-// SALLITUT KUVA TIEDOSTO FORMAATIT
+// SALLITUT AUDIO TIEDOSTO FORMAATIT
 function allowedAudioExtensions() {
   return   ['3gp', 'aa', 'aac', 'aax', 'act', 'aiff', 'amr', 'ape', 'au', 'awb', 'dct', 'dss', 'dvf',
             'flac', 'gsm', 'iklax', 'ivs', 'm4a', 'm4b', 'm4p', 'mmf', 'mp3', 'mpc', 'msv', 'ogg', 'oga',

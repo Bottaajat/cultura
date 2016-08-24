@@ -31,7 +31,8 @@ class ExerciseController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show($id) {
-    return view('exercise.show', ['exercise' => Exercise::findOrFail($id)]);
+    $exercise_list = Exercise::lists('name', 'id');
+    return view('exercise.show', array('exercise' => Exercise::findOrFail($id), 'exercise_list' => $exercise_list ));
   }
 
   protected function validator(array $data) {
