@@ -26,14 +26,14 @@ function init(draggables, droppables) {
 	 
 	  // Create the card slots
 	  for ( var i=0; i<draggables.length; i++ ) {
-		$('<div style="min-height: 88px; min-width: 88px">' + draggables[i] + '</div>').text('').data( 'slot', draggables[i] ).attr( 'id', (i)+'-drop' ).appendTo( '#droppablearea' ).droppable( {
+		$('<div style="min-height: 88px; min-width: 88px">' + correct[i] + '</div>').text('').data( 'slot', correct[i] ).attr( 'id', (i)+'-drop' ).appendTo( '#droppablearea' ).droppable( {
 		  accept: '#draggablearea div',
 		  hoverClass: 'hovered',
 		  drop: handleCardDrop
 		} );
-		$( '#'+correct[i]+'-drop' ).css( 'background-image', 'url(/img/'+droppables[i]+') ' );
-		$( '#'+correct[i]+'-drop' ).css( 'background-repeat', 'no-repeat' );
-		$( '#'+correct[i]+'-drop' ).css( 'background-size', 'contain' );
+		$( '#'+i+'-drop' ).css( 'background-image', 'url(../img/'+droppables[i]+') ' );
+		$( '#'+i+'-drop' ).css( 'background-repeat', 'no-repeat' );
+		$( '#'+i+'-drop' ).css( 'background-size', 'contain' );
 	  }
 	}
 	  
@@ -45,7 +45,7 @@ function init(draggables, droppables) {
 		// change the card colour, position it directly
 		// on top of the slot, and prevent it being dragged
 		// again
-		
+		//alert($(ui.draggable).attr("id"));
 		//alert("slot: "+ slot + " card: " + card);
 		if ( slot == card ) {
 			ui.draggable.addClass( 'correct' );
@@ -54,7 +54,7 @@ function init(draggables, droppables) {
 			ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
 			ui.draggable.draggable( 'option', 'revert', false );
 			var id = ((this.id).split('-'))[0];
-			$( '#'+id+'-drag' ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
+			$( '#'+$(ui.draggable).attr("id") ).css( 'visibility', 'hidden' ); //poistaa tekstin kuvan p‰‰lt‰, kun oikein
 			$( '#'+id+'-drop' ).css( 'color', '#00FF00' );
 			correctCards++;
 		} 
