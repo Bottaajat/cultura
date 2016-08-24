@@ -136,7 +136,7 @@ class MaterialController extends Controller
     if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
       return back()->withErrors('Et voi poistaa tätä materiaalia!');
 
-    $material->glossary->delete();
+    if ($material->glossary != null) $material->glossary->delete();
 
     File::delete(public_path() . $material->src);
     $material->delete();
