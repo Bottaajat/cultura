@@ -63,8 +63,7 @@ class VideoController extends Controller
 
   public function update(Request $request, $id) {
       $video = Video::find($id);
-      if(Auth::user()->is_admin || ($video->school !=NULL &&
-            checkMembership(Auth::user(), $video->school->id))) {
+      if(checkMembership(Auth::user(), $video->school)) {
         $validate = $this->validator($request->all());
         if($validate->fails()) 
           return back()->withErrors($validate);
@@ -87,8 +86,7 @@ class VideoController extends Controller
 
   public function destroy($id) {
     $video = Video::find($id);
-    if(Auth::user()->is_admin || ($video->school !=NULL &&
-          checkMembership(Auth::user(), $video->school->id))) {
+    if(checkMembership(Auth::user(), $video->school)) {
       $tasks = $video->tasks;
       foreach($tasks as $task) {
         $task->video()->dissociate();

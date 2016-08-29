@@ -11,7 +11,7 @@
   <h1>{{ $exercise->name }}</h1>
 </div>
 
-@if(Auth::check())
+@if(Auth::check() && checkMembership(Auth::user(), $exercise->school))
 <div class="createbuttondiv">
   <div class="row">
     <div class="col-xs-6 .col-sm-4 pull-right">

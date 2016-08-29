@@ -157,7 +157,7 @@ class MaterialController extends Controller
   private function setExercise(Request $request, $material) {
     $new_exercise = Exercise::find($request->input('exercise_id'));
     if ($new_exercise != NULL && 
-          checkMembership(Auth::user(), $new_exercise->school->id)) {
+          checkMembership(Auth::user(), $new_exercise->school)) {
       $material->exercise()->associate($new_exercise->id);
       return true;
     } else {

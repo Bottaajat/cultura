@@ -68,11 +68,12 @@ function allowedAudioExtensions() {
             'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
 }
 
-function checkMembership($user, $schoolid) {
-  if ($user == NULL || $schoolid == NULL)
-    return FALSE;
-  if($user->is_admin || ($user->school != NULL && $user->school->id == $schoolid) )
-    return TRUE;
+function checkMembership($user, $school) {
+  if ($user != NULL && $user->is_admin)
+    return true;
+  else if($user != NULL && $user->school != NULL && $school != NULL && 
+        $user->school != NULL && $user->school->id == $school->id)
+    return true;
   else
     return FALSE;
 }

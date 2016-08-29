@@ -597,9 +597,9 @@ class TaskController extends Controller
              return back()->with('success', 'Video liitettiin tehtävään onnistuneesti');
           }  return back()->withErrors('Videota ei löytynyt.');
       }
-      if($task && checkMembership(Auth::user(), $task->school->id)) {
+      if($task && checkMembership(Auth::user(), $task->school)) {
         $video = Video::find($request->input('video_id'));
-        if ($video && checkMembership(Auth::user(), $video->school->id)) {
+        if ($video && checkMembership(Auth::user(), $video->school)) {
           $task->video()->associate($video);
           $task->save();
           return back()->with('success', 'Video liitettiin tehtävään onnistuneesti');
@@ -616,7 +616,7 @@ class TaskController extends Controller
         $task->save();
         return back()->with('success', 'Video poistettiin tehtävästä onnistuneesti');
       }
-      if($task && checkMembership(Auth::user(), $task->school->id)) {
+      if($task && checkMembership(Auth::user(), $task->school)) {
         $task->video()->dissociate();
         $task->save();
         return back()->with('success', 'Video poistettiin tehtävästä onnistuneesti');

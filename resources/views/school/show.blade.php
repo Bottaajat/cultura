@@ -62,7 +62,7 @@
   @endif
   </div>
 
-@if(Auth::check() && checkMembership(Auth::user(), $school->id))
+@if(Auth::check() && checkMembership(Auth::user(), $school))
   @if($pending->isEmpty())
   <div class="col-xs-3 col-md-3">
     <h3>Ei uusia jäsenyyspyyntöjä</h3>
@@ -76,7 +76,7 @@
           <th>#</th>
           <th>Etunimi</th>
           <th>Sukunimi</th>
-          @if(Auth::check() && checkMembership(Auth::user(), $school->id))
+          @if(Auth::check() && checkMembership(Auth::user(), $school))
             <th>Hyväksy</th>
           @endif
         </tr>
@@ -87,7 +87,7 @@
             <td><a href="{!! action('UserController@show', ['id' => $item->id]) !!}">{!! $key+1 !!}</a></td>
             <td>{!! $item->firstname !!}</td>
             <td>{!! $item->lastname !!}</td>
-            @if(Auth::check() && checkMembership(Auth::user(), $school->id))
+            @if(Auth::check() && checkMembership(Auth::user(), $school))
               <td class="rowlink-skip">@include('school.accept')</td>
             @endif
           </tr>
