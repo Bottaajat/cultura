@@ -577,44 +577,15 @@ class TaskController extends Controller
 
 	public function destroy($id) {
         $task = Task::find($id);
-
         if(!Auth::user()->is_admin && $task->exercise->school == NULL)
           return back()->withErrors('Et voi poistaa tätä tehtävää!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $task->exercise->school->id)
           return back()->withErrors('Et voi poistaa toisen koulun tehtäviä!');
-		if($task->type == 'Sanojen yhdistäminen') {
-			$orderings = $task->orderings;
-			foreach($orderings as $ordering) {
-				$ordering->delete();
-			}
-		}
-		if($task->type == 'Kuvien yhdistäminen') {
-			$orderings = $task->orderings;
-			foreach($orderings as $ordering) {
-				File::delete(public_path().'/img/'. $ordering->droppable);
-				$ordering->delete();
-			}
-		}
-		if($task->type == 'Monivalinta') {
-			$multiplechoises = $task->multiplechoises;
-			foreach($multiplechoises as $multiplechoice) {
-				$multiplechoice->delete();
-			}
-		}
-		if($task->type == 'Sanaristikko') {
-			$crosswords = $task->crosswords;
-			foreach($crosswords as $crossword) {
-				$crossword->delete();
-			}
-		}
-		if($task->type == 'Täyttö') {
-			$filling = $task->filling;
-			$filling->delete();
-		}
-		if ($task->glossary != null) $task->glossary->delete();
-		$task->delete();
+        
+        if (deleteTaskParts($task)) $task->delete();
+        
         return redirect('/task')->with('success', 'Tehtävä poistettu!');
-    }
+  }
 
     public function addVideo(Request $request, $id) {
       $task = Task::find($id);
@@ -652,4 +623,5 @@ class TaskController extends Controller
       }
       return back()->withErrors('Et voi muuttaa tätä tehtävää!');
     }
+    
 }

@@ -40,7 +40,11 @@
       <div class="modal-header">
         <h4 class="modal-title" id="delModal{{$exercise->id}}Label">Poistetaanko {{$exercise->name}}?</h4>
       </div>
-
+      
+      <div class="modal-body">
+        <strong>Tämä tuhoaa KAIKKI harjoitukseen liitetyt materiaalit ja tehtävät !</strong>
+      </div>
+      
       <div class="modal-footer">
         {{Form::open(array('action'=>array('ExerciseController@destroy', $exercise->id), 'method'=>'delete'))}}
         <button type="button" class="btn btn-default" data-dismiss="modal">Peruuta</button>

@@ -81,3 +81,42 @@ function mb_ucfirst($str) {
     $fc = mb_strtoupper(mb_substr($str, 0, 1));
     return $fc.mb_substr($str, 1);
 }
+
+function deleteTaskParts($task) {
+  try {
+    if($task->type == 'Sanojen yhdistäminen') {
+      $orderings = $task->orderings;
+      foreach($orderings as $ordering) {
+        $ordering->delete();
+      }
+    }
+    if($task->type == 'Kuvien yhdistäminen') {
+      $orderings = $task->orderings;
+      foreach($orderings as $ordering) {
+        File::delete(public_path().'/img/'. $ordering->droppable);
+        $ordering->delete();
+      }
+    }
+    if($task->type == 'Monivalinta') {
+      $multiplechoises = $task->multiplechoises;
+      foreach($multiplechoises as $multiplechoice) {
+        $multiplechoice->delete();
+      }
+    }
+    if($task->type == 'Sanaristikko') {
+      $crosswords = $task->crosswords;
+      foreach($crosswords as $crossword) {
+        $crossword->delete();
+      }
+    }
+    if($task->type == 'Täyttö') {
+      $filling = $task->filling;
+      $filling->delete();
+    }
+    if ($task->glossary != null)
+      $task->glossary->delete();
+  } catch (Exception $e) {
+    return false;
+  }
+  return true;
+}

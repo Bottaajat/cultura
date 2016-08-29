@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Models\Exercise;
 
 use App\Models\Topic;
@@ -119,17 +117,16 @@ class ExerciseController extends Controller
         $exercise = Exercise::find($id);
 
         if(!Auth::user()->is_admin && $exercise->school == NULL)
-          return back()->withErrors('Vain admin voi poistaa tätä harjoitusta!');
+          return back()->withErrors('Vain admin voi poistaa tämän harjoituksen!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
           return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
 
         foreach($exercise->materials as $material) {
-          $material->exercise()->dissociate();
-          $material->save();
+          $material->delete();
         }
         foreach($exercise->tasks as $task) {
-          $task->exercise()->dissociate();
-          $task->save();
+          if (deleteTaskParts($task))
+            $task->delete();
         }
 
         $exercise->delete();
