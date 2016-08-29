@@ -84,10 +84,16 @@ class ExerciseController extends Controller
         return back()->withErrors('Et voi tehdä toisen koulun harjoitukseen muutoksia!');
 
       $validate = $this->validator($request->all());
-      if($validate->fails()) return back()->withErrors($validate);
-
       $exercise_name = $request->input('name');
-
+      
+      if($validate->fails()) {
+        if (!$validate->errors()->has('name')) {
+          return back()->withErrors($validate);
+        } else if ($exercise_name !== $exercise->name) {
+          return back()->withErrors($validate);
+        }
+      }
+      
       $topic_id = $request->input('topic_id');
       $topic = Topic::find($topic_id);
 
