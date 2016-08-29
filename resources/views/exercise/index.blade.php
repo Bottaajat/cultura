@@ -38,7 +38,16 @@
           @endif
         </td>
         @if(Auth::check())
-          <td class="rowlink-skip">@include('exercise.edit')</td>
+          <td class="rowlink-skip">
+          @if (checkMembership(Auth::user(), $exercise->school))
+            @include('exercise.edit')
+          @else
+            <button type="button" class="btn btn-primary disabled center-block" >
+              <span class="glyphicon glyphicon-pencil"></span>
+                Muokkaa
+            </button>
+          @endif
+          </td>
         @endif
       </tr>
     @endforeach

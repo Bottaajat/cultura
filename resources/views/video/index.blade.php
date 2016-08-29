@@ -5,7 +5,7 @@
   <h1>Videot</h1>
 </div>
 
-@if(Auth::check())
+@if(Auth::check() && belongsToSchool(Auth::user()))
   <div class="createbuttondiv">
     @include('video.create')
   </div>
@@ -21,7 +21,7 @@
       <th width="300px">Otsikko</th>
       <th>Kuvaus</th>
       <th width="120px">Tehtäviä</th>
-      @if(Auth::check())
+      @if(Auth::check() && belongsToSchool(Auth::user()))
         <th width="120px">Muokkaus</th>
       @endif
     </tr>
@@ -59,9 +59,16 @@
         </button>
       @endif
     </td>
-    @if(Auth::check())
+    @if(Auth::check() && belongsToSchool(Auth::user()))
       <td class="center-align rowlink-skip">
-        @include('video.edit')
+        @if(checkMembership(Auth::user(), $video->school))
+          @include('video.edit')
+        @else
+          <button type="button" class="btn btn-primary disabled">
+            <i class="glyphicon glyphicon-pencil"></i>
+              Muokkaa
+          </button>
+        @endif
       </td>
     @endif
   </tr>

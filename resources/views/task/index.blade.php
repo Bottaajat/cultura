@@ -6,24 +6,28 @@
 </div>
 
 <div class="createbuttondiv">
-	  <div class="row">
-		<div class="col-xs-6 .col-sm-4 pull-right">
-			@if(Auth::check())
-				@include('task.create')
-			@endif
-	   </div>
+  <div class="row">
+  <div class="col-xs-6 .col-sm-4 pull-right">
+    @if(belongsToSchool(Auth::user()))
+      @if(count($exercise_list) > 0)
+        @include('task.create')
+      @else
+        <strong class="pull-right">Koululla ei ole harjoituksia</strong>
+      @endif
+    @endif
+   </div>
 
-		<div class="col-xs-6 .col-sm-4">
-			{!! Form::open(array('action'=>array('TaskController@index'), 'method'=>'get')) !!}
-				<div class="input-group">
-					{!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
-					<span class="input-group-btn">
-						{!! Form::submit('Hae', array('class' => 'btn btn-primary')) !!}
-					</span>
-				</div>
-			{!! Form::close() !!}
-		</div>
-	</div>
+  <div class="col-xs-6 .col-sm-4">
+    {!! Form::open(array('action'=>array('TaskController@index'), 'method'=>'get')) !!}
+      <div class="input-group">
+        {!! Form::text('search', (isset($search) ? $search : ''), array('class' => ' form-control', 'placeholder'=>'Haku')) !!}
+        <span class="input-group-btn">
+          {!! Form::submit('Hae', array('class' => 'btn btn-primary')) !!}
+        </span>
+      </div>
+    {!! Form::close() !!}
+  </div>
+</div>
 </div>
 
 <div class="table-responsive">
@@ -35,7 +39,7 @@
       <th>Nimi</th>
       <th>Tyyppi</th>
       <th>Tehtävänanto</th>
-      @if(Auth::check())
+      @if(belongsToSchool(Auth::user()))
         <th>Muokkaa</th>
         <th>Sanasto</th>
       @endif
@@ -59,9 +63,16 @@
           @endif
         </td>
 
-        @if(Auth::check())
+        @if(belongsToSchool(Auth::user()))
           <td class="rowlink-skip center-align">
-            @include('task.edit')
+            @if (checkMembership(Auth::user(), $task->exercise->school))
+              @include('task.edit')
+            @else
+            <button type="button" class="btn btn-primary disabled">
+              <span class="glyphicon glyphicon-pencil"></span>
+                Muokkaa
+              </button>
+            @endif
           </td>
           <td class="rowlink-skip center-align">
             @if ($task->glossary)

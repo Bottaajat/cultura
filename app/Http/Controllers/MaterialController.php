@@ -16,22 +16,47 @@ class MaterialController extends Controller
   }
 
   public function index(Request $request) {
-    $exercise_list = Exercise::lists('name', 'id');
+    if (!belongsToSchool(Auth::user())) {
+      return back()->withErrors("Selataksesi materiaalia, sinun täytyy olla jonkin koulun jäsen");
+    }
+    $exercise_list = Exercise::when(Auth::user()->school != NULL, 
+        function ($query)  {
+          return $query->Where('school_id', '=', Auth::user()->school->id);
+        })
+      ->lists('name', 'id');
     $search = $request->input('search');
+
     if (strlen($search) > 0) {
-      $materials = Material::Where('label', 'like', "%$search%")
-        ->orWhere('type', "$search")
-        ->orWhere('id', "$search")
-        ->orWhereHas('exercise', function ($query) use ($search) {
-            $query->where('name', 'like', "%$search%");
+      $materials = Material::Where(
+          function ($query) use ($search) {
+            $query->where('label', 'like', "%$search%")
+            ->orWhere('type', "$search")
+            ->orWhere('id', "$search")
+            ->orWhereHas('exercise', function ($query) use ($search) {
+                $query->where('name', 'like', "%$search%");
+              });
+          })
+        ->when(Auth::user()->school != NULL, 
+          function ($query)  {
+            return $query->WhereHas('exercise', function ($query) {
+              $query->where('school_id', '=', Auth::user()->school->id);
+            });
           })
         ->paginate(10)
         ->appends(['search' => $search]);
-      return view('material.index', array('materials' => $materials,'exercise_list' => $exercise_list, 'search' => $search));
+      return view('material.index', array('materials' => $materials,
+                'exercise_list' => $exercise_list, 'search' => $search));
     }
     else
-      $materials = Material::paginate(10);
-      return view('material.index', array('materials' => $materials, 'exercise_list' => $exercise_list ));
+      $materials = Material::
+        When(Auth::user()->school != NULL, function ($query) {
+          return $query->WhereHas('exercise', function ($query) {
+            $query->where('school_id', '=', Auth::user()->school->id);
+          });
+        })
+        ->paginate(10);
+      return view('material.index', array('materials' => $materials, 
+                'exercise_list' => $exercise_list ));
   }
 
   /**

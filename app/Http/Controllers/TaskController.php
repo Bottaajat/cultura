@@ -30,32 +30,37 @@ class TaskController extends Controller
 		$this->middleware('auth', ['except' => ['index','show']]);
 	}
 
-	public function index(Request $request) {
-		$tasks = Task::all();
-		$exercise_list = Exercise::lists('name', 'id');
-		$type_list = ['Sanojen yhdistäminen','Kuvien yhdistäminen','Monivalinta','Sanaristikko','Täyttö'];
-		$i=0;
-		foreach($type_list as $type) {
-			$types[$type_list[$i]] = $type_list[$i];
-			$i++;
-		}
+  public function index(Request $request) {
 
-		$search = $request->input('search');
-		if (strlen($search) > 0) {
-		  $tasks = Task::Where('name', 'like', "%$search%")
-			->orWhere('type', "$search")
-			->orWhere('id', "$search")
-			->orWhereHas('exercise', function ($query) use ($search) {
-				$query->where('name', 'like', "%$search%");
-			  })
-			->paginate(10)
-			->appends(['search' => $search]);
-		  return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
-		}
-		else $tasks = Task::paginate(10);
+    $exercise_list = Exercise::when(Auth::user()->school != NULL, 
+        function ($query)  {
+          return $query->Where('school_id', '=', Auth::user()->school->id);
+        })
+      ->lists('name', 'id');
+      
+    $type_list = ['Sanojen yhdistäminen','Kuvien yhdistäminen','Monivalinta','Sanaristikko','Täyttö'];
+    $i=0;
+    foreach($type_list as $type) {
+      $types[$type_list[$i]] = $type_list[$i];
+      $i++;
+    }
 
-		return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
-	}
+    $search = $request->input('search');
+    if (strlen($search) > 0) {
+      $tasks = Task::Where('name', 'like', "%$search%")
+      ->orWhere('type', "$search")
+      ->orWhere('id', "$search")
+      ->orWhereHas('exercise', function ($query) use ($search) {
+        $query->where('name', 'like', "%$search%");
+        })
+      ->paginate(10)
+      ->appends(['search' => $search]);
+      return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
+    }
+    else $tasks = Task::paginate(10);
+
+    return view('task.index', array('tasks' => $tasks, 'exercise_list' => $exercise_list, 'type_list' => $types));
+  }
 
 	private function orderingData($task, $videos) {
 		$droppables = array_pluck($task->orderings, 'droppable');
@@ -101,7 +106,7 @@ class TaskController extends Controller
 
 	public function store(Request $request)
     {
-		$exercise = Exercise::find($request->input('exercise_id'));
+		$exercise = Exercise::findorFail($request->input('exercise_id'));
 
 		if(!Auth::user()->is_admin && $exercise->school == null)
 			return back()->withErrors('Et voi lisätä tehtäviä tähän harjoitukseen!');

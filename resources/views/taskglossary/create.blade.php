@@ -1,3 +1,12 @@
+@if (!checkMembership(Auth::user(), $task->exercise->school))
+
+<button type="button" class="btn btn-info disabled">
+  <span class="glyphicon glyphicon-plus"></span>
+  Luo
+</button>
+
+@else
+
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#createModalGlossary{!!$task->id!!}">
   <span class="glyphicon glyphicon-plus"></span>
   Luo
@@ -41,3 +50,5 @@
     </div>
   </div>
 </div>
+
+@endif

@@ -68,14 +68,24 @@ function allowedAudioExtensions() {
             'ogv', 'ogx', 'spx', 'opus', 'wav', 'wma', 'wave', 'webm'];
 }
 
+function belongsToSchool($user) {
+  if ($user != NULL && $user->is_admin)
+    return true;
+  else if($user != NULL && $user->school != NULL)
+    return true;
+  else
+    return false;
+}
+
+
 function checkMembership($user, $school) {
   if ($user != NULL && $user->is_admin)
     return true;
-  else if($user != NULL && $user->school != NULL && $school != NULL && 
-        $user->school != NULL && $user->school->id == $school->id)
+  else if(belongsToSchool($user) && $school != NULL && 
+        $user->school->id == $school->id)
     return true;
   else
-    return FALSE;
+    return false;
 }
 
 function mb_ucfirst($str) {

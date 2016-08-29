@@ -29,7 +29,11 @@ class ExerciseController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show($id) {
-    $exercise_list = Exercise::lists('name', 'id');
+     $exercise_list = Exercise::when(Auth::user()->school != NULL, 
+      function ($query)  {
+        return $query->Where('school_id', '=', Auth::user()->school->id);
+      })
+    ->lists('name', 'id');
     return view('exercise.show', array('exercise' => Exercise::findOrFail($id), 'exercise_list' => $exercise_list ));
   }
 
@@ -49,8 +53,7 @@ class ExerciseController extends Controller
     */
     public function store(Request $request)
     {
-      if (Auth::user() != NULL && (Auth::user()->school != NULL ||
-            Auth::user()->is_admin)) {
+      if (belongsToSchool(Auth::user())) {
         $validate = $this->validator($request->all());
         if($validate->fails()) return back()->withErrors($validate);
 
@@ -66,7 +69,7 @@ class ExerciseController extends Controller
 
         return back()->with('success', 'Harjoitus lisätty');
       }
-      return back()->withErrors('Sinun täytyy kuulua kouluun, jotta voit lisätä tehtävän');
+      return back()->withErrors('Sinun täytyy kuulua kouluun, jotta voit lisätä harjoituksen');
     }
 
     /**

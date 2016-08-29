@@ -1,3 +1,12 @@
+@if (!checkMembership(Auth::user(), $task->exercise->school))
+
+<button type="button" class="btn btn-info disabled">
+  <span class="glyphicon glyphicon-pencil"></span>
+  Muokkaa
+</button>
+
+@else
+
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editGlossaryModal{!!$task->glossary->id!!}">
   <span class="glyphicon glyphicon-pencil"></span>
   Muokkaa
@@ -62,3 +71,5 @@
     </div>
   </div>
 </div>
+
+@endif
