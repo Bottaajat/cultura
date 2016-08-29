@@ -69,6 +69,8 @@ function allowedAudioExtensions() {
 }
 
 function checkMembership($user, $schoolid) {
+  if ($user == NULL || $schoolid == NULL)
+    return FALSE;
   if($user->is_admin || ($user->school != NULL && $user->school->id == $schoolid) )
     return TRUE;
   else

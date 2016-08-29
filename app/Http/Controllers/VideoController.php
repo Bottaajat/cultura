@@ -38,64 +38,67 @@ class VideoController extends Controller
   }
 
   public function store(Request $request) {
-    if(Auth::user()->school == NULL)
-      return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
-    $vid = $this->getVideoId($request->input('src'));
-    if ($vid != NULL) {
-      $validate = $this->validator($request->all());
-      if($validate->fails()) return back()->withErrors($validate);
+    if(Auth::user()->is_admin || Auth::user()->school != NULL) {
+      $vid = $this->getVideoId($request->input('src'));
+      if ($vid != NULL) {
+        $validate = $this->validator($request->all());
+        if($validate->fails()) return back()->withErrors($validate);
 
-      $video = new Video();
-      $video->emb_src = $vid;
-      $videoinfo = $this->videoInfo($vid);
-      $video->desc = $this->getDesc($request, $videoinfo);
-      $video->title = $this->getTitle($request, $videoinfo);
-      $video->thumb = $this->storeThumbnail($video,$videoinfo);
-      if(!Auth::user()->is_admin)
-        $video->school()->associate(Auth::user()->school);
-      $video->save();
-      return back()->with('success', 'Video luotu!');
-    } else {
-      return back()->withErrors('Virheellinen linkki!');
+        $video = new Video();
+        $video->emb_src = $vid;
+        $videoinfo = $this->videoInfo($vid);
+        $video->desc = $this->getDesc($request, $videoinfo);
+        $video->title = $this->getTitle($request, $videoinfo);
+        $video->thumb = $this->storeThumbnail($video,$videoinfo);
+        if(!Auth::user()->is_admin)
+          $video->school()->associate(Auth::user()->school);
+        $video->save();
+        return back()->with('success', 'Video luotu!');
+      } else {
+        return back()->withErrors('Virheellinen linkki!');
+      }
     }
+    return back()->withErrors('Sinulla ei ole oikeuksia videoiden luontiin!');
   }
 
   public function update(Request $request, $id) {
-      if(Auth::user()->school == NULL)
-        return back()->withErrors('Sinulla ei ole oikeuksia videoiden päivittelyyn!');
-
-      $validate = $this->validator($request->all());
-      if($validate->fails()) return back()->withErrors($validate);
-
       $video = Video::find($id);
-      $newvid = $this->getVideoId($request->input('src'));
-      $vid = (strlen($newvid) == 0) ? $video->emb_src : $newvid;
-      $videoinfo = $this->videoInfo($vid);
-      $video->emb_src = $vid;
-      $video->desc = $this->getDesc($request, $videoinfo);
-      $video->title = $this->getTitle($request, $videoinfo);
-      $video->thumb = $this->storeThumbnail($video,$videoinfo);
-      if(!Auth::user()->is_admin)
-        $video->school()->associate(Auth::user()->school);
-      $video->save();
-      return back()->with('success', 'Videon tiedot päivitetty!');
+      if(Auth::user()->is_admin || ($video->school !=NULL &&
+            checkMembership(Auth::user(), $video->school->id))) {
+        $validate = $this->validator($request->all());
+        if($validate->fails()) 
+          return back()->withErrors($validate);
+        
+        $newvid = $this->getVideoId($request->input('src'));
+        $vid = (strlen($newvid) == 0) ? $video->emb_src : $newvid;
+        $videoinfo = $this->videoInfo($vid);
+        $video->emb_src = $vid;
+        $video->desc = $this->getDesc($request, $videoinfo);
+        $video->title = $this->getTitle($request, $videoinfo);
+        $video->thumb = $this->storeThumbnail($video,$videoinfo);
+        if(Auth::user()->is_admin && $video->school != NULL) {
+          $video->school()->dissociate($video->school());
+        }
+        $video->save();
+        return back()->with('success', 'Videon tiedot päivitetty!');
+      }
+      return back()->withErrors('Sinulla ei ole oikeuksia videoiden päivittelyyn!');
   }
 
   public function destroy($id) {
-    if(Auth::user()->school == NULL)
-      return back()->withErrors('Sinulla ei ole oikeuksia videoiden poistamiseen!');
-
     $video = Video::find($id);
-    $tasks = $video->tasks;
-
-    foreach($tasks as $task) {
+    if(Auth::user()->is_admin || ($video->school !=NULL &&
+          checkMembership(Auth::user(), $video->school->id))) {
+      $tasks = $video->tasks;
+      foreach($tasks as $task) {
         $task->video()->dissociate();
         $task->save();
-    }
-
-    $this->deleteThumbIfLast($video);
-    $video->delete();
-    return back()->with('success', 'Video poistettu!');
+      }
+      $this->deleteThumbIfLast($video);
+      $video->delete();
+      return back()->with('success', 'Video poistettu!');
+    } 
+    return back()->withErrors('Sinulla ei ole oikeuksia videoiden poistamiseen!');
   }
 
   // Private functions ...
