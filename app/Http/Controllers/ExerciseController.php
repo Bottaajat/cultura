@@ -49,20 +49,24 @@ class ExerciseController extends Controller
     */
     public function store(Request $request)
     {
-      $validate = $this->validator($request->all());
-      if($validate->fails()) return back()->withErrors($validate);
+      if (Auth::user() != NULL && (Auth::user()->school != NULL ||
+            Auth::user()->is_admin)) {
+        $validate = $this->validator($request->all());
+        if($validate->fails()) return back()->withErrors($validate);
 
-      $topic_id = $request->input('topic_id');
+        $topic_id = $request->input('topic_id');
 
-      $exercise = new Exercise;
-      $exercise->name = $request->input('name');
-      $exercise->description = $request->input('description');
-      $exercise->topic()->associate($topic_id);
-      if(!Auth::user()->is_admin)
-        $exercise->school()->associate(Auth::user()->school);
-      $exercise->save();
+        $exercise = new Exercise;
+        $exercise->name = $request->input('name');
+        $exercise->description = $request->input('description');
+        $exercise->topic()->associate($topic_id);
+        if(!Auth::user()->is_admin)
+          $exercise->school()->associate(Auth::user()->school);
+        $exercise->save();
 
-      return back()->with('success', 'Harjoitus lisätty');
+        return back()->with('success', 'Harjoitus lisätty');
+      }
+      return back()->withErrors('Sinun täytyy kuulua kouluun, jotta voit lisätä tehtävän');
     }
 
     /**
