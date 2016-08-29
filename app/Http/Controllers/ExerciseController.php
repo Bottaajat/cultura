@@ -79,7 +79,7 @@ class ExerciseController extends Controller
       $exercise = Exercise::find($id);
 
       if(!Auth::user()->is_admin && $exercise->school == NULL)
-        return back()->withErrors('Et voi päivittää tätä harjoitusta!');
+        return back()->withErrors('Vain admin voi päivittää tätä harjoitusta!');
       if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
         return back()->withErrors('Et voi tehdä toisen koulun harjoitukseen muutoksia!');
 
@@ -93,7 +93,7 @@ class ExerciseController extends Controller
           return back()->withErrors($validate);
         }
       }
-      
+
       $topic_id = $request->input('topic_id');
       $topic = Topic::find($topic_id);
 
@@ -101,6 +101,9 @@ class ExerciseController extends Controller
       $exercise->topic()->associate($topic);
       $exercise->description = $request->input('description');
 
+      if(Auth::user()->is_admin && $exercise->school != NULL) {
+        $exercise->school()->dissociate($exercise->school());
+      }
       $exercise->update();
 
       return back()->with('success', 'Päivitys onnistui!');
@@ -116,7 +119,7 @@ class ExerciseController extends Controller
         $exercise = Exercise::find($id);
 
         if(!Auth::user()->is_admin && $exercise->school == NULL)
-          return back()->withErrors('Et voi poistaa tätä harjoitusta!');
+          return back()->withErrors('Vain admin voi poistaa tätä harjoitusta!');
         if(!Auth::user()->is_admin && Auth::user()->school->id != $exercise->school->id)
           return back()->withErrors('Et voi poistaa toisen koulun harjoituksia!');
 
