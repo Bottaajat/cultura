@@ -29,7 +29,7 @@ class ExerciseController extends Controller
    * @return \Illuminate\Http\Response
    */
   public function show($id) {
-     $exercise_list = Exercise::when(Auth::user()->school != NULL, 
+     $exercise_list = Exercise::when(Auth::check() && Auth::user()->school != NULL, 
       function ($query)  {
         return $query->Where('school_id', '=', Auth::user()->school->id);
       })
