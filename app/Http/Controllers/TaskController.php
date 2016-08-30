@@ -31,12 +31,14 @@ class TaskController extends Controller
 	}
 
   public function index(Request $request) {
-
-    $exercise_list = Exercise::when(Auth::user()->school != NULL, 
-        function ($query)  {
-          return $query->Where('school_id', '=', Auth::user()->school->id);
-        })
-      ->lists('name', 'id');
+    if (Auth::check())
+      $exercise_list = Exercise::when(Auth::user()->school != NULL, 
+          function ($query)  {
+            return $query->Where('school_id', '=', Auth::user()->school->id);
+          })
+       ->lists('name', 'id');
+    else 
+      $exercise_list = array();
       
     $type_list = ['Sanojen yhdistäminen','Kuvien yhdistäminen','Monivalinta','Sanaristikko','Täyttö'];
     $i=0;
