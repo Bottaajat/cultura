@@ -5,17 +5,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 class Exercise extends Model
 {
-	use SoftDeletes;
-
 	protected $table = 'exercises';
 
   protected $fillable = [ 'name' ];
-
-  protected $dates = ['deleted_at'];
 
   public function school() {
     return $this->belongsTo('App\Models\School');
