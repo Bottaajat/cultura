@@ -59,6 +59,9 @@ function init (answers, clues, positions, orientations) {
 		}
 		else {
 			vertical_hints.append((i+1)+'. '+clues[i]+'<br>');
+			if (clues[i] == '') {
+				$("#vertical_hints_container").hide();
+			}
 		}
 	}
 	$("#vertical_hints_container").append(vertical_hints);

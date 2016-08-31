@@ -21,10 +21,8 @@
 	
 <div style="display:inline-block; white-space: nowrap; float:left;">
 	<div id="hints_container">
-		<h4>Vaakasuoraan</h4>
-			<div id="horizontal_hints_container"></div>
-		<h4>Pystysuoraan</h4>
-			<div id="vertical_hints_container"></div>
+			<div id="horizontal_hints_container"><h4>Vaakasuoraan</h4></div>
+			<div id="vertical_hints_container"><h4>Pystysuoraan</h4></div>
 	</div>
 
 	<div id="buttons_container" class="panel-body">
