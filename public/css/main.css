@@ -64,7 +64,7 @@ body {
   height: auto !important;
   height: 100%;
   /* Negative indent footer by its height */
-  margin: 0 auto -92px;
+  margin: 0 auto -94px;
   background-color: #ffffff;
 }
 
@@ -73,7 +73,7 @@ body {
 }
 
 #footer{
-  height: 92px;
+  height: 94px;
   width: 100%;
   background-color: #030d10;
   color: #eef8fc;
