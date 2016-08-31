@@ -104,11 +104,14 @@ class SchoolController extends Controller
   public function reject($schoolid, $userid) {
     $user = User::findOrFail($userid);
     $school = School::findOrFail($schoolid);
-    if(!checkMembership(Auth::user(),$school))
+    if(checkMembership(Auth::user(),$school) || 
+        (Auth::user()->id === $user->id && $user->pending != NULL)) {
+      $user->pending = NULL;
+      $user->save();
+      return back()->with('success', 'Käyttäjän ' . $user->name() . ' jäsenpyyntö peruttu.');
+    } else {
       return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
-    $user->pending = NULL;
-    $user->save();
-    return back()->with('success', 'Käyttäjän ' . $user->name() . ' jäsenpyyntö peruttu.');
+    }
   }
 
   public function addLogo(Request $request, $id) {
