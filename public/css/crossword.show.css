@@ -55,7 +55,11 @@
     margin-left: 50px;
 }
 
-.btn{
+.btn-warning{
+	margin: 20px;
+}
+
+.btn-success{
 	margin: 20px;
 }
 
