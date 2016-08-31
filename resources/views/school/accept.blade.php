@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acceptModal{{$item->id}}">
-  <i class="fa fa-btn fa-check"></i>
+  <i class="fa fa-btn fa-check"></i>/<i class="fa fat-btn fa-close"></i>
 </button>
 
 <div class="modal fade" id="acceptModal{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="acceptModal{{$item->id}}Label">

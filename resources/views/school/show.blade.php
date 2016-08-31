@@ -77,7 +77,7 @@
           <th>Etunimi</th>
           <th>Sukunimi</th>
           @if(Auth::check() && checkMembership(Auth::user(), $school))
-            <th>Hyväksy</th>
+            <th>Hyväksy/Hylkää</th>
           @endif
         </tr>
       </thead>
@@ -87,8 +87,8 @@
             <td><a href="{!! action('UserController@show', ['id' => $item->id]) !!}">{!! $key+1 !!}</a></td>
             <td>{!! $item->firstname !!}</td>
             <td>{!! $item->lastname !!}</td>
-            @if(Auth::check() && checkMembership(Auth::user(), $school))
-              <td class="rowlink-skip">@include('school.accept')</td>
+            @if(checkMembership(Auth::user(), $school))
+              <td class="rowlink-skip center-align">@include('school.accept')</td>
             @endif
           </tr>
           @endforeach

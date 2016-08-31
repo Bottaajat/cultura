@@ -91,10 +91,9 @@ class SchoolController extends Controller
 
   public function accept($schoolid, $userid) {
     $user = User::findOrFail($userid);
-    if(!Auth::user()->is_admin && Auth::user()->school->id != $schoolid)
-      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
     $school = School::findOrFail($schoolid);
-
+    if(!checkMembership(Auth::user(),$school))
+      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
     $user->pending = NULL;
     $user->school()->associate($school->id);
     $user->save();
@@ -104,9 +103,9 @@ class SchoolController extends Controller
 
   public function reject($schoolid, $userid) {
     $user = User::findOrFail($userid);
-    if(!Auth::user()->is_admin && Auth::user()->id != $userid)
-      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
     $school = School::findOrFail($schoolid);
+    if(!checkMembership(Auth::user(),$school))
+      return back()->withErrors('Sinulla ei ole oikeuksia tähän toimintoon!');
     $user->pending = NULL;
     $user->save();
     return back()->with('success', 'Käyttäjän ' . $user->name() . ' jäsenpyyntö peruttu.');

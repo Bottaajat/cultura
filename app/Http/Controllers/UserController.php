@@ -31,7 +31,10 @@ class UserController extends Controller
     if($user->is_admin)
       return view('errors.404');
     $school_list = School::lists('name', 'id');
-    return view('user.show', ['user' => $user, 'school_list' => $school_list]);
+    $school = $user->pending != NULL  ? School::find($user->pending) : NULL;
+    $item = $user->pending != NULL ? $user : NULL;
+    return view('user.show', ['user' => $user, 'school_list' => $school_list, 
+          'school' => $school, 'item' => $item]);
   }
 
   public function update(Request $request, $id) {
